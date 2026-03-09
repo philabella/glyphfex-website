@@ -1,0 +1,102 @@
+/* ========================================
+   GlyphFex Legal Pages — shared styles
+   Used by privacy.html, terms.html, eula.html
+   ======================================== */
+
+/* Import base variables and nav/footer from main stylesheet */
+
+.legal-page {
+    padding: 120px 0 80px;
+    min-height: calc(100vh - 200px);
+}
+
+.legal-content {
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.legal-content h1 {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--gray-900);
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+}
+
+.legal-meta {
+    font-size: 14px;
+    color: var(--gray-400);
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.legal-content h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-top: 40px;
+    margin-bottom: 12px;
+}
+
+.legal-content h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-top: 28px;
+    margin-bottom: 8px;
+}
+
+.legal-content p {
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.75;
+    margin-bottom: 16px;
+}
+
+.legal-content ul, .legal-content ol {
+    margin-bottom: 16px;
+    padding-left: 24px;
+}
+
+.legal-content li {
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.75;
+    margin-bottom: 6px;
+}
+
+.legal-content strong {
+    color: var(--gray-800);
+}
+
+.legal-content a {
+    color: var(--blue-600);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.legal-content a:hover {
+    color: var(--blue-700);
+}
+
+.legal-nav {
+    display: flex;
+    gap: 24px;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--gray-200);
+}
+
+.legal-nav a {
+    font-size: 14px;
+    color: var(--gray-500);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.legal-nav a:hover { color: var(--blue-600); }
+
+@media (max-width: 768px) {
+    .legal-content h1 { font-size: 28px; }
+    .legal-content h2 { font-size: 20px; }
+    .legal-page { padding: 100px 0 60px; }
+}

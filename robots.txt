@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://glyphfex.com/sitemap.xml
