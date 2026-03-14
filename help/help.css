@@ -199,6 +199,18 @@
     transform: translateY(-2px);
 }
 
+/* Overlay — hidden on desktop, positioned fixed so never in grid flow */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 73px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 35;
+}
+
 /* ---------- Main Content ---------- */
 .help-content {
     padding: 40px 48px 80px;
@@ -660,6 +672,49 @@ kbd {
     pointer-events: none;
 }
 
+/* ---------- Screenshot Placeholders ---------- */
+.help-screenshot {
+    position: relative;
+    background: var(--gray-50);
+    border: 2px dashed var(--gray-300);
+    border-radius: var(--radius-md);
+    padding: 40px 24px;
+    margin: 24px 0;
+    text-align: center;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.help-screenshot .screenshot-icon {
+    width: 48px;
+    height: 48px;
+    color: var(--gray-400);
+    margin-bottom: 4px;
+}
+
+.help-screenshot .screenshot-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gray-500);
+}
+
+.help-screenshot .screenshot-desc {
+    font-size: 13px;
+    color: var(--gray-400);
+    max-width: 400px;
+    line-height: 1.5;
+}
+
+.help-screenshot img {
+    max-width: 100%;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1200px) {
     .help-layout {
@@ -696,17 +751,6 @@ kbd {
         display: flex;
         align-items: center;
         gap: 8px;
-    }
-
-    .sidebar-overlay {
-        display: none;
-        position: fixed;
-        top: 73px;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.3);
-        z-index: 35;
     }
 
     .sidebar-overlay.active {
