@@ -37,7 +37,7 @@
     --purple-500: #8b5cf6;
     --cyan-500: #06b6d4;
 
-    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --max-width: 1200px;
     --radius-sm: 8px;
     --radius-md: 12px;
@@ -48,6 +48,8 @@
     --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
     --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
     --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.05);
+    --shadow-glow: 0 0 40px rgba(37, 99, 235, 0.15);
+    --shadow-card-hover: 0 16px 32px -8px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.04);
 }
 
 html {
@@ -93,15 +95,16 @@ code { background: var(--gray-100); padding: 2px 6px; border-radius: 4px; font-s
 .btn-block { width: 100%; }
 
 .btn-primary {
-    background: var(--blue-600);
+    background: linear-gradient(135deg, var(--blue-600) 0%, var(--blue-700) 100%);
     color: #fff;
     border-color: var(--blue-600);
+    box-shadow: 0 1px 3px rgba(37, 99, 235, 0.2);
 }
 .btn-primary:hover {
-    background: var(--blue-700);
-    border-color: var(--blue-700);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
+    background: linear-gradient(135deg, var(--blue-500) 0%, var(--blue-600) 100%);
+    border-color: var(--blue-500);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px -4px rgba(37, 99, 235, 0.35);
 }
 
 .btn-outline {
@@ -205,6 +208,20 @@ code { background: var(--gray-100); padding: 2px 6px; border-radius: 4px; font-s
     padding: 140px 0 80px;
     background: linear-gradient(180deg, var(--blue-50) 0%, #fff 100%);
     overflow: hidden;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 1px 1px, var(--gray-200) 1px, transparent 0);
+    background-size: 40px 40px;
+    opacity: 0.4;
+    pointer-events: none;
 }
 
 .hero .container {
@@ -274,7 +291,13 @@ code { background: var(--gray-100); padding: 2px 6px; border-radius: 4px; font-s
     background: var(--gray-900);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: var(--shadow-xl), 0 0 0 1px rgba(0,0,0,0.05);
+    box-shadow: var(--shadow-xl), 0 0 0 1px rgba(0,0,0,0.05), 0 0 80px -20px rgba(37, 99, 235, 0.25);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-app-mockup:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-xl), 0 0 0 1px rgba(0,0,0,0.05), 0 0 100px -16px rgba(37, 99, 235, 0.35);
 }
 
 .mockup-titlebar {
@@ -545,13 +568,31 @@ code { background: var(--gray-100); padding: 2px 6px; border-radius: 4px; font-s
     padding: 32px;
     border-radius: var(--radius-md);
     border: 1px solid var(--gray-200);
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue-500), var(--purple-500));
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .feature-card:hover {
     border-color: var(--blue-200);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-4px);
+}
+
+.feature-card:hover::before {
+    opacity: 1;
 }
 
 .feature-icon {
@@ -560,10 +601,15 @@ code { background: var(--gray-100); padding: 2px 6px; border-radius: 4px; font-s
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--blue-50);
+    background: linear-gradient(135deg, var(--blue-50) 0%, rgba(139, 92, 246, 0.08) 100%);
     color: var(--blue-600);
     border-radius: var(--radius-sm);
     margin-bottom: 16px;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.1);
 }
 
 .feature-card h3 {
@@ -1771,4 +1817,217 @@ code { background: var(--gray-100); padding: 2px 6px; border-radius: 4px; font-s
     .trial-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* ========================================
+   Enhanced Animations & Visual Polish
+   ======================================== */
+
+/* --- Scroll reveal system --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.from-left {
+    transform: translateX(-40px) translateY(0);
+}
+
+.reveal.from-right {
+    transform: translateX(40px) translateY(0);
+}
+
+.reveal.scale-up {
+    transform: scale(0.95) translateY(0);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+}
+
+/* --- Pipeline shimmer animation --- */
+@keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+.mockup-stage {
+    background-image: linear-gradient(
+        90deg,
+        var(--stage-color) 0%,
+        var(--stage-color) 40%,
+        rgba(255,255,255,0.2) 50%,
+        var(--stage-color) 60%,
+        var(--stage-color) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+.mockup-stage:nth-child(1) { animation-delay: 0s; }
+.mockup-stage:nth-child(2) { animation-delay: 0.4s; }
+.mockup-stage:nth-child(3) { animation-delay: 0.8s; }
+.mockup-stage:nth-child(4) { animation-delay: 1.2s; }
+.mockup-stage:nth-child(5) { animation-delay: 1.6s; }
+
+/* --- Nav link underline animation --- */
+.nav-links a {
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--blue-600);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 1px;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.nav-links a.active {
+    color: var(--blue-600);
+}
+
+/* --- Proof stat hover --- */
+.proof-number {
+    transition: transform 0.3s ease;
+}
+
+.proof-stat:hover .proof-number {
+    transform: scale(1.1);
+}
+
+/* --- Enhanced pricing card --- */
+.pricing-card.featured {
+    background: linear-gradient(180deg, #fff 0%, var(--blue-50) 100%);
+    border-color: var(--blue-400);
+    box-shadow: 0 0 0 1px var(--blue-400), 0 20px 40px -12px rgba(37, 99, 235, 0.2);
+}
+
+.pricing-card.featured:hover {
+    box-shadow: 0 0 0 1px var(--blue-400), 0 24px 48px -12px rgba(37, 99, 235, 0.3);
+    transform: translateY(-4px);
+}
+
+.pricing-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- CTA pattern overlay --- */
+.final-cta {
+    position: relative;
+    overflow: hidden;
+}
+
+.final-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.07) 1px, transparent 0);
+    background-size: 32px 32px;
+    pointer-events: none;
+}
+
+/* --- Step number hover glow --- */
+.step-number {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.step:hover .step-number {
+    box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.1);
+    transform: scale(1.05);
+}
+
+/* --- Comparison card hover --- */
+.comparison-card {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.comparison-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -8px rgba(0,0,0,0.1);
+}
+
+/* --- FAQ item hover polish --- */
+.faq-item {
+    transition: box-shadow 0.2s ease;
+}
+
+.faq-item:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+/* --- Download card pulse border --- */
+@keyframes pulse-border {
+    0%, 100% { border-color: var(--blue-200); }
+    50% { border-color: var(--blue-400); }
+}
+
+.download-card {
+    animation: pulse-border 3s ease-in-out infinite;
+}
+
+/* --- Feature section header decorative line --- */
+.feature-section-header h2::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue-500), var(--purple-500));
+    margin-top: 12px;
+    border-radius: 2px;
+}
+
+/* --- Demo card hover --- */
+.demo-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Gradient divider utility --- */
+.gradient-divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, var(--blue-200) 20%, var(--blue-500) 50%, var(--blue-200) 80%, transparent 100%);
+    max-width: 200px;
+    margin: 0 auto 32px;
+}
+
+/* --- Upsell card hover --- */
+.upsell-card {
+    transition: all 0.3s ease;
+}
+
+.upsell-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* --- Features page CTA enhanced --- */
+.features-cta {
+    position: relative;
+    overflow: hidden;
+}
+
+.features-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.07) 1px, transparent 0);
+    background-size: 32px 32px;
+    pointer-events: none;
 }
