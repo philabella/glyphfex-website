@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exports &amp; Reports &mdash; GlyphFex Help</title>
+    <meta name="description" content="Export your GlyphFex data as PDF, CSV, Excel, or QuickBooks format. Import entries from CSV files. Generate built-in PDF guides and timesheet reports.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="calendar.html">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Exports &amp; Reports</h1>
+            <p class="help-subtitle">Export your data as PDF, CSV, Excel, or QuickBooks format. Import entries from CSV files.</p>
+
+            <!-- ====== PDF Entry Export ====== -->
+            <h2 id="pdf-export">PDF Entry Export</h2>
+            <p>Print any individual entry as a detailed, professionally formatted PDF document. The PDF includes:</p>
+            <ul>
+                <li><strong>Header</strong> &mdash; Reference ID, project name, company name, and generation date</li>
+                <li><strong>All fields</strong> &mdash; Built-in fields, custom fields, tags, and comments</li>
+                <li><strong>Stage timeline</strong> &mdash; Visual history of every pipeline stage transition with timestamps and durations</li>
+                <li><strong>Job costing</strong> &mdash; Unit price, quantity, and total value (when applicable)</li>
+                <li><strong>Part history</strong> &mdash; If the entry has a part number, a table of other entries sharing the same part number (capped at 25)</li>
+                <li><strong>QR code</strong> &mdash; A scannable <code>glyphfex://entry/{id}</code> link that opens the entry directly when scanned with a barcode reader</li>
+            </ul>
+            <p>Access: Right-click any entry on the Dashboard and select <strong>Print</strong>, or open the Entry Detail Window and click <strong>Print</strong>.</p>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                The PDF entry export is ideal for creating physical job travelers, customer-facing summaries, or archival records. Print one for every job and attach it to the physical work piece as it moves through the shop.
+            </div>
+
+            <!-- ====== PDF Dashboard Report ====== -->
+            <h2 id="pdf-report">PDF Dashboard Report</h2>
+            <p>Generate a summary report of the entries currently visible on your Dashboard. The report includes:</p>
+            <ul>
+                <li><strong>Filter description</strong> &mdash; Which filters were active when the report was generated</li>
+                <li><strong>Entry table</strong> &mdash; A tabular listing of all matching entries with key columns</li>
+                <li><strong>Statistics summary</strong> &mdash; Total entries, status breakdown, and other aggregate data</li>
+            </ul>
+            <p>Access: Click the <strong>Export PDF</strong> button in the Dashboard toolbar. The report respects your current filters, search query, and sort order.</p>
+
+            <!-- ====== Job Traveler ====== -->
+            <h2 id="job-traveler">Job Traveler PDF</h2>
+            <p>A Job Traveler is a single-page PDF designed to accompany a physical job through the shop. It includes:</p>
+            <ul>
+                <li>Reference ID and job description</li>
+                <li>Customer name, PO number, due date, and other key fields</li>
+                <li>Pipeline stages as a visual checklist</li>
+                <li>A large <strong>QR code</strong> that links to <code>glyphfex://entry/{id}</code></li>
+            </ul>
+            <p>Scan the QR code with any standard barcode scanner connected to a PC running GlyphFex. The entry opens instantly &mdash; no searching, no typing. This is especially powerful on the <a href="shop-floor.html">Shop Floor</a> kiosk where operators can scan a QR code to clock in/out of a specific job.</p>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Print Job Travelers on durable paper or laminate them for shop floor use. The QR code works even when printed in black and white.
+            </div>
+
+            <!-- ====== CSV Export ====== -->
+            <h2 id="csv-export">CSV Export</h2>
+            <p>Export your entries to a standard CSV (comma-separated values) file that can be opened in any spreadsheet application.</p>
+            <p><strong>Shortcut:</strong> <kbd>Ctrl</kbd>+<kbd>E</kbd> or <strong>File &gt; Export &gt; CSV</strong></p>
+            <p>The CSV export respects your current Dashboard filters &mdash; only the entries matching your active filters are exported. This lets you export a subset of data (e.g., "all entries in Fabrication stage" or "all Rush priority jobs") without exporting everything.</p>
+            <div class="help-note">
+                <strong>Note</strong>
+                GlyphFex includes <strong>formula injection defense</strong> in CSV exports. Cells that begin with <code>=</code>, <code>+</code>, <code>-</code>, or <code>@</code> are prefixed with a single quote (<code>'</code>) to prevent spreadsheet applications from executing them as formulas. This protects against a known CSV injection attack vector.
+            </div>
+
+            <!-- ====== Excel Export ====== -->
+            <h2 id="excel-export">Excel Export</h2>
+            <p>Export your data as a formatted <code>.xlsx</code> Excel file. The Excel export includes proper column headers, data types, and basic formatting for easy use in Microsoft Excel, Google Sheets, or LibreOffice Calc.</p>
+            <p>Access: <strong>File &gt; Export &gt; Excel</strong></p>
+
+            <!-- ====== QuickBooks Format ====== -->
+            <h2 id="quickbooks">QuickBooks Format</h2>
+            <p>Export entries in a CSV format compatible with QuickBooks invoice import. This is useful for accounting integration when you need to transfer job data (reference IDs, customer names, quantities, prices) into your accounting system.</p>
+            <p>Access: <strong>File &gt; Export &gt; QuickBooks CSV</strong></p>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                The QuickBooks export maps GlyphFex fields to QuickBooks invoice columns. Review the mapping before importing to ensure field alignment matches your QuickBooks configuration.
+            </div>
+
+            <!-- ====== Full Project ZIP ====== -->
+            <h2 id="zip-export">Full Project ZIP</h2>
+            <p>Export your entire project as a ZIP archive containing multiple CSV files for comprehensive backup or data portability.</p>
+            <p><strong>Shortcut:</strong> <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>E</kbd> or <strong>File &gt; Export &gt; Full Project</strong></p>
+            <p>The ZIP archive contains:</p>
+            <ul>
+                <li><code>entries.csv</code> &mdash; All entries with all fields</li>
+                <li><code>audit.csv</code> &mdash; Complete audit trail history</li>
+                <li><code>categories.csv</code> &mdash; Category and tag configuration</li>
+            </ul>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Use the Full Project ZIP as a periodic backup or when you need to migrate data to another system. The CSV files are human-readable and can be processed by any data tool.
+            </div>
+
+            <!-- ====== CSV Import ====== -->
+            <h2 id="csv-import">CSV Import Wizard</h2>
+            <p>Import entries from an external CSV file using the 3-step import wizard.</p>
+            <p><strong>Shortcut:</strong> <kbd>Ctrl</kbd>+<kbd>I</kbd> or <strong>File &gt; Import from CSV</strong></p>
+
+            <ol class="help-steps">
+                <li><strong>Select file</strong> &mdash; Browse to your CSV file. GlyphFex reads the header row and shows a preview of the data.</li>
+                <li><strong>Map columns</strong> &mdash; Match each CSV column to a GlyphFex field. The wizard suggests mappings based on column names, but you can adjust them manually. Unmapped columns are skipped.</li>
+                <li><strong>Import</strong> &mdash; GlyphFex validates the data and imports matching rows. A summary shows how many entries were created, skipped, or errored.</li>
+            </ol>
+
+            <h3>Duplicate handling</h3>
+            <p>When an imported entry has the same Reference ID as an existing entry, you can choose:</p>
+            <ul>
+                <li><strong>Skip</strong> &mdash; Do not import the duplicate (keep existing)</li>
+                <li><strong>Overwrite</strong> &mdash; Replace the existing entry with the imported data</li>
+                <li><strong>Create new</strong> &mdash; Import as a separate entry (appends a suffix to avoid ID collision)</li>
+            </ul>
+            <div class="help-warning">
+                <strong>Warning</strong>
+                The import wizard validates data before committing. If required fields are missing or validation patterns do not match, those rows are flagged and skipped. Review the import summary carefully.
+            </div>
+
+            <!-- ====== PDF Guides ====== -->
+            <h2 id="pdf-guides">Built-In PDF Guides</h2>
+            <p>GlyphFex includes three professionally formatted PDF guides that are generated on demand and opened in your default PDF viewer:</p>
+
+            <h3>Getting Started Guide (<kbd>F1</kbd>)</h3>
+            <p>A comprehensive 23-page guide covering installation, first launch, project creation, entry forms, pipeline configuration, Dashboard views, Shop Floor kiosk, settings, and FAQ. Access from <strong>Help &gt; Getting Started Guide</strong> or press <kbd>F1</kbd>.</p>
+
+            <h3>Process Guide</h3>
+            <p>An 8-page guide focused on workflow processes: how to use pipeline stages, manage entries through their lifecycle, handle multiple pipelines, use the Shop Floor kiosk, and track SLA compliance. Access from <strong>Help &gt; Process Guide</strong>.</p>
+
+            <h3>Feature Overview</h3>
+            <p>An 11-page marketing-ready PDF listing 40+ features across 9 categories, each with a description and a "How a shop uses this" use case. Includes a pricing page with all 4 editions. Access from <strong>Help &gt; Feature Overview</strong>.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                The Getting Started Guide is a great resource to share with new team members. Print it or email the PDF so they can learn GlyphFex at their own pace.
+            </div>
+
+            <!-- ====== Timesheet Reports ====== -->
+            <h2 id="timesheet">Timesheet Reports</h2>
+            <p>Generate timesheet summaries from clock in/out records captured on the <a href="shop-floor.html">Shop Floor</a> page.</p>
+            <p>Access: <strong>Tools &gt; Timesheet Report</strong></p>
+            <ul>
+                <li><strong>Filter by date range</strong> &mdash; Select a start and end date to scope the report</li>
+                <li><strong>Filter by worker</strong> &mdash; Choose a specific worker or view all workers. Workers are populated from clock in/out records within the selected date range.</li>
+                <li><strong>Summary view</strong> &mdash; Shows total hours per worker, per entry, with clock-in and clock-out timestamps</li>
+                <li><strong>Export to PDF</strong> &mdash; Generate a printable timesheet PDF for payroll, billing, or record-keeping</li>
+            </ul>
+            <div class="help-note">
+                <strong>Note</strong>
+                Timesheet data comes from the Shop Floor's clock in/out feature. If your team uses the Shop Floor kiosk for time tracking, this report is the fastest way to extract that data for payroll.
+            </div>
+        </main>
+
+        <!-- Table of Contents -->
+        <aside class="help-toc" id="helpToc">
+            <h3>On this page</h3>
+            <ul><!-- populated by help.js --></ul>
+        </aside>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="nav-logo">
+                        <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                            <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                            <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="logo-text">GlyphFex</span>
+                    </a>
+                    <p class="footer-tagline">One source of truth from quote to completion.</p>
+                </div>
+                <div class="footer-links"><h4>Product</h4><a href="../features.html">Features</a><a href="../index.html#pricing">Pricing</a><a href="../download.html">Download</a></div>
+                <div class="footer-links"><h4>Resources</h4><a href="index.html">Help Center</a><a href="getting-started.html">Getting Started</a><a href="reference.html">Reference</a></div>
+                <div class="footer-links"><h4>Legal</h4><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Terms of Service</a><a href="../eula.html">EULA</a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 GlyphFex. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="help.js"></script>
+</body>
+</html>

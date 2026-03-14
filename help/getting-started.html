@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started &mdash; GlyphFex Help</title>
+    <meta name="description" content="Get started with GlyphFex: installation, first launch, project creation, industry templates, and creating your first entry.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html" class="active">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="calendar.html">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Getting Started</h1>
+            <p class="help-subtitle">Everything you need to get GlyphFex installed, create your first project, and start tracking jobs.</p>
+
+            <!-- ====== System Requirements ====== -->
+            <h2 id="system-requirements">System Requirements</h2>
+            <p>GlyphFex runs on modern Windows machines with minimal hardware requirements:</p>
+            <ul>
+                <li><strong>Windows 10</strong> (build 19041 or later) or <strong>Windows 11</strong></li>
+                <li><strong>.NET 8 runtime</strong> &mdash; installed automatically by the MSI installer if not already present</li>
+                <li><strong>100 MB</strong> of free disk space for the application</li>
+                <li><strong>For multi-user / team mode:</strong> SQL Server Express 2019 or later installed on one machine on the local network</li>
+            </ul>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Most modern Windows PCs already meet these requirements. If you are only using GlyphFex in single-user (Solo) mode, you do not need SQL Server at all &mdash; everything is stored in a single local file.
+            </div>
+
+            <!-- ====== Installation ====== -->
+            <h2 id="installation">Installing GlyphFex</h2>
+            <p>Installation takes about a minute and requires no special configuration.</p>
+            <ol class="help-steps">
+                <li><strong>Download the installer</strong> &mdash; Get <code>GlyphFex-Setup.msi</code> from the <a href="../download.html">download page</a>.</li>
+                <li><strong>Run the installer</strong> &mdash; Double-click the MSI file and follow the prompts. The default settings work for most users.</li>
+                <li><strong>Launch GlyphFex</strong> &mdash; After installation, GlyphFex appears in your Start Menu. Click to open.</li>
+            </ol>
+            <div class="help-note">
+                <strong>Note</strong>
+                All editions &mdash; Solo, Admin, Editor, and Viewer &mdash; install the same binary. The edition is determined by the license key you enter later, not by which installer you use. Without a license key, GlyphFex runs in Trial mode with full Admin access.
+            </div>
+
+            <!-- ====== First Launch ====== -->
+            <h2 id="first-launch">First Launch</h2>
+            <p>When you open GlyphFex for the first time and create a new project, you will see a welcome dialog with three options:</p>
+            <ol>
+                <li><strong>Start Product Tour</strong> &mdash; An interactive 15-step guided walkthrough that spotlights key features. The app dims the background and highlights each area one at a time, so you can see exactly where everything is.</li>
+                <li><strong>Guided Setup</strong> &mdash; A 6-step wizard that walks you through configuring your project: pipeline stages, categories, fields, and more. Best if you already know how your workflow should be structured.</li>
+                <li><strong>Skip</strong> &mdash; Go straight to the empty app and configure everything manually at your own pace.</li>
+            </ol>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                The Product Tour is great for visual learners. You can re-launch it anytime from <strong>Help &gt; Product Tour</strong> in the menu bar. If you skip it now, nothing is lost.
+            </div>
+            <p>Not sure which to pick? If you are brand new to GlyphFex, start with the <strong>Product Tour</strong> to get oriented, then run the <strong>Guided Setup</strong> afterward to configure your project. If you have already used similar tools, the Guided Setup alone is usually enough.</p>
+
+            <!-- ====== Creating a Project ====== -->
+            <h2 id="create-project">Creating a Project</h2>
+            <p>A GlyphFex project is a single database that holds all of your entries, tags, pipeline configuration, audit trail, attachments, and settings. You can create as many projects as you need &mdash; one per shop, one per product line, or one for the whole company.</p>
+
+            <h3>How to create a project</h3>
+            <p>Go to <strong>File &gt; New Project</strong> or press <kbd>Ctrl</kbd>+<kbd>N</kbd>. You will be asked to choose a project type:</p>
+
+            <h4>Personal (Solo)</h4>
+            <ul>
+                <li>Creates a single <code>.glyphfex</code> file (SQLite database) on your local machine</li>
+                <li>Fully offline &mdash; no network or server required</li>
+                <li>Everything (entries, config, attachments, audit trail) is stored in that one file</li>
+                <li>Easy to back up: just copy the file</li>
+            </ul>
+
+            <h4>Shared (Team)</h4>
+            <ul>
+                <li>Creates a <code>.glyphfex-server</code> configuration file that points to a SQL Server Express database on your network</li>
+                <li>Multiple users can connect simultaneously over LAN</li>
+                <li>Supports role-based access (Admin, Editor, Viewer)</li>
+                <li>Requires SQL Server Express 2019+ running on one machine</li>
+            </ul>
+
+            <p>For a <strong>Personal</strong> project, simply choose where to save the <code>.glyphfex</code> file and click Create.</p>
+            <p>For a <strong>Shared</strong> project, you will need to provide:</p>
+            <ul>
+                <li><strong>Server name</strong> &mdash; The machine name and SQL Server instance, e.g., <code>SERVERNAME\SQLEXPRESS</code></li>
+                <li><strong>Database name</strong> &mdash; A name for the new database (e.g., <code>ShopFloor_2026</code>)</li>
+                <li><strong>Shared attachments folder</strong> (optional) &mdash; A network path where file attachments will be stored so all users can access them</li>
+            </ul>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Click the <strong>Test Connection</strong> button before creating a shared project. This verifies that GlyphFex can reach your SQL Server instance and that permissions are correctly configured.
+            </div>
+            <p>For detailed instructions on setting up SQL Server Express for team use, see the <a href="team.html">Multi-User &amp; Team</a> guide.</p>
+
+            <!-- ====== Industry Templates ====== -->
+            <h2 id="templates">Industry Templates</h2>
+            <p>After creating a project, GlyphFex offers pre-built industry templates that configure your pipeline, categories, fields, and validation rules in one click. Templates save significant setup time &mdash; you can always customize them later.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Template</th>
+                        <th>Pipeline Stages</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Sheet Metal Fabrication</strong></td>
+                        <td>Quote &rarr; Engineering &rarr; Nesting &rarr; Cutting &rarr; Forming &rarr; Welding &rarr; Finishing &rarr; QC &rarr; Shipping</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CNC Machine Shop</strong></td>
+                        <td>Programming &rarr; Setup &rarr; Machining &rarr; Inspection &rarr; Shipping</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Welding &amp; Structural</strong></td>
+                        <td>Estimating &rarr; Detailing &rarr; Fabrication &rarr; Welding &rarr; Inspection &rarr; Shipping</td>
+                    </tr>
+                    <tr>
+                        <td><strong>General Manufacturing</strong></td>
+                        <td>A versatile template for mixed-production shops</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Custom (Blank)</strong></td>
+                        <td>Start from scratch and configure everything manually</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Each template pre-configures:</p>
+            <ul>
+                <li><strong>Pipeline stages</strong> with SLA targets and business-day settings</li>
+                <li><strong>Tag categories</strong> relevant to the industry (Material, Process, Machine, etc.)</li>
+                <li><strong>Custom fields</strong> for common data points</li>
+                <li><strong>Validation patterns</strong> for reference IDs and other fields</li>
+                <li><strong>Built-in field selections</strong> (customer name, PO number, due date, etc.)</li>
+            </ul>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Templates are a starting point, not a locked-in choice. You can modify every setting after applying a template from the <a href="configuration.html">Settings Hub</a>. Add stages, rename categories, enable additional fields &mdash; whatever your shop needs.
+            </div>
+
+            <!-- ====== Setup Wizard ====== -->
+            <h2 id="setup-wizard">Setup Wizard</h2>
+            <p>The Setup Wizard provides a guided, step-by-step configuration experience. You can access it from <strong>Help &gt; Setup Wizard</strong> in the menu bar, or from the first-launch welcome dialog.</p>
+            <p>The wizard walks through six configuration steps:</p>
+            <ol>
+                <li><strong>Choose an industry template</strong> &mdash; Pick a pre-built template or start blank</li>
+                <li><strong>Configure pipeline stages</strong> &mdash; Name your stages, set SLA targets, mark completed stages</li>
+                <li><strong>Set up tag categories</strong> &mdash; Define how you will categorize entries (e.g., Material, Process, Priority)</li>
+                <li><strong>Enable built-in and custom fields</strong> &mdash; Choose which data fields appear on every entry</li>
+                <li><strong>Configure validation rules</strong> &mdash; Set up patterns for reference IDs and required fields</li>
+                <li><strong>Review and apply</strong> &mdash; See a summary of your configuration before committing</li>
+            </ol>
+            <div class="help-warning">
+                <strong>Warning</strong>
+                If you already have an existing configuration (e.g., you previously applied a template or manually configured settings), the wizard will warn you before overwriting anything. The first option in the wizard lets you review your current configuration without making changes.
+            </div>
+            <p>The wizard is smart about skipping steps that are already configured. If your pipeline is already set up, it will offer to skip that step automatically.</p>
+
+            <!-- ====== Creating Your First Entry ====== -->
+            <h2 id="first-entry">Creating Your First Entry</h2>
+            <p>An entry represents a single job, order, quote, or work item. Here is how to create one:</p>
+            <ol class="help-steps">
+                <li><strong>Navigate to New Entry</strong> &mdash; Press <kbd>Ctrl</kbd>+<kbd>1</kbd> or click <strong>New Entry</strong> in the left sidebar.</li>
+                <li><strong>Enter a Reference ID</strong> &mdash; This is the unique identifier for your job (e.g., <code>Q-2026-001</code>, <code>WO-4521</code>, or whatever your shop uses). If you configured a validation pattern, GlyphFex will enforce the format.</li>
+                <li><strong>Add comments</strong> &mdash; Describe the job, scope of work, or any notes. This is the main text body of the entry.</li>
+                <li><strong>Select a pipeline status</strong> &mdash; Choose the current stage from the pipeline dropdown. New entries default to the first stage.</li>
+                <li><strong>Choose tags</strong> &mdash; On the right panel, click category buttons or use dropdowns to tag the entry (e.g., Material: Stainless Steel, Priority: Rush).</li>
+                <li><strong>Fill in built-in fields</strong> &mdash; If enabled, enter the customer name, PO number, due date, quantity, and other key fields in the built-in fields panel below the form.</li>
+                <li><strong>Save</strong> &mdash; Press <kbd>Ctrl</kbd>+<kbd>S</kbd> or click the <strong>Save to Database</strong> button. Your entry is now stored and will appear on the Dashboard.</li>
+            </ol>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Check the <strong>Keep Entry</strong> checkbox at the bottom of the form to stay on the New Entry page after saving. This is useful when you need to create multiple entries in rapid succession &mdash; the form resets with a fresh reference ID each time.
+            </div>
+            <div class="help-note">
+                <strong>Note</strong>
+                Every change you make is recorded in the audit trail. You can view the full history of any entry from the Dashboard by opening the entry detail window (double-click or right-click &gt; Open Detail).
+            </div>
+
+            <!-- ====== Getting Started Checklist ====== -->
+            <h2 id="getting-started-checklist">Getting Started Checklist</h2>
+            <p>When you open a new project, the Dashboard displays a <strong>Getting Started</strong> checklist banner to help you through initial setup. The checklist tracks four steps:</p>
+            <ol>
+                <li><strong>Set up categories</strong> &mdash; Create tag categories to organize your entries (e.g., Material, Process, Machine). Press <kbd>Ctrl</kbd>+<kbd>T</kbd> or use the Command Palette.</li>
+                <li><strong>Configure pipeline</strong> &mdash; Define your workflow stages with SLA targets. Press <kbd>Ctrl</kbd>+<kbd>P</kbd> to open the pipeline editor.</li>
+                <li><strong>Add custom fields</strong> &mdash; Enable built-in fields (like customer name and due date) and create any custom fields your shop needs.</li>
+                <li><strong>Create entries</strong> &mdash; Start adding your first jobs. Press <kbd>Ctrl</kbd>+<kbd>1</kbd> to go to the New Entry page.</li>
+            </ol>
+            <p>Each step shows a checkmark once completed. The checklist automatically hides once you have 5 or more entries, or when all 4 steps are done. You can also dismiss it at any time by clicking the close button.</p>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                If you applied an industry template, steps 1 through 3 may already be checked off. Templates pre-configure categories, pipeline stages, and fields for you.
+            </div>
+
+            <!-- ====== Trial Mode ====== -->
+            <h2 id="trial">Trial Mode</h2>
+            <p>GlyphFex includes a generous free trial so you can evaluate the software with no commitment:</p>
+            <ul>
+                <li><strong>50 entries</strong> &mdash; create up to 50 entries per project, no time limit</li>
+                <li><strong>All features included</strong> &mdash; nothing is locked or hidden during the trial</li>
+                <li><strong>Full Admin access</strong> &mdash; you can test every configuration option, export, and workflow</li>
+                <li><strong>No credit card required</strong> &mdash; just install and start using it</li>
+            </ul>
+            <p>When you approach the 50-entry limit, banners on the Dashboard and Entry page show your current usage and remaining entries. Once the limit is reached:</p>
+            <ul>
+                <li><strong>Existing entries remain fully editable</strong> &mdash; you can update, tag, move through pipeline stages, add attachments, and export as usual</li>
+                <li><strong>New entry creation is blocked</strong> &mdash; you will need a license key to create entry #51 and beyond</li>
+            </ul>
+            <div class="help-note">
+                <strong>Note</strong>
+                To unlock unlimited entries, go to <strong>Settings &gt; License</strong> and enter your license key. You can purchase a license from the <a href="../index.html#pricing">pricing page</a>. Your existing data and configuration are preserved &mdash; activating a license simply removes the entry cap.
+            </div>
+
+            <!-- ====== Next Steps ====== -->
+            <h2 id="next-steps">Next Steps</h2>
+            <p>Now that you have GlyphFex installed and your first project set up, here are the best places to go next:</p>
+            <ul>
+                <li><a href="entries.html"><strong>Entries &amp; Forms</strong></a> &mdash; Learn about entry fields, tags, templates, attachments, and linked entries</li>
+                <li><a href="pipeline.html"><strong>Pipeline &amp; Workflow</strong></a> &mdash; Configure pipeline stages, SLA targets, and multi-pipeline support</li>
+                <li><a href="dashboard.html"><strong>Dashboard</strong></a> &mdash; Master the card, table, and timeline views with filters, search, and bulk actions</li>
+                <li><a href="configuration.html"><strong>Configuration</strong></a> &mdash; Deep-dive into the Settings Hub, categories, custom fields, validation, and all configuration options</li>
+            </ul>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Press <kbd>Ctrl</kbd>+<kbd>K</kbd> at any time to open the <strong>Command Palette</strong>. It is the fastest way to navigate to any page, open a dialog, or run a command in GlyphFex. Start typing what you want to do and select from the results.
+            </div>
+        </main>
+
+        <!-- Table of Contents -->
+        <aside class="help-toc" id="helpToc">
+            <h3>On this page</h3>
+            <ul><!-- populated by help.js --></ul>
+        </aside>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="nav-logo">
+                        <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                            <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                            <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="logo-text">GlyphFex</span>
+                    </a>
+                    <p class="footer-tagline">One source of truth from quote to completion.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <a href="../features.html">Features</a>
+                    <a href="../index.html#pricing">Pricing</a>
+                    <a href="../download.html">Download</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <a href="index.html">Help Center</a>
+                    <a href="getting-started.html">Getting Started</a>
+                    <a href="reference.html">Reference</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                    <a href="../eula.html">EULA</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GlyphFex. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="help.js"></script>
+</body>
+</html>

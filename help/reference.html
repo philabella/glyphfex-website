@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reference &mdash; GlyphFex Help</title>
+    <meta name="description" content="GlyphFex reference: keyboard shortcuts, Command Palette, data file format, troubleshooting, FAQ, and glossary of key terms.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="calendar.html">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Reference</h1>
+            <p class="help-subtitle">Keyboard shortcuts, data formats, troubleshooting tips, and frequently asked questions.</p>
+
+            <!-- ====== Keyboard Shortcuts ====== -->
+            <h2 id="keyboard-shortcuts">Keyboard Shortcuts</h2>
+            <p>GlyphFex supports keyboard shortcuts throughout the application. Press <kbd>Ctrl</kbd>+<kbd>/</kbd> at any time to open the Keyboard Shortcuts dialog.</p>
+
+            <h3>Navigation</h3>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>1</kbd></div>
+                <div class="shortcut-desc">New Entry page</div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>2</kbd></div>
+                <div class="shortcut-desc">Dashboard</div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>3</kbd></div>
+                <div class="shortcut-desc">Analytics</div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>4</kbd></div>
+                <div class="shortcut-desc">Calendar &amp; Gantt</div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>5</kbd></div>
+                <div class="shortcut-desc">Display Board</div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>6</kbd></div>
+                <div class="shortcut-desc">Shop Floor</div>
+            </div>
+
+            <h3>Project</h3>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>N</kbd></div>
+                <div class="shortcut-desc">New project</div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>O</kbd></div>
+                <div class="shortcut-desc">Open project</div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd></div>
+                <div class="shortcut-desc">New entry (from any page)</div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>K</kbd></div>
+                <div class="shortcut-desc">Command Palette</div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>,</kbd></div>
+                <div class="shortcut-desc">Settings Hub</div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>/</kbd></div>
+                <div class="shortcut-desc">Keyboard Shortcuts dialog</div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>F1</kbd></div>
+                <div class="shortcut-desc">Getting Started Guide (PDF)</div>
+            </div>
+
+            <h3>Entry Form</h3>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>S</kbd></div>
+                <div class="shortcut-desc">Save entry</div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>Z</kbd></div>
+                <div class="shortcut-desc">Undo</div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>Y</kbd></div>
+                <div class="shortcut-desc">Redo</div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Escape</kbd></div>
+                <div class="shortcut-desc">Cancel editing</div>
+            </div>
+
+            <h3>Dashboard</h3>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>F</kbd></div>
+                <div class="shortcut-desc">Focus search box</div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Escape</kbd></div>
+                <div class="shortcut-desc">Clear filters</div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>F5</kbd> / <kbd>Ctrl</kbd>+<kbd>R</kbd></div>
+                <div class="shortcut-desc">Refresh data</div>
+            </div>
+
+            <h3>Export &amp; Import</h3>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>E</kbd></div>
+                <div class="shortcut-desc">Export CSV</div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>E</kbd></div>
+                <div class="shortcut-desc">Export Full Project ZIP</div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>I</kbd></div>
+                <div class="shortcut-desc">Import from CSV</div>
+            </div>
+
+            <!-- ====== Command Palette ====== -->
+            <h2 id="command-palette">Command Palette</h2>
+            <p>The Command Palette is the fastest way to access any function in GlyphFex. Press <kbd>Ctrl</kbd>+<kbd>K</kbd> to open it from anywhere in the application.</p>
+            <p>Start typing to search across all available commands. Results are organized into categories:</p>
+            <ul>
+                <li><strong>Navigation</strong> &mdash; Go to any page (Dashboard, Analytics, Calendar, etc.)</li>
+                <li><strong>Action</strong> &mdash; Common actions (New Entry, Refresh, Export, Print)</li>
+                <li><strong>Entry</strong> &mdash; Recent entries section showing the 5 most recently modified entries, searchable by Reference ID or description</li>
+                <li><strong>Configuration</strong> &mdash; Open any settings dialog (Categories, Pipeline, Fields, Validation, etc.)</li>
+                <li><strong>Help</strong> &mdash; Open guides, Product Tour, Feature Overview</li>
+            </ul>
+            <p>Press <kbd>Enter</kbd> to select the highlighted result, or <kbd>Escape</kbd> to close the palette.</p>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                The Command Palette remembers your usage patterns. Frequently used commands appear higher in the results. Think of it as a universal search bar for the entire application.
+            </div>
+
+            <!-- ====== Data File Format ====== -->
+            <h2 id="data-format">Data File Format</h2>
+            <p>GlyphFex stores all project data in a single <code>.glyphfex</code> file, which is a standard SQLite database. This design has several advantages:</p>
+            <ul>
+                <li><strong>Portable</strong> &mdash; Move, copy, or email the file to transfer an entire project</li>
+                <li><strong>Easy backup</strong> &mdash; Just copy the file. No database export/import needed.</li>
+                <li><strong>No server required</strong> &mdash; Works completely offline for Personal (Solo) projects</li>
+                <li><strong>Inspectable</strong> &mdash; Open with any SQLite browser (like DB Browser for SQLite) to query data directly</li>
+            </ul>
+
+            <h3>Attachments</h3>
+            <p>File attachments (drawings, photos, documents) are stored in a folder named <code>{ProjectName}_Attachments/</code> located next to the <code>.glyphfex</code> file. When backing up or moving a project, copy both the <code>.glyphfex</code> file and the attachments folder.</p>
+
+            <h3>Auto-backups</h3>
+            <p>GlyphFex automatically creates backup copies of your project file each time you open it. Backups use a rotating scheme:</p>
+            <ul>
+                <li><code>ProjectName.glyphfex.bak</code> &mdash; Most recent backup</li>
+                <li><code>ProjectName.glyphfex.bak.1</code> &mdash; Previous backup</li>
+                <li><code>ProjectName.glyphfex.bak.2</code> &mdash; Oldest backup</li>
+            </ul>
+            <div class="help-note">
+                <strong>Note</strong>
+                For shared (team) projects, data is stored in SQL Server, not in a local file. The <code>.glyphfex-server</code> file only contains the connection string &mdash; no actual data.
+            </div>
+
+            <!-- ====== Troubleshooting ====== -->
+            <h2 id="troubleshooting">Troubleshooting</h2>
+            <p>Common issues and how to resolve them:</p>
+
+            <h3>"Cannot open project"</h3>
+            <ul>
+                <li>Check that the file is not locked by another GlyphFex instance. Close other instances and try again.</li>
+                <li>Look for a <code>.lock</code> file next to the project file. If GlyphFex crashed, a stale lock file may remain &mdash; delete it and retry.</li>
+                <li>Verify the file is a valid <code>.glyphfex</code> file and has not been corrupted. Try opening one of the <code>.bak</code> backups.</li>
+            </ul>
+
+            <h3>"Connection failed" (SQL Server)</h3>
+            <ul>
+                <li>Verify TCP/IP is enabled in SQL Server Configuration Manager</li>
+                <li>Check that the Windows Firewall allows the SQL Server port (default: 1433)</li>
+                <li>Confirm the correct machine name and instance name (e.g., <code>SERVERNAME\SQLEXPRESS</code>)</li>
+                <li>Ensure the SQL Server service is running on the host machine</li>
+                <li>If using a dynamic port, make sure the SQL Server Browser service is running</li>
+            </ul>
+
+            <h3>"Entries not refreshing" (team mode)</h3>
+            <ul>
+                <li>Verify the SQL Server connection is still active (try File &gt; Open on the same project)</li>
+                <li>Check that auto-refresh has not been interrupted &mdash; press <kbd>F5</kbd> to force a manual refresh</li>
+                <li>If the server was restarted, all clients may need to close and reopen the project file</li>
+            </ul>
+
+            <h3>"Save failed"</h3>
+            <ul>
+                <li>Check that all <strong>required fields</strong> are filled in (look for red asterisks on the form)</li>
+                <li>Verify the <strong>Reference ID</strong> matches the configured validation pattern (check for a red border)</li>
+                <li>Ensure the Reference ID is not a <strong>duplicate</strong> of an existing entry</li>
+                <li>Check that all <strong>required categories</strong> (from conditional rules) have a tag selected</li>
+            </ul>
+
+            <h3>"Concurrent edit conflict"</h3>
+            <ul>
+                <li>Another user modified the same entry while you were editing it</li>
+                <li>Choose <strong>Reload</strong> to see the latest version, <strong>Force Save</strong> to overwrite, or <strong>Cancel</strong> to go back</li>
+                <li>See <a href="team.html#concurrency">Concurrency Handling</a> for details</li>
+            </ul>
+
+            <h3>Crash recovery</h3>
+            <ul>
+                <li>Check the crash log at <code>%APPDATA%\GlyphFex\crash.log</code> for error details</li>
+                <li>The crash log records unhandled exceptions, first-chance exceptions, and task failures with timestamps and stack traces</li>
+                <li>If GlyphFex crashes on startup, try opening a different project or creating a new one to isolate the issue</li>
+            </ul>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                If you encounter a persistent issue, copy the contents of <code>crash.log</code> and include it when contacting <a href="mailto:support@glyphfex.com">support@glyphfex.com</a>. This helps diagnose problems quickly.
+            </div>
+
+            <!-- ====== FAQ ====== -->
+            <h2 id="faq">Frequently Asked Questions</h2>
+
+            <h3>Can I use GlyphFex offline?</h3>
+            <p>Yes. Personal (Solo) projects are fully offline SQLite files. No internet connection or server is needed. You can work on a laptop in the shop, on the road, or anywhere. Multi-user (team) projects require a LAN connection to the SQL Server host, but do not require internet access.</p>
+
+            <h3>How many entries can I create?</h3>
+            <p>In <strong>Trial mode</strong>, you can create up to 50 entries per project. With a <strong>licensed edition</strong>, there is no entry limit. The SQLite backend handles thousands of entries efficiently, and the SQL Server backend scales even further.</p>
+
+            <h3>Can I migrate from Solo to Team later?</h3>
+            <p>Yes. Go to <strong>File &gt; Migrate to SQL Server</strong> at any time. The migration wizard copies all entries, configuration, and audit history to the new SQL Server database. Your original <code>.glyphfex</code> file is preserved as a backup. See <a href="team.html#migration">Migrating from Solo</a> for step-by-step instructions.</p>
+
+            <h3>What happens to my data if my trial limit is reached?</h3>
+            <p>Nothing is lost. All existing data remains fully accessible. You can view, edit, export, and move existing entries through the pipeline. You can also access all reports, analytics, and views. The only restriction is that you cannot create new entries beyond 50 until you enter a license key.</p>
+
+            <h3>How do I back up my data?</h3>
+            <p>For Personal projects, copy the <code>.glyphfex</code> file and its <code>_Attachments</code> folder to a safe location. GlyphFex also creates automatic backups each time you open a project, using a rotating <code>.bak</code> / <code>.bak.1</code> / <code>.bak.2</code> scheme. For Team projects, use standard SQL Server backup procedures.</p>
+
+            <h3>Can multiple people edit the same entry?</h3>
+            <p>GlyphFex uses <strong>optimistic locking</strong> to prevent data loss. If two users edit the same entry simultaneously, the second person to save will see a conflict dialog with options to Reload, Force Save, or Cancel. This ensures no one accidentally overwrites another person's work. See <a href="team.html#concurrency">Concurrency Handling</a> for details.</p>
+
+            <h3>What are stale entries?</h3>
+            <p>Stale entries are entries that have been stuck in the same pipeline stage longer than the configured threshold. They display a warning badge on the Dashboard and Calendar. You configure the stale threshold per stage in the <a href="pipeline.html">Pipeline editor</a> &mdash; for example, "stale after 14 days in Fabrication." This helps surface jobs that may have been forgotten or are blocked.</p>
+
+            <h3>What is ISO Compliance Mode?</h3>
+            <p>ISO Compliance Mode is a master toggle in the <a href="configuration.html#audit">Audit &amp; Compliance</a> panel that enables all regulatory compliance features at once: full audit trail, mandatory change reasons on every edit, and hard delete disabled. This provides the change tracking rigor required by ISO 9001, AS9100, IATF 16949, and similar quality management standards.</p>
+
+            <h3>How do QR codes work?</h3>
+            <p>Each entry has a unique QR code that encodes a <code>glyphfex://entry/{id}</code> URI. Print Job Traveler PDFs with the QR code and attach them to physical jobs. When scanned with any barcode scanner connected to a PC running GlyphFex, the entry opens instantly. This is especially useful on the <a href="shop-floor.html">Shop Floor</a> kiosk for quickly clocking in/out of jobs.</p>
+
+            <h3>Can I customize the pipeline?</h3>
+            <p>Yes &mdash; the pipeline is fully configurable. You can create any number of stages, set SLA targets (in calendar or business days), mark stages as completed, configure stale detection thresholds, designate quoting stages, and even create <a href="pipeline.html">multiple pipelines</a> within a single project. Stages can be reordered, renamed, color-coded, and deleted at any time.</p>
+
+            <!-- ====== Glossary ====== -->
+            <h2 id="glossary">Glossary</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Term</th>
+                        <th>Definition</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Entry</strong></td>
+                        <td>A single job, order, quote, or work item tracked in GlyphFex. Each entry has a unique Reference ID, tags, fields, attachments, and a full audit history.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pipeline</strong></td>
+                        <td>A sequence of stages that an entry moves through, representing your shop's workflow from start to completion (e.g., Quote &rarr; Engineering &rarr; Fabrication &rarr; Shipping).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stage</strong></td>
+                        <td>A single step within a pipeline. Each stage can have an SLA target, stale detection threshold, and business-day settings.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tag</strong></td>
+                        <td>A label applied to an entry within a category. Tags help classify and filter entries (e.g., Material: Stainless Steel, Priority: Rush).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Category</strong></td>
+                        <td>A named group of related tags. Categories organize your tagging system (e.g., "Material" is a category; "Mild Steel" and "Aluminum" are tags within it).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SLA</strong></td>
+                        <td>Service Level Agreement. In GlyphFex, the target number of days an entry should spend in a particular pipeline stage before moving forward.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NCR</strong></td>
+                        <td>Non-Conformance Report. A quality record attached to an entry documenting defects, disposition, corrective actions, and resolution status.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Audit Trail</strong></td>
+                        <td>A chronological record of every change made to an entry, including who made the change, when, what fields were modified, and (optionally) why.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Built-in Field</strong></td>
+                        <td>One of 14 pre-defined data fields (Customer Name, PO Number, Due Date, etc.) that can be enabled or disabled per project.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Custom Field</strong></td>
+                        <td>A user-defined data field with one of 5 types (Text, Large Text, Dropdown, Date, Number). Custom fields extend the entry form with shop-specific data points.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Template</strong></td>
+                        <td>A saved configuration that pre-fills new entries with default tags, field values, and pipeline settings for common job types.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ref ID</strong></td>
+                        <td>Reference ID &mdash; the unique identifier for an entry (e.g., Q-2026-001, WO-4521). Can be validated against a regex pattern for consistent formatting.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Revision</strong></td>
+                        <td>A version counter on an entry that tracks how many times it has been modified. Used for optimistic locking in multi-user environments.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Archive</strong></td>
+                        <td>A holding area for completed entries that are no longer active but should be preserved. Archived entries can be restored at any time.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Recycle Bin</strong></td>
+                        <td>A holding area for soft-deleted entries. Items in the Recycle Bin can be restored or permanently deleted (if hard delete is allowed).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kiosk Mode</strong></td>
+                        <td>The Shop Floor view optimized for touchscreen or large-button operation, designed for shop floor operators who need to clock in/out and advance entries quickly.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gantt Chart</strong></td>
+                        <td>A visual timeline on the Calendar page showing each entry as a horizontal bar spanning its active duration, with color-coded pipeline stages.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Optimistic Locking</strong></td>
+                        <td>A concurrency strategy where GlyphFex checks if an entry's revision number has changed before saving. If another user modified the entry, a conflict dialog appears.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Change Reason</strong></td>
+                        <td>A written explanation required when editing an entry (in ISO Compliance Mode). Stored in the audit trail for regulatory traceability.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ISO Compliance</strong></td>
+                        <td>A mode that enables audit trail, mandatory change reasons, and disables hard delete &mdash; providing the change-tracking rigor required by ISO 9001 and similar standards.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+
+        <!-- Table of Contents -->
+        <aside class="help-toc" id="helpToc">
+            <h3>On this page</h3>
+            <ul><!-- populated by help.js --></ul>
+        </aside>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="nav-logo">
+                        <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                            <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                            <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="logo-text">GlyphFex</span>
+                    </a>
+                    <p class="footer-tagline">One source of truth from quote to completion.</p>
+                </div>
+                <div class="footer-links"><h4>Product</h4><a href="../features.html">Features</a><a href="../index.html#pricing">Pricing</a><a href="../download.html">Download</a></div>
+                <div class="footer-links"><h4>Resources</h4><a href="index.html">Help Center</a><a href="getting-started.html">Getting Started</a><a href="reference.html">Reference</a></div>
+                <div class="footer-links"><h4>Legal</h4><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Terms of Service</a><a href="../eula.html">EULA</a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 GlyphFex. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="help.js"></script>
+</body>
+</html>

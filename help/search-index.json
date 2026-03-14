@@ -1,0 +1,174 @@
+[
+  {
+    "page": "getting-started.html",
+    "title": "Getting Started",
+    "sections": [
+      { "id": "system-requirements", "title": "System Requirements", "keywords": "install windows .net runtime requirements disk space" },
+      { "id": "installation", "title": "Installing GlyphFex", "keywords": "MSI installer setup download editions" },
+      { "id": "first-launch", "title": "First Launch", "keywords": "welcome tour guided setup wizard skip first run" },
+      { "id": "create-project", "title": "Creating a Project", "keywords": "new project personal shared solo team sqlite sql server file" },
+      { "id": "templates", "title": "Industry Templates", "keywords": "sheet metal CNC welding manufacturing template preset" },
+      { "id": "setup-wizard", "title": "Setup Wizard", "keywords": "wizard configuration steps guided walkthrough" },
+      { "id": "first-entry", "title": "Creating Your First Entry", "keywords": "new entry ref ID save create first" },
+      { "id": "getting-started-checklist", "title": "Getting Started Checklist", "keywords": "checklist categories pipeline fields entries dashboard" },
+      { "id": "trial", "title": "Trial Mode", "keywords": "trial free 50 entries limit license no credit card" },
+      { "id": "next-steps", "title": "Next Steps", "keywords": "learn more explore features" }
+    ]
+  },
+  {
+    "page": "entries.html",
+    "title": "Entries & Forms",
+    "sections": [
+      { "id": "creating-entries", "title": "Creating an Entry", "keywords": "new entry create add form ref ID comments save" },
+      { "id": "entry-fields", "title": "Entry Fields Overview", "keywords": "fields form ref comments status pipeline tags" },
+      { "id": "built-in-fields", "title": "Built-In Key Fields", "keywords": "customer PO due date quantity materials part number revision notes quote quality NCR" },
+      { "id": "custom-fields", "title": "Custom Fields", "keywords": "custom field text dropdown date number required autocomplete" },
+      { "id": "tags", "title": "Tags & Categories", "keywords": "tags categories buttons combobox multi-select search filter conditional" },
+      { "id": "templates", "title": "Entry Templates", "keywords": "template pre-fill default YEAR prefix capture" },
+      { "id": "attachments", "title": "Attachments", "keywords": "attach file drawing photo upload security limit" },
+      { "id": "entry-detail", "title": "Entry Detail Window", "keywords": "detail window floating view sections QR code" },
+      { "id": "linking", "title": "Linking Entries", "keywords": "link related supersedes parent child relationship" },
+      { "id": "workflows", "title": "Entry Workflows", "keywords": "new edit duplicate repeat child create workflow" },
+      { "id": "validation", "title": "Save Validation", "keywords": "validation save required regex pattern duplicate ref" },
+      { "id": "keyboard-shortcuts", "title": "Entry Keyboard Shortcuts", "keywords": "Ctrl+S save Ctrl+Z undo Ctrl+Y redo keyboard shortcut" }
+    ]
+  },
+  {
+    "page": "pipeline.html",
+    "title": "Pipeline & Workflow",
+    "sections": [
+      { "id": "what-is-pipeline", "title": "What Is a Pipeline?", "keywords": "pipeline workflow stages status concept overview" },
+      { "id": "creating-stages", "title": "Creating & Editing Pipeline Stages", "keywords": "create edit stages add SLA business days completed stale quoting" },
+      { "id": "sla-targets", "title": "SLA Targets & Tracking", "keywords": "SLA target days business compliance tracking overdue at risk" },
+      { "id": "stale-detection", "title": "Stale Entry Detection", "keywords": "stale stuck idle warning badge notification threshold" },
+      { "id": "quote-lifecycle", "title": "Quote Lifecycle & Expiry Tracking", "keywords": "quote expiry validity quoting stage expired tracking" },
+      { "id": "multiple-pipelines", "title": "Multiple Pipelines", "keywords": "multiple pipelines named different job types rush standard" },
+      { "id": "pipeline-visibility", "title": "Pipeline Visibility (Multi-User)", "keywords": "visibility role restrict admin editor viewer pipeline access" },
+      { "id": "status-transitions", "title": "Status Transitions & Stage Timeline", "keywords": "status transition change timeline history audit" },
+      { "id": "completed-stages", "title": "Completed Stages", "keywords": "completed done shipped closed delivered final stage" }
+    ]
+  },
+  {
+    "page": "dashboard.html",
+    "title": "Dashboard",
+    "sections": [
+      { "id": "view-modes", "title": "View Modes", "keywords": "card table timeline view switch mode" },
+      { "id": "search", "title": "Search", "keywords": "search find filter text Ctrl+F" },
+      { "id": "filters", "title": "Filters", "keywords": "filter status due date tags saved quick filter chips" },
+      { "id": "sorting", "title": "Sorting & Pagination", "keywords": "sort order page size newest oldest ref modified pagination" },
+      { "id": "analytics-panel", "title": "Analytics Panel", "keywords": "analytics cards total overdue due soon pipeline bar" },
+      { "id": "bulk-actions", "title": "Bulk Actions", "keywords": "bulk select all change status delete archive multiple" },
+      { "id": "entry-actions", "title": "Entry Actions", "keywords": "edit audit delete duplicate repeat print status change actions" },
+      { "id": "recycle-bin", "title": "Recycle Bin & Archive", "keywords": "recycle bin delete restore archive unarchive auto-archive" },
+      { "id": "auto-refresh", "title": "Auto-Refresh", "keywords": "refresh auto SQL Server team live update" },
+      { "id": "exports", "title": "Dashboard Exports", "keywords": "export CSV Excel QuickBooks PDF report ZIP" }
+    ]
+  },
+  {
+    "page": "analytics.html",
+    "title": "Analytics",
+    "sections": [
+      { "id": "time-range", "title": "Time Range Selection", "keywords": "time range date 7 30 90 days custom period" },
+      { "id": "kpi-cards", "title": "KPI Cards", "keywords": "KPI card total entries SLA compliance overdue delivery value margin profit" },
+      { "id": "charts", "title": "Charts & Visualizations", "keywords": "chart graph bar status distribution entries over time priority customer" },
+      { "id": "sla-compliance", "title": "SLA Compliance Analysis", "keywords": "SLA compliance on track at risk overdue stage analysis" },
+      { "id": "bottleneck", "title": "Bottleneck Analysis", "keywords": "bottleneck stuck stage average time target slow" },
+      { "id": "refresh", "title": "Refresh & Auto-Refresh", "keywords": "refresh auto manual 30 seconds SQL Server" }
+    ]
+  },
+  {
+    "page": "calendar.html",
+    "title": "Calendar & Gantt",
+    "sections": [
+      { "id": "gantt", "title": "Understanding the Gantt Chart", "keywords": "Gantt chart timeline bar visual schedule" },
+      { "id": "zoom-levels", "title": "Zoom Levels", "keywords": "zoom day week month view level" },
+      { "id": "filters", "title": "Filtering", "keywords": "filter pipeline completed search date range" },
+      { "id": "interactions", "title": "Interactions", "keywords": "click scroll right-click tooltip context menu" },
+      { "id": "group-by", "title": "Collapsible Group-By Rows", "keywords": "group by stage customer pipeline collapse expand" },
+      { "id": "capacity", "title": "Capacity Load Bar", "keywords": "capacity load bar heat concurrent jobs green yellow red" },
+      { "id": "density", "title": "Row Density", "keywords": "density compact normal row height" },
+      { "id": "scroll-indicator", "title": "Scroll Indicator", "keywords": "scroll indicator minimap viewport position" },
+      { "id": "stale-bars", "title": "Stale Entry Bars", "keywords": "stale bar reduced opacity capped warning" }
+    ]
+  },
+  {
+    "page": "shop-floor.html",
+    "title": "Shop Floor & Display Board",
+    "sections": [
+      { "id": "shop-floor", "title": "Shop Floor Kiosk", "keywords": "shop floor kiosk touch large button worker production" },
+      { "id": "entry-cards", "title": "Entry Cards", "keywords": "card ref customer advance menu button" },
+      { "id": "time-tracking", "title": "Time Tracking", "keywords": "clock in out time tracking labor timesheet" },
+      { "id": "multi-pipeline", "title": "Multi-Pipeline Grouping", "keywords": "multi pipeline group all pipelines filter" },
+      { "id": "undo-panel", "title": "Floating Undo Panel", "keywords": "undo revert advance stage panel" },
+      { "id": "display-board", "title": "Display Board", "keywords": "display board TV andon kanban KPI alerts wall mounted" },
+      { "id": "display-board-refresh", "title": "Display Board Refresh", "keywords": "refresh auto 15 seconds display board" }
+    ]
+  },
+  {
+    "page": "configuration.html",
+    "title": "Configuration",
+    "sections": [
+      { "id": "settings-hub", "title": "Settings Hub", "keywords": "settings hub gear Ctrl+, panels configure" },
+      { "id": "profile", "title": "Profile Panel", "keywords": "profile project name description signature company" },
+      { "id": "notifications", "title": "Notifications Panel", "keywords": "notifications due date alert interval threshold digest" },
+      { "id": "language", "title": "Language Panel", "keywords": "language translation UI locale" },
+      { "id": "audit", "title": "Audit & Compliance Panel", "keywords": "audit trail ISO compliance change reason hard delete" },
+      { "id": "calendar-settings", "title": "Calendar Panel", "keywords": "calendar work week holidays business days" },
+      { "id": "archive", "title": "Archive Panel", "keywords": "archive auto-archive days completed entries" },
+      { "id": "license", "title": "License Panel", "keywords": "license key edition trial expiration" },
+      { "id": "categories", "title": "Categories & Tags", "keywords": "categories tags color display mode buttons combobox multi-select group" },
+      { "id": "custom-fields", "title": "Custom Fields", "keywords": "custom fields text dropdown date number required type" },
+      { "id": "validation", "title": "Input Validation", "keywords": "validation regex pattern ref format Q-XXXXX" },
+      { "id": "conditional-rules", "title": "Conditional Rules", "keywords": "conditional rules hide show disable enable require when then" },
+      { "id": "entry-templates", "title": "Entry Templates", "keywords": "templates pre-fill YEAR default pipeline capture" },
+      { "id": "auto-config", "title": "Auto-Configurations", "keywords": "auto configure preset tag combination one-click" },
+      { "id": "material-inventory", "title": "Material Inventory", "keywords": "material inventory stock reorder point tracking" },
+      { "id": "holiday-calendar", "title": "Holiday Calendar", "keywords": "holiday calendar regional custom copy year" }
+    ]
+  },
+  {
+    "page": "team.html",
+    "title": "Multi-User & Team",
+    "sections": [
+      { "id": "when-to-go-multi", "title": "When to Go Multi-User", "keywords": "multi-user team decision when" },
+      { "id": "sql-server-setup", "title": "SQL Server Express Setup", "keywords": "SQL Server Express install TCP/IP firewall port setup" },
+      { "id": "creating-shared", "title": "Creating a Shared Project", "keywords": "shared project create team .glyphfex-server" },
+      { "id": "connecting", "title": "Connecting Other Users", "keywords": "connect user open join team shared" },
+      { "id": "migration", "title": "Migrating from Solo", "keywords": "migrate solo team SQLite SQL Server wizard" },
+      { "id": "roles", "title": "Roles & Permissions", "keywords": "role admin editor viewer permission access" },
+      { "id": "user-management", "title": "User Management", "keywords": "manage users add role activate deactivate" },
+      { "id": "admin-requests", "title": "Admin Requests", "keywords": "admin request editor approve reject change" },
+      { "id": "concurrency", "title": "Concurrency Handling", "keywords": "concurrency conflict optimistic locking revision edit" },
+      { "id": "auto-refresh", "title": "Auto-Refresh", "keywords": "auto refresh 10 seconds live update team" },
+      { "id": "lan-deployment", "title": "LAN Deployment", "keywords": "LAN network deployment TCP port firewall NTLM auth" }
+    ]
+  },
+  {
+    "page": "exports.html",
+    "title": "Exports & Reports",
+    "sections": [
+      { "id": "pdf-export", "title": "PDF Entry Export", "keywords": "PDF export print entry detail" },
+      { "id": "pdf-report", "title": "PDF Dashboard Report", "keywords": "PDF report dashboard summary" },
+      { "id": "job-traveler", "title": "Job Traveler PDF", "keywords": "job traveler QR code print barcode scan" },
+      { "id": "csv-export", "title": "CSV Export", "keywords": "CSV export Ctrl+E file comma separated" },
+      { "id": "excel-export", "title": "Excel Export", "keywords": "Excel xlsx export spreadsheet" },
+      { "id": "quickbooks", "title": "QuickBooks Format", "keywords": "QuickBooks invoice accounting format" },
+      { "id": "zip-export", "title": "Full Project ZIP", "keywords": "ZIP full project export backup Ctrl+Shift+E" },
+      { "id": "csv-import", "title": "CSV Import Wizard", "keywords": "import CSV wizard column mapping duplicate Ctrl+I" },
+      { "id": "pdf-guides", "title": "Built-In PDF Guides", "keywords": "guide getting started process feature overview help F1" },
+      { "id": "timesheet", "title": "Timesheet Reports", "keywords": "timesheet time report worker hours PDF" }
+    ]
+  },
+  {
+    "page": "reference.html",
+    "title": "Reference",
+    "sections": [
+      { "id": "keyboard-shortcuts", "title": "Keyboard Shortcuts", "keywords": "keyboard shortcut Ctrl key hotkey" },
+      { "id": "command-palette", "title": "Command Palette", "keywords": "command palette Ctrl+K search navigate quick" },
+      { "id": "data-format", "title": "Data File Format", "keywords": "data file .glyphfex SQLite portable backup" },
+      { "id": "troubleshooting", "title": "Troubleshooting", "keywords": "troubleshoot problem error fix crash connection" },
+      { "id": "faq", "title": "FAQ", "keywords": "FAQ question answer frequently asked" },
+      { "id": "glossary", "title": "Glossary", "keywords": "glossary term definition pipeline stage entry tag SLA NCR" }
+    ]
+  }
+]

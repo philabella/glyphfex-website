@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration &mdash; GlyphFex Help</title>
+    <meta name="description" content="Configure GlyphFex to match your shop's workflow: Settings Hub, categories, tags, custom fields, validation, conditional rules, templates, and more.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="calendar.html">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Configuration</h1>
+            <p class="help-subtitle">Customize GlyphFex to match your shop's workflow with the Settings Hub, categories, fields, and more. Open with <kbd>Ctrl</kbd>+<kbd>,</kbd></p>
+
+            <!-- ====== Settings Hub ====== -->
+            <h2 id="settings-hub">Settings Hub</h2>
+            <p>The Settings Hub is the centralized configuration center in GlyphFex. Open it by clicking the <strong>Settings gear</strong> icon in the navigation sidebar or by pressing <kbd>Ctrl</kbd>+<kbd>,</kbd>.</p>
+            <p>The hub uses a <strong>left sidebar / right content area</strong> layout inspired by Windows 11 Settings. The left sidebar lists all available configuration panels, and clicking any item loads its content on the right.</p>
+            <p>The Settings Hub contains two types of panels:</p>
+            <ul>
+                <li><strong>Inline panels (7)</strong> &mdash; Settings that are edited directly within the hub dialog: Profile, Notifications, Language, Audit &amp; Compliance, Calendar, Archive, and License.</li>
+                <li><strong>Launcher panels (9)</strong> &mdash; Buttons that open dedicated configuration dialogs for more complex setup: Categories, Pipeline, Custom Fields, Validation, Conditional Rules, Templates, Auto-Configurations, Material Inventory, and User Management.</li>
+            </ul>
+            <div class="help-note">
+                <strong>Note</strong>
+                The Settings Hub is <strong>role-gated</strong>. Admin and Solo users see all panels. Editor and Viewer users only see personal settings (Profile, Notifications, Language) and the License panel. Configuration panels that affect the entire project are hidden for non-admin roles.
+            </div>
+
+            <!-- ====== Profile ====== -->
+            <h2 id="profile">Profile Panel</h2>
+            <p>The Profile panel stores basic project and user information:</p>
+            <ul>
+                <li><strong>Project name</strong> &mdash; A descriptive name for your project (e.g., "Main Shop Floor", "2026 Orders")</li>
+                <li><strong>Description</strong> &mdash; An optional description of the project's purpose or scope</li>
+                <li><strong>User signature</strong> &mdash; Auto-detected from your Windows username. This name appears in audit trail entries, clock in/out records, and change history. You can override it with a custom display name.</li>
+                <li><strong>Company name</strong> &mdash; Your organization's name, used in PDF exports and reports</li>
+            </ul>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Setting a meaningful project name and company name early on ensures your PDF exports and reports look professional from the start.
+            </div>
+
+            <!-- ====== Notifications ====== -->
+            <h2 id="notifications">Notifications Panel</h2>
+            <p>Configure how GlyphFex alerts you about upcoming due dates, stale entries, and expired quotes:</p>
+            <ul>
+                <li><strong>Enable/disable notifications</strong> &mdash; Master toggle for the entire notification system</li>
+                <li><strong>Check interval</strong> &mdash; How often GlyphFex scans for notification conditions (default: every few minutes)</li>
+                <li><strong>Due-soon threshold</strong> &mdash; Number of days before a due date that triggers a "due soon" alert (e.g., 3 days means entries due within 3 days are flagged)</li>
+                <li><strong>Daily digest on startup</strong> &mdash; When enabled, GlyphFex shows a summary of all pending notifications each time you open a project</li>
+                <li><strong>Stale entry notifications</strong> &mdash; Alert when entries exceed their stage's configured stale threshold</li>
+                <li><strong>Expired quote notifications</strong> &mdash; Alert when quote validity dates have passed</li>
+            </ul>
+
+            <!-- ====== Language ====== -->
+            <h2 id="language">Language Panel</h2>
+            <p>Select the user interface language for GlyphFex. Changing the language affects all menus, labels, button text, tooltips, dialog headings, and status messages throughout the application.</p>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Language is a per-user preference. In a multi-user environment, each user can choose their own language without affecting other team members.
+            </div>
+
+            <!-- ====== Audit & Compliance ====== -->
+            <h2 id="audit">Audit &amp; Compliance Panel</h2>
+            <p>Control how GlyphFex tracks changes and enforces regulatory compliance:</p>
+            <ul>
+                <li><strong>Enable/disable audit trail</strong> &mdash; When enabled, every change to every entry is recorded with a timestamp, user name, and field-level detail of what changed</li>
+                <li><strong>Require change reasons</strong> &mdash; Forces users to enter a written reason each time they modify an entry. Essential for ISO 9001, AS9100, and similar quality standards.</li>
+                <li><strong>Allow/disallow hard delete</strong> &mdash; When disabled, entries can only be soft-deleted (moved to Recycle Bin). This prevents permanent data loss.</li>
+                <li><strong>ISO Compliance Mode</strong> &mdash; A master toggle that enables all compliance features at once: audit trail on, change reasons required, hard delete disabled. Provides regulatory-grade change tracking.</li>
+            </ul>
+            <div class="help-warning">
+                <strong>Warning</strong>
+                Turning off the audit trail is not recommended for production use. Once disabled, changes made during that period will not be recorded and cannot be recovered later.
+            </div>
+
+            <!-- ====== Calendar Settings ====== -->
+            <h2 id="calendar-settings">Calendar Panel</h2>
+            <p>Configure your shop's work schedule for accurate SLA and business-day calculations:</p>
+            <ul>
+                <li><strong>Work week toggles</strong> &mdash; Check or uncheck each day of the week (Monday through Sunday) to define your standard work days. SLA calculations only count checked days.</li>
+                <li><strong>Holiday management</strong> &mdash; Add specific dates that should be excluded from SLA calculations
+                    <ul>
+                        <li><strong>Load regional template</strong> &mdash; Pre-built holiday lists for common regions (US Federal, Canada, etc.)</li>
+                        <li><strong>Add custom holidays</strong> &mdash; Enter individual dates for plant shutdowns, company events, or other non-working days</li>
+                        <li><strong>Copy to next year</strong> &mdash; Duplicate the current year's holidays to the following year with one click</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                If your shop runs Monday through Friday with occasional Saturday shifts, set Mon&ndash;Fri as work days and leave Saturday unchecked. Saturday work will still be tracked, but SLA calculations will only count business days.
+            </div>
+
+            <!-- ====== Archive ====== -->
+            <h2 id="archive">Archive Panel</h2>
+            <p>Manage automatic archiving of completed entries:</p>
+            <ul>
+                <li><strong>Auto-archive days</strong> &mdash; Set the number of days after completion before an entry is automatically archived. Set to <code>0</code> to disable auto-archiving entirely.</li>
+            </ul>
+            <p>Archived entries are moved out of the active Dashboard view but remain fully accessible. You can view and restore archived entries at any time from the Dashboard's archive filter.</p>
+
+            <!-- ====== License ====== -->
+            <h2 id="license">License Panel</h2>
+            <p>View and manage your GlyphFex license:</p>
+            <ul>
+                <li><strong>Current edition</strong> &mdash; Displays which edition is active (Trial, Solo, Admin, Editor, or Viewer)</li>
+                <li><strong>Trial status</strong> &mdash; Shows how many entries you have created out of the 50-entry trial limit</li>
+                <li><strong>License key entry</strong> &mdash; Paste your license key to activate a purchased edition</li>
+                <li><strong>Expiration date</strong> &mdash; Shows when your current license expires (if applicable)</li>
+            </ul>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                You can enter a license key at any time, even after your trial limit is reached. All existing data and configuration are preserved &mdash; activating a license simply removes the entry cap.
+            </div>
+
+            <!-- ====== Categories & Tags ====== -->
+            <h2 id="categories">Categories &amp; Tags</h2>
+            <p>Categories are the foundation of how you organize entries in GlyphFex. Each category contains a set of tags, and entries can be tagged with one or more tags from each category.</p>
+            <p>Open the category editor from <strong>Settings Hub &gt; Categories</strong> or press <kbd>Ctrl</kbd>+<kbd>T</kbd>.</p>
+
+            <h3>Creating a category</h3>
+            <ol class="help-steps">
+                <li><strong>Click "Add Category"</strong> &mdash; Enter a name that describes the grouping (e.g., "Material", "Process", "Priority", "Machine").</li>
+                <li><strong>Add tags</strong> &mdash; Enter individual tag values within the category. For a "Material" category, you might add: Mild Steel, Stainless Steel, Aluminum, Brass.</li>
+                <li><strong>Set a color</strong> &mdash; Choose a hex color for the category. Tags inherit this color for visual consistency on cards and badges.</li>
+                <li><strong>Configure display mode</strong> &mdash; Choose how tags appear on the Entry form:
+                    <ul>
+                        <li><strong>Buttons</strong> &mdash; Tags displayed as clickable button chips. Best for categories with fewer than 10 tags.</li>
+                        <li><strong>ComboBox</strong> &mdash; Tags displayed in a dropdown menu. Best for categories with many tags or when screen space is limited.</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3>Additional category options</h3>
+            <ul>
+                <li><strong>Multi-select</strong> &mdash; Toggle whether users can select multiple tags from the same category (e.g., multiple processes) or only one (e.g., single priority level)</li>
+                <li><strong>Grid columns</strong> &mdash; For Button display mode, control how many columns the button grid uses (2, 3, 4, etc.)</li>
+                <li><strong>Group name</strong> &mdash; Optionally assign categories to named groups for visual organization on the entry form</li>
+                <li><strong>Category ordering</strong> &mdash; Drag categories up or down to control the order they appear on the entry form</li>
+            </ul>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Use Button mode for categories your operators select frequently (like Priority or Material) and ComboBox mode for reference categories with many options (like Customer or Machine).
+            </div>
+
+            <!-- ====== Custom Fields ====== -->
+            <h2 id="custom-fields">Custom Fields</h2>
+            <p>Custom fields let you capture data points specific to your shop that are not covered by the built-in fields. Open the custom field editor from <strong>Settings Hub &gt; Custom Fields</strong>.</p>
+
+            <h3>Field types</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Text</strong></td>
+                        <td>Single-line text input with optional autocomplete from previous values</td>
+                        <td>Surface Finish, Coating Type</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Large Text</strong></td>
+                        <td>Multi-line text area for longer descriptions</td>
+                        <td>Special Instructions, Shipping Notes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dropdown</strong></td>
+                        <td>Single selection from a predefined list of options</td>
+                        <td>Weld Process (MIG / TIG / Stick)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Date</strong></td>
+                        <td>Date picker for scheduling and tracking</td>
+                        <td>Promise Date, Inspection Date</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Number</strong></td>
+                        <td>Numeric input for quantities, measurements, or costs</td>
+                        <td>Weight (lbs), Material Cost</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Field options</h3>
+            <ul>
+                <li><strong>Required</strong> &mdash; When checked, the entry cannot be saved until this field has a value. Required fields show a red asterisk on the form.</li>
+                <li><strong>Autocomplete</strong> &mdash; For Text fields, enables suggestions from previously entered values as the user types</li>
+                <li><strong>Dropdown options</strong> &mdash; For Dropdown fields, define the list of selectable values</li>
+                <li><strong>Reordering</strong> &mdash; Drag fields up or down to control the order they appear on the entry form</li>
+            </ul>
+
+            <h3>Built-in field toggles</h3>
+            <p>In addition to custom fields, GlyphFex includes 14 built-in fields that you can enable or disable per project:</p>
+            <ul>
+                <li>Customer Name, PO Number, Due Date, Quantity, Unit Price, Total Value, Revision, Part Number, Material Specification, Drawing Number, Weight, Ship To, Quote Valid Until, and Notes</li>
+            </ul>
+            <p>Toggle these from the same Custom Fields dialog. Built-in fields appear in a dedicated section above your custom fields on the entry form.</p>
+
+            <!-- ====== Input Validation ====== -->
+            <h2 id="validation">Input Validation</h2>
+            <p>Validation patterns enforce consistent formatting for Reference IDs and other fields. Open from <strong>Settings Hub &gt; Validation</strong>.</p>
+
+            <h3>Pre-built patterns</h3>
+            <p>GlyphFex includes several common patterns you can apply with one click:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pattern</th>
+                        <th>Format</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Quote</strong></td>
+                        <td><code>Q-XXXXX</code></td>
+                        <td>Q-00142</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Order</strong></td>
+                        <td><code>O-XXXXX</code></td>
+                        <td>O-08734</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Purchase Order</strong></td>
+                        <td><code>PO-XXXXXX</code></td>
+                        <td>PO-204519</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Serial Number</strong></td>
+                        <td><code>SN-XXXXXXX</code></td>
+                        <td>SN-0012847</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Custom patterns</h3>
+            <p>You can define your own regex pattern for any format your shop uses. For example, a pattern like <code>WO-\d{4}-\d{3}</code> would enforce a format like <code>WO-2026-001</code>.</p>
+            <p>When a user types a Reference ID, GlyphFex validates the input in real time:</p>
+            <ul>
+                <li><strong>Green border</strong> &mdash; Input matches the pattern and is valid</li>
+                <li><strong>Red border</strong> &mdash; Input does not match the required format</li>
+            </ul>
+            <div class="help-note">
+                <strong>Note</strong>
+                Validation only applies to new entries. Existing entries with non-matching Reference IDs are not retroactively blocked from being edited.
+            </div>
+
+            <!-- ====== Conditional Rules ====== -->
+            <h2 id="conditional-rules">Conditional Rules</h2>
+            <p>Conditional rules let you dynamically show, hide, enable, disable, or require fields and categories based on tag selections. Open from <strong>Settings Hub &gt; Conditional Rules</strong>.</p>
+
+            <h3>Rule structure</h3>
+            <p>Each rule follows the pattern:</p>
+            <p><strong>When</strong> [Category] <strong>is</strong> [Tag] <strong>then</strong> [Action] <strong>on</strong> [Target Category/Field]</p>
+
+            <h3>Available actions</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Effect</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Hide</strong></td>
+                        <td>Hides the target category or field from the entry form</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Show</strong></td>
+                        <td>Makes a hidden target visible</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Disable</strong></td>
+                        <td>Grays out the target so it cannot be edited</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Enable</strong></td>
+                        <td>Re-enables a disabled target</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Require</strong></td>
+                        <td>Makes the target mandatory &mdash; the entry cannot be saved without a value</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Special rule: ALWAYS: REQUIRED</h3>
+            <p>You can create a rule that always requires a category or field regardless of other tag selections. This is useful for fields that should never be left empty, like a "Priority" category.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                A practical example: When <strong>Material</strong> is <strong>Stainless Steel</strong>, then <strong>Require</strong> the <strong>Finish</strong> category. This ensures operators always specify a finish type when working with stainless steel, preventing costly rework.
+            </div>
+
+            <!-- ====== Entry Templates ====== -->
+            <h2 id="entry-templates">Entry Templates</h2>
+            <p>Templates let you pre-fill entry forms for common job types, reducing repetitive data entry. Open from <strong>Settings Hub &gt; Templates</strong>.</p>
+
+            <h3>What templates can pre-fill</h3>
+            <ul>
+                <li><strong>Reference ID prefix</strong> &mdash; With <code>{YEAR}</code> substitution (e.g., <code>Q-{YEAR}-</code> becomes <code>Q-2026-</code>)</li>
+                <li><strong>Default tags</strong> &mdash; Pre-select tags across any category</li>
+                <li><strong>Default field values</strong> &mdash; Pre-fill built-in and custom field values</li>
+                <li><strong>Default status</strong> &mdash; Set which pipeline stage the entry starts in</li>
+                <li><strong>Pipeline association</strong> &mdash; Link the template to a specific pipeline (in multi-pipeline projects)</li>
+            </ul>
+
+            <h3>Creating templates</h3>
+            <p>You can create a template from scratch in the template editor, or <strong>capture from current entry</strong> &mdash; GlyphFex copies the current entry's tags, fields, and settings into a new template.</p>
+            <p>When creating a new entry, select a template from the dropdown at the top of the entry form. The form instantly populates with the template's values, which you can then modify as needed.</p>
+
+            <!-- ====== Auto-Configurations ====== -->
+            <h2 id="auto-config">Auto-Configurations</h2>
+            <p>Auto-configurations are preset tag combinations that can be applied to an entry with a single click. While templates pre-fill the entire form, auto-configs focus specifically on tag selections.</p>
+            <p>Open from <strong>Settings Hub &gt; Auto-Configurations</strong>.</p>
+            <p>On the entry form, click the <strong>Auto</strong> button to see a list of saved auto-configurations. Selecting one immediately applies its tag combination to the current entry. This is especially useful for operators who repeatedly work with the same material/process/machine combinations.</p>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Example auto-config: "Standard Mild Steel Job" could pre-select Material: Mild Steel, Process: Laser Cutting, Finish: Powder Coat, Priority: Normal &mdash; saving several clicks on every new entry.
+            </div>
+
+            <!-- ====== Material Inventory ====== -->
+            <h2 id="material-inventory">Material Inventory</h2>
+            <p>Track your shop's material stock levels from <strong>Tools &gt; Material Inventory</strong> or via the <strong>Settings Hub &gt; Material Inventory</strong> launcher.</p>
+            <p>Each material record includes:</p>
+            <ul>
+                <li><strong>Material name</strong> &mdash; Description of the material (e.g., "1/4&quot; Mild Steel Plate")</li>
+                <li><strong>Specification</strong> &mdash; Grade, alloy, or spec reference (e.g., "A36", "304 SS")</li>
+                <li><strong>Quantity</strong> &mdash; Current stock amount</li>
+                <li><strong>Unit</strong> &mdash; Unit of measure (sheets, lbs, ft, etc.)</li>
+                <li><strong>Reorder point</strong> &mdash; Threshold that triggers a low-stock alert</li>
+                <li><strong>Location</strong> &mdash; Storage location within your facility</li>
+            </ul>
+            <p>When stock falls below the reorder point, GlyphFex displays a <strong>low stock alert</strong> to help prevent production delays from material shortages.</p>
+
+            <!-- ====== Holiday Calendar ====== -->
+            <h2 id="holiday-calendar">Holiday Calendar</h2>
+            <p>The holiday calendar feeds into SLA and business-day calculations. Holidays you add here are excluded when computing "days in stage" and SLA compliance. Manage holidays from the <strong>Calendar panel</strong> in the Settings Hub.</p>
+            <ul>
+                <li><strong>Load regional holidays</strong> &mdash; Select a region to auto-populate standard public holidays (US Federal, Canadian, UK, etc.)</li>
+                <li><strong>Add custom holidays</strong> &mdash; Enter specific dates for plant shutdowns, inventory days, or company events</li>
+                <li><strong>Copy to next year</strong> &mdash; Duplicate the entire holiday calendar to the following year with a single click</li>
+                <li><strong>Clear past holidays</strong> &mdash; Remove holidays from previous years to keep the calendar tidy</li>
+            </ul>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Load a regional template first, then add your shop-specific closures on top. At the end of the year, use "Copy to next year" and adjust any dates that changed (like floating holidays).
+            </div>
+        </main>
+
+        <!-- Table of Contents -->
+        <aside class="help-toc" id="helpToc">
+            <h3>On this page</h3>
+            <ul><!-- populated by help.js --></ul>
+        </aside>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="nav-logo">
+                        <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                            <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                            <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="logo-text">GlyphFex</span>
+                    </a>
+                    <p class="footer-tagline">One source of truth from quote to completion.</p>
+                </div>
+                <div class="footer-links"><h4>Product</h4><a href="../features.html">Features</a><a href="../index.html#pricing">Pricing</a><a href="../download.html">Download</a></div>
+                <div class="footer-links"><h4>Resources</h4><a href="index.html">Help Center</a><a href="getting-started.html">Getting Started</a><a href="reference.html">Reference</a></div>
+                <div class="footer-links"><h4>Legal</h4><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Terms of Service</a><a href="../eula.html">EULA</a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 GlyphFex. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="help.js"></script>
+</body>
+</html>

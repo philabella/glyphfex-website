@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard &mdash; GlyphFex Help</title>
+    <meta name="description" content="Master the GlyphFex Dashboard: card, table, and timeline views, search, filters, bulk actions, analytics panel, exports, and more.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html" class="active">Dashboard</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="calendar.html">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Dashboard</h1>
+            <p class="help-subtitle">Your command center for viewing, filtering, and managing all entries. Navigate here with <kbd>Ctrl</kbd>+<kbd>2</kbd>.</p>
+
+            <!-- ====== View Modes ====== -->
+            <h2 id="view-modes">View Modes</h2>
+            <p>The Dashboard offers three ways to view your entries. Switch between them using the toggle buttons in the toolbar &mdash; your last selection is remembered across sessions.</p>
+
+            <h3>Card View</h3>
+            <p>Visual cards arranged in a responsive grid. Each card displays the reference number, tags, status badge, due date, customer name, and key fields at a glance. Click any card to open the <strong>Entry Detail Window</strong> for a full view of that entry.</p>
+
+            <h3>Table View</h3>
+            <p>A full DataGrid with sortable columns for every field. Double-click any row to open the Entry Detail Window. Right-click a row to access the context menu with all available actions. Table View supports multi-select for <a href="#bulk-actions">bulk actions</a> using <kbd>Ctrl</kbd>+Click or <kbd>Shift</kbd>+Click.</p>
+
+            <h3>Timeline View</h3>
+            <p>Entries grouped chronologically into sections: <strong>Today</strong>, <strong>Yesterday</strong>, <strong>This Week</strong>, and <strong>Earlier</strong>. Click any entry to open its detail view. This mode is useful for reviewing recent activity and seeing what changed when.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Your view preference persists across navigation and sessions. If you always work in Table View, GlyphFex will open the Dashboard in Table View every time.
+            </div>
+
+            <!-- ====== Search ====== -->
+            <h2 id="search">Search</h2>
+            <p>The search bar provides instant, full-text filtering across all entry data.</p>
+            <ul>
+                <li>Press <kbd>Ctrl</kbd>+<kbd>F</kbd> to focus the search box from anywhere on the Dashboard</li>
+                <li>Searches across: <strong>Reference Number</strong>, <strong>Comments</strong>, <strong>Tags</strong>, <strong>Status</strong>, <strong>Built-in fields</strong>, and <strong>Custom fields</strong></li>
+                <li>Results update as you type with a 250ms debounce &mdash; no need to press Enter</li>
+                <li>Matching is <strong>case-insensitive</strong> and uses substring matching (e.g., searching <code>steel</code> matches <code>Stainless Steel</code>)</li>
+                <li>Press <kbd>Escape</kbd> to clear the search and show all entries again</li>
+            </ul>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Search works together with filters. If you have a status filter active and then search, the results are narrowed to entries matching both the filter and the search term.
+            </div>
+
+            <!-- ====== Filters ====== -->
+            <h2 id="filters">Filters</h2>
+            <p>Filters let you narrow the Dashboard to exactly the entries you need. Multiple filters can be combined, and all filtering is performed at the database level for fast results even with thousands of entries.</p>
+
+            <h3>Status Filter</h3>
+            <p>Filter by pipeline stage to see only entries in a specific part of your workflow. For example, show only entries in <em>In Production</em> or <em>Quality Check</em>. Select a stage from the status dropdown in the toolbar.</p>
+
+            <h3>Due Date Filter</h3>
+            <p>Focus on time-sensitive work with the due date dropdown:</p>
+            <ul>
+                <li><strong>All</strong> &mdash; No date filtering</li>
+                <li><strong>Overdue</strong> &mdash; Entries past their due date</li>
+                <li><strong>Due Today</strong> &mdash; Entries due today</li>
+                <li><strong>This Week</strong> &mdash; Entries due within the current week</li>
+                <li><strong>Next 7 Days</strong> &mdash; Entries due in the next 7 calendar days</li>
+                <li><strong>This Month</strong> &mdash; Entries due within the current month</li>
+                <li><strong>Has Date</strong> &mdash; Any entry with a due date set</li>
+                <li><strong>No Date</strong> &mdash; Entries without a due date</li>
+            </ul>
+
+            <h3>Tag Filters</h3>
+            <p>Toggle tag buttons to filter by specific tags. Filtering uses <strong>AND logic across categories</strong> &mdash; for example, selecting <em>Material = Steel</em> and <em>Process = Welding</em> shows only entries that have <strong>both</strong> tags. This lets you drill down to very specific subsets of work.</p>
+
+            <h3>Saved Filters</h3>
+            <p>Save commonly used filter combinations as named presets with color-coded dots. Once saved, they appear as quick-access buttons below the toolbar. Click any saved filter to apply its full set of criteria instantly.</p>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Saved filters are great for recurring views like "Rush orders in production" or "Customer X &mdash; open quotes." Create them once and access them with a single click.
+            </div>
+
+            <h3>Filter Chips</h3>
+            <p>When filters are active, they appear as removable pills (chips) below the toolbar. Each chip shows the active filter criterion. Click the <strong>X</strong> on any chip to remove that specific filter without clearing everything else.</p>
+
+            <h3>Filter Persistence</h3>
+            <p>Your filter state is preserved when you navigate away from the Dashboard and return. If you go to the Entry page to create a new job and come back, your filters are exactly where you left them.</p>
+
+            <!-- ====== Sorting & Pagination ====== -->
+            <h2 id="sorting">Sorting &amp; Pagination</h2>
+            <p>Control the order and quantity of entries displayed on each page.</p>
+
+            <h3>Sort Options</h3>
+            <ul>
+                <li><strong>Newest First</strong> &mdash; Most recently created entries at the top</li>
+                <li><strong>Oldest First</strong> &mdash; Oldest entries at the top</li>
+                <li><strong>Ref# A&ndash;Z</strong> &mdash; Alphabetical by reference number</li>
+                <li><strong>Ref# Z&ndash;A</strong> &mdash; Reverse alphabetical by reference number</li>
+                <li><strong>Last Modified</strong> &mdash; Most recently edited entries at the top</li>
+                <li><strong>Due Date (Early &rarr; Late)</strong> &mdash; Soonest due dates first</li>
+                <li><strong>Due Date (Late &rarr; Early)</strong> &mdash; Furthest due dates first</li>
+                <li><strong>Status</strong> &mdash; Grouped by pipeline stage in pipeline order</li>
+            </ul>
+
+            <h3>Pagination</h3>
+            <p>Choose how many entries to display per page: <strong>25</strong>, <strong>50</strong>, <strong>100</strong>, or <strong>250</strong>. Use the <strong>Previous</strong> and <strong>Next</strong> buttons to navigate between pages. The current page number and total count are displayed in the toolbar.</p>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                All sorting and pagination is performed at the database level (SQL), not in memory. This means performance remains fast even with thousands of entries.
+            </div>
+
+            <!-- ====== Analytics Panel ====== -->
+            <h2 id="analytics-panel">Analytics Panel</h2>
+            <p>The analytics panel sits above the entry list and provides an at-a-glance summary of your project.</p>
+
+            <h3>Clickable Summary Cards</h3>
+            <p>These cards act as quick filters. Click any one to instantly filter the Dashboard to matching entries:</p>
+            <ul>
+                <li><strong>Total entries</strong> &mdash; Shows the full count; click to clear all filters</li>
+                <li><strong>Created this week</strong> &mdash; Entries created in the current week</li>
+                <li><strong>Overdue</strong> &mdash; Entries past their due date</li>
+                <li><strong>Due soon</strong> &mdash; Entries due within the next few days</li>
+                <li><strong>Per-stage counts</strong> &mdash; One card per pipeline stage showing the number of entries in that stage</li>
+                <li><strong>Stale entries</strong> &mdash; Entries that have been sitting in the same stage longer than the configured stale threshold</li>
+                <li><strong>Expired quotes</strong> &mdash; Quoting-stage entries past their quote validity date</li>
+            </ul>
+
+            <h3>Value Cards (Non-clickable)</h3>
+            <p>These display aggregated data and are informational only:</p>
+            <ul>
+                <li><strong>Total estimated value</strong> &mdash; Sum of all entry values</li>
+                <li><strong>Per-stage value</strong> &mdash; Value breakdown by pipeline stage</li>
+                <li><strong>Total hours</strong> &mdash; Sum of estimated hours across entries</li>
+                <li><strong>Numeric field sums</strong> &mdash; Totals for any numeric custom fields</li>
+            </ul>
+
+            <h3>Pipeline Bar</h3>
+            <p>A horizontal stacked bar chart showing the distribution of entries across pipeline stages. Each segment is color-coded to match the stage. Click any segment to filter the Dashboard to entries in that stage.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                The analytics panel gives you a high-level health check of your project without leaving the Dashboard. Use the clickable cards to quickly drill into problem areas like overdue or stale entries.
+            </div>
+
+            <!-- ====== Bulk Actions ====== -->
+            <h2 id="bulk-actions">Bulk Actions</h2>
+            <p>When you need to update many entries at once, bulk actions save significant time. They are available in <strong>Table View</strong> when two or more entries are selected.</p>
+
+            <h3>Selecting Multiple Entries</h3>
+            <ul>
+                <li><kbd>Ctrl</kbd>+Click &mdash; Add or remove individual entries from the selection</li>
+                <li><kbd>Shift</kbd>+Click &mdash; Select a range of entries between the last selected and the clicked row</li>
+                <li><strong>Select All</strong> button &mdash; Selects all entries on the current page</li>
+            </ul>
+
+            <h3>Available Bulk Actions</h3>
+            <ul>
+                <li><strong>Change Status</strong> &mdash; Apply a new pipeline stage to all selected entries at once. Each entry's stage transition is recorded in the audit trail.</li>
+                <li><strong>Delete</strong> &mdash; Soft-delete all selected entries, moving them to the recycle bin. They can be restored later.</li>
+                <li><strong>Archive</strong> &mdash; Archive all selected entries, hiding them from the default Dashboard view while preserving them in the database.</li>
+            </ul>
+
+            <div class="help-warning">
+                <strong>Warning</strong>
+                Bulk actions affect all selected entries immediately. Double-check your selection before applying a status change or deletion, especially when working with large datasets.
+            </div>
+
+            <!-- ====== Entry Actions ====== -->
+            <h2 id="entry-actions">Entry Actions</h2>
+            <p>Right-click any entry (or use the context menu button on a card) to access the full set of actions available for a single entry.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Edit</strong></td>
+                        <td>Navigate to the Entry page with this entry loaded for editing</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Open Detail</strong></td>
+                        <td>Open the floating Entry Detail Window for a quick read-only view with attachments, linked entries, and stage timeline</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Audit Trail</strong></td>
+                        <td>View the complete change history for this entry &mdash; every field change, status update, and tag modification with timestamps and user names</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Delete</strong></td>
+                        <td>Move the entry to the recycle bin (soft delete). If hard delete is enabled in settings, the entry is permanently removed.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Duplicate</strong></td>
+                        <td>Create a new entry pre-filled with all the data from this one &mdash; tags, fields, custom fields, and comments. The new entry gets a fresh reference number.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Repeat Job</strong></td>
+                        <td>Similar to duplicate, but clears the comments field and resets the pipeline status to the first stage. Ideal for recurring jobs.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Print</strong></td>
+                        <td>Export the entry as a detailed PDF document and open it in your default PDF viewer</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Print Traveler</strong></td>
+                        <td>Generate a job traveler PDF with a QR code that links back to the entry</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Change Status</strong></td>
+                        <td>Quick flyout showing all pipeline stages &mdash; click one to move the entry to that stage without opening the full editor</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Copy Ref Number</strong></td>
+                        <td>Copy the reference number to the clipboard for pasting into emails, purchase orders, or other systems</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Archive / Unarchive</strong></td>
+                        <td>Move the entry to or from the archive. Archived entries are hidden from the default view but fully preserved.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                The <strong>Repeat Job</strong> action is particularly useful in shops that run the same part repeatedly. It copies all configuration (tags, fields, customer) but starts fresh with a clean comments section and the first pipeline stage.
+            </div>
+
+            <!-- ====== Recycle Bin & Archive ====== -->
+            <h2 id="recycle-bin">Recycle Bin &amp; Archive</h2>
+            <p>GlyphFex provides two mechanisms for managing entries you no longer need in your active view.</p>
+
+            <h3>Recycle Bin</h3>
+            <p>When you delete an entry, it is <strong>soft-deleted</strong> &mdash; removed from the active view but still stored in the database. To see deleted entries:</p>
+            <ol>
+                <li>Click the <strong>Recycle Bin</strong> toggle button in the toolbar</li>
+                <li>Deleted entries appear with a visual indicator</li>
+                <li>Right-click a deleted entry to <strong>Restore</strong> it, view its audit trail, or see when and by whom it was deleted</li>
+            </ol>
+
+            <h3>Archive</h3>
+            <p>Archiving is for entries that are complete and no longer need attention, but should be preserved for reference. Toggle the <strong>Archive</strong> button in the toolbar to include archived entries in the Dashboard view.</p>
+
+            <h3>Auto-Archive</h3>
+            <p>You can configure GlyphFex to automatically archive entries that have been in a completed stage for a certain number of days. Set this up in <strong>Settings &gt; Archive</strong> within the <a href="configuration.html">Settings Hub</a>.</p>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                Both the recycle bin and archive use toggle buttons in the Dashboard toolbar. When toggled on, the relevant entries appear alongside your active entries. When toggled off (the default), they are hidden from view.
+            </div>
+
+            <!-- ====== Auto-Refresh ====== -->
+            <h2 id="auto-refresh">Auto-Refresh (Multi-User)</h2>
+            <p>When your project is connected to a SQL Server database (team mode), the Dashboard automatically refreshes to keep everyone in sync.</p>
+            <ul>
+                <li>The Dashboard checks for changes every <strong>10 seconds</strong></li>
+                <li>Uses a lightweight approach: queries only <code>MAX(LastModifiedAt)</code> first, and performs a full data reload only if something has actually changed</li>
+                <li>This ensures all team members see the latest data &mdash; new entries, status changes, and edits appear automatically without manual refresh</li>
+            </ul>
+            <p>You can also trigger a manual refresh at any time:</p>
+            <ul>
+                <li>Press <kbd>F5</kbd> to refresh</li>
+                <li>Press <kbd>Ctrl</kbd>+<kbd>R</kbd> to refresh</li>
+            </ul>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                In single-user (Solo) mode, auto-refresh is not needed because you are the only one making changes. The Dashboard updates immediately after you save or modify an entry.
+            </div>
+
+            <!-- ====== Dashboard Exports ====== -->
+            <h2 id="exports">Dashboard Exports</h2>
+            <p>Export your Dashboard data in multiple formats. All exports respect your current filters and search &mdash; what you see on screen is what gets exported.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Format</th>
+                        <th>Shortcut</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>CSV</strong></td>
+                        <td><kbd>Ctrl</kbd>+<kbd>E</kbd></td>
+                        <td>Comma-separated values file. Opens in Excel, Google Sheets, or any spreadsheet application. Includes all visible columns.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Excel</strong></td>
+                        <td>&mdash;</td>
+                        <td>Formatted <code>.xlsx</code> file with proper column widths and headers</td>
+                    </tr>
+                    <tr>
+                        <td><strong>QuickBooks</strong></td>
+                        <td>&mdash;</td>
+                        <td>Invoice import format compatible with QuickBooks accounting software</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PDF Report</strong></td>
+                        <td>&mdash;</td>
+                        <td>Summary report with a description of active filters, an entry table, and project statistics</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Full Project ZIP</strong></td>
+                        <td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>E</kbd></td>
+                        <td>Complete data export containing <code>entries.csv</code>, <code>audit.csv</code>, and <code>categories.csv</code> in a single ZIP archive</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Access export options from <strong>File &gt; Export</strong> in the menu bar, or use the keyboard shortcuts listed above.</p>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                Exports include only the entries matching your current filters and search. To export everything, clear all filters first. The Full Project ZIP always exports all entries regardless of filters.
+            </div>
+
+            <!-- ====== Keyboard Shortcuts ====== -->
+            <h2 id="keyboard-shortcuts">Keyboard Shortcuts</h2>
+            <p>Speed up your Dashboard workflow with these keyboard shortcuts:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Shortcut</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><kbd>Ctrl</kbd>+<kbd>2</kbd></td>
+                        <td>Navigate to the Dashboard from any page</td>
+                    </tr>
+                    <tr>
+                        <td><kbd>Ctrl</kbd>+<kbd>F</kbd></td>
+                        <td>Focus the search box</td>
+                    </tr>
+                    <tr>
+                        <td><kbd>Ctrl</kbd>+<kbd>E</kbd></td>
+                        <td>Export filtered entries to CSV</td>
+                    </tr>
+                    <tr>
+                        <td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>E</kbd></td>
+                        <td>Export full project as ZIP</td>
+                    </tr>
+                    <tr>
+                        <td><kbd>F5</kbd> / <kbd>Ctrl</kbd>+<kbd>R</kbd></td>
+                        <td>Refresh the Dashboard</td>
+                    </tr>
+                    <tr>
+                        <td><kbd>Escape</kbd></td>
+                        <td>Clear the search box</td>
+                    </tr>
+                    <tr>
+                        <td><kbd>Ctrl</kbd>+<kbd>K</kbd></td>
+                        <td>Open the Command Palette</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Press <kbd>Ctrl</kbd>+<kbd>K</kbd> to open the Command Palette, then type what you want to do. The palette provides quick access to every page, dialog, and action in GlyphFex.
+            </div>
+
+            <!-- ====== Next Steps ====== -->
+            <h2 id="next-steps">Next Steps</h2>
+            <p>Now that you know your way around the Dashboard, explore these related topics:</p>
+            <ul>
+                <li><a href="entries.html"><strong>Entries &amp; Forms</strong></a> &mdash; Learn about entry fields, tags, templates, attachments, and linked entries</li>
+                <li><a href="analytics.html"><strong>Analytics</strong></a> &mdash; Dive deeper into KPI cards, charts, SLA compliance tracking, and bottleneck analysis</li>
+                <li><a href="pipeline.html"><strong>Pipeline &amp; Workflow</strong></a> &mdash; Configure pipeline stages, SLA targets, stale thresholds, and multi-pipeline support</li>
+                <li><a href="exports.html"><strong>Exports &amp; Reports</strong></a> &mdash; Detailed guide to CSV, PDF, and full project exports</li>
+                <li><a href="configuration.html"><strong>Configuration</strong></a> &mdash; Set up auto-archive, saved filters, and all other project settings</li>
+            </ul>
+        </main>
+
+        <!-- Table of Contents -->
+        <aside class="help-toc" id="helpToc">
+            <h3>On this page</h3>
+            <ul><!-- populated by help.js --></ul>
+        </aside>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="nav-logo">
+                        <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                            <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                            <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="logo-text">GlyphFex</span>
+                    </a>
+                    <p class="footer-tagline">One source of truth from quote to completion.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <a href="../features.html">Features</a>
+                    <a href="../index.html#pricing">Pricing</a>
+                    <a href="../download.html">Download</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <a href="index.html">Help Center</a>
+                    <a href="getting-started.html">Getting Started</a>
+                    <a href="reference.html">Reference</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                    <a href="../eula.html">EULA</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GlyphFex. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="help.js"></script>
+</body>
+</html>

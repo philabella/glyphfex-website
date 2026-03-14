@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics &mdash; GlyphFex Help</title>
+    <meta name="description" content="Track KPIs, analyze trends, monitor SLA compliance, and identify bottlenecks with the GlyphFex Analytics page.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="analytics.html" class="active">Analytics</a>
+                <a href="calendar.html">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Analytics</h1>
+            <p class="help-subtitle">Track KPIs, analyze trends, and monitor SLA compliance across your projects. Navigate here with <kbd>Ctrl</kbd>+<kbd>3</kbd>.</p>
+
+            <!-- ====== Time Range Selection ====== -->
+            <h2 id="time-range">Time Range Selection</h2>
+            <p>The Analytics page starts with a time range selector at the top. All KPI cards, charts, and tables below are filtered to show data within your chosen period. The available options are:</p>
+            <ul>
+                <li><strong>Last 7 days</strong> &mdash; A quick look at this week's activity</li>
+                <li><strong>Last 30 days</strong> &mdash; The default view, covering roughly the past month</li>
+                <li><strong>Last 90 days</strong> &mdash; A quarterly perspective for trend analysis</li>
+                <li><strong>All time</strong> &mdash; Every entry and event since the project was created</li>
+                <li><strong>Custom range</strong> &mdash; Define your own start and end dates using a pair of CalendarDatePicker controls</li>
+            </ul>
+            <p>When you select <strong>Custom range</strong>, two date pickers appear. Choose a <strong>From</strong> date and a <strong>To</strong> date to define your window. Both entries and audit trail records are filtered by these dates, so charts like "Entries Over Time" and the Activity Table reflect only what happened within your custom window.</p>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Use the custom range to generate analytics for a specific quarter, a particular month, or even a single week. This is especially useful when preparing reports for management reviews or year-end summaries.
+            </div>
+
+            <!-- ====== KPI Cards ====== -->
+            <h2 id="kpi-cards">KPI Cards</h2>
+            <p>The top section of the Analytics page displays up to 13 KPI cards in a responsive grid. Each card shows a single metric with its value prominently displayed. Some cards only appear when relevant data exists in your project &mdash; for example, margin and profit cards require estimated value and cost fields to be populated.</p>
+
+            <h3>Entry Metrics</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Card</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Total Entries</strong></td>
+                        <td>The total number of active (non-deleted, non-archived) entries in the selected time range.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>New This Period</strong></td>
+                        <td>How many entries were created during the selected time range. Useful for measuring intake volume.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Avg Completion Days</strong></td>
+                        <td>The average number of days from entry creation to reaching a completed pipeline stage. Lower is better.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Delivery &amp; SLA Metrics</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Card</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>SLA Compliance %</strong></td>
+                        <td>The percentage of stage transitions that completed within their SLA target. Calculated from your pipeline's per-stage SLA targets.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Overdue Rate %</strong></td>
+                        <td>The percentage of entries that are currently past their due date. A high rate signals capacity or scheduling problems.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>On-Time Delivery Rate</strong></td>
+                        <td>The percentage of completed entries that were finished on or before their due date. The gold standard for delivery performance.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Financial Metrics</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Card</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Total Estimated Value</strong></td>
+                        <td>The sum of all estimated values across entries in the period. Requires the <code>estimated_value</code> built-in field to be populated.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Average Margin %</strong></td>
+                        <td>The average profit margin across entries that have both estimated value and cost data.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total Profit</strong></td>
+                        <td>The sum of (estimated value minus cost) across all applicable entries. Only appears when cost data exists.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Operational Metrics</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Card</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Top Customer</strong></td>
+                        <td>The customer with the most entries in the period. Helps identify your highest-volume accounts.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NCR Rate</strong></td>
+                        <td>The non-conformance report rate &mdash; the percentage of entries that have quality issues recorded. Only appears when NCR data exists.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cost of Quality</strong></td>
+                        <td>The total cost impact of non-conformances. Calculated from the cost impact fields on NCR records attached to entries.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Material Readiness %</strong></td>
+                        <td>The percentage of entries whose material requirements are fully allocated. Tracks whether jobs are waiting on materials.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                Cards that depend on optional data (financial fields, NCR records, material requirements) are automatically hidden when no relevant data exists. As you start populating these fields on your entries, the corresponding KPI cards will appear.
+            </div>
+
+            <!-- ====== Charts & Visualizations ====== -->
+            <h2 id="charts">Charts &amp; Visualizations</h2>
+            <p>Below the KPI cards, the Analytics page presents a series of chart sections. Each section focuses on a different aspect of your operations. Sections with no relevant data are automatically hidden to keep the page clean.</p>
+
+            <h3>Status Distribution</h3>
+            <p>A breakdown of entries by their current pipeline stage. Shows how many entries are in each stage right now, giving you a snapshot of work distribution across your workflow. Helps you spot stages where work is piling up.</p>
+
+            <h3>Entries Over Time</h3>
+            <p>A weekly bar chart showing the number of new entries created each week within your selected time range. Use this to identify trends in incoming work volume &mdash; seasonal spikes, growth patterns, or quiet periods.</p>
+
+            <h3>SLA Compliance by Stage</h3>
+            <p>A per-stage compliance breakdown showing what percentage of entries moved through each pipeline stage within the SLA target. Stages with low compliance are highlighted, helping you focus improvement efforts where they matter most.</p>
+
+            <h3>Priority Breakdown</h3>
+            <p>Distribution of entries by priority level (Rush, High, Normal, Low). Useful for understanding whether your team is overloaded with high-priority work or if priorities are well-balanced.</p>
+
+            <h3>Customer Breakdown</h3>
+            <p>Shows the top customers by entry count. Identifies your highest-volume clients and helps ensure you are allocating capacity appropriately across accounts.</p>
+
+            <h3>Stage Bottlenecks</h3>
+            <p>Compares the average number of days entries spend in each stage against the SLA target for that stage. Stages where the average exceeds the target are visually flagged, making it easy to identify where jobs get stuck. See <a href="#bottleneck">Bottleneck Analysis</a> below for more detail.</p>
+
+            <h3>Activity Table</h3>
+            <p>A chronological list of recent audit trail events &mdash; entry creations, status changes, field edits, and other actions. Filtered to the selected time range. Useful for a quick review of what has been happening in the project.</p>
+
+            <h3>Customer Analysis</h3>
+            <p>Deeper customer metrics including total value per customer, average completion time, and on-time delivery rate by customer. Helps you identify which accounts are most profitable and which may need attention.</p>
+
+            <h3>Job Costing</h3>
+            <p>Financial analysis showing estimated value vs. actual cost per entry, profit margins, and cost trends over time. Only appears when entries have both value and cost data populated.</p>
+
+            <h3>Quality / NCR Analysis</h3>
+            <p>Non-conformance trends, NCR rate over time, cost of quality breakdown, and most common defect types. Only appears when entries have NCR records attached. Essential for continuous improvement programs and ISO compliance.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                If a chart section is not visible, it means there is no relevant data for it in the selected time range. For example, the Job Costing section requires entries with <code>estimated_value</code> and <code>estimated_cost</code> built-in fields populated. Start entering that data on your entries and the charts will appear automatically.
+            </div>
+
+            <!-- ====== SLA Compliance Analysis ====== -->
+            <h2 id="sla-compliance">SLA Compliance Analysis</h2>
+            <p>The SLA Compliance section provides a detailed breakdown of how well your team is meeting stage-level service targets. For each pipeline stage that has an SLA target configured, the analysis categorizes entries into three buckets:</p>
+            <ul>
+                <li><strong>On Track</strong> &mdash; The entry moved through the stage within the target number of days</li>
+                <li><strong>At Risk</strong> &mdash; The entry is still in the stage and approaching the SLA deadline</li>
+                <li><strong>Overdue</strong> &mdash; The entry exceeded the SLA target for that stage</li>
+            </ul>
+            <p>SLA targets are configured per stage in the <a href="pipeline.html">Pipeline editor</a>. Each stage can specify a target number of days and whether to count <strong>business days</strong> or <strong>calendar days</strong>.</p>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                When a stage is configured to use business days, the calculation automatically excludes weekends and any holidays defined in your <a href="configuration.html">business calendar</a>. This ensures that SLA compliance numbers are fair and accurate &mdash; a job sitting over a long weekend does not count against your team.
+            </div>
+
+            <p>The compliance percentage shown in the KPI card at the top represents the overall rate across all stages. The per-stage breakdown in the charts section lets you drill down to see exactly which stages are meeting targets and which are not.</p>
+
+            <!-- ====== Bottleneck Analysis ====== -->
+            <h2 id="bottleneck">Bottleneck Analysis</h2>
+            <p>The Bottleneck Analysis chart compares the <strong>average time entries spend in each stage</strong> against the <strong>SLA target</strong> for that stage. This is one of the most actionable analytics in GlyphFex because it tells you exactly where your workflow is slowing down.</p>
+
+            <p>How to read the chart:</p>
+            <ul>
+                <li>Each pipeline stage is listed as a row</li>
+                <li>The bar length represents the average number of days entries spend in that stage</li>
+                <li>A vertical marker shows the SLA target for comparison</li>
+                <li>Stages where the average exceeds the target are highlighted to draw attention</li>
+            </ul>
+
+            <p>Common bottleneck patterns and what they mean:</p>
+            <ul>
+                <li><strong>One stage consistently over target</strong> &mdash; That stage likely needs more capacity (people, machines, or shifts)</li>
+                <li><strong>Multiple stages slightly over target</strong> &mdash; The overall pipeline may be overloaded; consider reducing WIP (work in progress)</li>
+                <li><strong>Early stages over, later stages under</strong> &mdash; Work is getting stuck in planning or engineering and then rushing through production</li>
+                <li><strong>All stages well under target</strong> &mdash; Your SLA targets may be too generous; consider tightening them to drive further improvement</li>
+            </ul>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Share the Bottleneck Analysis chart in your weekly production meetings. It gives everyone a clear, data-driven view of where the shop is struggling and where it is performing well. Pair it with the SLA Compliance chart for a complete performance picture.
+            </div>
+
+            <!-- ====== Refresh & Auto-Refresh ====== -->
+            <h2 id="refresh">Refresh &amp; Auto-Refresh</h2>
+            <p>The Analytics page provides two ways to keep your data current:</p>
+
+            <h3>Manual Refresh</h3>
+            <p>Click the <strong>Refresh</strong> button in the toolbar to reload all analytics data immediately. Use this after making changes on other pages (e.g., updating entry statuses on the Dashboard) to see the impact reflected in your KPIs and charts right away.</p>
+
+            <h3>Auto-Refresh</h3>
+            <p>When connected to a SQL Server database (team mode), the Analytics page automatically refreshes every <strong>30 seconds</strong>. This ensures that metrics stay up to date even when multiple users are making changes simultaneously across the network.</p>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                Auto-refresh is only active in SQL Server (team) mode. In SQLite (solo) mode, you are the only user making changes, so manual refresh is sufficient. The page also refreshes automatically whenever you navigate to it.
+            </div>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                The Analytics page works well on a secondary monitor during the workday. Keep it open alongside the Dashboard for a real-time view of your shop's performance as entries move through the pipeline.
+            </div>
+        </main>
+
+        <!-- Table of Contents -->
+        <aside class="help-toc" id="helpToc">
+            <h3>On this page</h3>
+            <ul><!-- populated by help.js --></ul>
+        </aside>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="nav-logo">
+                        <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                            <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                            <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="logo-text">GlyphFex</span>
+                    </a>
+                    <p class="footer-tagline">One source of truth from quote to completion.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <a href="../features.html">Features</a>
+                    <a href="../index.html#pricing">Pricing</a>
+                    <a href="../download.html">Download</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <a href="index.html">Help Center</a>
+                    <a href="getting-started.html">Getting Started</a>
+                    <a href="reference.html">Reference</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                    <a href="../eula.html">EULA</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GlyphFex. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="help.js"></script>
+</body>
+</html>

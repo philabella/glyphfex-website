@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Floor &amp; Display Board &mdash; GlyphFex Help</title>
+    <meta name="description" content="Touch-optimized kiosk interface for production workers and TV display board for shop floor visibility in GlyphFex.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="calendar.html">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html" class="active">Shop Floor &amp; Display</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Shop Floor &amp; Display Board</h1>
+            <p class="help-subtitle">Touch-optimized kiosk interface for production workers and TV display for shop floor visibility. Navigate with <kbd>Ctrl</kbd>+<kbd>5</kbd> (Display Board) or <kbd>Ctrl</kbd>+<kbd>6</kbd> (Shop Floor).</p>
+
+            <!-- ====== Shop Floor Kiosk ====== -->
+            <h2 id="shop-floor">Shop Floor Kiosk</h2>
+            <p>The Shop Floor page is a touch-optimized kiosk interface designed for use by production workers on the shop floor. It uses large buttons and simplified controls so workers can interact with the system using a touchscreen, tablet, or any input device &mdash; even with gloves on.</p>
+            <p>Key design principles:</p>
+            <ul>
+                <li><strong>44px minimum touch targets</strong> &mdash; All buttons and interactive elements meet or exceed the 44px touch target guideline, ensuring reliable tap accuracy on touchscreens</li>
+                <li><strong>Search bar</strong> &mdash; Quickly find entries by reference number, customer, or keywords. Results update as you type.</li>
+                <li><strong>Pipeline filter</strong> &mdash; Filter entries by a specific pipeline when your project uses multiple pipelines</li>
+                <li><strong>Live clock</strong> &mdash; A large clock in the header displays the current time, updated every second. Uses your system's locale format for both time and date. Helps workers track shift times without needing to look away from the screen.</li>
+                <li><strong>Stage sections</strong> &mdash; Entries are organized by their current pipeline stage, with each stage shown as a section header. Workers can scan the page to find their jobs by looking under the relevant stage.</li>
+            </ul>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                Each stage section displays a maximum of <strong>20 entry cards</strong> to keep the interface fast and responsive. If a stage contains more than 20 entries, a "Show more" link appears at the bottom of that section. This performance cap ensures the page loads quickly even with hundreds of active entries.
+            </div>
+
+            <p>At the bottom of the page, a <strong>floating pipeline navigation bar</strong> provides quick-jump buttons to each pipeline stage. Tap a stage name to scroll directly to that section &mdash; useful on a long page with many entries across multiple stages.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                The Shop Floor page works best in full-screen mode (<kbd>F11</kbd> in most browsers or Windows key combinations). Set up a dedicated touchscreen PC on the shop floor, open GlyphFex, navigate to Shop Floor (<kbd>Ctrl</kbd>+<kbd>6</kbd>), and go full-screen for a kiosk-like experience that workers can use all day.
+            </div>
+
+            <!-- ====== Entry Cards ====== -->
+            <h2 id="entry-cards">Entry Cards</h2>
+            <p>Each entry on the Shop Floor page is displayed as a card with the essential information workers need at a glance:</p>
+            <ul>
+                <li><strong>Reference number</strong> &mdash; The job's unique identifier, displayed prominently at the top of the card</li>
+                <li><strong>Customer name</strong> &mdash; Who the job is for</li>
+                <li><strong>PO number</strong> &mdash; The purchase order number, if available</li>
+                <li><strong>Priority badge</strong> &mdash; A colored badge indicating the entry's priority level (Rush, High, Normal, Low)</li>
+                <li><strong>Due date</strong> &mdash; When the job is due, with color coding (red for overdue, yellow for due soon, green for on track)</li>
+                <li><strong>Materials status</strong> &mdash; Shows whether materials are allocated and ready for the job</li>
+            </ul>
+            <p>Each card provides two main action buttons:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Button</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Advance</strong></td>
+                        <td>One-tap advancement to the next pipeline stage. This is the primary action for workers &mdash; when a job moves to the next step in production, a single tap records the stage change, updates the audit trail, and moves the card to the next stage section.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Menu</strong></td>
+                        <td>Opens a secondary menu with additional options:
+                            <ul>
+                                <li><strong>Quick Note</strong> &mdash; Add a note to the entry without opening the full detail window. Useful for recording issues, observations, or shift handoff notes.</li>
+                                <li><strong>View Details</strong> &mdash; Opens the full Entry Detail Window with all fields, attachments, audit trail, and linked entries.</li>
+                                <li><strong>Undo</strong> &mdash; Revert the most recent stage change if a mistake was made.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Train workers to use the Advance button as they complete each stage of their work. This single-tap workflow means the system stays up to date with minimal effort &mdash; no navigating through menus or filling out forms. The audit trail records who advanced the entry and when.
+            </div>
+
+            <!-- ====== Time Tracking (Clock In/Out) ====== -->
+            <h2 id="time-tracking">Time Tracking (Clock In/Out)</h2>
+            <p>The Shop Floor page includes built-in time tracking so workers can log their hours against specific jobs directly from the kiosk interface.</p>
+
+            <h3>Clocking In</h3>
+            <ol class="help-steps">
+                <li>Find the entry card for the job you are starting to work on</li>
+                <li>Tap the green <strong>Clock In</strong> button on the card</li>
+                <li>A time entry record is created with your username and the current timestamp as the start time</li>
+                <li>The card updates to show an active work session indicator</li>
+            </ol>
+
+            <h3>Clocking Out</h3>
+            <ol class="help-steps">
+                <li>When you finish working on the job, tap the red <strong>Clock Out</strong> button that replaced the Clock In button</li>
+                <li>A dialog prompts you to add optional notes about the work performed (e.g., "Completed welding on panel A" or "Waiting on hardware")</li>
+                <li>The time entry is completed with the end time recorded</li>
+            </ol>
+
+            <h3>Viewing Timesheet Reports</h3>
+            <p>Time entry data can be reviewed and exported through the Timesheet Report. Navigate to <strong>Tools &gt; Timesheet Report</strong> in the menu bar. The report allows you to:</p>
+            <ul>
+                <li>Filter by date range and worker</li>
+                <li>See total hours per worker, per entry, and per day</li>
+                <li>Export the report to PDF for payroll or job costing purposes</li>
+            </ul>
+
+            <div class="help-warning">
+                <strong>Warning</strong>
+                If a worker forgets to clock out, the session remains open with no end time. Managers can review open sessions in the Timesheet Report and manually close them. Encourage workers to clock out before leaving for the day or switching to a different job.
+            </div>
+
+            <!-- ====== Multi-Pipeline Grouping ====== -->
+            <h2 id="multi-pipeline">Multi-Pipeline Grouping</h2>
+            <p>When your project uses multiple pipelines (e.g., one for production jobs and another for repair orders), the Shop Floor page adapts its layout to keep entries organized:</p>
+
+            <h3>All Pipelines View</h3>
+            <p>When the pipeline filter is set to <strong>All Pipelines</strong>, the page displays pipeline headers with grouped stages underneath. Each pipeline gets its own section with the pipeline name as a header, and that pipeline's stages listed beneath it. This prevents confusion when different pipelines share similar stage names (e.g., both might have a "QC" stage).</p>
+
+            <h3>Single Pipeline View</h3>
+            <p>When you select a specific pipeline from the filter dropdown, only that pipeline's stages are shown. The pipeline header is removed since there is no ambiguity, and the layout is cleaner and more focused.</p>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                Pipeline visibility respects role-based restrictions configured by your administrator. If certain pipelines are hidden from your role, they will not appear in the pipeline filter or on the Shop Floor page. This ensures workers only see the pipelines relevant to their area of responsibility.
+            </div>
+
+            <!-- ====== Floating Undo Panel ====== -->
+            <h2 id="undo-panel">Floating Undo Panel</h2>
+            <p>After advancing an entry to the next pipeline stage, a floating undo panel appears at the bottom of the screen. This provides a safety net in case the Advance button was tapped by mistake.</p>
+            <p>How the undo panel works:</p>
+            <ul>
+                <li>The panel appears immediately after a stage advance</li>
+                <li>It remains visible for <strong>6 seconds</strong>, then fades out over <strong>2 seconds</strong> (8 seconds total)</li>
+                <li>The panel shows which entry was advanced and which stage it was moved to</li>
+                <li>Click the <strong>Undo</strong> button to immediately revert the stage change</li>
+                <li>If you do nothing, the panel disappears and the advance stands</li>
+            </ul>
+            <p>Undo reverts both the pipeline stage and the audit trail entry. It is as if the advance never happened.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                The undo panel is designed for quick corrections on the shop floor. If you need to undo a stage change after the panel has disappeared, you can still use the <strong>Menu &gt; Undo</strong> option on the entry card, or open the Entry Detail Window and use the pipeline history to revert.
+            </div>
+
+            <!-- ====== Display Board ====== -->
+            <h2 id="display-board">Display Board</h2>
+            <p>The Display Board (<kbd>Ctrl</kbd>+<kbd>5</kbd>) is designed to run on a wall-mounted TV or large monitor on the production floor. It provides a hands-free, auto-rotating overview of your shop's status that everyone can see at a glance.</p>
+
+            <h3>Design</h3>
+            <p>The Display Board uses a dark theme optimized for readability at a distance on large screens. Text is larger than on other pages, and high-contrast colors ensure visibility even in bright shop floor lighting.</p>
+
+            <h3>Three Rotating Views</h3>
+            <p>The Display Board automatically cycles through three views, spending <strong>15 seconds</strong> on each:</p>
+
+            <h4>1. Kanban Board</h4>
+            <p>A column-per-stage layout showing entry cards organized by pipeline stage. Each column is capped at <strong>20 cards</strong> to maintain readability. The 5 most recently completed entries are shown in the completed column, so the team can see what just finished.</p>
+
+            <h4>2. KPI Dashboard</h4>
+            <p>Large metric cards showing key numbers: total active entries, entries due today, overdue count, SLA compliance, and other summary statistics. A pipeline bar along the bottom shows the distribution of entries across stages.</p>
+
+            <h4>3. Alerts &amp; Deadlines</h4>
+            <p>Three columns highlighting entries that need attention:</p>
+            <ul>
+                <li><strong>Overdue</strong> &mdash; Entries past their due date, sorted by urgency</li>
+                <li><strong>Due Today</strong> &mdash; Entries due today that have not yet reached a completed stage</li>
+                <li><strong>Due This Week</strong> &mdash; Upcoming entries due within the next 7 days</li>
+            </ul>
+
+            <h3>Controls</h3>
+            <p>Although the Display Board is designed for hands-free operation, it includes a minimal set of controls:</p>
+            <ul>
+                <li><strong>Auto-rotate toggle</strong> &mdash; Turn automatic view cycling on or off. When off, the board stays on the current view.</li>
+                <li><strong>Previous / Next</strong> &mdash; Manually switch between the three views</li>
+                <li><strong>Live clock</strong> &mdash; Current time displayed in the header, matching the system locale</li>
+            </ul>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Set up a dedicated PC connected to a wall-mounted TV in your shop. Open GlyphFex, navigate to the Display Board with <kbd>Ctrl</kbd>+<kbd>5</kbd>, and press <kbd>F11</kbd> for full-screen mode. The auto-rotating views give everyone on the floor real-time visibility without anyone needing to touch the computer.
+            </div>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                For team (SQL Server) mode, the Display Board is ideal because it shows live data from the shared database. Any status changes made by workers on Shop Floor kiosks or by office staff on the Dashboard are reflected on the Display Board within seconds.
+            </div>
+
+            <!-- ====== Display Board Refresh ====== -->
+            <h2 id="display-board-refresh">Display Board Refresh</h2>
+            <p>The Display Board automatically refreshes its data every <strong>15 seconds</strong> to keep the information current. This refresh interval applies in both SQLite (solo) and SQL Server (team) modes.</p>
+            <p>The refresh happens silently in the background &mdash; the display does not flicker or reset the rotation cycle. If data changes between refreshes (e.g., a worker advances a job), the change appears on the next refresh cycle.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                The 15-second refresh interval is a good balance between data freshness and performance. In a busy shop with multiple workers updating entries simultaneously, the Display Board stays within 15 seconds of real-time &mdash; close enough for everyone to trust what they see on the screen.
+            </div>
+        </main>
+
+        <!-- Table of Contents -->
+        <aside class="help-toc" id="helpToc">
+            <h3>On this page</h3>
+            <ul><!-- populated by help.js --></ul>
+        </aside>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="nav-logo">
+                        <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                            <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                            <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="logo-text">GlyphFex</span>
+                    </a>
+                    <p class="footer-tagline">One source of truth from quote to completion.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <a href="../features.html">Features</a>
+                    <a href="../index.html#pricing">Pricing</a>
+                    <a href="../download.html">Download</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <a href="index.html">Help Center</a>
+                    <a href="getting-started.html">Getting Started</a>
+                    <a href="reference.html">Reference</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                    <a href="../eula.html">EULA</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GlyphFex. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="help.js"></script>
+</body>
+</html>

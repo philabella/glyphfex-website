@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entries &amp; Forms &mdash; GlyphFex Help</title>
+    <meta name="description" content="Learn how to create and manage entries in GlyphFex. Covers entry forms, fields, tags, templates, attachments, linking, and validation.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="calendar.html">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Entries &amp; Forms</h1>
+            <p class="help-subtitle">Create, edit, and manage job entries with fields, tags, templates, and attachments.</p>
+
+            <!-- ====== Creating an Entry ====== -->
+            <h2 id="creating-entries">Creating an Entry</h2>
+
+            <p>Entries are the core records in GlyphFex. Every job, quote, order, or work item lives as an entry in your project file. To create a new entry:</p>
+
+            <ol class="help-steps">
+                <li><strong>Navigate to the Entry page</strong> using <kbd>Ctrl</kbd>+<kbd>1</kbd> in the sidebar, or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd> from anywhere to jump straight to a blank entry form.</li>
+                <li><strong>Fill in the entry form.</strong> The page uses a 3-column layout:
+                    <ul>
+                        <li><strong>Left column</strong> &mdash; The main entry form with Ref ID, Comments, Status, Pipeline selector, built-in fields, and custom fields. Template quick-apply buttons also appear here.</li>
+                        <li><strong>Middle gutter</strong> &mdash; Separates the form from the tag panel.</li>
+                        <li><strong>Right column</strong> &mdash; The tag selection panel where you pick tags from each configured category.</li>
+                    </ul>
+                </li>
+                <li><strong>Choose tags</strong> from each category. Click tag buttons or select from dropdown menus depending on the category display mode.</li>
+                <li><strong>Save</strong> by pressing <kbd>Ctrl</kbd>+<kbd>S</kbd> or clicking the Save button. GlyphFex validates your entry before saving (see <a href="#validation">Save Validation</a> below).</li>
+            </ol>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Enable the <strong>Keep Entry</strong> checkbox at the bottom of the form for rapid multi-entry creation. After saving, the form resets to a blank entry so you can immediately start the next one without navigating away.
+            </div>
+
+            <!-- ====== Entry Fields Overview ====== -->
+            <h2 id="entry-fields">Entry Fields Overview</h2>
+
+            <p>Every entry in GlyphFex has a standard set of fields. Some are always visible, while others depend on your project configuration.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Ref ID</strong></td>
+                        <td>Text</td>
+                        <td>Max 100 characters. Checked for duplicates on save. Supports regex validation patterns configured per project.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Comments</strong></td>
+                        <td>Multi-line text</td>
+                        <td>Max 10,000 characters. A character counter is displayed as you type.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Status</strong></td>
+                        <td>ComboBox</td>
+                        <td>Populated from your pipeline stages. Changing status records a stage transition with timestamp.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pipeline</strong></td>
+                        <td>ComboBox</td>
+                        <td>Hidden if your project uses a single pipeline. Selects which named pipeline governs this entry's workflow.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tags</strong></td>
+                        <td>Category UI</td>
+                        <td>Buttons or dropdown per category. Multi-select supported. See <a href="#tags">Tags &amp; Categories</a>.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Built-in fields</strong></td>
+                        <td>Various</td>
+                        <td>13 predefined fields (customer name, PO number, due date, etc.). Toggled on/off per project. See <a href="#built-in-fields">Built-In Key Fields</a>.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Custom fields</strong></td>
+                        <td>5 types</td>
+                        <td>User-defined fields (Text, Large Text, Dropdown, Date, Number). See <a href="#custom-fields">Custom Fields</a>.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- ====== Built-In Key Fields ====== -->
+            <h2 id="built-in-fields">Built-In Key Fields</h2>
+
+            <p>GlyphFex provides 13 built-in fields that cover common manufacturing and job-tracking data points. These fields are code-defined, meaning their structure is consistent across all projects, but you can toggle each one on or off to match your workflow.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>customer_name</strong></td>
+                        <td>Text field with autocomplete from your customer directory. When you save an entry with a new customer name, it is automatically added to the directory.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>po_number</strong></td>
+                        <td>Text field for purchase order numbers. Useful for linking entries to external procurement systems.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>job_date</strong></td>
+                        <td>Date picker for the job creation or order date.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>due_date</strong></td>
+                        <td>Date picker that drives notifications, dashboard alerts, and calendar positioning. Entries approaching or past their due date are highlighted automatically.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>qty_ordered</strong></td>
+                        <td>Number field for the quantity ordered.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>materials</strong></td>
+                        <td>Large text field for material specifications (e.g., "1/4 in. A36 plate, 4x8 sheet").</td>
+                    </tr>
+                    <tr>
+                        <td><strong>part_number</strong></td>
+                        <td>Text field with autocomplete. Shared across entries to enable <a href="#entry-detail">Part History</a> tracking.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>revision_number</strong></td>
+                        <td>Text field for revision tracking (e.g., "Rev A", "Rev 3").</td>
+                    </tr>
+                    <tr>
+                        <td><strong>notes_internal</strong></td>
+                        <td>Large text field for internal notes not meant for the customer.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>quote_line_items</strong></td>
+                        <td>Structured table for quoting: item description, quantity, unit price, and line total. Calculated totals are shown automatically.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>quality_notes</strong></td>
+                        <td>Structured NCR/quality records with fields for disposition, corrective action, affected quantity, cost impact, and resolution status.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>material_requirements</strong></td>
+                        <td>Structured material needs per entry: material name, specification, quantity needed, unit, allocation status, and notes.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ncr_notes</strong></td>
+                        <td>Large text field for non-conformance report notes and observations.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                Built-in fields are toggled on or off per project. Go to <strong>Settings &gt; Custom Fields</strong> (the "Key Fields" section) to enable or disable individual built-in fields. Only enabled fields appear on the entry form.
+            </div>
+
+            <!-- ====== Custom Fields ====== -->
+            <h2 id="custom-fields">Custom Fields</h2>
+
+            <p>Custom fields let you capture data specific to your business that the built-in fields do not cover. GlyphFex supports five field types:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Text</strong></td>
+                        <td>Single-line text input with autocomplete from previously entered values.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Large Text</strong></td>
+                        <td>Multi-line text area for longer content.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dropdown</strong></td>
+                        <td>Predefined options, configured as a pipe-separated list (e.g., <code>Option A|Option B|Option C</code>).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Date</strong></td>
+                        <td>Calendar date picker.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Number</strong></td>
+                        <td>Numeric input for quantities, measurements, or costs.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Managing Custom Fields</h3>
+
+            <ul>
+                <li><strong>Create fields</strong> in <strong>Settings &gt; Custom Fields</strong> or from the Entry page toolbar using the <strong>Text Fields</strong> button.</li>
+                <li><strong>Reorder fields</strong> by using the up/down arrows in the custom fields editor. The order is reflected on the entry form.</li>
+                <li><strong>Required fields</strong> &mdash; Mark any custom field as required and GlyphFex will block saving until it has a value.</li>
+                <li><strong>Dropdown options</strong> &mdash; Separate options with the pipe character: <code>Hot Rolled|Cold Rolled|Galvanized</code>.</li>
+            </ul>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Custom field values are stored as JSON in the database, so they are fully searchable from the Dashboard and included in CSV/PDF exports.
+            </div>
+
+            <!-- ====== Tags & Categories ====== -->
+            <h2 id="tags">Tags &amp; Categories</h2>
+
+            <p>Tags are how you classify and filter entries in GlyphFex. Tags are organized into categories, and each category can hold any number of tags. Common examples include Material, Process, Machine, and Priority.</p>
+
+            <h3>Display Modes</h3>
+            <ul>
+                <li><strong>Buttons</strong> &mdash; Tags appear as a grid of clickable buttons. Great for categories with a moderate number of options.</li>
+                <li><strong>ComboBox</strong> &mdash; Tags appear in a searchable dropdown. Better for categories with many options.</li>
+            </ul>
+
+            <h3>Multi-Select</h3>
+            <p>When multi-select is enabled for a category, you can pick more than one tag. Selected tags display as chips with a remove button. When multi-select is off, selecting a new tag replaces the previous selection.</p>
+
+            <h3>Search &amp; Filter</h3>
+            <p>Type in the tag search box to filter tags by name. Press <kbd>Escape</kbd> to clear the search and show all tags again.</p>
+
+            <h3>Conditional Rules</h3>
+            <p>Conditional rules automatically show, hide, enable, disable, or require categories based on the current tag selection. For example, you can create a rule that says: <em>"When Material = Stainless Steel, require the Finish category."</em></p>
+
+            <h3>Undo &amp; Redo</h3>
+            <p>Tag selections support full undo/redo. Press <kbd>Ctrl</kbd>+<kbd>Z</kbd> to undo a tag change, or <kbd>Ctrl</kbd>+<kbd>Y</kbd> to redo. GlyphFex takes snapshots of the entire tag collection so multi-tag changes can be rolled back in one step.</p>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                Tags are stored internally as comma-separated text in the format <code>"Category: Tag, Category: Tag"</code>. This format is used in CSV exports and the database. You do not need to worry about this unless you are working with raw data.
+            </div>
+
+            <!-- ====== Entry Templates ====== -->
+            <h2 id="templates">Entry Templates</h2>
+
+            <p>Templates let you pre-fill entry forms for common job types, saving time on repetitive data entry. A template can define:</p>
+
+            <ul>
+                <li><strong>Name and description</strong> &mdash; Identifies the template in the quick-apply list.</li>
+                <li><strong>Color</strong> &mdash; Visual distinction in the template button list.</li>
+                <li><strong>Ref # prefix</strong> &mdash; Auto-generates a reference ID prefix. Supports the <code>{YEAR}</code> placeholder for the current year (e.g., <code>WO-{YEAR}-</code> becomes <code>WO-2026-</code>).</li>
+                <li><strong>Default status</strong> &mdash; Sets the initial pipeline stage for entries created from this template.</li>
+                <li><strong>Comment text</strong> &mdash; Pre-fills the Comments field with boilerplate instructions or notes.</li>
+                <li><strong>Custom field defaults</strong> &mdash; Pre-populates custom field values.</li>
+                <li><strong>Tags</strong> &mdash; Pre-selects tags from configured categories.</li>
+                <li><strong>Pipeline association</strong> &mdash; Links the template to a specific pipeline, so applying the template also sets the correct pipeline.</li>
+            </ul>
+
+            <h3>Applying a Template</h3>
+            <p>Quick-apply buttons appear in the left column of the Entry page. Click a template button and the form fills in instantly. You can still modify any field before saving.</p>
+
+            <h3>Capturing a Template</h3>
+            <p>Use <strong>Capture from current entry</strong> to save the current entry's state as a new template. This is the fastest way to create templates from real jobs.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Configure templates at <strong>Settings &gt; Entry Templates</strong>. Each template can be associated with a pipeline, so multi-pipeline projects can offer the right templates for the right workflow.
+            </div>
+
+            <!-- ====== Attachments ====== -->
+            <h2 id="attachments">Attachments</h2>
+
+            <p>Attach files to entries to keep drawings, photos, CNC programs, inspection reports, and other documents alongside the job record.</p>
+
+            <h3>Adding Attachments</h3>
+            <ul>
+                <li>Click the <strong>Attach File</strong> button on the entry form or in the Entry Detail Window.</li>
+                <li>Select one or more files from the file picker.</li>
+                <li>Files are copied to a <code>{ProjectName}_Attachments/</code> folder located next to your <code>.glyphfex</code> project file.</li>
+            </ul>
+
+            <h3>Limits &amp; Security</h3>
+            <ul>
+                <li><strong>50 files</strong> maximum per entry.</li>
+                <li><strong>50 MB</strong> maximum per file.</li>
+                <li>Executable files (<code>.exe</code>, <code>.dll</code>, <code>.scr</code>, etc.) are blocked.</li>
+                <li>Zip bomb detection prevents malicious archives from being attached.</li>
+            </ul>
+
+            <h3>Auto-Categorization</h3>
+            <p>Attachments are automatically categorized by their file extension. For example, <code>.pdf</code> and <code>.dwg</code> files are labeled as Drawings, <code>.jpg</code> and <code>.png</code> files as Photos, and <code>.nc</code> and <code>.gcode</code> files as CNC Programs.</p>
+
+            <h3>Viewing &amp; Opening</h3>
+            <p>Open or download attachments from the <a href="#entry-detail">Entry Detail Window</a>. Double-click a file to open it with your system's default application.</p>
+
+            <div class="help-warning">
+                <strong>Warning</strong>
+                Attachments are stored on disk next to your project file, not inside the <code>.glyphfex</code> database. If you move or share the project file, make sure to include the <code>_Attachments</code> folder as well.
+            </div>
+
+            <!-- ====== Entry Detail Window ====== -->
+            <h2 id="entry-detail">Entry Detail Window</h2>
+
+            <p>The Entry Detail Window is a floating, scrollable window that gives you a comprehensive view of a single entry without leaving the Dashboard. Open it by clicking an entry card on the Dashboard, or by right-clicking an entry and selecting <strong>Open</strong>.</p>
+
+            <h3>Sections</h3>
+            <p>The detail window contains up to 15 scrollable sections:</p>
+            <ol>
+                <li><strong>Header</strong> &mdash; Ref ID, status badge, pipeline name.</li>
+                <li><strong>Metadata</strong> &mdash; Created/modified dates, revision number, created by/modified by.</li>
+                <li><strong>Comments</strong> &mdash; Full comment text with read-only/edit toggle.</li>
+                <li><strong>Tags</strong> &mdash; All assigned tags grouped by category.</li>
+                <li><strong>Built-in fields</strong> &mdash; Customer, PO, dates, quantity, and other enabled key fields.</li>
+                <li><strong>Job costing</strong> &mdash; Cost summary if quote line items are present.</li>
+                <li><strong>Quote items</strong> &mdash; Itemized quote table with quantities, prices, and totals.</li>
+                <li><strong>NCR / Quality</strong> &mdash; Non-conformance records with disposition and corrective actions.</li>
+                <li><strong>Materials</strong> &mdash; Material requirements with allocation status.</li>
+                <li><strong>Custom fields</strong> &mdash; All custom field values.</li>
+                <li><strong>Attachments</strong> &mdash; File list with open/download actions.</li>
+                <li><strong>Linked entries</strong> &mdash; Related, parent/child, and supersedes relationships.</li>
+                <li><strong>Stage timeline</strong> &mdash; Visual history of every stage transition with timestamps and durations.</li>
+                <li><strong>Labor log</strong> &mdash; Clock in/out records from the Shop Floor page.</li>
+                <li><strong>Part history</strong> &mdash; Other entries sharing the same part number, with status and date info.</li>
+            </ol>
+
+            <h3>Actions</h3>
+            <p>From the detail window, you can:</p>
+            <ul>
+                <li><strong>Edit</strong> &mdash; Open the entry in the Entry page for full editing.</li>
+                <li><strong>Duplicate</strong> &mdash; Create a new entry pre-filled with this entry's data.</li>
+                <li><strong>Repeat Job</strong> &mdash; Like duplicate, but clears comments and resets status to the first stage.</li>
+                <li><strong>Link Entry</strong> &mdash; Create a relationship with another entry.</li>
+                <li><strong>Create Child</strong> &mdash; Create a new blank entry linked as a child of this one.</li>
+                <li><strong>Audit Trail</strong> &mdash; View the full change history with field-level diffs.</li>
+                <li><strong>Request Change</strong> &mdash; (Editor role) Submit a change request to an Admin.</li>
+                <li><strong>Print PDF</strong> &mdash; Export a detailed PDF report of this entry, including part history.</li>
+            </ul>
+
+            <!-- ====== Linking Entries ====== -->
+            <h2 id="linking">Linking Entries</h2>
+
+            <p>GlyphFex supports three types of entry relationships:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Relationship</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Related</strong></td>
+                        <td>General association between two entries.</td>
+                        <td>A fabrication order and its inspection report.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supersedes / Superseded&nbsp;By</strong></td>
+                        <td>One entry replaces another. The relationship is automatically set in both directions.</td>
+                        <td>A revised quote supersedes the original quote.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Parent / Child</strong></td>
+                        <td>Hierarchical relationship for sub-assemblies or sub-tasks.</td>
+                        <td>A main assembly order with child entries for each sub-component.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Creating Links</h3>
+            <ol>
+                <li>Open the <a href="#entry-detail">Entry Detail Window</a> for the source entry.</li>
+                <li>Click <strong>Link Entry</strong> and search by Ref ID to find the target entry.</li>
+                <li>Select the relationship type and confirm.</li>
+            </ol>
+
+            <h3>Creating Child Entries</h3>
+            <p>Click <strong>Create Child</strong> in the Entry Detail Window. GlyphFex creates a new blank entry and automatically sets up the Parent/Child link on save. This is useful for breaking a large order into sub-assemblies or work packages.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Linked entries appear in the Entry Detail Window and can also be accessed from the Dashboard by using the context menu. Child entries can be created directly from the Dashboard as well.
+            </div>
+
+            <!-- ====== Entry Workflows ====== -->
+            <h2 id="workflows">Entry Workflows</h2>
+
+            <p>GlyphFex supports several workflows for creating and managing entries:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Workflow</th>
+                        <th>What Happens</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>New Entry</strong></td>
+                        <td>Blank form. The entry is saved as Revision 0. Use <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd> from anywhere.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Edit Entry</strong></td>
+                        <td>Click an entry from the Dashboard to load it into the Entry page. All fields are editable. Saving increments the revision number.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Duplicate</strong></td>
+                        <td>Pre-fills a new entry from the source entry's data, including tags, fields, and comments. You assign a new Ref ID.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Repeat Job</strong></td>
+                        <td>Same as duplicate, but clears the Comments field and resets the status to the first pipeline stage. Ideal for recurring orders.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Create Child</strong></td>
+                        <td>Opens a blank form. On save, the new entry is automatically linked as a child of the source entry.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                Every save creates an audit trail record. If ISO compliance mode is enabled in your project settings, GlyphFex prompts for a change reason on each save.
+            </div>
+
+            <!-- ====== Save Validation ====== -->
+            <h2 id="validation">Save Validation</h2>
+
+            <p>When you save an entry, GlyphFex runs a series of validation checks in order. If any check fails, the save is blocked and a dialog tells you exactly what needs to be fixed.</p>
+
+            <ol>
+                <li><strong>Role permission</strong> &mdash; Only Admin and Editor roles can save entries. Viewer role is read-only.</li>
+                <li><strong>Trial limit</strong> &mdash; In trial mode, new entries are capped at 50. Editing existing entries is always allowed.</li>
+                <li><strong>Ref ID not empty</strong> &mdash; Every entry must have a reference ID.</li>
+                <li><strong>Ref ID pattern</strong> &mdash; If a regex validation pattern is configured for your project, the Ref ID must match it.</li>
+                <li><strong>No duplicate Ref ID</strong> &mdash; GlyphFex checks that no other entry has the same Ref ID (case-insensitive).</li>
+                <li><strong>Required tag categories</strong> &mdash; All categories marked as required (or required via conditional rules) must have at least one tag selected.</li>
+                <li><strong>Required custom fields</strong> &mdash; All custom fields marked as required must have a value.</li>
+                <li><strong>Change reason</strong> &mdash; If ISO compliance mode is enabled, you must provide a reason for the change before saving.</li>
+            </ol>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                If validation fails, the save dialog tells you exactly which check failed and what to fix. Address the issue and try saving again &mdash; there is no need to re-enter your data.
+            </div>
+
+            <!-- ====== Keyboard Shortcuts ====== -->
+            <h2 id="keyboard-shortcuts">Entry Keyboard Shortcuts</h2>
+
+            <p>These keyboard shortcuts are available on the Entry page:</p>
+
+            <div class="shortcut-row">
+                <span class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>S</kbd></span>
+                <span class="shortcut-desc">Save the current entry</span>
+            </div>
+            <div class="shortcut-row">
+                <span class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>Z</kbd></span>
+                <span class="shortcut-desc">Undo the last change (form fields and tag selections)</span>
+            </div>
+            <div class="shortcut-row">
+                <span class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>Y</kbd></span>
+                <span class="shortcut-desc">Redo a previously undone change</span>
+            </div>
+            <div class="shortcut-row">
+                <span class="shortcut-keys"><kbd>Escape</kbd></span>
+                <span class="shortcut-desc">Cancel edit mode or clear tag search</span>
+            </div>
+            <div class="shortcut-row">
+                <span class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd></span>
+                <span class="shortcut-desc">New entry (available from any page)</span>
+            </div>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Press <kbd>Ctrl</kbd>+<kbd>K</kbd> to open the Command Palette, where you can search for any command, page, or action by name.
+            </div>
+
+        </main>
+
+        <!-- Table of Contents (auto-populated by help.js) -->
+        <nav class="help-toc" id="helpToc">
+            <h3>On This Page</h3>
+            <ul></ul>
+        </nav>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="nav-logo">
+                        <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                            <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                            <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="logo-text">GlyphFex</span>
+                    </a>
+                    <p class="footer-tagline">One source of truth from quote to completion.</p>
+                </div>
+                <div class="footer-links"><h4>Product</h4><a href="../features.html">Features</a><a href="../index.html#pricing">Pricing</a><a href="../download.html">Download</a></div>
+                <div class="footer-links"><h4>Resources</h4><a href="index.html">Help Center</a><a href="getting-started.html">Getting Started</a><a href="reference.html">Reference</a></div>
+                <div class="footer-links"><h4>Legal</h4><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Terms of Service</a><a href="../eula.html">EULA</a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 GlyphFex. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="help.js"></script>
+</body>
+</html>

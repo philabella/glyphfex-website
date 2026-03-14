@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar &amp; Gantt &mdash; GlyphFex Help</title>
+    <meta name="description" content="Visualize job timelines on a Gantt chart with zoom, filtering, grouping, and capacity tracking in GlyphFex.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="calendar.html" class="active">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Calendar &amp; Gantt Chart</h1>
+            <p class="help-subtitle">Visualize your job timelines on a Gantt chart with zoom, filtering, grouping, and capacity tracking. Navigate with <kbd>Ctrl</kbd>+<kbd>4</kbd>.</p>
+
+            <!-- ====== Understanding the Gantt Chart ====== -->
+            <h2 id="gantt">Understanding the Gantt Chart</h2>
+            <p>The Calendar page presents a full Gantt chart view of all your entries. The layout is divided into two panels:</p>
+            <ul>
+                <li><strong>Left panel (300px, frozen)</strong> &mdash; Shows entry labels including the reference number, customer name, and current pipeline status. This panel stays fixed as you scroll horizontally through the timeline.</li>
+                <li><strong>Right panel (scrollable)</strong> &mdash; Shows a date header across the top and colored bar segments below. Each entry gets a horizontal row, and the bar within that row represents the time the entry has spent in each pipeline stage.</li>
+            </ul>
+            <p>The bar segments are color-coded to match your pipeline stage colors. Each segment spans the time the entry was in that particular stage, so you can see at a glance how long each phase took and where a job currently sits in the workflow.</p>
+            <p>For <strong>completed entries</strong>, the bar ends at the date the entry reached its final (completed) pipeline stage &mdash; not at today's date. This gives you an accurate picture of the actual job duration rather than an ever-growing bar.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                The Gantt chart is particularly useful during production meetings. It gives everyone a visual timeline of all active jobs, making it easy to spot scheduling conflicts, overlapping due dates, and jobs that have been sitting in a single stage for too long.
+            </div>
+
+            <!-- ====== Zoom Levels ====== -->
+            <h2 id="zoom-levels">Zoom Levels</h2>
+            <p>The Gantt chart supports three zoom levels, each showing a different level of timeline detail:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Zoom Level</th>
+                        <th>Column Width</th>
+                        <th>Best For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Day</strong></td>
+                        <td>One column per day</td>
+                        <td>Detailed scheduling, seeing exact dates, short-term planning</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Week</strong> (default)</td>
+                        <td>One column per week</td>
+                        <td>General project overview, weekly planning meetings</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Month</strong></td>
+                        <td>One column per month</td>
+                        <td>Long-term view, quarterly planning, seeing the big picture</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Switch between zoom levels using the <strong>Day / Week / Month</strong> buttons in the toolbar. The chart re-renders immediately when you change the zoom level.</p>
+            <p>Use the navigation buttons to move through time:</p>
+            <ul>
+                <li><strong>Prev</strong> &mdash; Scroll the timeline backward (left)</li>
+                <li><strong>Today</strong> &mdash; Jump to center the view on today's date</li>
+                <li><strong>Next</strong> &mdash; Scroll the timeline forward (right)</li>
+            </ul>
+
+            <!-- ====== Filtering ====== -->
+            <h2 id="filters">Filtering</h2>
+            <p>The toolbar at the top of the Calendar page provides several filtering options to focus on the entries that matter most:</p>
+
+            <h3>Pipeline Filter</h3>
+            <p>If your project uses multiple pipelines, the pipeline dropdown lets you filter the Gantt chart to show only entries from a specific pipeline. Select <strong>All Pipelines</strong> to see everything, or choose a single pipeline to focus on that workflow.</p>
+
+            <h3>Show Completed Dropdown</h3>
+            <p>Controls whether completed entries appear on the chart. Three options are available:</p>
+            <ul>
+                <li><strong>Active Only</strong> &mdash; Shows only entries that have not yet reached a completed pipeline stage. This is the cleanest view for day-to-day scheduling.</li>
+                <li><strong>Active + Recent 30d</strong> &mdash; Shows active entries plus any entries that were completed within the last 30 days. Uses the timestamp of the last stage transition to determine recency.</li>
+                <li><strong>All Entries</strong> &mdash; Shows every entry regardless of status. Useful for historical review or when you need to see the full picture.</li>
+            </ul>
+
+            <h3>Search Box</h3>
+            <p>Type in the search box to filter entries by reference number, customer name, notes, or tags. The chart updates in real time as you type, showing only matching entries.</p>
+
+            <h3>Date Range Filter</h3>
+            <p>Use the <strong>From</strong> and <strong>To</strong> CalendarDatePicker controls to filter entries by date overlap. Only entries whose timeline intersects with the specified date range will be shown. This is useful for focusing on a specific time window &mdash; for example, "show me everything that was active during January."</p>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                The filter count badge in the page title shows exactly how many entries are visible out of the total &mdash; for example, <strong>"87 of 224 entries"</strong>. This helps you understand the scope of your current filter at a glance.
+            </div>
+
+            <!-- ====== Interactions ====== -->
+            <h2 id="interactions">Interactions</h2>
+            <p>The Gantt chart supports several mouse interactions for navigating and exploring your data:</p>
+            <ul>
+                <li><strong>Left-click on a bar</strong> &mdash; The chart scrolls horizontally to bring the clicked entry's bar into view. This is a horizontal-only scroll, so you do not lose your vertical position in the list.</li>
+                <li><strong>Right-click on a bar</strong> &mdash; Opens a context menu with the option to open the Entry Detail Window. This lets you view the full details, attachments, audit trail, and linked entries for that job without leaving the Calendar page.</li>
+                <li><strong>Hover over a bar</strong> &mdash; Shows a tooltip with the duration spent in each pipeline stage. For completed entries, the tooltip also shows the total number of days the entry was open.</li>
+            </ul>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Right-click is the fastest way to open an entry's details from the Gantt chart. The Entry Detail Window opens as a separate floating window, so you can keep the Calendar visible in the background while reviewing the entry.
+            </div>
+
+            <!-- ====== Collapsible Group-By Rows ====== -->
+            <h2 id="group-by">Collapsible Group-By Rows</h2>
+            <p>The Group-By feature lets you organize the Gantt chart rows into collapsible groups. Choose a grouping option from the toolbar dropdown:</p>
+            <ul>
+                <li><strong>None</strong> &mdash; Flat list, no grouping (default)</li>
+                <li><strong>Group by Stage</strong> &mdash; Entries grouped by their current pipeline stage</li>
+                <li><strong>Group by Customer</strong> &mdash; Entries grouped by customer name</li>
+                <li><strong>Group by Pipeline</strong> &mdash; Entries grouped by which pipeline they belong to (useful in multi-pipeline projects)</li>
+            </ul>
+            <p>Each group appears as a collapsible section with:</p>
+            <ul>
+                <li>A <strong>chevron button</strong> to expand or collapse the group</li>
+                <li>A <strong>group header</strong> showing the group name</li>
+                <li>A <strong>child count badge</strong> showing how many entries are in the group (e.g., "12 entries")</li>
+                <li>A <strong>summary bar</strong> spanning the combined timeline of all entries in the group</li>
+            </ul>
+            <p>When grouped by <strong>Stage</strong>, groups are sorted in pipeline order (matching the order you defined in the pipeline editor). When grouped by <strong>Customer</strong>, groups are sorted alphabetically. Collapse groups you are not interested in to reduce visual clutter and focus on the entries that matter.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Group by Customer before a client meeting to quickly see all of that customer's active jobs in one collapsed section. Expand their group to review timelines, then collapse everything else.
+            </div>
+
+            <!-- ====== Capacity Load Bar ====== -->
+            <h2 id="capacity">Capacity Load Bar</h2>
+            <p>The Capacity Load Bar is a 40-pixel heat strip displayed directly below the date header. It provides a quick visual indicator of how many jobs are active on any given day.</p>
+            <p>The bar uses a color gradient to indicate load levels:</p>
+            <ul>
+                <li><strong>Green</strong> &mdash; Light load. A small number of concurrent jobs.</li>
+                <li><strong>Yellow</strong> &mdash; Moderate load. The shop is getting busy.</li>
+                <li><strong>Red</strong> &mdash; Heavy load. Many concurrent jobs overlap on this day. Potential capacity bottleneck.</li>
+            </ul>
+            <p>The load bar syncs with horizontal scrolling, so it always aligns with the date columns visible in the Gantt chart. As you scroll through time, the load bar updates to show the capacity picture for the dates currently in view.</p>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                The Capacity Load Bar counts the number of entries that are active (not yet completed) on each day. It does not account for the complexity or size of individual jobs. Use it as a directional indicator &mdash; if a week is showing solid red, it is worth investigating whether your team has the capacity to handle that volume.
+            </div>
+
+            <!-- ====== Row Density ====== -->
+            <h2 id="density">Row Density</h2>
+            <p>Toggle between two row height options to control how much information fits on screen:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mode</th>
+                        <th>Row Height</th>
+                        <th>Best For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Compact</strong></td>
+                        <td>24 pixels</td>
+                        <td>Seeing as many entries as possible at once. Great for large projects with 100+ entries where you need the big picture.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Normal</strong></td>
+                        <td>36 pixels</td>
+                        <td>Default density. Better readability for entry labels and stage colors in the bars.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Switch between modes using the density toggle button in the toolbar. The chart re-renders immediately. Your selection persists for the current session.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Combine Compact mode with the Month zoom level and Group-By Customers (collapsed) for the ultimate high-level overview. You can see your entire project at a glance and then expand individual groups to drill down.
+            </div>
+
+            <!-- ====== Scroll Indicator ====== -->
+            <h2 id="scroll-indicator">Scroll Indicator</h2>
+            <p>At the bottom of the Gantt chart, a 6-pixel minimap strip shows your current viewport position within the overall timeline. This is especially helpful when your project spans many months and you need to orient yourself.</p>
+            <p>The minimap includes:</p>
+            <ul>
+                <li><strong>Viewport thumb</strong> &mdash; A highlighted rectangle showing which portion of the full timeline is currently visible on screen. As you scroll horizontally, the thumb moves to reflect your position.</li>
+                <li><strong>Today marker</strong> &mdash; A small indicator on the minimap showing where today falls in the overall timeline. Useful for quickly seeing whether you are looking at past, present, or future dates.</li>
+            </ul>
+            <p>The minimap is read-only &mdash; it shows your position but you navigate using the scroll bar, mouse wheel, or the Prev/Today/Next buttons in the toolbar.</p>
+
+            <!-- ====== Stale Entry Bars ====== -->
+            <h2 id="stale-bars">Stale Entry Bars</h2>
+            <p>Entries that have been sitting in the same pipeline stage for an unusually long time are flagged as <strong>stale</strong> on the Gantt chart. This prevents a single long-idle entry from stretching the chart to an unreadable width.</p>
+            <p>Stale bars have several visual indicators:</p>
+            <ul>
+                <li><strong>Reduced opacity</strong> &mdash; The bar segment becomes semi-transparent to visually distinguish it from actively progressing entries</li>
+                <li><strong>Capped width</strong> &mdash; Entries idle for more than 90 days have their bar visually capped at a 14-day width to prevent infinite-length bars from distorting the chart</li>
+                <li><strong>&laquo; indicator</strong> &mdash; A double-arrow symbol at the end of the bar indicates that the bar has been visually truncated</li>
+                <li><strong>Warning icon</strong> &mdash; A small warning triangle appears on the bar</li>
+                <li><strong>STALE tooltip</strong> &mdash; Hovering over the bar shows a tooltip explicitly identifying the entry as stale, along with the actual number of days it has been in the current stage</li>
+            </ul>
+
+            <div class="help-warning">
+                <strong>Warning</strong>
+                Stale entries typically indicate a job that has been forgotten, is waiting on external input, or needs a decision. Review stale entries regularly &mdash; they may represent lost revenue (abandoned quotes), stuck production (waiting on materials), or simply entries that should be closed out.
+            </div>
+
+            <p>The stale threshold is configurable per pipeline stage using the <strong>Stale After Days</strong> setting in the <a href="pipeline.html">Pipeline editor</a>. You can also filter the Gantt chart to exclude stale entries using the <strong>Active (No Stale)</strong> option in the Show Completed dropdown.</p>
+        </main>
+
+        <!-- Table of Contents -->
+        <aside class="help-toc" id="helpToc">
+            <h3>On this page</h3>
+            <ul><!-- populated by help.js --></ul>
+        </aside>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="nav-logo">
+                        <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                            <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                            <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="logo-text">GlyphFex</span>
+                    </a>
+                    <p class="footer-tagline">One source of truth from quote to completion.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <a href="../features.html">Features</a>
+                    <a href="../index.html#pricing">Pricing</a>
+                    <a href="../download.html">Download</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <a href="index.html">Help Center</a>
+                    <a href="getting-started.html">Getting Started</a>
+                    <a href="reference.html">Reference</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                    <a href="../eula.html">EULA</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GlyphFex. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="help.js"></script>
+</body>
+</html>

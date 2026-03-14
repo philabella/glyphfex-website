@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-User &amp; Team &mdash; GlyphFex Help</title>
+    <meta name="description" content="Set up GlyphFex for team collaboration with SQL Server Express, roles, permissions, LAN deployment, and migration from solo to multi-user.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="calendar.html">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Multi-User &amp; Team</h1>
+            <p class="help-subtitle">Set up SQL Server Express for team collaboration with roles, permissions, and LAN deployment.</p>
+
+            <!-- ====== When to Go Multi-User ====== -->
+            <h2 id="when-to-go-multi">When to Go Multi-User</h2>
+            <p>GlyphFex works great as a single-user tool, but many shops reach a point where multiple people need access to the same data. Consider going multi-user when:</p>
+            <ul>
+                <li><strong>Multiple people track jobs</strong> &mdash; If more than one person creates, updates, or reviews entries, a shared database prevents duplicate records and conflicting information</li>
+                <li><strong>You need concurrent access</strong> &mdash; If people need to view or edit entries at the same time, not just take turns on one machine</li>
+                <li><strong>You want role-based permissions</strong> &mdash; Give shop floor operators edit-only access while restricting configuration and user management to admins</li>
+                <li><strong>You need a central audit trail</strong> &mdash; All changes from all users are recorded in one place for quality and compliance purposes</li>
+            </ul>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                If you are the only person using GlyphFex, stick with a Personal (Solo) project. You can always <a href="#migration">migrate to multi-user later</a> without losing any data.
+            </div>
+
+            <!-- ====== SQL Server Express Setup ====== -->
+            <h2 id="sql-server-setup">SQL Server Express Setup</h2>
+            <p>Multi-user mode requires SQL Server Express (free from Microsoft) running on one machine on your network. Here is what you need:</p>
+
+            <h3>Requirements</h3>
+            <ul>
+                <li><strong>SQL Server Express 2019 or later</strong> &mdash; Free edition, supports up to 10 GB per database (more than enough for most shops)</li>
+                <li><strong>TCP/IP networking enabled</strong> &mdash; Required for other machines to connect over the LAN</li>
+                <li><strong>Windows Firewall configured</strong> &mdash; The SQL Server port must be allowed through the firewall</li>
+                <li><strong>Windows Authentication</strong> &mdash; GlyphFex uses the logged-in Windows user account for authentication (no separate passwords to manage)</li>
+            </ul>
+
+            <h3>Step-by-step setup</h3>
+            <ol class="help-steps">
+                <li><strong>Install SQL Server Express</strong> &mdash; Download from <a href="https://www.microsoft.com/en-us/sql-server/sql-server-downloads" target="_blank" rel="noopener">Microsoft's download page</a>. Run the installer and choose the default instance name (<code>SQLEXPRESS</code>) or a custom name. Note the machine name and instance name &mdash; you will need both.</li>
+                <li><strong>Enable TCP/IP</strong> &mdash; Open <strong>SQL Server Configuration Manager</strong>. Navigate to SQL Server Network Configuration &gt; Protocols for SQLEXPRESS. Right-click <strong>TCP/IP</strong> and select <strong>Enable</strong>. Restart the SQL Server service.</li>
+                <li><strong>Configure the firewall</strong> &mdash; Open Windows Defender Firewall with Advanced Security. Create an inbound rule allowing TCP traffic on your SQL Server port (default: 1433 for static, or the dynamic port shown in TCP/IP Properties &gt; IP Addresses &gt; IPAll). Also allow <code>sqlbrowser.exe</code> on UDP port 1434 if using named instances.</li>
+            </ol>
+            <div class="help-warning">
+                <strong>Warning</strong>
+                SQL Server Express installs with a <strong>dynamic port</strong> by default. For reliable LAN access, configure a <strong>static port</strong> in SQL Server Configuration Manager under TCP/IP Properties &gt; IP Addresses &gt; IPAll. Set "TCP Dynamic Ports" to blank and "TCP Port" to a fixed number (e.g., 1433).
+            </div>
+            <div class="help-note">
+                <strong>Note</strong>
+                You only need to install SQL Server on <strong>one machine</strong> &mdash; the server. All other machines just need GlyphFex installed. They connect over the network using the server's machine name.
+            </div>
+
+            <!-- ====== Creating a Shared Project ====== -->
+            <h2 id="creating-shared">Creating a Shared Project</h2>
+            <p>Once SQL Server is running, create a shared project from GlyphFex:</p>
+            <ol class="help-steps">
+                <li><strong>File &gt; New Project &gt; Shared</strong> &mdash; Select the "Shared (Team)" project type.</li>
+                <li><strong>Enter connection details</strong> &mdash; Provide the server name (e.g., <code>SERVERNAME\SQLEXPRESS</code>) and a database name (e.g., <code>ShopFloor_2026</code>).</li>
+                <li><strong>Test Connection</strong> &mdash; Click the Test Connection button to verify that GlyphFex can reach the SQL Server instance. Fix any connection issues before proceeding.</li>
+                <li><strong>Save the config file</strong> &mdash; GlyphFex creates a <code>.glyphfex-server</code> configuration file. Save this to a <strong>shared network location</strong> (e.g., a mapped drive or UNC path) so all team members can open it.</li>
+            </ol>
+            <p>The first user to create the project automatically becomes the <strong>Admin</strong>. All subsequent users who open the same <code>.glyphfex-server</code> file are assigned a default role.</p>
+
+            <!-- ====== Connecting Other Users ====== -->
+            <h2 id="connecting">Connecting Other Users</h2>
+            <p>Getting other team members connected is straightforward:</p>
+            <ol class="help-steps">
+                <li><strong>Install GlyphFex</strong> on each user's machine. The same installer works for all roles.</li>
+                <li><strong>File &gt; Open</strong> &mdash; Browse to the shared <code>.glyphfex-server</code> file on the network drive.</li>
+                <li><strong>Automatic user creation</strong> &mdash; On first connection, GlyphFex automatically creates a user account using the Windows username. No passwords to set up.</li>
+            </ol>
+            <p>The new user is assigned a default role (typically Editor). The Admin can change roles at any time from the User Management dialog.</p>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Put the <code>.glyphfex-server</code> file in a location everyone can reach &mdash; like a shared network folder. Each user opens this same file. GlyphFex reads the connection string from it and connects to the central SQL Server database.
+            </div>
+
+            <!-- ====== Migration ====== -->
+            <h2 id="migration">Migrating from Solo</h2>
+            <p>Already have a Personal (Solo) project with data in it? You can migrate to a shared SQL Server database without starting over.</p>
+            <ol class="help-steps">
+                <li><strong>File &gt; Migrate to SQL Server</strong> &mdash; Opens a 3-step migration wizard.</li>
+                <li><strong>Configure connection</strong> &mdash; Enter the SQL Server machine name and instance, choose a database name, and test the connection.</li>
+                <li><strong>Migration runs</strong> &mdash; GlyphFex copies all entries, tags, categories, pipeline config, audit trail, custom fields, templates, and settings to the new SQL Server database. A progress indicator shows the transfer status.</li>
+            </ol>
+            <div class="help-note">
+                <strong>Note</strong>
+                Your original <code>.glyphfex</code> file is <strong>preserved unchanged</strong>. Migration copies data to SQL Server &mdash; it does not delete or modify your local file. You can keep it as a backup.
+            </div>
+
+            <!-- ====== Roles & Permissions ====== -->
+            <h2 id="roles">Roles &amp; Permissions</h2>
+            <p>GlyphFex uses three roles to control what each user can do:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Capability</th>
+                        <th>Admin</th>
+                        <th>Editor</th>
+                        <th>Viewer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>View entries, dashboard, reports</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Create and edit entries</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>Move entries through pipeline</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>Clock in/out, add attachments</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>Export data (CSV, PDF, Excel)</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Configure categories, pipeline, fields</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>Manage users and roles</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>Delete entries, manage archive</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>Submit change requests to Admin</td>
+                        <td>&mdash;</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Editors have broad access to create and edit entries &mdash; they just cannot change the system configuration or manage other users. This is the right role for most shop floor operators and team leads.
+            </div>
+
+            <!-- ====== User Management ====== -->
+            <h2 id="user-management">User Management</h2>
+            <p>Admins manage team members from <strong>Tools &gt; Manage Users</strong>. The User Management dialog shows all registered users and their current roles.</p>
+            <ul>
+                <li><strong>Change roles</strong> &mdash; Select a user and assign a new role (Admin, Editor, or Viewer). Changes take effect immediately on the user's next data refresh.</li>
+                <li><strong>Activate/deactivate users</strong> &mdash; Deactivated users cannot connect to the project. Use this when someone leaves the team or no longer needs access.</li>
+                <li><strong>Windows Authentication</strong> &mdash; GlyphFex uses the logged-in Windows account for authentication. There are no separate usernames or passwords to manage within GlyphFex itself.</li>
+            </ul>
+            <div class="help-note">
+                <strong>Note</strong>
+                User accounts are created automatically when someone first opens the shared project. You do not need to pre-create accounts. Just share the <code>.glyphfex-server</code> file and manage roles after they connect.
+            </div>
+
+            <!-- ====== Admin Requests ====== -->
+            <h2 id="admin-requests">Admin Requests</h2>
+            <p>Editors who need configuration changes or other admin-level actions can submit requests without leaving GlyphFex:</p>
+            <ol>
+                <li><strong>Editor submits a request</strong> &mdash; From the entry detail window or via the menu, an Editor describes what they need changed (e.g., "Add new tag 'Anodized' to Finish category").</li>
+                <li><strong>Admin sees notification</strong> &mdash; An amber badge appears on the Admin's toolbar indicating pending requests.</li>
+                <li><strong>Admin reviews</strong> &mdash; The Admin opens the request review dialog, reads the request, and can <strong>Approve</strong> or <strong>Reject</strong> it with optional response notes.</li>
+            </ol>
+            <p>This keeps Editors productive without interrupting the Admin with verbal requests or emails. All requests are tracked and auditable.</p>
+
+            <!-- ====== Concurrency ====== -->
+            <h2 id="concurrency">Concurrency Handling</h2>
+            <p>When multiple users access the same database, GlyphFex uses <strong>optimistic locking</strong> to prevent data conflicts:</p>
+            <ul>
+                <li>Every entry has a <strong>RevisionNumber</strong> that increments with each save</li>
+                <li>When you save an entry, GlyphFex checks if the revision number still matches what you loaded</li>
+                <li>If another user saved changes while you were editing, the revision numbers will not match and a <strong>conflict dialog</strong> appears</li>
+            </ul>
+            <p>The conflict dialog offers three options:</p>
+            <ul>
+                <li><strong>Reload</strong> &mdash; Discard your changes and load the other user's version</li>
+                <li><strong>Force Save</strong> &mdash; Overwrite the other user's changes with yours</li>
+                <li><strong>Cancel</strong> &mdash; Go back to your edit and decide what to do</li>
+            </ul>
+            <div class="help-warning">
+                <strong>Warning</strong>
+                "Force Save" permanently overwrites the other user's changes. Use it only when you are certain your version is correct. In most cases, "Reload" is the safer option &mdash; review the latest version and then make your changes.
+            </div>
+
+            <!-- ====== Auto-Refresh ====== -->
+            <h2 id="auto-refresh">Auto-Refresh</h2>
+            <p>In multi-user mode, GlyphFex automatically checks for new data on a <strong>10-second interval</strong>. The refresh is lightweight:</p>
+            <ul>
+                <li>First checks <code>MAX(LastModifiedAt)</code> on the server to see if anything changed</li>
+                <li>Only performs a full data reload if the timestamp is newer than the last refresh</li>
+                <li>Dashboard, Shop Floor, Calendar, and Display Board all benefit from auto-refresh</li>
+            </ul>
+            <p>You can also force a manual refresh at any time by pressing <kbd>F5</kbd> or <kbd>Ctrl</kbd>+<kbd>R</kbd>.</p>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Auto-refresh is designed to be invisible. You should see new entries and status changes from other users appear on your screen within seconds, without needing to click anything.
+            </div>
+
+            <!-- ====== LAN Deployment ====== -->
+            <h2 id="lan-deployment">LAN Deployment</h2>
+            <p>For a successful LAN deployment, verify these networking requirements:</p>
+
+            <h3>TCP/IP connectivity</h3>
+            <p>GlyphFex connects to SQL Server over TCP/IP. Ensure:</p>
+            <ul>
+                <li>TCP/IP protocol is enabled in SQL Server Configuration Manager</li>
+                <li>The SQL Server port is open in Windows Firewall on the server machine</li>
+                <li>Client machines can reach the server by machine name or IP address</li>
+            </ul>
+
+            <h3>Port configuration</h3>
+            <p>SQL Server Express uses a <strong>dynamic port</strong> by default, which changes on each restart. For reliable LAN access:</p>
+            <ul>
+                <li>Set a <strong>static port</strong> in Configuration Manager (recommended: 1433)</li>
+                <li>If using a dynamic port, ensure the SQL Server Browser service is running and UDP port 1434 is open</li>
+            </ul>
+
+            <h3>Authentication</h3>
+            <ul>
+                <li><strong>NTLM authentication</strong> &mdash; GlyphFex uses Windows Authentication, which relies on NTLM in workgroup environments</li>
+                <li><strong>BUILTIN\Users</strong> &mdash; By default, SQL Server Express grants CONNECT SQL permission to the BUILTIN\Users group, allowing all local Windows accounts to connect</li>
+                <li><strong>Workgroup vs. Domain</strong> &mdash; In a workgroup (no Active Directory), each machine must have matching local user accounts for cross-machine authentication. In a domain environment, domain accounts work seamlessly.</li>
+            </ul>
+            <div class="help-note">
+                <strong>Note</strong>
+                In a workgroup environment, the simplest approach is to create matching user accounts (same username and password) on both the server and client machines. This allows NTLM authentication to work without a domain controller.
+            </div>
+        </main>
+
+        <!-- Table of Contents -->
+        <aside class="help-toc" id="helpToc">
+            <h3>On this page</h3>
+            <ul><!-- populated by help.js --></ul>
+        </aside>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="nav-logo">
+                        <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                            <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                            <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="logo-text">GlyphFex</span>
+                    </a>
+                    <p class="footer-tagline">One source of truth from quote to completion.</p>
+                </div>
+                <div class="footer-links"><h4>Product</h4><a href="../features.html">Features</a><a href="../index.html#pricing">Pricing</a><a href="../download.html">Download</a></div>
+                <div class="footer-links"><h4>Resources</h4><a href="index.html">Help Center</a><a href="getting-started.html">Getting Started</a><a href="reference.html">Reference</a></div>
+                <div class="footer-links"><h4>Legal</h4><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Terms of Service</a><a href="../eula.html">EULA</a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 GlyphFex. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="help.js"></script>
+</body>
+</html>

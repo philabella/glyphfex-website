@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pipeline &amp; Workflow &mdash; GlyphFex Help</title>
+    <meta name="description" content="Learn how to configure pipeline stages, set SLA targets, track stale entries, manage quote lifecycles, and control workflow visibility in GlyphFex.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="calendar.html">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Pipeline &amp; Workflow</h1>
+            <p class="help-subtitle">Configure your workflow stages, set SLA targets, track stale entries, and manage quote lifecycles.</p>
+
+            <!-- ======== What Is a Pipeline? ======== -->
+            <h2 id="what-is-pipeline">What Is a Pipeline?</h2>
+            <p>A pipeline defines the workflow stages your jobs move through from start to finish. A typical manufacturing pipeline might look like:</p>
+            <p><strong>Quote &rarr; Engineering &rarr; Production &rarr; QC &rarr; Shipping &rarr; Closed</strong></p>
+            <ul>
+                <li>Every entry in GlyphFex has a <strong>status</strong> that corresponds to a pipeline stage.</li>
+                <li>As work progresses, you advance entries through stages &mdash; either manually or from the Shop Floor kiosk.</li>
+                <li>GlyphFex records <strong>every stage transition</strong> with a timestamp, building a complete timeline of how each job moved through your workflow.</li>
+                <li>The pipeline drives features across the entire app: Dashboard cards show the current stage, the Calendar/Gantt draws stage bars, Analytics calculates SLA compliance, and the Shop Floor groups entries by stage.</li>
+            </ul>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Think of a pipeline as a map of your shop floor process. The more accurately it reflects your real workflow, the more useful GlyphFex becomes for tracking and improving operations.
+            </div>
+
+            <!-- ======== Creating & Editing Pipeline Stages ======== -->
+            <h2 id="creating-stages">Creating &amp; Editing Pipeline Stages</h2>
+            <p>To set up or modify your pipeline stages:</p>
+            <ol class="help-steps">
+                <li>Open <strong>Settings</strong> (gear icon or <kbd>Ctrl</kbd>+<kbd>K</kbd> &rarr; "Open Settings") and click <strong>Edit Pipeline</strong>, or use the Pipeline button on the Entry page toolbar.</li>
+                <li>Add stages in the order that work flows through your shop. You can drag to reorder them at any time.</li>
+                <li>Configure each stage&rsquo;s optional settings (see the table below).</li>
+                <li>Click <strong>Save</strong> to apply your changes.</li>
+            </ol>
+
+            <h3>Stage Settings</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Setting</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Target SLA Days</strong></td>
+                        <td>How many days this stage should take. Used for SLA tracking on the Analytics page and Calendar/Gantt chart.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Use Business Days (BD)</strong></td>
+                        <td>When enabled, only working days count toward the SLA target. Weekends and company holidays (configured in your calendar settings) are excluded.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Is Completed Stage</strong></td>
+                        <td>Marks this as a final stage (e.g., Shipped, Closed). Suppresses due date alerts, stops SLA tracking, and excludes the entry from overdue counts.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stale After Days</strong></td>
+                        <td>Entries idle in this stage for longer than this threshold are flagged as stale. See <a href="#stale-detection">Stale Entry Detection</a> below.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quoting Stage (Q)</strong></td>
+                        <td>Marks stages involved in quoting. When an entry enters a quoting stage, GlyphFex automatically sets its quote expiry date. See <a href="#quote-lifecycle">Quote Lifecycle</a> below.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                Every pipeline must have at least one stage marked as <strong>Is Completed Stage</strong>. If you try to save a pipeline without one, GlyphFex will prompt you to add a completed stage or let it auto-create a "Closed" stage for you.
+            </div>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                When you create a brand new pipeline, GlyphFex automatically adds a "Closed" stage marked as completed &mdash; you can rename or reconfigure it as needed.
+            </div>
+
+            <!-- ======== SLA Targets & Tracking ======== -->
+            <h2 id="sla-targets">SLA Targets &amp; Tracking</h2>
+            <p>Service Level Agreement (SLA) targets let you define how long each stage <em>should</em> take, so you can spot delays before they become problems.</p>
+            <ul>
+                <li><strong>Set target days per stage</strong> &mdash; for example, "Engineering should take 5 business days" or "QC should take 2 calendar days."</li>
+                <li><strong>Toggle Business Days</strong> to exclude weekends and your company&rsquo;s configured holidays from the count. In the pipeline editor, stages using business days show a <strong>BD</strong> label.</li>
+                <li><strong>Calendar/Gantt chart</strong> &mdash; stage bars are color-coded to show whether entries are on track, approaching their target, or overdue.</li>
+                <li><strong>Analytics &rarr; SLA Compliance</strong> chart &mdash; shows the percentage of entries that are on-track vs. at-risk vs. overdue, broken down by stage.</li>
+                <li><strong>Analytics &rarr; Stage Bottlenecks</strong> chart &mdash; compares average actual days per stage against the target, helping you identify process bottlenecks.</li>
+            </ul>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Start with generous SLA targets based on your current average turnaround, then tighten them over time as your process improves. This way, you get useful alerts without drowning in false positives.
+            </div>
+
+            <!-- ======== Stale Entry Detection ======== -->
+            <h2 id="stale-detection">Stale Entry Detection</h2>
+            <p>Entries that sit in a stage too long without progressing are automatically flagged as "stale," helping you catch jobs that have fallen through the cracks.</p>
+
+            <h3>How It Works</h3>
+            <ul>
+                <li>In the pipeline editor, set the <strong>Stale After Days</strong> threshold for each stage. For example, you might set "Quoted" to 14 days and "Engineering" to 10 days.</li>
+                <li>If an entry has been in a stage longer than its threshold without advancing, GlyphFex flags it as stale.</li>
+                <li>Stale entries display a <strong>&#x26A0; STALE</strong> badge on Dashboard cards and in the Calendar/Gantt view.</li>
+                <li>On the Calendar, stale bars appear with reduced opacity and are capped in width to prevent extremely old entries from stretching the chart.</li>
+                <li>The <strong>notification bell</strong> can alert you to newly stale entries (enable in Settings &rarr; Notifications).</li>
+                <li>Dashboard analytics cards show a count of currently stale entries.</li>
+            </ul>
+
+            <h3>Recommended Stale Thresholds</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Stage Type</th>
+                        <th>Suggested Threshold</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Quoting / Estimating</td>
+                        <td>14 days</td>
+                    </tr>
+                    <tr>
+                        <td>Engineering / Design</td>
+                        <td>10 days</td>
+                    </tr>
+                    <tr>
+                        <td>Production / Fabrication</td>
+                        <td>30 days</td>
+                    </tr>
+                    <tr>
+                        <td>Quality Control</td>
+                        <td>5 days</td>
+                    </tr>
+                    <tr>
+                        <td>Shipping / Delivery</td>
+                        <td>7 days</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                Stale detection only applies to stages that have a <strong>Stale After Days</strong> value configured. Stages with no value (or zero) will not trigger stale alerts. Completed stages never trigger stale detection.
+            </div>
+
+            <!-- ======== Quote Lifecycle & Expiry Tracking ======== -->
+            <h2 id="quote-lifecycle">Quote Lifecycle &amp; Expiry Tracking</h2>
+            <p>Shops often lose track of open quotes, missing follow-up windows and leaving revenue on the table. GlyphFex&rsquo;s quote lifecycle features ensure no quote falls through the cracks.</p>
+
+            <h3>Setting Up Quote Tracking</h3>
+            <ol class="help-steps">
+                <li>In the pipeline editor, toggle the <strong>Q (Quoting Stage)</strong> option on any stages involved in quoting (e.g., "Estimating", "Quote Sent", "Awaiting Approval").</li>
+                <li>In <strong>Settings</strong>, set the <strong>Default Quote Validity Days</strong> (e.g., 30 days). This controls how long quotes remain valid before expiring.</li>
+                <li>When an entry enters a quoting stage, GlyphFex automatically populates the <code>quote_valid_until</code> built-in field with the calculated expiry date.</li>
+            </ol>
+
+            <h3>What Happens When Quotes Expire</h3>
+            <ul>
+                <li>Expired quotes display an <strong>&#x23F0; EXPIRED QUOTE</strong> badge on Dashboard cards.</li>
+                <li>Dashboard analytics cards show the total count of expired quotes.</li>
+                <li>The notification bell alerts you to expiring and expired quotes (configurable in Settings &rarr; Notifications).</li>
+            </ul>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Set your Default Quote Validity Days to match your standard terms. Most shops use 30 days, but adjust based on your industry &mdash; some materials or services may warrant shorter windows (14 days) or longer ones (60 days).
+            </div>
+
+            <!-- ======== Multiple Pipelines ======== -->
+            <h2 id="multiple-pipelines">Multiple Pipelines</h2>
+            <p>Not every job follows the same workflow. GlyphFex lets you create <strong>multiple named pipelines</strong> for different job types, so each one can have its own set of stages and SLA configurations.</p>
+
+            <h3>Common Examples</h3>
+            <ul>
+                <li><strong>Standard Orders</strong> &mdash; Quote &rarr; Engineering &rarr; Fabrication &rarr; QC &rarr; Shipping &rarr; Closed</li>
+                <li><strong>Rush Orders</strong> &mdash; Approved &rarr; Priority Production &rarr; QC &rarr; Express Ship &rarr; Closed</li>
+                <li><strong>Repairs / Warranty</strong> &mdash; Received &rarr; Inspection &rarr; Repair &rarr; Testing &rarr; Return &rarr; Closed</li>
+                <li><strong>Internal Projects</strong> &mdash; Proposed &rarr; In Progress &rarr; Review &rarr; Done</li>
+            </ul>
+
+            <h3>How to Create Multiple Pipelines</h3>
+            <ol class="help-steps">
+                <li>Open <strong>Settings &rarr; Edit Pipeline</strong>.</li>
+                <li>Click <strong>Add Pipeline</strong> to create a new named pipeline.</li>
+                <li>Give it a descriptive name and add stages specific to that workflow.</li>
+                <li>Each pipeline gets its own SLA targets, stale thresholds, and quoting stage configuration.</li>
+            </ol>
+
+            <p>When you have two or more pipelines, a <strong>pipeline selector</strong> appears on the Entry form, letting you choose which pipeline each entry belongs to. Entry templates can also be associated with a specific pipeline, so creating an entry from a template automatically assigns the correct pipeline.</p>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                If you only have one pipeline, the pipeline selector does not appear on the Entry form &mdash; GlyphFex keeps the interface clean by hiding it until you need it.
+            </div>
+
+            <!-- ======== Pipeline Visibility ======== -->
+            <h2 id="pipeline-visibility">Pipeline Visibility (Multi-User)</h2>
+            <p>In multi-user mode, you may want to restrict who can see certain pipelines. For example, an internal R&amp;D pipeline or HR workflow shouldn&rsquo;t be visible to every user.</p>
+
+            <ul>
+                <li><strong>Admins</strong> always see all pipelines regardless of visibility settings.</li>
+                <li><strong>Editors</strong> and <strong>Viewers</strong> only see pipelines they have been granted access to.</li>
+                <li>Configure visibility per pipeline in the pipeline editor &mdash; toggle which roles can access each pipeline.</li>
+                <li>Entries in hidden pipelines are also hidden from the Dashboard, Calendar, Shop Floor, and all other views for restricted users.</li>
+            </ul>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Use pipeline visibility to separate concerns &mdash; production staff see production pipelines, office staff see quoting and admin pipelines. This reduces clutter and keeps sensitive data private.
+            </div>
+
+            <!-- ======== Status Transitions & Stage Timeline ======== -->
+            <h2 id="status-transitions">Status Transitions &amp; Stage Timeline</h2>
+            <p>Every time an entry&rsquo;s status changes, GlyphFex records a timestamped transition. This builds a complete history of how each job moved through your workflow.</p>
+
+            <h3>Ways to Change Status</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Where</th>
+                        <th>Best For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Status ComboBox</strong></td>
+                        <td>Entry page</td>
+                        <td>Updating one entry while editing it</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Right-click &rarr; Change Status</strong></td>
+                        <td>Dashboard</td>
+                        <td>Quick status change without opening the entry</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Advance button</strong></td>
+                        <td>Shop Floor kiosk</td>
+                        <td>One-tap advancement on the shop floor (touch-friendly)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bulk status change</strong></td>
+                        <td>Dashboard table view</td>
+                        <td>Changing multiple entries at once (e.g., batch shipment)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Stage Timeline</h3>
+            <p>Open any entry in the <strong>Entry Detail Window</strong> (double-click a card or row) to see a visual stage timeline. The timeline shows:</p>
+            <ul>
+                <li>Each stage the entry has passed through</li>
+                <li>The duration spent in each stage</li>
+                <li>Color-coded bars matching your pipeline stage colors</li>
+                <li>The entry&rsquo;s current stage highlighted</li>
+            </ul>
+
+            <h3>Audit Trail Integration</h3>
+            <ul>
+                <li>The <a href="entries.html">audit trail</a> records who changed the status and when.</li>
+                <li>If <strong>ISO compliance mode</strong> is enabled in Settings, users must provide a <strong>change reason</strong> for every status transition &mdash; useful for regulated industries and quality management.</li>
+            </ul>
+
+            <div class="help-warning">
+                <strong>Important</strong>
+                Status changes are permanent audit trail entries. While you can move an entry backward to a previous stage (e.g., sending it back from QC to Production for rework), the forward transition is still recorded in the history. This ensures a complete and honest record of the job&rsquo;s lifecycle.
+            </div>
+
+            <!-- ======== Completed Stages ======== -->
+            <h2 id="completed-stages">Completed Stages</h2>
+            <p>Marking a stage as "completed" tells GlyphFex that entries reaching this stage are <strong>done</strong>. This has several important effects throughout the application:</p>
+
+            <ul>
+                <li><strong>Due date notifications</strong> are suppressed &mdash; no more alerts for a job that&rsquo;s already shipped.</li>
+                <li><strong>SLA tracking stops</strong> &mdash; the clock no longer counts against completed entries.</li>
+                <li><strong>Overdue counts exclude</strong> completed entries, keeping your Dashboard analytics accurate.</li>
+                <li><strong>Calendar "Active Only" filter</strong> hides completed entries, showing only work in progress.</li>
+                <li><strong>Calendar "Active + Recent 30d" filter</strong> shows completed entries from the last 30 days alongside active ones, useful for reviewing recent deliveries.</li>
+                <li><strong>Auto-archive</strong> (if configured in Settings) applies to completed entries, automatically archiving them after a set number of days to keep your active workspace clean.</li>
+                <li><strong>Stale detection</strong> is disabled for completed stages &mdash; a finished job can&rsquo;t be stale.</li>
+            </ul>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                Every pipeline must have at least one completed stage. If you attempt to remove the last completed stage from a pipeline, GlyphFex will block the change and prompt you to designate another stage as completed first.
+            </div>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Common completed stage names include <strong>Shipped</strong>, <strong>Closed</strong>, <strong>Delivered</strong>, <strong>Completed</strong>, and <strong>Cancelled</strong>. You can have multiple completed stages &mdash; for example, both "Shipped" and "Cancelled" can be marked as completed, since neither should continue tracking SLA.
+            </div>
+
+            <!-- ======== Next Steps ======== -->
+            <h2 id="next-steps">Next Steps</h2>
+            <p>Now that your pipeline is configured, explore these related topics:</p>
+            <ul>
+                <li><a href="entries.html">Entries &amp; Forms</a> &mdash; learn how to create entries and work with custom fields, tags, and templates.</li>
+                <li><a href="dashboard.html">Dashboard</a> &mdash; see your pipeline in action with card, table, and timeline views.</li>
+                <li><a href="analytics.html">Analytics</a> &mdash; dive into SLA compliance, stage bottleneck analysis, and KPI tracking.</li>
+                <li><a href="calendar.html">Calendar &amp; Gantt</a> &mdash; visualize your entire pipeline on a timeline with stage bars and capacity load.</li>
+                <li><a href="shop-floor.html">Shop Floor &amp; Display</a> &mdash; advance jobs through stages with one tap on the kiosk interface.</li>
+                <li><a href="configuration.html">Configuration</a> &mdash; set up holidays, business calendars, notifications, and more.</li>
+            </ul>
+        </main>
+
+        <!-- Table of Contents -->
+        <aside class="help-toc" id="helpToc">
+            <h3>On this page</h3>
+            <ul><!-- populated by help.js --></ul>
+        </aside>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="nav-logo">
+                        <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                            <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                            <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="logo-text">GlyphFex</span>
+                    </a>
+                    <p class="footer-tagline">One source of truth from quote to completion.</p>
+                </div>
+                <div class="footer-links"><h4>Product</h4><a href="../features.html">Features</a><a href="../index.html#pricing">Pricing</a><a href="../download.html">Download</a></div>
+                <div class="footer-links"><h4>Resources</h4><a href="index.html">Help Center</a><a href="getting-started.html">Getting Started</a><a href="reference.html">Reference</a></div>
+                <div class="footer-links"><h4>Legal</h4><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Terms of Service</a><a href="../eula.html">EULA</a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 GlyphFex. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="help.js"></script>
+</body>
+</html>
