@@ -97,7 +97,7 @@
 
             <div class="help-note">
                 <strong>Which version of SQL Server do I need?</strong>
-                We recommend <strong>SQL Server 2025 Express</strong> &mdash; it's the latest version and it's completely free. GlyphFex also works with older versions (2022, 2019, or even 2016) and any edition (Express, Developer, Standard, Enterprise). If your shop already has SQL Server installed, you can use that &mdash; no need to install anything new. Express is just our recommendation because it's free and production-ready.
+                We recommend <strong>SQL Server 2025 Express</strong> &mdash; it's the latest version, completely free, and supports databases up to 50 GB (5x more than the older 2022 version). GlyphFex also works with older versions (2022, 2019, or even 2016) and any edition (Express, Developer, Standard, Enterprise). If your shop already has SQL Server installed, you can use that &mdash; no need to install anything new.
             </div>
 
             <!-- ====== What You'll Need ====== -->
@@ -118,9 +118,14 @@
             <p>Do this on the computer that will be your server (the one that stays on).</p>
             <ol class="help-steps">
                 <li>Open a web browser and go to:<br><a href="https://www.microsoft.com/en-us/sql-server/sql-server-downloads" target="_blank" rel="noopener" style="word-break: break-all; font-size: 14px; color: #2563eb;">https://www.microsoft.com/en-us/sql-server/sql-server-downloads</a></li>
-                <li>Scroll down to <strong>"SQL Server 2025 Express"</strong> &mdash; it's the free one on the right side. Click <strong>Download now</strong>.</li>
+                <li>Scroll down to <strong>"SQL Server 2025 Express"</strong> &mdash; it's the free one on the right side. Click <strong>Download now</strong>. The file is called <code>SQL2025-SSEI-Expr.exe</code>.</li>
                 <li>Run the downloaded file. Windows may ask "Do you want to allow this app to make changes?" &mdash; click <strong>Yes</strong>.</li>
             </ol>
+
+            <div class="help-warning">
+                <strong>Don't accidentally download the wrong one</strong>
+                If you end up on a page called "Evaluation Center" that mentions a 180-day trial, you're looking at the paid Enterprise edition &mdash; that's not what you want. Go back to the downloads page above and look specifically for <strong>"Express"</strong>. Express is free forever, no trial, no expiration.
+            </div>
 
             <!-- Inline mockup of Microsoft download page -->
             <div style="margin: 24px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.1); border: 1px solid #e5e7eb; font-family: 'Segoe UI', -apple-system, sans-serif;">
@@ -422,7 +427,7 @@
             <p><strong>No.</strong> Any Windows PC in your shop can act as the server. The front desk computer, someone's workstation, or even a small mini-PC tucked under a desk. As long as it stays on during work hours and is connected to the network, it works.</p>
 
             <h3>Is SQL Server 2025 Express really free?</h3>
-            <p><strong>Yes.</strong> SQL Server Express is free from Microsoft, forever. No license fee, no subscription, no hidden costs. It supports databases up to 10 GB, which is enough for tens of thousands of GlyphFex entries. You will not need to upgrade unless you have a very large operation with 50,000+ entries.</p>
+            <p><strong>Yes.</strong> SQL Server 2025 Express is free from Microsoft, forever. No license fee, no subscription, no hidden costs, no 180-day trial. It supports databases up to <strong>50 GB</strong> (increased from 10 GB in older versions), which is enough for tens of thousands of GlyphFex entries. You will not need to upgrade unless you have a very large operation.</p>
 
             <h3>What if the server computer turns off?</h3>
             <p>Nobody can use GlyphFex in multi-user mode while the server is off. When it turns back on, SQL Server starts automatically and everyone can reconnect. No data is lost &mdash; everything is saved on disk. For the most reliable setup, keep the server computer on during business hours and configure it not to sleep.</p>
