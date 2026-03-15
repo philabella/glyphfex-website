@@ -17,6 +17,14 @@
     <!-- Styles -->
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="help.css">
+    <style>
+        @media (max-width: 900px) {
+            .ms-mockup-cards { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 500px) {
+            .ms-mockup-cards { grid-template-columns: 1fr !important; }
+        }
+    </style>
 </head>
 <body class="help-page">
     <!-- ============ NAVIGATION ============ -->
@@ -87,6 +95,11 @@
                 SQL Server Express is a free program from Microsoft that you install on <strong>one computer</strong> in your shop. It just sits there quietly in the background letting everyone share the same GlyphFex data. You don't need to buy any hardware, hire an IT person, or learn anything about databases. This guide walks you through every click.
             </div>
 
+            <div class="help-note">
+                <strong>Which version of SQL Server do I need?</strong>
+                We recommend <strong>SQL Server 2025 Express</strong> &mdash; it's the latest version and it's completely free. GlyphFex also works with older versions (2022, 2019, or even 2016) and any edition (Express, Developer, Standard, Enterprise). If your shop already has SQL Server installed, you can use that &mdash; no need to install anything new. Express is just our recommendation because it's free and production-ready.
+            </div>
+
             <!-- ====== What You'll Need ====== -->
             <h2 id="what-youll-need">What You'll Need</h2>
             <p>Before you start, gather these things. You probably have all of them already:</p>
@@ -101,22 +114,75 @@
             </div>
 
             <!-- ====== Step 1: Download ====== -->
-            <h2 id="step-1-download">Step 1: Download SQL Server Express</h2>
+            <h2 id="step-1-download">Step 1: Download SQL Server 2025 Express</h2>
             <p>Do this on the computer that will be your server (the one that stays on).</p>
             <ol class="help-steps">
                 <li>Open a web browser and go to:<br><a href="https://www.microsoft.com/en-us/sql-server/sql-server-downloads" target="_blank" rel="noopener" style="word-break: break-all; font-size: 14px; color: #2563eb;">https://www.microsoft.com/en-us/sql-server/sql-server-downloads</a></li>
-                <li>Scroll down to <strong>"Express"</strong> &mdash; it's the free one on the right side. Click <strong>Download now</strong>.</li>
+                <li>Scroll down to <strong>"SQL Server 2025 Express"</strong> &mdash; it's the free one on the right side. Click <strong>Download now</strong>.</li>
                 <li>Run the downloaded file. Windows may ask "Do you want to allow this app to make changes?" &mdash; click <strong>Yes</strong>.</li>
             </ol>
 
-            <div class="help-screenshot">
-                <svg class="screenshot-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                <span class="screenshot-label">Microsoft download page</span>
-                <span class="screenshot-desc">The Microsoft SQL Server downloads page. Look for "Express" on the right side &mdash; it says "Free" underneath.</span>
+            <!-- Inline mockup of Microsoft download page -->
+            <div style="margin: 24px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.1); border: 1px solid #e5e7eb; font-family: 'Segoe UI', -apple-system, sans-serif;">
+                <!-- Browser chrome -->
+                <div style="background: #f3f4f6; padding: 8px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #e5e7eb;">
+                    <div style="display: flex; gap: 6px;">
+                        <span style="width: 12px; height: 12px; border-radius: 50%; background: #ef4444;"></span>
+                        <span style="width: 12px; height: 12px; border-radius: 50%; background: #f59e0b;"></span>
+                        <span style="width: 12px; height: 12px; border-radius: 50%; background: #22c55e;"></span>
+                    </div>
+                    <div style="flex: 1; background: white; border-radius: 6px; padding: 5px 12px; font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;">
+                        microsoft.com/en-us/sql-server/sql-server-downloads
+                    </div>
+                </div>
+                <!-- MS Header -->
+                <div style="background: #0078d4; color: white; padding: 10px 24px; display: flex; align-items: center; gap: 16px; font-size: 13px;">
+                    <span style="font-weight: 600;">&#9632; Microsoft</span>
+                    <span style="opacity: 0.5;">|</span>
+                    <span>Data platform</span>
+                    <span style="margin-left: auto; opacity: 0.7; font-size: 12px;">Products &nbsp; Downloads &nbsp; Community</span>
+                </div>
+                <!-- Cards section -->
+                <div style="background: #f8f9fa; padding: 28px 24px 32px;">
+                    <div style="font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #6b7280; margin-bottom: 6px;">Top Downloads</div>
+                    <div style="font-size: 20px; font-weight: 600; color: #1a1a1a; margin-bottom: 24px;">Get started with SQL Server on-premises or in the cloud</div>
+                    <div class="ms-mockup-cards" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+                        <!-- Card 1 -->
+                        <div style="background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px 16px;">
+                            <div style="width: 28px; height: 28px; background: #0078d4; border-radius: 4px; margin-bottom: 12px;"></div>
+                            <div style="font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 8px;">SQL Server 2025 on-premises</div>
+                            <div style="font-size: 12px; color: #6b7280; margin-bottom: 14px; line-height: 1.4;">Accelerate AI development with the enterprise database.</div>
+                            <div style="font-size: 12px; color: #0078d4; font-weight: 600;">Download now</div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div style="background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px 16px;">
+                            <div style="width: 28px; height: 28px; background: #0078d4; border-radius: 4px; margin-bottom: 12px;"></div>
+                            <div style="font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 8px;">SQL Server on Azure</div>
+                            <div style="font-size: 12px; color: #6b7280; margin-bottom: 14px; line-height: 1.4;">Run on Azure Virtual Machines with built-in security.</div>
+                            <div style="font-size: 12px; color: #0078d4; font-weight: 600;">Learn more</div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div style="background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px 16px;">
+                            <div style="width: 28px; height: 28px; background: #0078d4; border-radius: 4px; margin-bottom: 12px;"></div>
+                            <div style="font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 8px;">SQL Server 2025 Developer</div>
+                            <div style="font-size: 12px; color: #6b7280; margin-bottom: 14px; line-height: 1.4;">Free Developer edition for non-production use.</div>
+                            <div style="font-size: 12px; color: #0078d4; font-weight: 600;">Download Developer edition</div>
+                        </div>
+                        <!-- Card 4: Express — highlighted -->
+                        <div style="background: white; border: 2px solid #0078d4; border-radius: 8px; padding: 20px 16px; position: relative; box-shadow: 0 0 0 3px rgba(0,120,212,0.12);">
+                            <div style="position: absolute; top: -12px; right: 12px; background: #0078d4; color: white; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 10px;">&larr; This one!</div>
+                            <div style="width: 28px; height: 28px; background: #0078d4; border-radius: 4px; margin-bottom: 12px;"></div>
+                            <div style="display: inline-block; background: #dff6dd; color: #107c10; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-bottom: 8px;">Free forever</div>
+                            <div style="font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 8px;">SQL Server 2025 Express</div>
+                            <div style="font-size: 12px; color: #6b7280; margin-bottom: 14px; line-height: 1.4;">Ideal for desktop, web, and small server apps.</div>
+                            <div style="font-size: 12px; color: #0078d4; font-weight: 700;">Download now &darr;</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- ====== Step 2: Install ====== -->
-            <h2 id="step-2-install">Step 2: Install SQL Server Express</h2>
+            <h2 id="step-2-install">Step 2: Install SQL Server 2025 Express</h2>
             <p>The installer will ask you a few things. Here's what to pick:</p>
             <ol class="help-steps">
                 <li>Choose <strong>"Basic"</strong> installation type. This is the simplest option and gives you everything GlyphFex needs.</li>
@@ -143,7 +209,7 @@
             <h3 id="step-3a">Step 3a: Turn on TCP/IP</h3>
             <p>TCP/IP is the language computers use to talk to each other on a network. We need to tell SQL Server to listen for it.</p>
             <ol class="help-steps">
-                <li>Press the <kbd>Windows</kbd> key and type <strong>"SQL Server Configuration"</strong>. Open <strong>SQL Server 2022 Configuration Manager</strong> (or 2019, depending on what you installed). If you don't see it, look in the Start menu under <strong>Microsoft SQL Server 2022</strong> &gt; <strong>Configuration Tools</strong>.</li>
+                <li>Press the <kbd>Windows</kbd> key and type <strong>"SQL Server Configuration"</strong>. Open <strong>SQL Server 2025 Configuration Manager</strong>. If you don't see it, look in the Start menu under <strong>Microsoft SQL Server 2025</strong> &gt; <strong>Configuration Tools</strong>. (If you installed an older version like 2022, look for that year instead.)</li>
                 <li>In the left panel, expand <strong>SQL Server Network Configuration</strong>.</li>
                 <li>Click <strong>Protocols for SQLEXPRESS</strong>.</li>
                 <li>In the right panel, you'll see a list of protocols. Find <strong>TCP/IP</strong>. It probably says <strong>Disabled</strong>.</li>
@@ -355,8 +421,8 @@
             <h3>Do I need to buy a server?</h3>
             <p><strong>No.</strong> Any Windows PC in your shop can act as the server. The front desk computer, someone's workstation, or even a small mini-PC tucked under a desk. As long as it stays on during work hours and is connected to the network, it works.</p>
 
-            <h3>Is SQL Server Express really free?</h3>
-            <p><strong>Yes.</strong> SQL Server Express is free from Microsoft, forever. It supports databases up to 10 GB, which is enough for tens of thousands of GlyphFex entries. You will not need to upgrade unless you have a very large operation with 50,000+ entries.</p>
+            <h3>Is SQL Server 2025 Express really free?</h3>
+            <p><strong>Yes.</strong> SQL Server Express is free from Microsoft, forever. No license fee, no subscription, no hidden costs. It supports databases up to 10 GB, which is enough for tens of thousands of GlyphFex entries. You will not need to upgrade unless you have a very large operation with 50,000+ entries.</p>
 
             <h3>What if the server computer turns off?</h3>
             <p>Nobody can use GlyphFex in multi-user mode while the server is off. When it turns back on, SQL Server starts automatically and everyone can reconnect. No data is lost &mdash; everything is saved on disk. For the most reliable setup, keep the server computer on during business hours and configure it not to sleep.</p>

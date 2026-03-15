@@ -148,8 +148,8 @@
     "title": "SQL Server Setup Guide",
     "sections": [
       { "id": "what-youll-need", "title": "What You'll Need", "keywords": "requirements computer network server" },
-      { "id": "step-1-download", "title": "Download SQL Server Express", "keywords": "download SQL Server Express free Microsoft" },
-      { "id": "step-2-install", "title": "Install SQL Server Express", "keywords": "install setup basic instance name SQLEXPRESS computer name" },
+      { "id": "step-1-download", "title": "Download SQL Server 2025 Express", "keywords": "download SQL Server 2025 Express free Microsoft" },
+      { "id": "step-2-install", "title": "Install SQL Server 2025 Express", "keywords": "install setup basic instance name SQLEXPRESS computer name 2025" },
       { "id": "step-3-network", "title": "Let Other Computers Connect", "keywords": "TCP/IP firewall port 1433 network enable static dynamic" },
       { "id": "step-3a", "title": "Turn on TCP/IP", "keywords": "TCP/IP enable Configuration Manager protocols restart service" },
       { "id": "step-3b", "title": "Open Windows Firewall", "keywords": "firewall inbound rule port 1433 allow connection" },
