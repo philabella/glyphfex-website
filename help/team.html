@@ -65,6 +65,7 @@
                 <span class="sidebar-nav-label">Setup</span>
                 <a href="configuration.html">Configuration</a>
                 <a href="team.html">Multi-User &amp; Team</a>
+                <a href="sql-server-setup.html">SQL Server Setup</a>
                 <span class="sidebar-nav-label">More</span>
                 <a href="exports.html">Exports &amp; Reports</a>
                 <a href="reference.html">Reference</a>
@@ -96,36 +97,21 @@
 
             <!-- ====== SQL Server Express Setup ====== -->
             <h2 id="sql-server-setup">SQL Server Express Setup</h2>
-            <p>Multi-user mode requires SQL Server Express (free from Microsoft) running on one machine on your network. Here is what you need:</p>
+            <p>Multi-user mode requires SQL Server Express (free from Microsoft) running on one computer on your network. It takes about 20 minutes to set up.</p>
 
-            <div class="help-screenshot">
-                <svg class="screenshot-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                <span class="screenshot-label">SQL Server Configuration</span>
-                <span class="screenshot-desc">Screenshot of SQL Server Configuration Manager with TCP/IP enabled, or the New Shared Project dialog with connection fields</span>
+            <div style="background: linear-gradient(135deg, #eff6ff, #f0f9ff); border: 1px solid #bfdbfe; border-radius: 12px; padding: 24px 28px; margin: 20px 0;">
+                <p style="font-size: 17px; font-weight: 600; color: #1e40af; margin-bottom: 8px;">We wrote a complete guide for this</p>
+                <p style="color: #1e3a5f; margin-bottom: 16px;">Step-by-step instructions with screenshots, troubleshooting, and plain-English explanations. Written for shop owners, not IT professionals.</p>
+                <a href="sql-server-setup.html" class="btn btn-primary btn-sm" style="font-size: 15px;">Open the SQL Server Setup Guide &rarr;</a>
             </div>
 
-            <h3>Requirements</h3>
+            <h3>Quick summary</h3>
             <ul>
-                <li><strong>SQL Server Express 2019 or later</strong> &mdash; Free edition, supports up to 10 GB per database (more than enough for most shops)</li>
-                <li><strong>TCP/IP networking enabled</strong> &mdash; Required for other machines to connect over the LAN</li>
-                <li><strong>Windows Firewall configured</strong> &mdash; The SQL Server port must be allowed through the firewall</li>
-                <li><strong>Windows Authentication</strong> &mdash; GlyphFex uses the logged-in Windows user account for authentication (no separate passwords to manage)</li>
+                <li><strong>SQL Server Express 2019 or later</strong> &mdash; Free from Microsoft, supports up to 10 GB per database</li>
+                <li><strong>Install on one computer</strong> &mdash; Any Windows PC that stays on during work hours</li>
+                <li><strong>Enable TCP/IP</strong> and <strong>open the firewall</strong> &mdash; Two settings changes so other PCs can connect</li>
+                <li><strong>Windows Authentication</strong> &mdash; Uses existing Windows logins, no separate passwords to manage</li>
             </ul>
-
-            <h3>Step-by-step setup</h3>
-            <ol class="help-steps">
-                <li><strong>Install SQL Server Express</strong> &mdash; Download from <a href="https://www.microsoft.com/en-us/sql-server/sql-server-downloads" target="_blank" rel="noopener">Microsoft's download page</a>. Run the installer and choose the default instance name (<code>SQLEXPRESS</code>) or a custom name. Note the machine name and instance name &mdash; you will need both.</li>
-                <li><strong>Enable TCP/IP</strong> &mdash; Open <strong>SQL Server Configuration Manager</strong>. Navigate to SQL Server Network Configuration &gt; Protocols for SQLEXPRESS. Right-click <strong>TCP/IP</strong> and select <strong>Enable</strong>. Restart the SQL Server service.</li>
-                <li><strong>Configure the firewall</strong> &mdash; Open Windows Defender Firewall with Advanced Security. Create an inbound rule allowing TCP traffic on your SQL Server port (default: 1433 for static, or the dynamic port shown in TCP/IP Properties &gt; IP Addresses &gt; IPAll). Also allow <code>sqlbrowser.exe</code> on UDP port 1434 if using named instances.</li>
-            </ol>
-            <div class="help-warning">
-                <strong>Warning</strong>
-                SQL Server Express installs with a <strong>dynamic port</strong> by default. For reliable LAN access, configure a <strong>static port</strong> in SQL Server Configuration Manager under TCP/IP Properties &gt; IP Addresses &gt; IPAll. Set "TCP Dynamic Ports" to blank and "TCP Port" to a fixed number (e.g., 1433).
-            </div>
-            <div class="help-note">
-                <strong>Note</strong>
-                You only need to install SQL Server on <strong>one machine</strong> &mdash; the server. All other machines just need GlyphFex installed. They connect over the network using the server's machine name.
-            </div>
 
             <!-- ====== Creating a Shared Project ====== -->
             <h2 id="creating-shared">Creating a Shared Project</h2>

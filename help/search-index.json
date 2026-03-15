@@ -144,6 +144,29 @@
     ]
   },
   {
+    "page": "sql-server-setup.html",
+    "title": "SQL Server Setup Guide",
+    "sections": [
+      { "id": "what-youll-need", "title": "What You'll Need", "keywords": "requirements computer network server" },
+      { "id": "step-1-download", "title": "Download SQL Server Express", "keywords": "download SQL Server Express free Microsoft" },
+      { "id": "step-2-install", "title": "Install SQL Server Express", "keywords": "install setup basic instance name SQLEXPRESS computer name" },
+      { "id": "step-3-network", "title": "Let Other Computers Connect", "keywords": "TCP/IP firewall port 1433 network enable static dynamic" },
+      { "id": "step-3a", "title": "Turn on TCP/IP", "keywords": "TCP/IP enable Configuration Manager protocols restart service" },
+      { "id": "step-3b", "title": "Open Windows Firewall", "keywords": "firewall inbound rule port 1433 allow connection" },
+      { "id": "step-4-connect", "title": "Connect GlyphFex to SQL Server", "keywords": "connect shared project team migrate server name database" },
+      { "id": "migrate", "title": "Migrate Existing Data", "keywords": "migrate solo data copy entries SQL Server" },
+      { "id": "step-5-team", "title": "Get Your Team Connected", "keywords": "team connect other computers install open glyphfex-server" },
+      { "id": "roles", "title": "What Each Role Can Do", "keywords": "role admin editor viewer permissions" },
+      { "id": "backups", "title": "Backing Up Your Database", "keywords": "backup database bak file ZIP export recovery" },
+      { "id": "troubleshooting", "title": "Troubleshooting", "keywords": "troubleshoot fix error connection fail login permission slow" },
+      { "id": "ts-test-connection", "title": "Test Connection Fails", "keywords": "test connection fail running instance name restart" },
+      { "id": "ts-other-computers", "title": "Other Computers Can't Connect", "keywords": "firewall ping IP address port network other computer" },
+      { "id": "ts-permission", "title": "Login Failed / Permission Errors", "keywords": "login failed permission workgroup domain matching user account NTLM" },
+      { "id": "ts-slow", "title": "Everything is Slow", "keywords": "slow performance WiFi wired Ethernet archive" },
+      { "id": "faq", "title": "SQL Server FAQ", "keywords": "FAQ server free turns off internet VPN users limit solo backup" }
+    ]
+  },
+  {
     "page": "exports.html",
     "title": "Exports & Reports",
     "sections": [
