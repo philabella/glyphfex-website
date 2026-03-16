@@ -511,6 +511,66 @@
                 Every save creates an audit trail record. If ISO compliance mode is enabled in your project settings, GlyphFex prompts for a change reason on each save.
             </div>
 
+            <!-- ====== Convert Quote to Order ====== -->
+            <h2 id="quote-to-order">Convert Quote to Order</h2>
+
+            <p>When a customer accepts a quote, GlyphFex can convert it into a production order with a single click &mdash; carrying over all relevant data while starting a fresh workflow.</p>
+
+            <h3>How it works</h3>
+            <ol class="help-steps">
+                <li><strong>Open the quote entry</strong> &mdash; From the Dashboard context menu, the Entry Detail Window top action bar, or the <strong>&rarr; Order</strong> button on a Dashboard card.</li>
+                <li><strong>Click "Convert to Order"</strong> &mdash; GlyphFex creates a new entry pre-filled from the quote: customer name, PO number, tags, custom fields, material requirements, and all key fields are copied over.</li>
+                <li><strong>Pipeline resets</strong> &mdash; The new order starts at Stage 1 of its pipeline. If the quote's template has auto-numbering configured, the order gets a properly sequenced reference number.</li>
+                <li><strong>Source quote closes</strong> &mdash; The original quote is automatically moved to its first completed stage (e.g., "Won" or "Closed"), removing it from the active pipeline.</li>
+                <li><strong>Entries are linked</strong> &mdash; A Parent/Child relationship is created between the quote and the new order, with a "Converted from quote" note. You can navigate between them from the Linked Entries section in the Entry Detail Window.</li>
+            </ol>
+
+            <h3>Where to find it</h3>
+            <ul>
+                <li><strong>Dashboard card</strong> &mdash; The <strong>&rarr; Order</strong> button appears on cards for entries that are not in a completed stage</li>
+                <li><strong>Dashboard context menu</strong> &mdash; Right-click any active entry and select <strong>Convert to Order</strong></li>
+                <li><strong>Entry Detail Window</strong> &mdash; The <strong>&rarr; Order</strong> button in the top action bar (under the Actions dropdown)</li>
+            </ul>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                The &rarr; Order button is automatically hidden for entries that are already in a completed stage. You cannot convert a closed quote &mdash; this prevents accidental duplicate orders.
+            </div>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                The <code>quote_valid_until</code> field is cleared on the new order, since validity dates apply only to quotes. All other data is carried over faithfully.
+            </div>
+
+            <!-- ====== Part History ====== -->
+            <h2 id="part-history">Part History &amp; Genealogy</h2>
+
+            <p>When multiple entries share the same <strong>Part Number</strong> (the <code>part_number</code> built-in field), GlyphFex automatically groups them into a <strong>Part History</strong> section. This gives you full genealogy of every time a part has been quoted, ordered, or produced.</p>
+
+            <h3>Where it appears</h3>
+            <ul>
+                <li><strong>Entry Detail Window</strong> &mdash; A dedicated "Part History" section at the bottom lists all other entries with the same part number. Each row shows the reference number, customer, date, status, quantity, and value.</li>
+                <li><strong>PDF Export</strong> &mdash; The entry detail PDF includes a Part History table (capped at 25 entries for readability).</li>
+            </ul>
+
+            <h3>What it shows</h3>
+            <p>Each Part History entry displays:</p>
+            <ul>
+                <li><strong>Reference number</strong> &mdash; Click to open that entry's detail window</li>
+                <li><strong>Customer name</strong></li>
+                <li><strong>Date</strong> &mdash; Creation date of the entry</li>
+                <li><strong>Current status</strong> &mdash; Which pipeline stage the entry is in</li>
+                <li><strong>Quantity</strong> and <strong>Value</strong> &mdash; If those built-in fields are populated</li>
+            </ul>
+
+            <h3>Display limits</h3>
+            <p>In the Entry Detail Window, Part History shows the <strong>15 most recent entries</strong> by default. If there are more, a <strong>"Show all N entries"</strong> link expands the full list. In PDF exports, the list is capped at 25 entries.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Part History is most useful when your shop uses consistent part numbers across quotes and orders. If you convert a quote to an order and both have the same part number, they will both appear in each other's Part History &mdash; giving you instant visibility into the quoting and production history of any part.
+            </div>
+
             <!-- ====== Save Validation ====== -->
             <h2 id="validation">Save Validation</h2>
 

@@ -95,7 +95,7 @@
             <p>The Settings Hub contains two types of panels:</p>
             <ul>
                 <li><strong>Inline panels (7)</strong> &mdash; Settings that are edited directly within the hub dialog: Profile, Notifications, Language, Audit &amp; Compliance, Calendar, Archive, and License.</li>
-                <li><strong>Launcher panels (9)</strong> &mdash; Buttons that open dedicated configuration dialogs for more complex setup: Categories, Pipeline, Custom Fields, Validation, Conditional Rules, Templates, Auto-Configurations, Material Inventory, and User Management.</li>
+                <li><strong>Launcher panels (8)</strong> &mdash; Buttons that open dedicated configuration dialogs for more complex setup: Categories, Pipeline, Custom Fields, Validation, Conditional Rules, Templates, Material Inventory, and User Management.</li>
             </ul>
             <div class="help-note">
                 <strong>Note</strong>
@@ -410,16 +410,6 @@
             <p>You can create a template from scratch in the template editor, or <strong>capture from current entry</strong> &mdash; GlyphFex copies the current entry's tags, fields, and settings into a new template.</p>
             <p>When creating a new entry, select a template from the dropdown at the top of the entry form. The form instantly populates with the template's values, which you can then modify as needed.</p>
 
-            <!-- ====== Auto-Configurations ====== -->
-            <h2 id="auto-config">Auto-Configurations</h2>
-            <p>Auto-configurations are preset tag combinations that can be applied to an entry with a single click. While templates pre-fill the entire form, auto-configs focus specifically on tag selections.</p>
-            <p>Open from <strong>Settings Hub &gt; Auto-Configurations</strong>.</p>
-            <p>On the entry form, click the <strong>Auto</strong> button to see a list of saved auto-configurations. Selecting one immediately applies its tag combination to the current entry. This is especially useful for operators who repeatedly work with the same material/process/machine combinations.</p>
-            <div class="help-tip">
-                <strong>Tip</strong>
-                Example auto-config: "Standard Mild Steel Job" could pre-select Material: Mild Steel, Process: Laser Cutting, Finish: Powder Coat, Priority: Normal &mdash; saving several clicks on every new entry.
-            </div>
-
             <!-- ====== Material Inventory ====== -->
             <h2 id="material-inventory">Material Inventory</h2>
             <p>Track your shop's material stock levels from <strong>Tools &gt; Material Inventory</strong> or via the <strong>Settings Hub &gt; Material Inventory</strong> launcher.</p>
@@ -433,6 +423,31 @@
                 <li><strong>Location</strong> &mdash; Storage location within your facility</li>
             </ul>
             <p>When stock falls below the reorder point, GlyphFex displays a <strong>low stock alert</strong> to help prevent production delays from material shortages.</p>
+
+            <!-- ====== Dark Mode ====== -->
+            <h2 id="dark-mode">Dark Mode</h2>
+            <p>GlyphFex automatically follows your Windows system theme. When Windows is set to dark mode, GlyphFex renders in dark mode with no additional configuration required.</p>
+
+            <h3>How to switch themes</h3>
+            <ol class="help-steps">
+                <li>Open <strong>Windows Settings</strong> (<kbd>Win</kbd>+<kbd>I</kbd>)</li>
+                <li>Navigate to <strong>Personalization &gt; Colors</strong></li>
+                <li>Under "Choose your mode," select <strong>Dark</strong>, <strong>Light</strong>, or <strong>Custom</strong></li>
+                <li>GlyphFex picks up the change immediately &mdash; no restart required</li>
+            </ol>
+
+            <h3>What adapts</h3>
+            <ul>
+                <li><strong>All pages</strong> &mdash; Dashboard, Entry, Calendar, Analytics, Shop Floor, Display Board, and Settings Hub</li>
+                <li><strong>All dialogs</strong> &mdash; Edit Categories, Pipeline, Custom Fields, Templates, Validation, User Management, and all other ContentDialogs</li>
+                <li><strong>Entry Detail Window</strong> &mdash; The floating detail view adapts to the current theme</li>
+                <li><strong>Charts &amp; badges</strong> &mdash; Colors are theme-aware, using WinUI 3 theme resources for backgrounds, text, and borders</li>
+            </ul>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Dark mode is easier on the eyes during long shifts, especially on shop floor displays in dimly lit areas. If your Display Board TV supports it, setting the connected PC to dark mode creates a high-contrast board that is easy to read from a distance.
+            </div>
 
             <!-- ====== Holiday Calendar ====== -->
             <h2 id="holiday-calendar">Holiday Calendar</h2>

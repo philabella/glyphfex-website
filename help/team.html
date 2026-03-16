@@ -199,7 +199,7 @@
                         <td>Export data (CSV, PDF, Excel)</td>
                         <td>Yes</td>
                         <td>Yes</td>
-                        <td>Yes</td>
+                        <td>No</td>
                     </tr>
                     <tr>
                         <td>Configure categories, pipeline, fields</td>
@@ -230,6 +230,34 @@
             <div class="help-tip">
                 <strong>Tip</strong>
                 Editors have broad access to create and edit entries &mdash; they just cannot change the system configuration or manage other users. This is the right role for most shop floor operators and team leads.
+            </div>
+
+            <!-- ====== Kiosk Mode ====== -->
+            <h2 id="kiosk-mode">Kiosk Mode</h2>
+            <p>Kiosk Mode is a special restriction for <strong>Editor</strong> accounts that locks the interface down to only the Shop Floor and Display Board pages. It is designed for shared shop floor terminals where operators need to clock in/out and advance stages, but should not navigate to configuration, analytics, or other areas.</p>
+
+            <h3>Enabling Kiosk Mode</h3>
+            <ol class="help-steps">
+                <li>Go to <strong>Tools &gt; Manage Users</strong></li>
+                <li>Select an Editor user</li>
+                <li>Check the <strong>Kiosk Mode</strong> checkbox</li>
+                <li>Save &mdash; the change takes effect on the user's next data refresh</li>
+            </ol>
+
+            <h3>What Kiosk Mode restricts</h3>
+            <ul>
+                <li><strong>Navigation</strong> &mdash; Only Shop Floor (<kbd>Ctrl</kbd>+<kbd>6</kbd>) and Display Board (<kbd>Ctrl</kbd>+<kbd>5</kbd>) are accessible. All other navigation items are hidden.</li>
+                <li><strong>File menu</strong> &mdash; New Project, Open, Import, Export, Migrate, and Backup are all hidden. Only the application close option remains.</li>
+                <li><strong>Keyboard shortcuts</strong> &mdash; Shortcuts for restricted pages (like <kbd>Ctrl</kbd>+<kbd>1</kbd> for Entry page) are blocked.</li>
+                <li><strong>Command Palette</strong> &mdash; Only shows Shop Floor, Display Board, About, Keyboard Shortcuts, and Getting Started Guide commands.</li>
+            </ul>
+
+            <h3>Escaping Kiosk Mode (Simulation)</h3>
+            <p>When testing Kiosk Mode with role simulation, use the Command Palette (<kbd>Ctrl</kbd>+<kbd>K</kbd>) and select <strong>Reset Role Simulation</strong>. This command is always available regardless of Kiosk restrictions, ensuring you can never get stuck in a simulated role.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Kiosk Mode is ideal for a shared touchscreen PC on the shop floor. Operators can see the Kanban board, clock in/out, advance stages, and add notes &mdash; but cannot accidentally change project settings or navigate to pages they do not need.
             </div>
 
             <!-- ====== User Management ====== -->

@@ -29,6 +29,8 @@
       { "id": "entry-detail", "title": "Entry Detail Window", "keywords": "detail window floating view sections QR code" },
       { "id": "linking", "title": "Linking Entries", "keywords": "link related supersedes parent child relationship" },
       { "id": "workflows", "title": "Entry Workflows", "keywords": "new edit duplicate repeat child create workflow" },
+      { "id": "quote-to-order", "title": "Convert Quote to Order", "keywords": "convert quote order production won accepted pipeline link parent child close" },
+      { "id": "part-history", "title": "Part History & Genealogy", "keywords": "part history genealogy part number shared entries previous orders tracking" },
       { "id": "validation", "title": "Save Validation", "keywords": "validation save required regex pattern duplicate ref" },
       { "id": "keyboard-shortcuts", "title": "Entry Keyboard Shortcuts", "keywords": "Ctrl+S save Ctrl+Z undo Ctrl+Y redo keyboard shortcut" }
     ]
@@ -56,9 +58,9 @@
       { "id": "search", "title": "Search", "keywords": "search find filter text Ctrl+F" },
       { "id": "filters", "title": "Filters", "keywords": "filter status due date tags saved quick filter chips" },
       { "id": "sorting", "title": "Sorting & Pagination", "keywords": "sort order page size newest oldest ref modified pagination" },
-      { "id": "analytics-panel", "title": "Analytics Panel", "keywords": "analytics cards total overdue due soon pipeline bar" },
+      { "id": "analytics-panel", "title": "Analytics Panel", "keywords": "analytics cards total overdue due soon pipeline bar stale expired quote" },
       { "id": "bulk-actions", "title": "Bulk Actions", "keywords": "bulk select all change status delete archive multiple" },
-      { "id": "entry-actions", "title": "Entry Actions", "keywords": "edit audit delete duplicate repeat print status change actions" },
+      { "id": "entry-actions", "title": "Entry Actions", "keywords": "edit audit delete duplicate repeat print status change convert order actions" },
       { "id": "recycle-bin", "title": "Recycle Bin & Archive", "keywords": "recycle bin delete restore archive unarchive auto-archive" },
       { "id": "auto-refresh", "title": "Auto-Refresh", "keywords": "refresh auto SQL Server team live update" },
       { "id": "exports", "title": "Dashboard Exports", "keywords": "export CSV Excel QuickBooks PDF report ZIP" }
@@ -70,7 +72,7 @@
     "sections": [
       { "id": "time-range", "title": "Time Range Selection", "keywords": "time range date 7 30 90 days custom period" },
       { "id": "kpi-cards", "title": "KPI Cards", "keywords": "KPI card total entries SLA compliance overdue delivery value margin profit" },
-      { "id": "charts", "title": "Charts & Visualizations", "keywords": "chart graph bar status distribution entries over time priority customer" },
+      { "id": "charts", "title": "Charts & Visualizations", "keywords": "chart graph bar status distribution entries over time priority customer tag usage" },
       { "id": "sla-compliance", "title": "SLA Compliance Analysis", "keywords": "SLA compliance on track at risk overdue stage analysis" },
       { "id": "bottleneck", "title": "Bottleneck Analysis", "keywords": "bottleneck stuck stage average time target slow" },
       { "id": "refresh", "title": "Refresh & Auto-Refresh", "keywords": "refresh auto manual 30 seconds SQL Server" }
@@ -82,7 +84,7 @@
     "sections": [
       { "id": "gantt", "title": "Understanding the Gantt Chart", "keywords": "Gantt chart timeline bar visual schedule" },
       { "id": "zoom-levels", "title": "Zoom Levels", "keywords": "zoom day week month view level" },
-      { "id": "filters", "title": "Filtering", "keywords": "filter pipeline completed search date range" },
+      { "id": "filters", "title": "Filtering", "keywords": "filter pipeline completed search date range due this week" },
       { "id": "interactions", "title": "Interactions", "keywords": "click scroll right-click tooltip context menu" },
       { "id": "group-by", "title": "Collapsible Group-By Rows", "keywords": "group by stage customer pipeline collapse expand" },
       { "id": "capacity", "title": "Capacity Load Bar", "keywords": "capacity load bar heat concurrent jobs green yellow red" },
@@ -96,7 +98,7 @@
     "title": "Shop Floor & Display Board",
     "sections": [
       { "id": "shop-floor", "title": "Shop Floor Kiosk", "keywords": "shop floor kiosk touch large button worker production" },
-      { "id": "entry-cards", "title": "Entry Cards", "keywords": "card ref customer advance menu button" },
+      { "id": "entry-cards", "title": "Entry Cards", "keywords": "card ref customer advance menu button note" },
       { "id": "time-tracking", "title": "Time Tracking", "keywords": "clock in out time tracking labor timesheet" },
       { "id": "multi-pipeline", "title": "Multi-Pipeline Grouping", "keywords": "multi pipeline group all pipelines filter" },
       { "id": "undo-panel", "title": "Floating Undo Panel", "keywords": "undo revert advance stage panel" },
@@ -110,7 +112,7 @@
     "sections": [
       { "id": "settings-hub", "title": "Settings Hub", "keywords": "settings hub gear Ctrl+, panels configure" },
       { "id": "profile", "title": "Profile Panel", "keywords": "profile project name description signature company" },
-      { "id": "notifications", "title": "Notifications Panel", "keywords": "notifications due date alert interval threshold digest" },
+      { "id": "notifications", "title": "Notifications Panel", "keywords": "notifications due date alert interval threshold digest stale expired quote" },
       { "id": "language", "title": "Language Panel", "keywords": "language translation UI locale" },
       { "id": "audit", "title": "Audit & Compliance Panel", "keywords": "audit trail ISO compliance change reason hard delete" },
       { "id": "calendar-settings", "title": "Calendar Panel", "keywords": "calendar work week holidays business days" },
@@ -120,9 +122,9 @@
       { "id": "custom-fields", "title": "Custom Fields", "keywords": "custom fields text dropdown date number required type" },
       { "id": "validation", "title": "Input Validation", "keywords": "validation regex pattern ref format Q-XXXXX" },
       { "id": "conditional-rules", "title": "Conditional Rules", "keywords": "conditional rules hide show disable enable require when then" },
-      { "id": "entry-templates", "title": "Entry Templates", "keywords": "templates pre-fill YEAR default pipeline capture" },
-      { "id": "auto-config", "title": "Auto-Configurations", "keywords": "auto configure preset tag combination one-click" },
+      { "id": "entry-templates", "title": "Entry Templates", "keywords": "templates pre-fill YEAR default pipeline capture auto-numbering" },
       { "id": "material-inventory", "title": "Material Inventory", "keywords": "material inventory stock reorder point tracking" },
+      { "id": "dark-mode", "title": "Dark Mode", "keywords": "dark mode theme light night windows system appearance color" },
       { "id": "holiday-calendar", "title": "Holiday Calendar", "keywords": "holiday calendar regional custom copy year" }
     ]
   },
@@ -136,8 +138,9 @@
       { "id": "connecting", "title": "Connecting Other Users", "keywords": "connect user open join team shared" },
       { "id": "migration", "title": "Migrating from Solo", "keywords": "migrate solo team SQLite SQL Server wizard" },
       { "id": "roles", "title": "Roles & Permissions", "keywords": "role admin editor viewer permission access" },
+      { "id": "kiosk-mode", "title": "Kiosk Mode", "keywords": "kiosk mode locked shop floor display board terminal restricted operator touch screen" },
       { "id": "user-management", "title": "User Management", "keywords": "manage users add role activate deactivate" },
-      { "id": "admin-requests", "title": "Admin Requests", "keywords": "admin request editor approve reject change" },
+      { "id": "admin-requests", "title": "Admin Requests", "keywords": "admin request editor approve reject change configuration badge notification" },
       { "id": "concurrency", "title": "Concurrency Handling", "keywords": "concurrency conflict optimistic locking revision edit" },
       { "id": "auto-refresh", "title": "Auto-Refresh", "keywords": "auto refresh 10 seconds live update team" },
       { "id": "lan-deployment", "title": "LAN Deployment", "keywords": "LAN network deployment TCP port firewall NTLM auth" }
@@ -170,15 +173,15 @@
     "page": "exports.html",
     "title": "Exports & Reports",
     "sections": [
-      { "id": "pdf-export", "title": "PDF Entry Export", "keywords": "PDF export print entry detail" },
-      { "id": "pdf-report", "title": "PDF Dashboard Report", "keywords": "PDF report dashboard summary" },
+      { "id": "pdf-export", "title": "PDF Entry Export", "keywords": "PDF export print entry detail part history" },
+      { "id": "pdf-report", "title": "PDF Dashboard Report", "keywords": "PDF report dashboard summary stale expired quote KPI" },
       { "id": "job-traveler", "title": "Job Traveler PDF", "keywords": "job traveler QR code print barcode scan" },
       { "id": "csv-export", "title": "CSV Export", "keywords": "CSV export Ctrl+E file comma separated" },
       { "id": "excel-export", "title": "Excel Export", "keywords": "Excel xlsx export spreadsheet" },
       { "id": "quickbooks", "title": "QuickBooks Format", "keywords": "QuickBooks invoice accounting format" },
-      { "id": "zip-export", "title": "Full Project ZIP", "keywords": "ZIP full project export backup Ctrl+Shift+E" },
+      { "id": "zip-export", "title": "Full Project ZIP", "keywords": "ZIP full project export backup Ctrl+Shift+E attachments" },
       { "id": "csv-import", "title": "CSV Import Wizard", "keywords": "import CSV wizard column mapping duplicate Ctrl+I" },
-      { "id": "pdf-guides", "title": "Built-In PDF Guides", "keywords": "guide getting started process feature overview help F1" },
+      { "id": "pdf-guides", "title": "Built-In PDF Guides", "keywords": "guide getting started process feature overview disaster recovery help F1" },
       { "id": "timesheet", "title": "Timesheet Reports", "keywords": "timesheet time report worker hours PDF" }
     ]
   },
