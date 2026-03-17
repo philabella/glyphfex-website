@@ -95,7 +95,7 @@
             <p>The Settings Hub contains two types of panels:</p>
             <ul>
                 <li><strong>Inline panels (7)</strong> &mdash; Settings that are edited directly within the hub dialog: Profile, Notifications, Language, Audit &amp; Compliance, Calendar, Archive, and License.</li>
-                <li><strong>Launcher panels (8)</strong> &mdash; Buttons that open dedicated configuration dialogs for more complex setup: Categories, Pipeline, Custom Fields, Validation, Conditional Rules, Templates, Material Inventory, and User Management.</li>
+                <li><strong>Launcher panels (9)</strong> &mdash; Buttons that open dedicated configuration dialogs for more complex setup: Categories, Pipeline, Custom Fields, Validation, Conditional Rules, Templates, Description Format, Material Inventory, and User Management.</li>
             </ul>
             <div class="help-note">
                 <strong>Note</strong>
@@ -188,6 +188,63 @@
             <div class="help-tip">
                 <strong>Tip</strong>
                 You can enter a license key at any time, even after your trial limit is reached. All existing data and configuration are preserved &mdash; activating a license simply removes the entry cap.
+            </div>
+
+            <!-- ====== Smart Description ====== -->
+            <h2 id="smart-description">Smart Description</h2>
+            <p>Smart Description automatically generates a compact, human-readable description for each entry based on its tag selections. Instead of writing descriptions by hand, GlyphFex assembles a coded string from short abbreviation codes you assign to each tag.</p>
+
+            <h3>How it works</h3>
+            <ol class="help-steps">
+                <li><strong>Assign abbreviation codes</strong> &mdash; In <strong>Settings Hub &gt; Description Format</strong>, each tag in every category gets a short code (e.g., "SS" for Stainless Steel, "MIG" for MIG Welding, "H" for High priority).</li>
+                <li><strong>Set the category order</strong> &mdash; Categories are processed in the order you define. The first category's code appears first in the description.</li>
+                <li><strong>Choose a separator</strong> &mdash; Codes are joined by a separator character of your choice (e.g., dash, slash, or space).</li>
+                <li><strong>Descriptions auto-generate</strong> &mdash; When an entry is saved, GlyphFex assembles the description from the selected tags' abbreviation codes and stores it in the entry's Description field.</li>
+            </ol>
+
+            <h3>Example</h3>
+            <p>With categories Material, Process, and Priority configured with codes:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Selected Tag</th>
+                        <th>Abbreviation Code</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Material</td>
+                        <td>Stainless Steel</td>
+                        <td>SS</td>
+                    </tr>
+                    <tr>
+                        <td>Process</td>
+                        <td>MIG Welding</td>
+                        <td>MIG</td>
+                    </tr>
+                    <tr>
+                        <td>Priority</td>
+                        <td>Rush</td>
+                        <td>R</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>With a dash separator, the generated description is: <code>SS-MIG-R</code></p>
+
+            <h3>Where it appears</h3>
+            <ul>
+                <li><strong>Dashboard cards</strong> &mdash; The description is displayed on each entry card for quick identification</li>
+                <li><strong>Entry Detail Window</strong> &mdash; Shown in the header area below the Ref ID</li>
+                <li><strong>PDF exports</strong> &mdash; Included prominently in entry PDFs and job travelers</li>
+            </ul>
+
+            <h3>Regenerate All</h3>
+            <p>If you change abbreviation codes or category order after entries already exist, click the <strong>Regenerate All</strong> button in the Description Format settings. This retroactively updates the description for every existing entry in the project.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Smart Description is especially useful on the shop floor where operators need to identify jobs at a glance. A code like <code>SS-TIG-H</code> immediately tells them: stainless steel, TIG welding, high priority &mdash; without opening the entry.
             </div>
 
             <!-- ====== Categories & Tags ====== -->
