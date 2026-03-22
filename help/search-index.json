@@ -126,7 +126,8 @@
       { "id": "entry-templates", "title": "Entry Templates", "keywords": "templates pre-fill YEAR default pipeline capture auto-numbering" },
       { "id": "material-inventory", "title": "Material Inventory", "keywords": "material inventory stock reorder point tracking" },
       { "id": "dark-mode", "title": "Dark Mode", "keywords": "dark mode theme light night windows system appearance color" },
-      { "id": "holiday-calendar", "title": "Holiday Calendar", "keywords": "holiday calendar regional custom copy year" }
+      { "id": "holiday-calendar", "title": "Holiday Calendar", "keywords": "holiday calendar regional custom copy year" },
+      { "id": "backup", "title": "Backup Database", "keywords": "backup database one-click bak file rotating automatic disaster recovery restore" }
     ]
   },
   {
