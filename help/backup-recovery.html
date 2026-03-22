@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backup &amp; Recovery &mdash; GlyphFex Help</title>
+    <meta name="description" content="GlyphFex backup and recovery guide: one-click backup, automatic .bak files, Save As, SQL Server backup, restoring from backup, and full project ZIP export.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="workflows.html">Workflows</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="calendar.html">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="templates.html">Templates</a>
+                <a href="validation.html">Validation</a>
+                <a href="rules.html">Conditional Rules</a>
+                <a href="notifications.html">Notifications</a>
+                <a href="backup-recovery.html">Backup &amp; Recovery</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <a href="sql-server-setup.html">SQL Server Setup</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Backup &amp; Recovery</h1>
+            <p class="help-subtitle">Protect your data with one-click backups, automatic safety copies, and full project exports. This guide covers both SQLite (solo) and SQL Server (team) scenarios.</p>
+
+            <!-- ====== One-Click Backup ====== -->
+            <h2 id="one-click-backup">One-Click Backup Database</h2>
+            <p>The fastest way to create a backup is from the <strong>File</strong> menu:</p>
+            <ol class="help-steps">
+                <li><strong>Go to File &gt; Backup Database</strong> &mdash; or use the Command Palette (<kbd>Ctrl</kbd>+<kbd>K</kbd>) and type "Backup".</li>
+                <li><strong>Choose a location</strong> &mdash; Select where to save the backup file.</li>
+                <li><strong>Backup completes instantly</strong> &mdash; For SQLite projects, GlyphFex copies the <code>.glyphfex</code> file and its attachments folder. For SQL Server projects, GlyphFex runs a <code>BACKUP DATABASE</code> command.</li>
+            </ol>
+
+            <h3>What gets backed up</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Project Type</th>
+                        <th>Backup Contents</th>
+                        <th>File Format</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>SQLite (Solo)</strong></td>
+                        <td>Database file + attachments folder</td>
+                        <td><code>.glyphfex</code> copy</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SQL Server (Team)</strong></td>
+                        <td>Full database via BACKUP DATABASE</td>
+                        <td><code>.bak</code> file</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Schedule a weekly backup as part of your routine. For SQL Server, consider setting up a SQL Server Agent job to automate nightly backups.
+            </div>
+
+            <!-- ====== Automatic Backups ====== -->
+            <h2 id="automatic-backups">Automatic Safety Backups</h2>
+            <p>GlyphFex automatically creates a timestamped <code>.bak</code> safety copy before certain operations that could modify your data:</p>
+            <ul>
+                <li><strong>Before migration</strong> &mdash; When migrating from SQLite to SQL Server, a backup of the destination database is created if it contains existing data.</li>
+                <li><strong>Before project reset</strong> &mdash; When resetting project settings, a timestamped backup file is created first.</li>
+            </ul>
+            <p>These safety copies are saved alongside the original file with a timestamp suffix, such as <code>MyProject_2026-03-22_143000.bak</code>.</p>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                Automatic backups are a safety net, not a replacement for regular manual backups. Always maintain your own backup routine for critical production data.
+            </div>
+
+            <!-- ====== Save As ====== -->
+            <h2 id="save-as">Save As (Project Copy)</h2>
+            <p>Use <strong>File &gt; Save As</strong> (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd>) to create a complete copy of your project under a new name or location.</p>
+            <ul>
+                <li>Creates a full duplicate of the <code>.glyphfex</code> database file</li>
+                <li>The new copy is independent &mdash; changes to one do not affect the other</li>
+                <li>Useful for creating snapshots before major configuration changes</li>
+                <li>Also useful for creating template projects that you clone for new customers or job types</li>
+            </ul>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Save As is the simplest way to create a point-in-time snapshot of a solo project. Before making major changes to your pipeline or categories, do a quick Save As to preserve the current state.
+            </div>
+
+            <!-- ====== SQL Server Backup ====== -->
+            <h2 id="sql-server-backup">SQL Server Backup</h2>
+            <p>For shared (team) projects running on SQL Server Express, GlyphFex uses the native <code>BACKUP DATABASE</code> command:</p>
+
+            <h3>From GlyphFex</h3>
+            <p>Use <strong>File &gt; Backup Database</strong> while connected to a SQL Server project. GlyphFex will prompt you to choose a save location and then execute the backup command on the server.</p>
+
+            <h3>From SQL Server Management Studio</h3>
+            <p>IT administrators can also create backups directly from SSMS:</p>
+            <ol>
+                <li>Right-click the database in Object Explorer</li>
+                <li>Select <strong>Tasks &gt; Back Up...</strong></li>
+                <li>Choose <strong>Full</strong> backup type</li>
+                <li>Select the destination path and click <strong>OK</strong></li>
+            </ol>
+
+            <h3>Automated backups</h3>
+            <p>For production environments, set up automated backups using SQL Server Agent (available in Express via sqlcmd scripts or Windows Task Scheduler):</p>
+            <ul>
+                <li>Schedule nightly full backups</li>
+                <li>Retain at least 7 days of backup history</li>
+                <li>Store backups on a different drive or network share than the database</li>
+                <li>Test your restore process periodically to ensure backups are valid</li>
+            </ul>
+
+            <div class="help-warning">
+                <strong>Warning</strong>
+                SQL Server Express does not include SQL Server Agent as a built-in service. Use Windows Task Scheduler with a <code>sqlcmd</code> script to automate backups on Express editions.
+            </div>
+
+            <!-- ====== Restoring from Backup ====== -->
+            <h2 id="restoring">Restoring from Backup</h2>
+
+            <h3>Restoring a SQLite project</h3>
+            <ol class="help-steps">
+                <li><strong>Locate your backup file</strong> &mdash; Find the <code>.glyphfex</code> backup copy you created earlier.</li>
+                <li><strong>Replace the current file</strong> &mdash; Close GlyphFex, then copy the backup file over the current project file (or to a new location).</li>
+                <li><strong>Open in GlyphFex</strong> &mdash; Use <strong>File &gt; Open Project</strong> to open the restored file.</li>
+            </ol>
+
+            <h3>Restoring a SQL Server database</h3>
+            <ol class="help-steps">
+                <li><strong>Disconnect all users</strong> &mdash; Ensure no one is connected to the database in GlyphFex.</li>
+                <li><strong>Restore via SSMS</strong> &mdash; Right-click the database in SQL Server Management Studio, select <strong>Tasks &gt; Restore &gt; Database</strong>, select your <code>.bak</code> file, and click OK.</li>
+                <li><strong>Reconnect in GlyphFex</strong> &mdash; Open your <code>.glyphfex-server</code> file to reconnect to the restored database.</li>
+            </ol>
+
+            <div class="help-warning">
+                <strong>Warning</strong>
+                Restoring a database overwrites all current data with the backup contents. Any entries or changes made after the backup was created will be lost. Always verify you are restoring the correct backup file.
+            </div>
+
+            <!-- ====== Full Project ZIP ====== -->
+            <h2 id="zip-export">Export Full Project (ZIP)</h2>
+            <p>For the most comprehensive backup, export your entire project as a ZIP archive:</p>
+            <ol class="help-steps">
+                <li><strong>Go to File &gt; Export &gt; Full Project ZIP</strong> or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>E</kbd>.</li>
+                <li><strong>Choose whether to include attachments</strong> &mdash; GlyphFex will ask if you want to bundle all file attachments in the ZIP.</li>
+                <li><strong>Save the ZIP file</strong> &mdash; Choose a location and filename. The archive includes the database, all configuration, and optionally all attached files.</li>
+            </ol>
+            <p>The ZIP export is ideal for:</p>
+            <ul>
+                <li>Off-site backup storage (e.g., cloud drive, external hard drive)</li>
+                <li>Transferring a complete project to another machine</li>
+                <li>Archiving a finished project for long-term retention</li>
+            </ul>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                The Full Project ZIP export is restricted to <strong>Admin</strong> users only. Editors and Viewers cannot create ZIP exports.
+            </div>
+
+            <!-- ====== Disaster Recovery Guide ====== -->
+            <h2 id="disaster-recovery">Disaster Recovery Guide (PDF)</h2>
+            <p>GlyphFex includes a built-in 9-page Disaster Recovery Guide designed for IT administrators. Access it from <strong>Help &gt; Disaster Recovery Guide</strong> or via the Command Palette.</p>
+            <p>The PDF guide covers:</p>
+            <ul>
+                <li>Backup strategies for both SQLite and SQL Server</li>
+                <li>Step-by-step restore procedures</li>
+                <li>Data verification after restore</li>
+                <li>Recommended backup schedules</li>
+                <li>Common failure scenarios and how to handle them</li>
+            </ul>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Print the Disaster Recovery Guide and keep a copy near your server. In an emergency, having paper instructions available ensures you can restore operations even if you cannot access digital documentation.
+            </div>
+
+            <!-- ====== Best Practices ====== -->
+            <h2 id="best-practices">Backup Best Practices</h2>
+            <ul>
+                <li><strong>Back up daily</strong> &mdash; At minimum, create a backup at the end of each business day.</li>
+                <li><strong>Store off-site</strong> &mdash; Keep at least one copy on a different physical device or cloud storage.</li>
+                <li><strong>Test restores</strong> &mdash; Periodically restore a backup to a test environment to verify data integrity.</li>
+                <li><strong>Retain multiple versions</strong> &mdash; Keep at least 7 days of daily backups so you can recover from issues discovered days later.</li>
+                <li><strong>Document your process</strong> &mdash; Write down your backup procedure and share it with your team so backups continue even when you are out.</li>
+            </ul>
+        </main>
+
+        <!-- Table of Contents -->
+        <aside class="help-toc" id="helpToc">
+            <h3>On this page</h3>
+            <ul><!-- populated by help.js --></ul>
+        </aside>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="nav-logo">
+                        <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                            <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                            <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="logo-text">GlyphFex</span>
+                    </a>
+                    <p class="footer-tagline">One source of truth from quote to completion.</p>
+                </div>
+                <div class="footer-links"><h4>Product</h4><a href="../features.html">Features</a><a href="../index.html#pricing">Pricing</a><a href="../download.html">Download</a></div>
+                <div class="footer-links"><h4>Resources</h4><a href="index.html">Help Center</a><a href="getting-started.html">Getting Started</a><a href="reference.html">Reference</a></div>
+                <div class="footer-links"><h4>Legal</h4><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Terms of Service</a><a href="../eula.html">EULA</a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 GlyphFex. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="help.js"></script>
+</body>
+</html>

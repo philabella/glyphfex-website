@@ -114,4 +114,40 @@
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
+    <url>
+        <loc>https://glyphfex.com/help/workflows.html</loc>
+        <lastmod>2026-03-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://glyphfex.com/help/templates.html</loc>
+        <lastmod>2026-03-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://glyphfex.com/help/validation.html</loc>
+        <lastmod>2026-03-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://glyphfex.com/help/rules.html</loc>
+        <lastmod>2026-03-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://glyphfex.com/help/notifications.html</loc>
+        <lastmod>2026-03-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://glyphfex.com/help/backup-recovery.html</loc>
+        <lastmod>2026-03-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
 </urlset>

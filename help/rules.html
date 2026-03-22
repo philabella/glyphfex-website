@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditional Rules &mdash; GlyphFex Help</title>
+    <meta name="description" content="Configure conditional rules in GlyphFex to dynamically show, hide, enable, disable, or require fields and categories based on tag selections.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="workflows.html">Workflows</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="calendar.html">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="templates.html">Templates</a>
+                <a href="validation.html">Validation</a>
+                <a href="rules.html">Conditional Rules</a>
+                <a href="notifications.html">Notifications</a>
+                <a href="backup-recovery.html">Backup &amp; Recovery</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <a href="sql-server-setup.html">SQL Server Setup</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Conditional Rules</h1>
+            <p class="help-subtitle">Dynamically show, hide, enable, disable, or require fields and categories based on tag selections on the Entry form.</p>
+
+            <!-- ====== What Are Conditional Rules ====== -->
+            <h2 id="what-are-rules">What Are Conditional Rules?</h2>
+            <p>Conditional rules let you customize the Entry form based on what a user selects. For example, you can require a "Finish" category only when the Material is "Stainless Steel," or hide a "Welding Type" category when the Process is "CNC Machining."</p>
+            <p>Rules are evaluated in real time as users select and deselect tags. The form adapts instantly without needing to save or reload.</p>
+            <p>Open the rules editor from <strong>Settings Hub &gt; Conditional Rules</strong>, the Entry page toolbar <strong>Rules</strong> button, or via the Command Palette (<kbd>Ctrl</kbd>+<kbd>K</kbd>).</p>
+
+            <!-- ====== Rule Structure ====== -->
+            <h2 id="rule-structure">Rule Structure</h2>
+            <p>Each rule follows a four-part pattern:</p>
+            <p><strong>When</strong> [Category] <strong>is</strong> [Tag] <strong>then</strong> [Action] <strong>on</strong> [Target]</p>
+
+            <h3>Parts of a rule</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Part</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>When (Category)</strong></td>
+                        <td>The trigger category that the rule watches</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Is (Tag)</strong></td>
+                        <td>The specific tag value that activates the rule</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Then (Action)</strong></td>
+                        <td>What happens when the condition is met: Hide, Show, Disable, Enable, or Require</td>
+                    </tr>
+                    <tr>
+                        <td><strong>On (Target)</strong></td>
+                        <td>The category or field affected by the action</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- ====== Available Actions ====== -->
+            <h2 id="actions">Rule Actions</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Effect</th>
+                        <th>Use Case</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Hide</strong></td>
+                        <td>Removes the target from the Entry form entirely</td>
+                        <td>Hide "Welding Type" when the process is CNC Machining</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Show</strong></td>
+                        <td>Makes a previously hidden target visible</td>
+                        <td>Show "Coating" category only when Material is Metal</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Disable</strong></td>
+                        <td>Grays out the target so it cannot be edited</td>
+                        <td>Disable "Machine" selection when the job is outsourced</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Enable</strong></td>
+                        <td>Re-enables a previously disabled target</td>
+                        <td>Enable "Operator" field only when a machine is selected</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Require</strong></td>
+                        <td>Makes the target mandatory &mdash; entry cannot be saved without a value</td>
+                        <td>Require "Finish" when Material is Stainless Steel</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- ====== Examples ====== -->
+            <h2 id="examples">Practical Examples</h2>
+
+            <h3>Example 1: Material-based finish requirement</h3>
+            <p><strong>When</strong> Material <strong>is</strong> Stainless Steel <strong>then</strong> Require <strong>on</strong> Finish</p>
+            <p>This ensures operators always specify a finish type (e.g., #4 Brushed, Mirror Polish, Bead Blast) when working with stainless steel. Without this rule, forgetting the finish can lead to costly rework.</p>
+
+            <h3>Example 2: Hiding irrelevant categories</h3>
+            <p><strong>When</strong> Process <strong>is</strong> CNC Machining <strong>then</strong> Hide <strong>on</strong> Welding Type</p>
+            <p>CNC jobs do not involve welding, so hiding the Welding Type category keeps the form clean and prevents confusion.</p>
+
+            <h3>Example 3: Conditional field visibility</h3>
+            <p><strong>When</strong> Priority <strong>is</strong> Rush <strong>then</strong> Require <strong>on</strong> Due Date</p>
+            <p>Rush orders must have a due date. Regular orders can optionally have one. This rule enforces the policy.</p>
+
+            <!-- ====== Always Required ====== -->
+            <h2 id="always-required">Always Required Rules</h2>
+            <p>You can create a special rule that makes a category or field required <em>regardless</em> of any tag selection. This is useful for fields that should never be empty:</p>
+            <ul>
+                <li><strong>Always require Priority</strong> &mdash; Every entry must have a priority level</li>
+                <li><strong>Always require Material</strong> &mdash; Every entry must specify a material</li>
+                <li><strong>Always require Customer Name</strong> &mdash; Every entry must have a customer assigned</li>
+            </ul>
+            <p>In the rules editor, select <strong>ALWAYS: REQUIRED</strong> as the condition type to create an unconditional requirement.</p>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                The "ALWAYS: REQUIRED" rule type is separate from the "Required" checkbox on custom fields. Custom field requirements apply to the field itself, while conditional rules can make entire <em>categories</em> required.
+            </div>
+
+            <!-- ====== Setting Up Rules ====== -->
+            <h2 id="setup">Setting Up Rules</h2>
+            <ol class="help-steps">
+                <li><strong>Open the rules editor</strong> &mdash; From Settings Hub &gt; Conditional Rules, the Entry page toolbar Rules button, or <kbd>Ctrl</kbd>+<kbd>K</kbd> &rarr; "Conditional Rules".</li>
+                <li><strong>Select the trigger category and tag</strong> &mdash; Choose the "When" and "Is" parts of the rule from the dropdowns.</li>
+                <li><strong>Choose the action</strong> &mdash; Select Hide, Show, Disable, Enable, or Require.</li>
+                <li><strong>Select the target</strong> &mdash; Choose which category or field the action applies to.</li>
+                <li><strong>Click Add</strong> &mdash; The rule appears in the list below.</li>
+                <li><strong>Save</strong> &mdash; Rules take effect immediately on the Entry form.</li>
+            </ol>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Start with a few essential rules and add more over time as you discover which combinations matter for your shop. Too many rules can make the form confusing. Focus on rules that prevent real quality issues.
+            </div>
+
+            <!-- ====== Rule Evaluation ====== -->
+            <h2 id="evaluation">How Rules Are Evaluated</h2>
+            <ul>
+                <li><strong>Real-time</strong> &mdash; Rules fire immediately when tags are selected or deselected. No save or refresh needed.</li>
+                <li><strong>Multiple rules</strong> &mdash; If multiple rules affect the same target, the most restrictive action wins. For example, if one rule hides a category and another shows it, hide wins.</li>
+                <li><strong>Rule priority</strong> &mdash; Require &gt; Hide &gt; Disable &gt; Show &gt; Enable. More restrictive actions take precedence.</li>
+                <li><strong>No cascading</strong> &mdash; Rules do not chain. A rule that hides Category B does not trigger rules that watch Category B's tags.</li>
+            </ul>
+
+            <div class="help-warning">
+                <strong>Warning</strong>
+                Avoid circular rules (e.g., Category A requires Category B, and Category B hides Category A). While GlyphFex will not crash, the behavior may be confusing for users. Keep your rule logic simple and one-directional.
+            </div>
+        </main>
+
+        <!-- Table of Contents -->
+        <aside class="help-toc" id="helpToc">
+            <h3>On this page</h3>
+            <ul><!-- populated by help.js --></ul>
+        </aside>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="nav-logo">
+                        <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                            <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                            <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="logo-text">GlyphFex</span>
+                    </a>
+                    <p class="footer-tagline">One source of truth from quote to completion.</p>
+                </div>
+                <div class="footer-links"><h4>Product</h4><a href="../features.html">Features</a><a href="../index.html#pricing">Pricing</a><a href="../download.html">Download</a></div>
+                <div class="footer-links"><h4>Resources</h4><a href="index.html">Help Center</a><a href="getting-started.html">Getting Started</a><a href="reference.html">Reference</a></div>
+                <div class="footer-links"><h4>Legal</h4><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Terms of Service</a><a href="../eula.html">EULA</a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 GlyphFex. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="help.js"></script>
+</body>
+</html>

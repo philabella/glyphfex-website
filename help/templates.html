@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entry Templates &mdash; GlyphFex Help</title>
+    <meta name="description" content="Create entry templates in GlyphFex with pre-filled tags, fields, auto-numbering format tokens, and pipeline association for quotes and work orders.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="workflows.html">Workflows</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="calendar.html">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="templates.html">Templates</a>
+                <a href="validation.html">Validation</a>
+                <a href="rules.html">Conditional Rules</a>
+                <a href="notifications.html">Notifications</a>
+                <a href="backup-recovery.html">Backup &amp; Recovery</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <a href="sql-server-setup.html">SQL Server Setup</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Entry Templates</h1>
+            <p class="help-subtitle">Pre-fill entry forms for common job types with templates. Includes auto-numbering, pipeline association, and default tags and fields.</p>
+
+            <!-- ====== What Are Templates ====== -->
+            <h2 id="what-are-templates">What Are Templates?</h2>
+            <p>Entry templates let you define a reusable set of default values for new entries. Instead of filling in the same tags, fields, and settings for every new quote or work order, select a template and the form populates instantly.</p>
+            <p>Open the template editor from <strong>Settings Hub &gt; Templates</strong> or via the Command Palette (<kbd>Ctrl</kbd>+<kbd>K</kbd>).</p>
+
+            <h3>What templates can pre-fill</h3>
+            <ul>
+                <li><strong>Reference ID format</strong> &mdash; With auto-numbering tokens (see below)</li>
+                <li><strong>Default tags</strong> &mdash; Pre-select tags across any category</li>
+                <li><strong>Default field values</strong> &mdash; Pre-fill built-in and custom field values</li>
+                <li><strong>Default pipeline status</strong> &mdash; Set which pipeline stage the entry starts in</li>
+                <li><strong>Pipeline association</strong> &mdash; Link the template to a specific pipeline</li>
+                <li><strong>Validation pattern</strong> &mdash; Associate a specific validation pattern with the template</li>
+            </ul>
+
+            <!-- ====== Creating Templates ====== -->
+            <h2 id="creating-templates">Creating a Template</h2>
+            <ol class="help-steps">
+                <li><strong>Open the template editor</strong> &mdash; Go to <strong>Settings Hub &gt; Templates</strong>.</li>
+                <li><strong>Enter a template name</strong> &mdash; Choose a descriptive name (e.g., "Standard Quote", "Rush Work Order", "Warranty Repair").</li>
+                <li><strong>Set the reference format</strong> &mdash; Enter a format string with tokens for auto-numbering (e.g., <code>Q-{YEAR}-{SEQ:3}</code>).</li>
+                <li><strong>Select default tags</strong> &mdash; Choose tags from each category that should be pre-selected.</li>
+                <li><strong>Fill default field values</strong> &mdash; Set values for built-in and custom fields.</li>
+                <li><strong>Choose a pipeline</strong> (optional) &mdash; If your project has multiple pipelines, select which one this template targets.</li>
+                <li><strong>Save</strong> &mdash; The template appears as a card in the template list. Click any card to edit it.</li>
+            </ol>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                You can also create a template by capturing from an existing entry. Open an entry that represents a typical job, then use the template editor to save its current tags and fields as a new template.
+            </div>
+
+            <!-- ====== Auto-Numbering ====== -->
+            <h2 id="auto-numbering">Auto-Numbering with Format Tokens</h2>
+            <p>Templates can automatically generate sequential reference numbers using format tokens in the Reference ID field. When you create a new entry from a template, GlyphFex replaces tokens with the appropriate values.</p>
+
+            <h3>Available tokens</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Token</th>
+                        <th>Description</th>
+                        <th>Example Output</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>{YEAR}</code></td>
+                        <td>Current 4-digit year</td>
+                        <td>2026</td>
+                    </tr>
+                    <tr>
+                        <td><code>{YY}</code></td>
+                        <td>Current 2-digit year</td>
+                        <td>26</td>
+                    </tr>
+                    <tr>
+                        <td><code>{MONTH}</code></td>
+                        <td>Current 2-digit month</td>
+                        <td>03</td>
+                    </tr>
+                    <tr>
+                        <td><code>{DAY}</code></td>
+                        <td>Current 2-digit day</td>
+                        <td>22</td>
+                    </tr>
+                    <tr>
+                        <td><code>{SEQ:N}</code></td>
+                        <td>Auto-incrementing sequence number, zero-padded to N digits</td>
+                        <td>{SEQ:3} &rarr; 001, 002, 003...</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>How sequencing works</h3>
+            <p>GlyphFex scans all existing entries in the project to find the highest matching reference number for the format pattern, then increments by one. This means:</p>
+            <ul>
+                <li>If the last quote is <code>Q-2026-042</code>, the next one will be <code>Q-2026-043</code></li>
+                <li>Sequences are scoped to the format pattern, so quotes and work orders number independently</li>
+                <li>Deleted entries do not affect the sequence &mdash; numbers are never reused</li>
+            </ul>
+
+            <h3>Example formats</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Template</th>
+                        <th>Format</th>
+                        <th>Generated Ref ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Standard Quote</td>
+                        <td><code>Q-{YEAR}-{SEQ:3}</code></td>
+                        <td>Q-2026-001</td>
+                    </tr>
+                    <tr>
+                        <td>Work Order</td>
+                        <td><code>WO-{YEAR}-{SEQ:4}</code></td>
+                        <td>WO-2026-0001</td>
+                    </tr>
+                    <tr>
+                        <td>Rush Order</td>
+                        <td><code>R-{YY}{MONTH}-{SEQ:3}</code></td>
+                        <td>R-2603-001</td>
+                    </tr>
+                    <tr>
+                        <td>NCR Report</td>
+                        <td><code>NCR-{YEAR}-{MONTH}-{SEQ:2}</code></td>
+                        <td>NCR-2026-03-01</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                The token reference panel in the template editor shows all available tokens with live examples. You can expand it by clicking the "Token reference" link below the format field.
+            </div>
+
+            <!-- ====== Pipeline Association ====== -->
+            <h2 id="pipeline-association">Template-to-Pipeline Association</h2>
+            <p>In projects with multiple pipelines, each template can be linked to a specific pipeline. When a user selects that template, the entry is automatically assigned to the correct pipeline.</p>
+
+            <h3>How it works</h3>
+            <ul>
+                <li>In the template editor, select a pipeline from the <strong>Pipeline</strong> dropdown</li>
+                <li>When the template is applied to a new entry, the pipeline selector on the Entry page is set automatically</li>
+                <li>The status dropdown shows only stages from the associated pipeline</li>
+                <li>If no pipeline is selected, the template works with whatever pipeline the user chooses</li>
+            </ul>
+
+            <h3>Practical example</h3>
+            <p>A shop might have:</p>
+            <ul>
+                <li><strong>"Standard Quote"</strong> template &rarr; linked to the <strong>Quoting Pipeline</strong> (Estimating &rarr; Quote Sent &rarr; Awaiting Approval &rarr; Won/Lost)</li>
+                <li><strong>"Work Order"</strong> template &rarr; linked to the <strong>Production Pipeline</strong> (Engineering &rarr; Fabrication &rarr; QC &rarr; Shipping &rarr; Closed)</li>
+                <li><strong>"Warranty Repair"</strong> template &rarr; linked to the <strong>Repair Pipeline</strong> (Received &rarr; Inspection &rarr; Repair &rarr; Testing &rarr; Return)</li>
+            </ul>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Combining template-to-pipeline association with auto-numbering means creating a new job is as simple as selecting a template. The reference number, pipeline, tags, and fields are all set automatically.
+            </div>
+
+            <!-- ====== Quotes vs Work Orders ====== -->
+            <h2 id="quotes-vs-orders">Using Templates for Quotes vs Work Orders</h2>
+            <p>Most shops benefit from having separate templates for quotes and work orders:</p>
+
+            <h3>Quote templates</h3>
+            <ul>
+                <li>Format: <code>Q-{YEAR}-{SEQ:3}</code> or similar</li>
+                <li>Pipeline: quoting pipeline with stages like Estimating, Quote Sent, Awaiting Approval</li>
+                <li>Default tags: relevant material and process categories pre-selected</li>
+                <li>Fields: customer name, quantity, and unit price enabled</li>
+            </ul>
+
+            <h3>Work order templates</h3>
+            <ul>
+                <li>Format: <code>WO-{YEAR}-{SEQ:4}</code> or similar</li>
+                <li>Pipeline: production pipeline with stages like Engineering, Fabrication, QC, Shipping</li>
+                <li>Default tags: may differ from quotes (e.g., specific machine assignments)</li>
+                <li>Fields: PO number, due date, and material specification emphasized</li>
+            </ul>
+
+            <p>When a quote is won, use the <a href="workflows.html#quote-to-order">Convert Quote to Order</a> feature to automatically create a work order from the quote. If a work order template with auto-numbering exists for the production pipeline, the new order gets a properly formatted reference number.</p>
+
+            <!-- ====== Editing Templates ====== -->
+            <h2 id="editing-templates">Editing and Managing Templates</h2>
+            <ul>
+                <li><strong>Edit</strong> &mdash; Click any template card in the editor to load its values into the form for editing</li>
+                <li><strong>Delete</strong> &mdash; Remove templates you no longer need. Existing entries created from deleted templates are not affected.</li>
+                <li><strong>Validation compatibility</strong> &mdash; The template editor shows whether the template's format is compatible with the project's active validation patterns. A warning appears if they conflict.</li>
+            </ul>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                Templates are stored per-project. If you have multiple GlyphFex projects, each one has its own set of templates.
+            </div>
+        </main>
+
+        <!-- Table of Contents -->
+        <aside class="help-toc" id="helpToc">
+            <h3>On this page</h3>
+            <ul><!-- populated by help.js --></ul>
+        </aside>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="nav-logo">
+                        <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                            <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                            <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="logo-text">GlyphFex</span>
+                    </a>
+                    <p class="footer-tagline">One source of truth from quote to completion.</p>
+                </div>
+                <div class="footer-links"><h4>Product</h4><a href="../features.html">Features</a><a href="../index.html#pricing">Pricing</a><a href="../download.html">Download</a></div>
+                <div class="footer-links"><h4>Resources</h4><a href="index.html">Help Center</a><a href="getting-started.html">Getting Started</a><a href="reference.html">Reference</a></div>
+                <div class="footer-links"><h4>Legal</h4><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Terms of Service</a><a href="../eula.html">EULA</a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 GlyphFex. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="help.js"></script>
+</body>
+</html>

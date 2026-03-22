@@ -12,6 +12,8 @@
       { "id": "first-entry", "title": "Creating Your First Entry", "keywords": "new entry ref ID save create first" },
       { "id": "getting-started-checklist", "title": "Getting Started Checklist", "keywords": "checklist categories pipeline fields entries dashboard" },
       { "id": "trial", "title": "Trial Mode", "keywords": "trial free 50 entries limit license no credit card" },
+      { "id": "profile-calendar", "title": "Setting Your Name & Business Calendar", "keywords": "profile name signature company calendar work days holidays SLA" },
+      { "id": "page-overview", "title": "Overview of Each Page", "keywords": "pages dashboard analytics calendar shop floor display board entry overview" },
       { "id": "next-steps", "title": "Next Steps", "keywords": "learn more explore features" }
     ]
   },
@@ -185,6 +187,82 @@
       { "id": "csv-import", "title": "CSV Import Wizard", "keywords": "import CSV wizard column mapping duplicate Ctrl+I" },
       { "id": "pdf-guides", "title": "Built-In PDF Guides", "keywords": "guide getting started process feature overview disaster recovery help F1" },
       { "id": "timesheet", "title": "Timesheet Reports", "keywords": "timesheet time report worker hours PDF" }
+    ]
+  },
+  {
+    "page": "workflows.html",
+    "title": "Workflows",
+    "sections": [
+      { "id": "quote-to-order", "title": "Quote-to-Order Lifecycle", "keywords": "quote order convert lifecycle pipeline advance stages production" },
+      { "id": "shop-floor-kiosk", "title": "Shop Floor Kiosk Usage", "keywords": "shop floor kiosk clock in out advance note touch operator" },
+      { "id": "using-dashboard", "title": "Using the Dashboard", "keywords": "dashboard card table timeline pipeline bar filter search view" },
+      { "id": "exporting-data", "title": "Exporting Data", "keywords": "export CSV Excel PDF QuickBooks job traveler ZIP" },
+      { "id": "multi-user-setup", "title": "Multi-User Setup", "keywords": "multi-user SQL Server shared team migrate roles" },
+      { "id": "daily-routine", "title": "Suggested Daily Routine", "keywords": "daily routine morning check process update review" }
+    ]
+  },
+  {
+    "page": "templates.html",
+    "title": "Entry Templates",
+    "sections": [
+      { "id": "what-are-templates", "title": "What Are Templates?", "keywords": "template pre-fill reusable default values entry form" },
+      { "id": "creating-templates", "title": "Creating a Template", "keywords": "create template name tags fields pipeline save" },
+      { "id": "auto-numbering", "title": "Auto-Numbering with Format Tokens", "keywords": "auto number format token YEAR SEQ MONTH DAY sequence reference ID" },
+      { "id": "pipeline-association", "title": "Template-to-Pipeline Association", "keywords": "pipeline association template link quote work order production" },
+      { "id": "quotes-vs-orders", "title": "Using Templates for Quotes vs Work Orders", "keywords": "quote template work order separate format numbering" },
+      { "id": "editing-templates", "title": "Editing and Managing Templates", "keywords": "edit delete manage template validation compatibility" }
+    ]
+  },
+  {
+    "page": "validation.html",
+    "title": "Input Validation",
+    "sections": [
+      { "id": "why-validation", "title": "Why Validation Matters", "keywords": "validation consistency format reference ID numbering" },
+      { "id": "built-in-patterns", "title": "Built-In Patterns", "keywords": "built-in pattern quote order purchase serial Q-XXXXX PO-XXXXXX" },
+      { "id": "custom-patterns", "title": "Custom Regex Patterns", "keywords": "custom regex pattern WO work order job number create" },
+      { "id": "template-validation", "title": "Template-Specific Validation", "keywords": "template validation specific pattern compatibility format" },
+      { "id": "real-time-feedback", "title": "How Validation Works in Practice", "keywords": "real-time feedback green red border checkmark save block" },
+      { "id": "preventing-bad-data", "title": "How Validation Prevents Bad Data", "keywords": "prevent bad data duplicate required fields auto-numbering quality" }
+    ]
+  },
+  {
+    "page": "rules.html",
+    "title": "Conditional Rules",
+    "sections": [
+      { "id": "what-are-rules", "title": "What Are Conditional Rules?", "keywords": "conditional rules dynamic form hide show require enable disable" },
+      { "id": "rule-structure", "title": "Rule Structure", "keywords": "when is then on category tag action target structure" },
+      { "id": "actions", "title": "Rule Actions", "keywords": "hide show disable enable require action effect" },
+      { "id": "examples", "title": "Practical Examples", "keywords": "example material stainless finish CNC welding priority rush due date" },
+      { "id": "always-required", "title": "Always Required Rules", "keywords": "always required unconditional mandatory priority material customer" },
+      { "id": "setup", "title": "Setting Up Rules", "keywords": "setup create add save rules editor dialog toolbar" },
+      { "id": "evaluation", "title": "How Rules Are Evaluated", "keywords": "evaluate real-time multiple priority restrictive cascade" }
+    ]
+  },
+  {
+    "page": "notifications.html",
+    "title": "Notifications",
+    "sections": [
+      { "id": "overview", "title": "Notification Overview", "keywords": "notification alert bell badge system types" },
+      { "id": "due-date-reminders", "title": "Due Date Reminders", "keywords": "due date reminder overdue due soon threshold amber red badge" },
+      { "id": "stale-alerts", "title": "Stale Entry Alerts", "keywords": "stale entry alert stuck idle stage threshold notification" },
+      { "id": "expired-quotes", "title": "Expired Quote Warnings", "keywords": "expired quote warning validity date passed alert badge" },
+      { "id": "configuration", "title": "Configuring Notifications", "keywords": "configure settings hub enable interval threshold digest stale expired" },
+      { "id": "daily-digest", "title": "Daily Digest", "keywords": "daily digest startup summary overdue stale expired morning" },
+      { "id": "notification-bell", "title": "Notification Bell", "keywords": "bell icon badge count click navigate resolve" }
+    ]
+  },
+  {
+    "page": "backup-recovery.html",
+    "title": "Backup & Recovery",
+    "sections": [
+      { "id": "one-click-backup", "title": "One-Click Backup Database", "keywords": "backup one-click file menu database SQLite SQL Server bak" },
+      { "id": "automatic-backups", "title": "Automatic Safety Backups", "keywords": "automatic safety backup migration reset timestamped bak" },
+      { "id": "save-as", "title": "Save As (Project Copy)", "keywords": "save as copy duplicate project snapshot Ctrl+Shift+S" },
+      { "id": "sql-server-backup", "title": "SQL Server Backup", "keywords": "SQL Server backup SSMS BACKUP DATABASE agent automated nightly" },
+      { "id": "restoring", "title": "Restoring from Backup", "keywords": "restore backup recover SQLite SQL Server SSMS replace overwrite" },
+      { "id": "zip-export", "title": "Export Full Project (ZIP)", "keywords": "ZIP export full project attachments archive transfer Ctrl+Shift+E" },
+      { "id": "disaster-recovery", "title": "Disaster Recovery Guide (PDF)", "keywords": "disaster recovery guide PDF IT admin strategy procedure" },
+      { "id": "best-practices", "title": "Backup Best Practices", "keywords": "best practices daily off-site test retain document schedule" }
     ]
   },
   {

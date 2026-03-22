@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflows &mdash; GlyphFex Help</title>
+    <meta name="description" content="Daily workflows in GlyphFex: quote-to-order lifecycle, Shop Floor kiosk usage, Dashboard views, exporting data, and multi-user setup.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="workflows.html">Workflows</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="calendar.html">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="templates.html">Templates</a>
+                <a href="validation.html">Validation</a>
+                <a href="rules.html">Conditional Rules</a>
+                <a href="notifications.html">Notifications</a>
+                <a href="backup-recovery.html">Backup &amp; Recovery</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <a href="sql-server-setup.html">SQL Server Setup</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Workflows</h1>
+            <p class="help-subtitle">Common daily workflows in GlyphFex: from quoting jobs to shipping orders, using the Shop Floor kiosk, and exporting data.</p>
+
+            <!-- ====== Quote-to-Order Lifecycle ====== -->
+            <h2 id="quote-to-order">Quote-to-Order Lifecycle</h2>
+            <p>A typical job in a manufacturing shop starts as a quote and, if won, converts into a production order. GlyphFex supports this entire lifecycle with dedicated features.</p>
+
+            <h3>Creating a quote</h3>
+            <ol class="help-steps">
+                <li><strong>Create a new entry</strong> &mdash; Press <kbd>Ctrl</kbd>+<kbd>1</kbd> and select a quote template (e.g., "Standard Quote"). The template pre-fills tags, fields, and assigns the quoting pipeline.</li>
+                <li><strong>Fill in details</strong> &mdash; Enter the customer name, quantities, pricing, and any specifications. Tag with material, process, and other relevant categories.</li>
+                <li><strong>Set pipeline status</strong> &mdash; The entry starts in the first quoting stage (e.g., "Estimating"). Advance through stages as the quote progresses: Estimating, Quote Sent, Awaiting Approval.</li>
+                <li><strong>Quote validity</strong> &mdash; If the stage is marked as a quoting stage, GlyphFex automatically sets the <code>quote_valid_until</code> field based on your configured default validity period.</li>
+            </ol>
+
+            <h3>Advancing through the pipeline</h3>
+            <p>As work progresses, change the entry's status to the next pipeline stage. You can do this from:</p>
+            <ul>
+                <li><strong>Entry page</strong> &mdash; Select the new status from the pipeline dropdown</li>
+                <li><strong>Dashboard</strong> &mdash; Right-click an entry card and choose <strong>Change Status</strong></li>
+                <li><strong>Shop Floor</strong> &mdash; Tap the <strong>Advance</strong> button on the entry card</li>
+                <li><strong>Entry Detail Window</strong> &mdash; Change status from the Pipeline section</li>
+            </ul>
+            <p>Every transition is timestamped and recorded in the audit trail.</p>
+
+            <h3>Converting a quote to an order</h3>
+            <p>When a customer accepts a quote, convert it to a production order:</p>
+            <ol class="help-steps">
+                <li><strong>Open the quote</strong> &mdash; Double-click the entry on the Dashboard or open it from the Entry Detail Window.</li>
+                <li><strong>Click "Convert to Order"</strong> &mdash; Available in the Entry Detail Window toolbar, the Dashboard context menu, or as a button on Dashboard cards.</li>
+                <li><strong>Review the new order</strong> &mdash; GlyphFex creates a new entry pre-filled with the quote's customer, PO, tags, fields, and materials. The pipeline is set to the first production stage.</li>
+                <li><strong>Source quote closes automatically</strong> &mdash; The original quote is moved to its first completed stage. A parent/child link connects the quote and order for traceability.</li>
+            </ol>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                If a template with auto-numbering is associated with the target pipeline, the new order gets a properly formatted reference number automatically (e.g., <code>WO-2026-042</code>).
+            </div>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                The "Convert to Order" button is hidden for entries that are already in a completed stage, since completed jobs cannot be converted.
+            </div>
+
+            <!-- ====== Shop Floor Kiosk ====== -->
+            <h2 id="shop-floor-kiosk">Shop Floor Kiosk Usage</h2>
+            <p>The Shop Floor page (<kbd>Ctrl</kbd>+<kbd>5</kbd>) is designed for operators on the production floor. It uses large buttons and touch-friendly controls so workers can update job status without a mouse and keyboard.</p>
+
+            <h3>Clock in / Clock out</h3>
+            <ol class="help-steps">
+                <li><strong>Clock In</strong> &mdash; Tap the clock icon on an entry card to start tracking time on that job. The card shows a running timer with the current worker's name.</li>
+                <li><strong>Work on the job</strong> &mdash; Time is tracked automatically while you are clocked in.</li>
+                <li><strong>Clock Out</strong> &mdash; Tap the clock icon again to stop tracking. The time record is saved to the entry's labor history.</li>
+            </ol>
+            <p>A live clock in the header shows the current time. Time records can be viewed and exported from the <strong>Timesheet</strong> dialog (accessible from the Tools menu).</p>
+
+            <h3>Advancing stages</h3>
+            <p>Each entry card on the Shop Floor has an <strong>Advance</strong> button. Tapping it moves the entry to the next pipeline stage. A floating undo panel appears briefly in case you need to revert.</p>
+
+            <h3>Adding notes</h3>
+            <p>Tap the note icon on an entry card to add a quick shop note (up to 2,000 characters). Notes are recorded in the audit trail with a timestamp and the current user's name.</p>
+
+            <h3>Multi-pipeline grouping</h3>
+            <p>If your project has multiple pipelines, the Shop Floor groups entries by pipeline with collapsible headers. Use the pipeline filter at the top to show all pipelines or focus on one at a time.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                For dedicated shop floor terminals, enable <strong>Kiosk Mode</strong> on the user's account. This restricts navigation to only the Shop Floor and Display Board pages, preventing accidental configuration changes.
+            </div>
+
+            <!-- ====== Using the Dashboard ====== -->
+            <h2 id="using-dashboard">Using the Dashboard</h2>
+            <p>The Dashboard (<kbd>Ctrl</kbd>+<kbd>2</kbd>) is the main view for managing all entries. It offers three view modes:</p>
+
+            <h3>Card view</h3>
+            <p>The default view. Each entry appears as a card showing the reference number, customer, status badge, due date, priority, and smart description. Cards are arranged in a responsive grid.</p>
+
+            <h3>Table view</h3>
+            <p>A spreadsheet-style DataGrid with sortable columns. Best for bulk operations and when you need to see many entries at once. Supports multi-select for bulk status changes, archiving, and deletion.</p>
+
+            <h3>Timeline view</h3>
+            <p>Shows entries on a chronological timeline grouped by day. Useful for seeing recent activity and understanding the flow of work over time.</p>
+
+            <h3>Pipeline bar</h3>
+            <p>The colored pipeline bar at the top of the Dashboard shows entry counts per stage. Click any segment to filter the view to that stage. Toggle the "Active Only" link to exclude completed stages from the bar.</p>
+
+            <h3>Filters and search</h3>
+            <ul>
+                <li><strong>Text search</strong> &mdash; Type in the search box to filter entries by reference ID, customer, comments, or any field value</li>
+                <li><strong>Status filter</strong> &mdash; Filter by pipeline stage</li>
+                <li><strong>Tag filters</strong> &mdash; Filter by any tag category</li>
+                <li><strong>Date range</strong> &mdash; Filter by creation date or due date</li>
+                <li><strong>Saved filters</strong> &mdash; Save frequently used filter combinations for one-click access</li>
+            </ul>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Your view mode, pipeline bar visibility, and legend toggle state persist between sessions. GlyphFex remembers your preferences.
+            </div>
+
+            <!-- ====== Exporting Data ====== -->
+            <h2 id="exporting-data">Exporting Data</h2>
+            <p>GlyphFex supports multiple export formats to share data with other systems or stakeholders:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Format</th>
+                        <th>Shortcut</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>CSV</strong></td>
+                        <td><kbd>Ctrl</kbd>+<kbd>E</kbd></td>
+                        <td>Comma-separated values for spreadsheet import</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Excel</strong></td>
+                        <td>&mdash;</td>
+                        <td>Native .xlsx format with formatting</td>
+                    </tr>
+                    <tr>
+                        <td><strong>QuickBooks</strong></td>
+                        <td>&mdash;</td>
+                        <td>Invoice format for accounting integration</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PDF Entry</strong></td>
+                        <td>&mdash;</td>
+                        <td>Professional single-entry report with all fields, timeline, and part history</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PDF Dashboard Report</strong></td>
+                        <td>&mdash;</td>
+                        <td>Summary report with KPI cards and filtered entry list</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Job Traveler</strong></td>
+                        <td>&mdash;</td>
+                        <td>Printable shop document with QR code for scanning</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Full Project ZIP</strong></td>
+                        <td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>E</kbd></td>
+                        <td>Complete project export with all attachments (Admin only)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Exports are available from the Dashboard toolbar, Entry Detail Window, or via the Command Palette (<kbd>Ctrl</kbd>+<kbd>K</kbd>).</p>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                Export access depends on your role. Viewers cannot export CSV, Excel, or QuickBooks formats. The Full Project ZIP is restricted to Admins only.
+            </div>
+
+            <!-- ====== Multi-User Setup ====== -->
+            <h2 id="multi-user-setup">Multi-User Setup</h2>
+            <p>When your team needs to share a single project, migrate from a local SQLite file to SQL Server Express. This enables concurrent access over your local network.</p>
+
+            <h3>Quick setup overview</h3>
+            <ol class="help-steps">
+                <li><strong>Install SQL Server Express</strong> on one machine on your network. See the <a href="sql-server-setup.html">SQL Server Setup Guide</a> for step-by-step instructions.</li>
+                <li><strong>Create a shared project</strong> &mdash; From <strong>File &gt; New Project</strong>, choose <strong>Shared</strong> and enter your SQL Server connection details.</li>
+                <li><strong>Migrate existing data</strong> (optional) &mdash; If you already have a local project, use <strong>File &gt; Migrate to SQL Server</strong> to copy all entries, settings, and attachments.</li>
+                <li><strong>Distribute the connection file</strong> &mdash; Share the <code>.glyphfex-server</code> file with team members. They open it with GlyphFex to connect.</li>
+                <li><strong>Assign roles</strong> &mdash; From Settings Hub &gt; User Management, assign each team member a role: Admin, Editor, or Viewer.</li>
+            </ol>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                For detailed role descriptions and permissions, see the <a href="team.html">Multi-User &amp; Team</a> help page.
+            </div>
+
+            <!-- ====== Daily Routine ====== -->
+            <h2 id="daily-routine">Suggested Daily Routine</h2>
+            <p>A typical day using GlyphFex might follow this pattern:</p>
+            <ol>
+                <li><strong>Morning check</strong> &mdash; Open the Dashboard to review overdue entries, stale alerts, and expired quotes. The notification bell shows a daily digest if enabled.</li>
+                <li><strong>Process new quotes</strong> &mdash; Create entries for incoming RFQs using quote templates. Assign to the estimating stage.</li>
+                <li><strong>Update active jobs</strong> &mdash; Advance entries through pipeline stages as work completes. Use the Shop Floor page or Dashboard quick-status for speed.</li>
+                <li><strong>Review analytics</strong> &mdash; Check the Analytics page for SLA compliance, bottlenecks, and KPI trends.</li>
+                <li><strong>End of day</strong> &mdash; Ensure all time tracking is clocked out. Review the Calendar/Gantt for the upcoming week's workload.</li>
+            </ol>
+        </main>
+
+        <!-- Table of Contents -->
+        <aside class="help-toc" id="helpToc">
+            <h3>On this page</h3>
+            <ul><!-- populated by help.js --></ul>
+        </aside>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="nav-logo">
+                        <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                            <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                            <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="logo-text">GlyphFex</span>
+                    </a>
+                    <p class="footer-tagline">One source of truth from quote to completion.</p>
+                </div>
+                <div class="footer-links"><h4>Product</h4><a href="../features.html">Features</a><a href="../index.html#pricing">Pricing</a><a href="../download.html">Download</a></div>
+                <div class="footer-links"><h4>Resources</h4><a href="index.html">Help Center</a><a href="getting-started.html">Getting Started</a><a href="reference.html">Reference</a></div>
+                <div class="footer-links"><h4>Legal</h4><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Terms of Service</a><a href="../eula.html">EULA</a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 GlyphFex. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="help.js"></script>
+</body>
+</html>

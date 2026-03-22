@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Validation &mdash; GlyphFex Help</title>
+    <meta name="description" content="Configure input validation in GlyphFex: built-in patterns, custom regex, template-specific validation, and how validation prevents bad data entry.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="workflows.html">Workflows</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="calendar.html">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="templates.html">Templates</a>
+                <a href="validation.html">Validation</a>
+                <a href="rules.html">Conditional Rules</a>
+                <a href="notifications.html">Notifications</a>
+                <a href="backup-recovery.html">Backup &amp; Recovery</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <a href="sql-server-setup.html">SQL Server Setup</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Input Validation</h1>
+            <p class="help-subtitle">Enforce consistent formatting for Reference IDs and other fields with built-in and custom validation patterns.</p>
+
+            <!-- ====== Why Validation Matters ====== -->
+            <h2 id="why-validation">Why Validation Matters</h2>
+            <p>Without validation, reference numbers drift into inconsistent formats over time: <code>WO2026001</code>, <code>WO-2026-1</code>, <code>wo-2026-001</code>. This makes searching, sorting, and reporting unreliable.</p>
+            <p>GlyphFex validation ensures every Reference ID matches your shop's format before it can be saved. Users get real-time feedback as they type, preventing bad data before it enters the system.</p>
+
+            <!-- ====== Built-In Patterns ====== -->
+            <h2 id="built-in-patterns">Built-In Patterns</h2>
+            <p>GlyphFex includes several pre-built validation patterns that cover common manufacturing numbering schemes. Open the validation editor from <strong>Settings Hub &gt; Validation</strong>.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pattern Name</th>
+                        <th>Format</th>
+                        <th>Example</th>
+                        <th>Regex</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Quote</strong></td>
+                        <td><code>Q-XXXXX</code></td>
+                        <td>Q-00142</td>
+                        <td><code>Q-\d{5}</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Order</strong></td>
+                        <td><code>O-XXXXX</code></td>
+                        <td>O-08734</td>
+                        <td><code>O-\d{5}</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Purchase Order</strong></td>
+                        <td><code>PO-XXXXXX</code></td>
+                        <td>PO-204519</td>
+                        <td><code>PO-\d{6}</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Serial Number</strong></td>
+                        <td><code>SN-XXXXXXX</code></td>
+                        <td>SN-0012847</td>
+                        <td><code>SN-\d{7}</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Select any built-in pattern and click <strong>Apply</strong> to activate it. You can have multiple active patterns &mdash; an entry is valid if it matches <em>any</em> active pattern.</p>
+
+            <!-- ====== Custom Patterns ====== -->
+            <h2 id="custom-patterns">Custom Regex Patterns</h2>
+            <p>If the built-in patterns do not match your numbering scheme, create a custom pattern using regular expressions (regex).</p>
+
+            <h3>Creating a custom pattern</h3>
+            <ol class="help-steps">
+                <li><strong>Open Settings Hub &gt; Validation</strong></li>
+                <li><strong>Click "Add Custom Pattern"</strong></li>
+                <li><strong>Enter a name</strong> &mdash; A descriptive label for the pattern (e.g., "Work Order - Year Prefix")</li>
+                <li><strong>Enter the regex</strong> &mdash; The regular expression that valid IDs must match</li>
+                <li><strong>Test it</strong> &mdash; Type sample IDs in the test field to verify the pattern works</li>
+                <li><strong>Save</strong></li>
+            </ol>
+
+            <h3>Common custom patterns</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Use Case</th>
+                        <th>Regex</th>
+                        <th>Example Match</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Work Order with year</td>
+                        <td><code>WO-\d{4}-\d{3}</code></td>
+                        <td>WO-2026-001</td>
+                    </tr>
+                    <tr>
+                        <td>Job number (4-6 digits)</td>
+                        <td><code>J\d{4,6}</code></td>
+                        <td>J12345</td>
+                    </tr>
+                    <tr>
+                        <td>Alpha prefix + digits</td>
+                        <td><code>[A-Z]{2,3}-\d{4,}</code></td>
+                        <td>FAB-0042</td>
+                    </tr>
+                    <tr>
+                        <td>Free-form (min length)</td>
+                        <td><code>.{3,}</code></td>
+                        <td>Any 3+ characters</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                You can edit and delete custom patterns at any time from the validation dialog. Changes apply to new entries only &mdash; existing entries with non-matching IDs are not retroactively blocked.
+            </div>
+
+            <!-- ====== Template Validation ====== -->
+            <h2 id="template-validation">Template-Specific Validation</h2>
+            <p>Each <a href="templates.html">entry template</a> can be associated with a specific validation pattern. This is useful when different job types have different numbering formats:</p>
+            <ul>
+                <li>Quote template uses <code>Q-\d{4}-\d{3}</code></li>
+                <li>Work order template uses <code>WO-\d{4}-\d{4}</code></li>
+                <li>NCR template uses <code>NCR-\d{4}-\d{2}-\d{2}</code></li>
+            </ul>
+
+            <p>When a user selects a template on the Entry page, the validation switches to that template's pattern. The validation editor shows which templates use each pattern.</p>
+
+            <h3>Compatibility check</h3>
+            <p>The template editor displays a compatibility indicator showing whether the template's auto-numbering format matches its associated validation pattern. If they conflict (e.g., the format generates <code>Q-2026-001</code> but the pattern expects <code>Q-00001</code>), a warning appears so you can fix the mismatch.</p>
+
+            <!-- ====== Real-Time Feedback ====== -->
+            <h2 id="real-time-feedback">How Validation Works in Practice</h2>
+            <p>When a user types a Reference ID on the Entry page, GlyphFex validates the input in real time:</p>
+            <ul>
+                <li><strong>Green border + checkmark icon</strong> &mdash; The ID matches an active validation pattern</li>
+                <li><strong>Red border</strong> &mdash; The ID does not match any active pattern</li>
+                <li><strong>No border change</strong> &mdash; No validation patterns are active (any format is accepted)</li>
+            </ul>
+            <p>If the user attempts to save an entry with an invalid Reference ID, the save is blocked and the field is highlighted with an error message showing the expected format.</p>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                Validation is optional. If you do not configure any patterns, GlyphFex accepts any Reference ID format. You can enable validation at any time without affecting existing entries.
+            </div>
+
+            <!-- ====== Preventing Bad Data ====== -->
+            <h2 id="preventing-bad-data">How Validation Prevents Bad Data</h2>
+            <p>Validation works together with other GlyphFex features to maintain data quality:</p>
+            <ul>
+                <li><strong>Duplicate detection</strong> &mdash; GlyphFex checks for duplicate Reference IDs on save, regardless of validation patterns</li>
+                <li><strong>Required fields</strong> &mdash; Custom fields marked as "required" must have a value before saving</li>
+                <li><strong>Required categories</strong> &mdash; Categories made required via <a href="rules.html">conditional rules</a> must have a tag selected</li>
+                <li><strong>Auto-numbering</strong> &mdash; Templates with auto-numbering bypass manual entry entirely, eliminating format errors</li>
+            </ul>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                For the strictest data quality, combine validation patterns with auto-numbering templates. Users select a template and the reference number is generated automatically in the correct format &mdash; no manual typing required.
+            </div>
+        </main>
+
+        <!-- Table of Contents -->
+        <aside class="help-toc" id="helpToc">
+            <h3>On this page</h3>
+            <ul><!-- populated by help.js --></ul>
+        </aside>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="nav-logo">
+                        <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                            <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                            <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="logo-text">GlyphFex</span>
+                    </a>
+                    <p class="footer-tagline">One source of truth from quote to completion.</p>
+                </div>
+                <div class="footer-links"><h4>Product</h4><a href="../features.html">Features</a><a href="../index.html#pricing">Pricing</a><a href="../download.html">Download</a></div>
+                <div class="footer-links"><h4>Resources</h4><a href="index.html">Help Center</a><a href="getting-started.html">Getting Started</a><a href="reference.html">Reference</a></div>
+                <div class="footer-links"><h4>Legal</h4><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Terms of Service</a><a href="../eula.html">EULA</a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 GlyphFex. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="help.js"></script>
+</body>
+</html>

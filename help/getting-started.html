@@ -56,8 +56,9 @@
             <nav class="sidebar-nav">
                 <a href="index.html">Help Home</a>
                 <span class="sidebar-nav-label">Learn</span>
-                <a href="getting-started.html" class="active">Getting Started</a>
+                <a href="getting-started.html">Getting Started</a>
                 <a href="entries.html">Entries &amp; Forms</a>
+                <a href="workflows.html">Workflows</a>
                 <a href="pipeline.html">Pipeline &amp; Workflow</a>
                 <span class="sidebar-nav-label">Views</span>
                 <a href="dashboard.html">Dashboard</a>
@@ -66,6 +67,11 @@
                 <a href="shop-floor.html">Shop Floor &amp; Display</a>
                 <span class="sidebar-nav-label">Setup</span>
                 <a href="configuration.html">Configuration</a>
+                <a href="templates.html">Templates</a>
+                <a href="validation.html">Validation</a>
+                <a href="rules.html">Conditional Rules</a>
+                <a href="notifications.html">Notifications</a>
+                <a href="backup-recovery.html">Backup &amp; Recovery</a>
                 <a href="team.html">Multi-User &amp; Team</a>
                 <a href="sql-server-setup.html">SQL Server Setup</a>
                 <span class="sidebar-nav-label">More</span>
@@ -301,6 +307,70 @@
                 <strong>Note</strong>
                 To unlock unlimited entries, go to <strong>Settings &gt; License</strong> and enter your license key. You can purchase a license from the <a href="../index.html#pricing">pricing page</a>. Your existing data and configuration are preserved &mdash; activating a license simply removes the entry cap.
             </div>
+
+            <!-- ====== Profile & Calendar ====== -->
+            <h2 id="profile-calendar">Setting Your Name &amp; Business Calendar</h2>
+            <p>Before creating entries, take a moment to configure your identity and work schedule in the Settings Hub (<kbd>Ctrl</kbd>+<kbd>,</kbd>):</p>
+            <h3>Profile (name &amp; signature)</h3>
+            <ul>
+                <li><strong>User signature</strong> &mdash; Auto-detected from your Windows username. This name appears on audit trail entries, clock in/out records, and PDF exports. Override it with a custom display name if needed.</li>
+                <li><strong>Company name</strong> &mdash; Your organization's name, shown in PDF reports and the Entry Detail header.</li>
+                <li><strong>Project name &amp; description</strong> &mdash; Optional but recommended for multi-project setups.</li>
+            </ul>
+            <h3>Business calendar</h3>
+            <ul>
+                <li><strong>Work days</strong> &mdash; Check or uncheck each day of the week to define your standard schedule. SLA calculations only count checked days.</li>
+                <li><strong>Holidays</strong> &mdash; Load a regional template (US Federal, Canadian, UK, etc.) and add custom plant closures. Holidays are excluded from SLA and business-day counts.</li>
+            </ul>
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Setting up the business calendar early ensures SLA tracking is accurate from day one. You can always adjust it later from the <a href="configuration.html#calendar-settings">Calendar panel</a> in the Settings Hub.
+            </div>
+
+            <!-- ====== Page Overview ====== -->
+            <h2 id="page-overview">Overview of Each Page</h2>
+            <p>GlyphFex has six main pages, accessible from the left sidebar or with keyboard shortcuts:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Page</th>
+                        <th>Shortcut</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>New Entry</strong></td>
+                        <td><kbd>Ctrl</kbd>+<kbd>1</kbd></td>
+                        <td>Create and edit entries with tags, fields, and pipeline status</td>
+                    </tr>
+                    <tr>
+                        <td><strong><a href="dashboard.html">Dashboard</a></strong></td>
+                        <td><kbd>Ctrl</kbd>+<kbd>2</kbd></td>
+                        <td>View all entries in card, table, or timeline view. Filter, search, and manage jobs.</td>
+                    </tr>
+                    <tr>
+                        <td><strong><a href="analytics.html">Analytics</a></strong></td>
+                        <td><kbd>Ctrl</kbd>+<kbd>3</kbd></td>
+                        <td>KPI cards, SLA compliance, stage bottleneck analysis, tag usage charts, and custom date ranges.</td>
+                    </tr>
+                    <tr>
+                        <td><strong><a href="calendar.html">Calendar</a></strong></td>
+                        <td><kbd>Ctrl</kbd>+<kbd>4</kbd></td>
+                        <td>Gantt chart showing all entries on a timeline with stage bars, capacity load, and group-by.</td>
+                    </tr>
+                    <tr>
+                        <td><strong><a href="shop-floor.html">Shop Floor</a></strong></td>
+                        <td><kbd>Ctrl</kbd>+<kbd>5</kbd></td>
+                        <td>Kiosk interface for production workers. Large buttons for clock in/out, stage advance, and notes.</td>
+                    </tr>
+                    <tr>
+                        <td><strong><a href="shop-floor.html#display-board">Display Board</a></strong></td>
+                        <td><kbd>Ctrl</kbd>+<kbd>6</kbd></td>
+                        <td>TV-ready andon board with 3 auto-rotating views. Mount on a shop floor monitor for real-time visibility.</td>
+                    </tr>
+                </tbody>
+            </table>
 
             <!-- ====== Next Steps ====== -->
             <h2 id="next-steps">Next Steps</h2>

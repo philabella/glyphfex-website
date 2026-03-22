@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications &mdash; GlyphFex Help</title>
+    <meta name="description" content="Configure notifications in GlyphFex: due date reminders, stale entry alerts, expired quote warnings, and daily digest settings.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="workflows.html">Workflows</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="calendar.html">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="templates.html">Templates</a>
+                <a href="validation.html">Validation</a>
+                <a href="rules.html">Conditional Rules</a>
+                <a href="notifications.html">Notifications</a>
+                <a href="backup-recovery.html">Backup &amp; Recovery</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <a href="sql-server-setup.html">SQL Server Setup</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Notifications</h1>
+            <p class="help-subtitle">Stay on top of deadlines with due date reminders, stale entry alerts, and expired quote warnings.</p>
+
+            <!-- ====== Overview ====== -->
+            <h2 id="overview">Notification Overview</h2>
+            <p>GlyphFex's notification system monitors your entries in the background and alerts you when attention is needed. Notifications appear as a bell icon with a badge count in the application toolbar.</p>
+            <p>There are three types of notifications:</p>
+            <ul>
+                <li><strong>Due date reminders</strong> &mdash; Alerts for entries approaching or past their due date</li>
+                <li><strong>Stale entry alerts</strong> &mdash; Warnings for entries stuck in a stage too long</li>
+                <li><strong>Expired quote warnings</strong> &mdash; Alerts for quotes whose validity period has passed</li>
+            </ul>
+
+            <!-- ====== Due Date Reminders ====== -->
+            <h2 id="due-date-reminders">Due Date Reminders</h2>
+            <p>When entries have a due date set (via the built-in Due Date field), GlyphFex tracks how close they are to the deadline:</p>
+            <ul>
+                <li><strong>Due soon</strong> &mdash; Entries within your configured threshold (e.g., 3 days) are flagged as "due soon" with an amber badge</li>
+                <li><strong>Overdue</strong> &mdash; Entries past their due date are flagged with a red badge</li>
+                <li><strong>Completed entries excluded</strong> &mdash; Entries in a completed pipeline stage do not trigger due date alerts</li>
+            </ul>
+            <p>Due date badges appear on Dashboard cards, in the Entry Detail Window, and on the Calendar/Gantt chart.</p>
+
+            <h3>Configuring the threshold</h3>
+            <p>In <strong>Settings Hub &gt; Notifications</strong>, set the <strong>Due-soon threshold</strong> to control how many days before a due date triggers the "due soon" alert. The default is 3 days.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Set the threshold based on your shop's lead time. If you need 5 days notice to expedite a late job, set the threshold to 5. For fast-turnaround shops, 1-2 days may be enough.
+            </div>
+
+            <!-- ====== Stale Entry Alerts ====== -->
+            <h2 id="stale-alerts">Stale Entry Alerts</h2>
+            <p>Stale entry alerts catch jobs that have fallen through the cracks. An entry becomes "stale" when it has been in the same pipeline stage for longer than that stage's configured threshold.</p>
+
+            <h3>Prerequisites</h3>
+            <ul>
+                <li><strong>Stale After Days</strong> must be set per stage in the <a href="pipeline.html#stale-detection">pipeline editor</a></li>
+                <li><strong>Stale notifications</strong> must be enabled in Settings Hub &gt; Notifications</li>
+            </ul>
+
+            <h3>How it works</h3>
+            <ol>
+                <li>GlyphFex checks each active entry's time in its current stage</li>
+                <li>If the time exceeds the stage's Stale After Days threshold, the entry is flagged</li>
+                <li>A notification appears in the bell menu with the entry's reference number and how long it has been stale</li>
+                <li>The Dashboard shows a "STALE" badge on affected entry cards</li>
+                <li>The Dashboard analytics cards display a count of currently stale entries</li>
+            </ol>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                Completed stages never trigger stale alerts. Only active stages with a Stale After Days value configured will generate notifications.
+            </div>
+
+            <!-- ====== Expired Quote Warnings ====== -->
+            <h2 id="expired-quotes">Expired Quote Warnings</h2>
+            <p>When an entry is in a <a href="pipeline.html#quote-lifecycle">quoting stage</a>, GlyphFex sets a <code>quote_valid_until</code> date based on your configured Default Quote Validity Days. When this date passes, the entry is flagged as having an expired quote.</p>
+
+            <h3>What triggers the alert</h3>
+            <ul>
+                <li>The entry is in an active (non-completed) stage</li>
+                <li>The <code>quote_valid_until</code> date has passed</li>
+                <li>Expired quote notifications are enabled in Settings</li>
+            </ul>
+
+            <h3>Where expired quotes appear</h3>
+            <ul>
+                <li><strong>Notification bell</strong> &mdash; Listed with the quote reference and expiry date</li>
+                <li><strong>Dashboard cards</strong> &mdash; An "EXPIRED QUOTE" badge appears on the card</li>
+                <li><strong>Dashboard analytics</strong> &mdash; A dedicated card shows the count of expired quotes</li>
+            </ul>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Expired quote alerts are most useful for follow-up. When you see an expired quote, decide whether to re-quote, close the quote as lost, or contact the customer. Leaving expired quotes open clutters your pipeline.
+            </div>
+
+            <!-- ====== Settings Hub Configuration ====== -->
+            <h2 id="configuration">Configuring Notifications</h2>
+            <p>All notification settings are managed from <strong>Settings Hub &gt; Notifications</strong> (or <kbd>Ctrl</kbd>+<kbd>,</kbd> then select Notifications).</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Setting</th>
+                        <th>Description</th>
+                        <th>Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Enable notifications</strong></td>
+                        <td>Master toggle for the entire notification system</td>
+                        <td>On</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Check interval</strong></td>
+                        <td>How often GlyphFex scans for notification conditions</td>
+                        <td>Every few minutes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Due-soon threshold</strong></td>
+                        <td>Days before due date that triggers "due soon" alert</td>
+                        <td>3 days</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Daily digest on startup</strong></td>
+                        <td>Show a summary of all pending notifications when opening a project</td>
+                        <td>Off</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stale entry notifications</strong></td>
+                        <td>Enable alerts for entries exceeding their stage's stale threshold</td>
+                        <td>On</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Expired quote notifications</strong></td>
+                        <td>Enable alerts for quotes past their validity date</td>
+                        <td>On</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- ====== Daily Digest ====== -->
+            <h2 id="daily-digest">Daily Digest</h2>
+            <p>When <strong>Daily digest on startup</strong> is enabled, GlyphFex shows a summary dialog each time you open a project. The digest includes:</p>
+            <ul>
+                <li>Number of overdue entries</li>
+                <li>Number of entries due soon</li>
+                <li>Number of stale entries</li>
+                <li>Number of expired quotes</li>
+            </ul>
+            <p>The digest is a quick way to prioritize your day without needing to check the Dashboard analytics or notification bell.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                The daily digest works well for managers who open GlyphFex first thing in the morning. For operators who stay in the app all day, the notification bell provides real-time updates instead.
+            </div>
+
+            <!-- ====== Notification Bell ====== -->
+            <h2 id="notification-bell">Notification Bell</h2>
+            <p>The notification bell icon in the application toolbar shows a badge count of pending notifications. Click it to see the list of all current alerts.</p>
+            <ul>
+                <li>Each notification shows the entry reference, type (due/stale/expired), and relevant details</li>
+                <li>Click a notification to navigate directly to the affected entry</li>
+                <li>Notifications update automatically based on the configured check interval</li>
+                <li>Resolving the underlying condition (e.g., advancing a stale entry) clears the notification on the next scan</li>
+            </ul>
+        </main>
+
+        <!-- Table of Contents -->
+        <aside class="help-toc" id="helpToc">
+            <h3>On this page</h3>
+            <ul><!-- populated by help.js --></ul>
+        </aside>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="nav-logo">
+                        <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                            <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                            <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="logo-text">GlyphFex</span>
+                    </a>
+                    <p class="footer-tagline">One source of truth from quote to completion.</p>
+                </div>
+                <div class="footer-links"><h4>Product</h4><a href="../features.html">Features</a><a href="../index.html#pricing">Pricing</a><a href="../download.html">Download</a></div>
+                <div class="footer-links"><h4>Resources</h4><a href="index.html">Help Center</a><a href="getting-started.html">Getting Started</a><a href="reference.html">Reference</a></div>
+                <div class="footer-links"><h4>Legal</h4><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Terms of Service</a><a href="../eula.html">EULA</a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 GlyphFex. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="help.js"></script>
+</body>
+</html>
