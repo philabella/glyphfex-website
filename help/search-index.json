@@ -143,6 +143,7 @@
       { "id": "migration", "title": "Migrating from Solo", "keywords": "migrate solo team SQLite SQL Server wizard" },
       { "id": "roles", "title": "Roles & Permissions", "keywords": "role admin editor viewer permission access" },
       { "id": "kiosk-mode", "title": "Kiosk Mode", "keywords": "kiosk mode locked shop floor display board terminal restricted operator touch screen" },
+      { "id": "task-assignment", "title": "Task Assignment", "keywords": "assign task work my jobs my work workload distribution assigned to team member operator queue" },
       { "id": "user-management", "title": "User Management", "keywords": "manage users add role activate deactivate" },
       { "id": "admin-requests", "title": "Admin Requests", "keywords": "admin request editor approve reject change configuration badge notification" },
       { "id": "concurrency", "title": "Concurrency Handling", "keywords": "concurrency conflict optimistic locking revision edit" },
