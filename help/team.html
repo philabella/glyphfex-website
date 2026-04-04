@@ -63,6 +63,7 @@
                 <a href="analytics.html">Analytics</a>
                 <a href="calendar.html">Calendar &amp; Gantt</a>
                 <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <a href="work-bins.html">Work Bins</a>
                 <span class="sidebar-nav-label">Setup</span>
                 <a href="configuration.html">Configuration</a>
                 <a href="templates.html">Templates</a>
@@ -292,6 +293,60 @@
             <div class="help-note">
                 <strong>Note</strong>
                 User accounts are created automatically when someone first opens the shared project. You do not need to pre-create accounts. Just share the <code>.glyphfex-server</code> file and manage roles after they connect.
+            </div>
+
+            <!-- ====== Worker Management ====== -->
+            <h2 id="worker-management">Worker Management</h2>
+            <p>Manage your shop floor workforce from <strong>Tools &gt; Manage Workers</strong>. The Worker Management dialog provides a compact view of all workers, grouped by department using collapsible Expanders.</p>
+
+            <h3>Worker list</h3>
+            <p>Each worker is displayed as a single-line row showing their name, initials, department, job title, and a lock icon indicating whether a Workstation PIN has been configured. Workers are grouped by department, with each department in a collapsible section.</p>
+
+            <h3>Adding or editing a worker</h3>
+            <p>Click <strong>Add Worker</strong> or select an existing worker and click <strong>Edit</strong>. The worker form includes:</p>
+            <ul>
+                <li><strong>Name</strong> &mdash; The worker's full name, displayed on Work Bins, Shop Floor, and assignment lists</li>
+                <li><strong>Initials</strong> &mdash; A short code (e.g., "JD") used on compact displays where full names do not fit</li>
+                <li><strong>Department</strong> &mdash; Used for grouping in the By Worker view on the Team Board and in the Manage Workers dialog</li>
+                <li><strong>Job title</strong> &mdash; The worker's role or position (e.g., "Welder", "CNC Operator", "Inspector")</li>
+                <li><strong>Phone</strong> &mdash; Contact phone number (optional)</li>
+                <li><strong>Email</strong> &mdash; Contact email address (optional)</li>
+                <li><strong>Workstation PIN</strong> &mdash; A 4&ndash;6 digit numeric PIN for Shop Floor workstation login. See <a href="#pin-login-security">PIN Login Security</a> below.</li>
+                <li><strong>Notes</strong> &mdash; Free-text notes about the worker (e.g., certifications, shift schedule, special skills)</li>
+            </ul>
+
+            <h3>Where workers appear</h3>
+            <p>Workers you add here appear throughout GlyphFex:</p>
+            <ul>
+                <li><strong>Assignment pickers</strong> &mdash; Dropdown lists when assigning entries to workers</li>
+                <li><strong>Pipeline stage configuration</strong> &mdash; The "Assigned Users" list on each pipeline stage in <a href="configuration.html#stage-assignment">Edit Pipeline</a></li>
+                <li><strong>Work Bins</strong> &mdash; The <a href="work-bins.html#by-worker">By Worker</a> view on the Team Board</li>
+                <li><strong>Shop Floor</strong> &mdash; PIN login and job assignment on the <a href="shop-floor.html#workstation-terminal">Workstation Terminal</a></li>
+            </ul>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Workers are separate from user accounts. In a multi-user (SQL Server) setup, user accounts control login and permissions, while worker records control shop floor identity and stage assignments. A single person may have both a user account (for office use) and a worker record (for shop floor use).
+            </div>
+
+            <!-- ====== PIN Login Security ====== -->
+            <h2 id="pin-login-security">PIN Login Security</h2>
+            <p>PINs provide a quick authentication method for shared shop floor workstations where switching Windows user accounts is impractical.</p>
+
+            <h3>Configuring PINs</h3>
+            <ul>
+                <li><strong>4&ndash;6 digit numeric PIN</strong> &mdash; Each worker can have a unique PIN set by an administrator</li>
+                <li><strong>Set via Manage Workers</strong> &mdash; Go to <strong>Tools &gt; Manage Workers</strong>, select a worker, click Edit, and enter a value in the <strong>Workstation PIN</strong> field</li>
+                <li><strong>Lock icon</strong> &mdash; In the worker list, a lock icon appears next to workers who have a PIN configured, making it easy to see who is set up for workstation access</li>
+                <li><strong>Clear PIN</strong> &mdash; To remove a worker's PIN, open their record and click the <strong>Clear PIN</strong> button. The worker will no longer be able to log in at workstation terminals.</li>
+            </ul>
+
+            <h3>Where PINs are used</h3>
+            <p>PINs are used exclusively on the <a href="shop-floor.html#pin-login">Shop Floor workstation terminal</a>. Workers enter their PIN on the numeric keypad to identify themselves and access their job queue. PINs are not used for any other part of GlyphFex.</p>
+
+            <div class="help-warning">
+                <strong>Warning</strong>
+                PINs are designed for convenience on shop floor terminals, not for high-security scenarios. They identify which worker is at the terminal so that time tracking and stage advances are attributed correctly. For access control to sensitive data, use the role-based permissions system with Windows Authentication.
             </div>
 
             <!-- ====== Admin Requests ====== -->

@@ -15,7 +15,7 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="GlyphFex Features — 90+ Features Built for Real Shops">
+    <meta name="twitter:title" content="GlyphFex Features — 110+ Features Built for Real Shops">
     <meta name="twitter:description" content="Pipeline stages, audit trails, Gantt charts, shop floor kiosk, multi-user roles, analytics, and more. Built for real shop floors.">
 
     <!-- Favicon -->
@@ -81,8 +81,12 @@
                 <a href="#multiuser" class="features-nav-link">Multi-User</a>
                 <a href="#compliance" class="features-nav-link">Compliance</a>
                 <a href="#export" class="features-nav-link">Export</a>
+                <a href="#workbins" class="features-nav-link">Work Bins</a>
+                <a href="#workstation" class="features-nav-link">Workstation</a>
+                <a href="#workers" class="features-nav-link">Workers</a>
                 <a href="#materials" class="features-nav-link">Materials</a>
                 <a href="#config" class="features-nav-link">Configuration</a>
+                <a href="#performance" class="features-nav-link">Performance</a>
             </div>
         </div>
     </div>
@@ -662,6 +666,136 @@
                             </div>
                             <p class="placeholder-label">Screenshot: Industry template selection (setup wizard)</p>
                             <p class="placeholder-note">Capture: New project &gt; setup wizard showing 6 template options</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECTION 13: WORK BINS ============ -->
+    <section class="feature-section" id="workbins">
+        <div class="container">
+            <div class="feature-section-header">
+                <h2><span class="section-number">13</span>Work Bins</h2>
+                <p>Stage-based job routing. Workers see their queue, managers see the big picture. A pull-based system where jobs flow to the right people automatically.</p>
+            </div>
+            <div class="feature-layout">
+                <div class="feature-text">
+                    <ul class="feature-bullets">
+                        <li><strong>My Work Bin</strong> &mdash; personal queue sorted by priority with queue, rework, and hold lanes</li>
+                        <li><strong>Team Board</strong> &mdash; three views: By Stage, By Worker, and Workload distribution</li>
+                        <li><strong>Pipeline filter tabs</strong> &mdash; switch between pipelines to focus on specific workflows</li>
+                        <li><strong>Stage-based routing</strong> &mdash; pull system where jobs flow to workers assigned to each stage</li>
+                        <li><strong>Bulk assignment</strong> &mdash; managers can reassign jobs for exceptions and rebalancing</li>
+                        <li><strong>Side panel</strong> &mdash; entry detail + stage timeline without leaving the Work Bins view</li>
+                    </ul>
+                </div>
+                <div class="feature-media">
+                    <div class="screenshot-placeholder" data-capture="work-bins">
+                        <div class="placeholder-inner">
+                            <div class="placeholder-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            </div>
+                            <p class="placeholder-label">Screenshot: Work Bins with My Bin and Team Board views</p>
+                            <p class="placeholder-note">Capture: Work Bins page showing queue lanes and team board</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECTION 14: WORKSTATION TERMINAL ============ -->
+    <section class="feature-section" id="workstation">
+        <div class="container">
+            <div class="feature-section-header">
+                <h2><span class="section-number">14</span>Shop Floor Workstation</h2>
+                <p>PIN-secured terminals for shared shop floor PCs. One job, one focus, zero clutter. Workers log in with a PIN and see only what they need.</p>
+            </div>
+            <div class="feature-layout reversed">
+                <div class="feature-text">
+                    <ul class="feature-bullets">
+                        <li><strong>PIN login</strong> &mdash; numeric PIN for shared terminals, no Windows account needed</li>
+                        <li><strong>Single-job focused interface</strong> &mdash; one entry at a time, no distractions</li>
+                        <li><strong>Elapsed timer with SLA gauge</strong> &mdash; visual progress indicator showing time in current stage vs target</li>
+                        <li><strong>Tab system</strong> &mdash; Details, Notes, Documents, Quality, and History tabs for the active job</li>
+                        <li><strong>Break &amp; indirect time logging</strong> &mdash; track non-job time (breaks, setup, cleaning) separately</li>
+                        <li><strong>Navigation lock</strong> &mdash; workers can't leave the terminal view without logging out first</li>
+                    </ul>
+                </div>
+                <div class="feature-media">
+                    <div class="screenshot-placeholder" data-capture="workstation-terminal">
+                        <div class="placeholder-inner">
+                            <div class="placeholder-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            </div>
+                            <p class="placeholder-label">Screenshot: Workstation terminal with PIN login and single-job view</p>
+                            <p class="placeholder-note">Capture: Shop Floor Workstation page showing active job with timer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECTION 15: WORKER MANAGEMENT ============ -->
+    <section class="feature-section" id="workers">
+        <div class="container">
+            <div class="feature-section-header">
+                <h2><span class="section-number">15</span>Worker Management</h2>
+                <p>Manage your workforce with profiles, departments, and stage assignments. Configure which workers are qualified for which pipeline stages.</p>
+            </div>
+            <div class="feature-layout">
+                <div class="feature-text">
+                    <ul class="feature-bullets">
+                        <li><strong>Worker profiles</strong> &mdash; name, department, job title, phone, email, and PIN</li>
+                        <li><strong>Department grouping</strong> &mdash; organize workers by department for team board views</li>
+                        <li><strong>PIN indicators</strong> &mdash; see at a glance which workers have PINs configured for terminal login</li>
+                        <li><strong>Stage assignment</strong> &mdash; configure which pipeline stages each worker is qualified to work on</li>
+                    </ul>
+                </div>
+                <div class="feature-media">
+                    <div class="screenshot-placeholder" data-capture="worker-management">
+                        <div class="placeholder-inner">
+                            <div class="placeholder-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            </div>
+                            <p class="placeholder-label">Screenshot: Worker management dialog with profiles and stage assignments</p>
+                            <p class="placeholder-note">Capture: Tools &gt; Manage Workers showing worker list with departments</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECTION 16: PERFORMANCE ============ -->
+    <section class="feature-section" id="performance">
+        <div class="container">
+            <div class="feature-section-header">
+                <h2><span class="section-number">16</span>Performance &amp; Scale</h2>
+                <p>SQL-first architecture means queries return in milliseconds, not seconds. Tested with 100,000+ entries. Scales to 1,000,000+ historical entries &mdash; over 10 years of shop history.</p>
+            </div>
+            <div class="feature-layout reversed">
+                <div class="feature-text">
+                    <ul class="feature-bullets">
+                        <li><strong>SQL-first architecture</strong> &mdash; no full data loads. Filtering, sorting, and pagination happen in the database, not in memory</li>
+                        <li><strong>100,000+ entries tested</strong> &mdash; sub-second response times on all pages with real-world data volumes</li>
+                        <li><strong>1,000,000+ projected capacity</strong> &mdash; store over 10 years of shop history in a single file</li>
+                        <li><strong>Counts-first rendering</strong> &mdash; UI shows counts immediately, then lazy-loads card and table content</li>
+                        <li><strong>Background thread processing</strong> &mdash; heavy queries run off the UI thread so the app stays responsive</li>
+                        <li><strong>Brush caching &amp; pre-computed data</strong> &mdash; optimized rendering for shop floor displays and TV boards</li>
+                    </ul>
+                </div>
+                <div class="feature-media">
+                    <div class="screenshot-placeholder" data-capture="performance-scale">
+                        <div class="placeholder-inner">
+                            <div class="placeholder-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            </div>
+                            <p class="placeholder-label">Screenshot: Dashboard with 100K+ entries showing fast load times</p>
+                            <p class="placeholder-note">Capture: Dashboard page with large dataset, show pagination and KPIs</p>
                         </div>
                     </div>
                 </div>

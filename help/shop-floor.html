@@ -65,6 +65,7 @@
                 <a href="analytics.html">Analytics</a>
                 <a href="calendar.html">Calendar &amp; Gantt</a>
                 <a href="shop-floor.html" class="active">Shop Floor &amp; Display</a>
+                <a href="work-bins.html">Work Bins</a>
                 <span class="sidebar-nav-label">Setup</span>
                 <a href="configuration.html">Configuration</a>
                 <a href="templates.html">Templates</a>
@@ -87,151 +88,142 @@
         <!-- Content -->
         <main class="help-content">
             <h1>Shop Floor &amp; Display Board</h1>
-            <p class="help-subtitle">Touch-optimized kiosk interface for production workers and TV display for shop floor visibility. Navigate with <kbd>Ctrl</kbd>+<kbd>5</kbd> (Display Board) or <kbd>Ctrl</kbd>+<kbd>6</kbd> (Shop Floor).</p>
+            <p class="help-subtitle">Workstation terminal for production workers and TV display for shop floor visibility. Navigate with <kbd>Ctrl</kbd>+<kbd>5</kbd> (Display Board) or <kbd>Ctrl</kbd>+<kbd>6</kbd> (Shop Floor).</p>
 
-            <!-- ====== Shop Floor Kiosk ====== -->
-            <h2 id="shop-floor">Shop Floor Kiosk</h2>
-            <p>The Shop Floor page is a touch-optimized kiosk interface designed for use by production workers on the shop floor. It uses large buttons and simplified controls so workers can interact with the system using a touchscreen, tablet, or any input device &mdash; even with gloves on.</p>
+            <!-- ====== Workstation Terminal ====== -->
+            <h2 id="workstation-terminal">Workstation Terminal</h2>
+            <p>The Shop Floor page is a single-job focused workstation terminal designed for shared computers on the production floor. Inspired by Dynamics 365 Production Floor Execution, ProShop ERP, and Epicor Kinetic MES, it provides each worker with a focused view of their current job and a simple workflow for advancing through the pipeline.</p>
 
             <div class="help-screenshot">
                 <svg class="screenshot-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                <span class="screenshot-label">Shop Floor Kiosk</span>
-                <span class="screenshot-desc">Screenshot of the Shop Floor page showing large entry cards with Advance buttons, live clock, and stage sections</span>
+                <span class="screenshot-label">Workstation Terminal</span>
+                <span class="screenshot-desc">Screenshot of the Shop Floor workstation terminal showing the active job view with elapsed timer, SLA gauge, and action buttons</span>
             </div>
 
             <p>Key design principles:</p>
             <ul>
-                <li><strong>44px minimum touch targets</strong> &mdash; All buttons and interactive elements meet or exceed the 44px touch target guideline, ensuring reliable tap accuracy on touchscreens</li>
-                <li><strong>Search bar</strong> &mdash; Quickly find entries by reference number, customer, or keywords. Results update as you type.</li>
-                <li><strong>Pipeline filter</strong> &mdash; Filter entries by a specific pipeline when your project uses multiple pipelines</li>
-                <li><strong>Live clock</strong> &mdash; A large clock in the header displays the current time, updated every second. Uses your system's locale format for both time and date. Helps workers track shift times without needing to look away from the screen.</li>
-                <li><strong>Stage sections</strong> &mdash; Entries are organized by their current pipeline stage, with each stage shown as a section header. Workers can scan the page to find their jobs by looking under the relevant stage.</li>
+                <li><strong>Single-job focus</strong> &mdash; Shows one job at a time, eliminating distractions and keeping the worker focused on the task at hand</li>
+                <li><strong>PIN-based login</strong> &mdash; Workers log in with a numeric PIN on shared terminals, no keyboard or Windows account switching required</li>
+                <li><strong>Large touch targets</strong> &mdash; All buttons and interactive elements are sized for reliable touch input, even with gloves</li>
+                <li><strong>Locked interface</strong> &mdash; When logged in, navigation is restricted to prevent accidental access to configuration or other pages</li>
             </ul>
-
-            <div class="help-note">
-                <strong>Note</strong>
-                Each stage section displays a maximum of <strong>20 entry cards</strong> to keep the interface fast and responsive. If a stage contains more than 20 entries, a "Show more" link appears at the bottom of that section. This performance cap ensures the page loads quickly even with hundreds of active entries.
-            </div>
-
-            <p>At the bottom of the page, a <strong>floating pipeline navigation bar</strong> provides quick-jump buttons to each pipeline stage. Tap a stage name to scroll directly to that section &mdash; useful on a long page with many entries across multiple stages.</p>
 
             <div class="help-tip">
                 <strong>Tip</strong>
-                The Shop Floor page works best in full-screen mode (<kbd>F11</kbd> in most browsers or Windows key combinations). Set up a dedicated touchscreen PC on the shop floor, open GlyphFex, navigate to Shop Floor (<kbd>Ctrl</kbd>+<kbd>6</kbd>), and go full-screen for a kiosk-like experience that workers can use all day.
+                Set up a dedicated touchscreen PC at each workstation, open GlyphFex, navigate to Shop Floor (<kbd>Ctrl</kbd>+<kbd>6</kbd>), and go full-screen (<kbd>F11</kbd>). Workers log in with their PIN, pick a job, and start working.
             </div>
 
-            <!-- ====== Entry Cards ====== -->
-            <h2 id="entry-cards">Entry Cards</h2>
-            <p>Each entry on the Shop Floor page is displayed as a card with the essential information workers need at a glance:</p>
+            <!-- ====== PIN Login ====== -->
+            <h2 id="pin-login">PIN Login</h2>
+            <p>Workers log in to the workstation terminal using a 4&ndash;6 digit numeric PIN. This allows multiple workers to share a single computer without switching Windows user accounts.</p>
+
+            <h3>How it works</h3>
+            <ol class="help-steps">
+                <li>The Shop Floor page displays a PIN entry screen with a numeric keypad</li>
+                <li>The worker enters their PIN (4&ndash;6 digits)</li>
+                <li>GlyphFex identifies the worker and loads their assigned stages and active job</li>
+                <li>The worker is now logged in and can pick or continue a job</li>
+            </ol>
+
+            <h3>Setting up PINs</h3>
+            <p>PINs are configured by an administrator in <strong>Tools &gt; Manage Workers</strong>. Select a worker, click Edit, and enter a PIN in the <strong>Workstation PIN</strong> field. See <a href="team.html#pin-login-security">PIN Login Security</a> for more details.</p>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                If the current Windows username matches a configured worker, GlyphFex can auto-identify the worker without requiring PIN entry. This is useful for dedicated workstations assigned to a single person.
+            </div>
+
+            <!-- ====== Active Job View ====== -->
+            <h2 id="active-job">Active Job View</h2>
+            <p>Once logged in, the workstation terminal shows the worker's current active job with large, easy-to-read information:</p>
             <ul>
-                <li><strong>Reference number</strong> &mdash; The job's unique identifier, displayed prominently at the top of the card</li>
-                <li><strong>Customer name</strong> &mdash; Who the job is for</li>
-                <li><strong>PO number</strong> &mdash; The purchase order number, if available</li>
-                <li><strong>Priority badge</strong> &mdash; A colored badge indicating the entry's priority level (Rush, High, Normal, Low)</li>
-                <li><strong>Due date</strong> &mdash; When the job is due, with color coding (red for overdue, yellow for due soon, green for on track)</li>
-                <li><strong>Materials status</strong> &mdash; Shows whether materials are allocated and ready for the job</li>
+                <li><strong>Reference number</strong> &mdash; Displayed prominently at the top</li>
+                <li><strong>Stage badge</strong> &mdash; The current pipeline stage, color-coded to match the pipeline configuration</li>
+                <li><strong>Priority indicator</strong> &mdash; Visual priority level (Rush, High, Normal, Low)</li>
+                <li><strong>Elapsed timer</strong> &mdash; A large 36pt timer showing how long the worker has been on the current job, updated every second</li>
+                <li><strong>SLA gauge</strong> &mdash; A visual indicator showing how the job is tracking against its SLA target for the current stage</li>
+                <li><strong>Meta chips</strong> &mdash; Customer name, PO number, due date, and material status displayed as compact information chips</li>
+                <li><strong>Pipeline progress bar</strong> &mdash; Shows how far the entry has progressed through its pipeline, with the current stage highlighted</li>
             </ul>
-            <p>Each card provides two main action buttons:</p>
+
+            <!-- ====== Tab System ====== -->
+            <h2 id="tab-system">Tab System</h2>
+            <p>Below the active job header, a tab bar provides access to different aspects of the current entry without leaving the workstation terminal:</p>
             <table>
                 <thead>
                     <tr>
-                        <th>Button</th>
-                        <th>Action</th>
+                        <th>Tab</th>
+                        <th>Contents</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Advance</strong></td>
-                        <td>One-tap advancement to the next pipeline stage. This is the primary action for workers &mdash; when a job moves to the next step in production, a single tap records the stage change, updates the audit trail, and moves the card to the next stage section.</td>
+                        <td><strong>Details</strong></td>
+                        <td>Key fields, custom fields, and tags for the current job. Read-only view of the entry's specification data.</td>
                     </tr>
                     <tr>
-                        <td><strong>Menu</strong></td>
-                        <td>Opens a secondary menu with additional options:
-                            <ul>
-                                <li><strong>Quick Note</strong> &mdash; Add a note to the entry without opening the full detail window. Useful for recording issues, observations, or shift handoff notes.</li>
-                                <li><strong>View Details</strong> &mdash; Opens the full Entry Detail Window with all fields, attachments, audit trail, and linked entries.</li>
-                                <li><strong>Undo</strong> &mdash; Revert the most recent stage change if a mistake was made.</li>
-                            </ul>
-                        </td>
+                        <td><strong>Notes</strong></td>
+                        <td>Add timestamped notes that are appended to the entry's comments field. Useful for logging observations, issues, or shift handoff information without opening the full entry form.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Documents</strong></td>
+                        <td>List of file attachments associated with the entry. Click any attachment to open it in the default application (e.g., a PDF drawing opens in the PDF viewer).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quality</strong></td>
+                        <td>Report defects or NCR (Non-Conformance Report) issues with severity classification. Allows workers to flag quality problems directly from the workstation.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>History</strong></td>
+                        <td>Stage transitions timeline showing when the entry moved through each pipeline stage and who advanced it.</td>
                     </tr>
                 </tbody>
             </table>
 
-            <div class="help-tip">
-                <strong>Tip</strong>
-                Train workers to use the Advance button as they complete each stage of their work. This single-tap workflow means the system stays up to date with minimal effort &mdash; no navigating through menus or filling out forms. The audit trail records who advanced the entry and when.
-            </div>
-
-            <!-- ====== Time Tracking (Clock In/Out) ====== -->
-            <h2 id="time-tracking">Time Tracking (Clock In/Out)</h2>
-            <p>The Shop Floor page includes built-in time tracking so workers can log their hours against specific jobs directly from the kiosk interface.</p>
-
-            <div class="help-screenshot">
-                <svg class="screenshot-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                <span class="screenshot-label">Clock In/Out Buttons</span>
-                <span class="screenshot-desc">Screenshot of an entry card showing the green Clock In button and a card with the red Clock Out button</span>
-            </div>
-
-            <h3>Clocking In</h3>
-            <ol class="help-steps">
-                <li>Find the entry card for the job you are starting to work on</li>
-                <li>Tap the green <strong>Clock In</strong> button on the card</li>
-                <li>A time entry record is created with your username and the current timestamp as the start time</li>
-                <li>The card updates to show an active work session indicator</li>
-            </ol>
-
-            <h3>Clocking Out</h3>
-            <ol class="help-steps">
-                <li>When you finish working on the job, tap the red <strong>Clock Out</strong> button that replaced the Clock In button</li>
-                <li>A dialog prompts you to add optional notes about the work performed (e.g., "Completed welding on panel A" or "Waiting on hardware")</li>
-                <li>The time entry is completed with the end time recorded</li>
-            </ol>
-
-            <h3>Viewing Timesheet Reports</h3>
-            <p>Time entry data can be reviewed and exported through the Timesheet Report. Navigate to <strong>Tools &gt; Timesheet Report</strong> in the menu bar. The report allows you to:</p>
+            <!-- ====== Actions ====== -->
+            <h2 id="actions">Actions</h2>
+            <p>The workstation terminal provides a focused set of action buttons along the bottom of the screen:</p>
             <ul>
-                <li>Filter by date range and worker</li>
-                <li>See total hours per worker, per entry, and per day</li>
-                <li>Export the report to PDF for payroll or job costing purposes</li>
+                <li><strong>Pause / Resume</strong> &mdash; Pause the elapsed timer when stepping away from the job temporarily. Resume when returning. Paused time is not counted against the job duration.</li>
+                <li><strong>Flag Quality Issue</strong> &mdash; Opens the Quality tab and starts a defect report. The entry is flagged for supervisor review.</li>
+                <li><strong>Break</strong> &mdash; Log a break (lunch, meeting, cleanup, or other indirect activity). The break is recorded in the entry's comments with a timestamp, and the elapsed timer is paused automatically.</li>
+                <li><strong>Done</strong> &mdash; Advance the entry to the next pipeline stage. After tapping Done, an undo option appears briefly in case of accidental taps. The job is removed from the worker's queue and the Pick Job screen appears for the next job.</li>
             </ul>
 
-            <div class="help-warning">
-                <strong>Warning</strong>
-                If a worker forgets to clock out, the session remains open with no end time. Managers can review open sessions in the Timesheet Report and manually close them. Encourage workers to clock out before leaving for the day or switching to a different job.
+            <div class="help-tip">
+                <strong>Tip</strong>
+                The Done button is the primary workflow action. Train workers to tap Done as soon as they finish their stage of work. This keeps the pipeline moving and gives supervisors accurate visibility into job progress.
             </div>
 
-            <!-- ====== Multi-Pipeline Grouping ====== -->
-            <h2 id="multi-pipeline">Multi-Pipeline Grouping</h2>
-            <p>When your project uses multiple pipelines (e.g., one for production jobs and another for repair orders), the Shop Floor page adapts its layout to keep entries organized:</p>
+            <!-- ====== Job Queue ====== -->
+            <h2 id="job-queue">Job Queue</h2>
+            <p>When no job is active (or after completing a job), the workstation terminal shows a <strong>Pick Job</strong> button. Tapping it opens a job picker that lists all available entries at the worker's assigned stages, sorted by priority and due date.</p>
+            <p>The most urgent jobs appear at the top of the list. The worker selects a job, and it becomes their active job with the elapsed timer starting automatically.</p>
 
-            <h3>All Pipelines View</h3>
-            <p>When the pipeline filter is set to <strong>All Pipelines</strong>, the page displays pipeline headers with grouped stages underneath. Each pipeline gets its own section with the pipeline name as a header, and that pipeline's stages listed beneath it. This prevents confusion when different pipelines share similar stage names (e.g., both might have a "QC" stage).</p>
-
-            <h3>Single Pipeline View</h3>
-            <p>When you select a specific pipeline from the filter dropdown, only that pipeline's stages are shown. The pipeline header is removed since there is no ambiguity, and the layout is cleaner and more focused.</p>
+            <!-- ====== Lock Screen ====== -->
+            <h2 id="lock-screen">Lock Screen</h2>
+            <p>When a worker is logged in to the workstation terminal, the interface is locked down to prevent accidental navigation:</p>
+            <ul>
+                <li><strong>Sidebar navigation</strong> &mdash; Disabled. Workers cannot navigate to Dashboard, Analytics, or other pages.</li>
+                <li><strong>Keyboard shortcuts</strong> &mdash; Blocked. <kbd>Ctrl</kbd>+<kbd>1</kbd> through <kbd>Ctrl</kbd>+<kbd>7</kbd> and other navigation shortcuts are intercepted.</li>
+                <li><strong>Command Palette</strong> &mdash; Restricted to Shop Floor and Display Board commands only.</li>
+            </ul>
+            <p>To release the lock, the worker uses the <strong>Switch User</strong> button (returns to the PIN login screen) or the <strong>Lock Screen</strong> button (shows a locked screen that requires PIN re-entry).</p>
 
             <div class="help-note">
                 <strong>Note</strong>
-                Pipeline visibility respects role-based restrictions configured by your administrator. If certain pipelines are hidden from your role, they will not appear in the pipeline filter or on the Shop Floor page. This ensures workers only see the pipelines relevant to their area of responsibility.
+                The lock screen prevents workers from accidentally changing project settings or navigating away from the workstation view. It does not prevent an administrator from using the same machine &mdash; the admin can close and reopen GlyphFex to bypass the lock.
             </div>
 
-            <!-- ====== Floating Undo Panel ====== -->
-            <h2 id="undo-panel">Floating Undo Panel</h2>
-            <p>After advancing an entry to the next pipeline stage, a floating undo panel appears at the bottom of the screen. This provides a safety net in case the Advance button was tapped by mistake.</p>
-            <p>How the undo panel works:</p>
+            <!-- ====== Indirect Activities ====== -->
+            <h2 id="indirect-activities">Indirect Activities</h2>
+            <p>Not all time on the shop floor is spent on jobs. The workstation terminal supports logging indirect activities such as:</p>
             <ul>
-                <li>The panel appears immediately after a stage advance</li>
-                <li>It remains visible for <strong>6 seconds</strong>, then fades out over <strong>2 seconds</strong> (8 seconds total)</li>
-                <li>The panel shows which entry was advanced and which stage it was moved to</li>
-                <li>Click the <strong>Undo</strong> button to immediately revert the stage change</li>
-                <li>If you do nothing, the panel disappears and the advance stands</li>
+                <li><strong>Break</strong> &mdash; Lunch, rest breaks</li>
+                <li><strong>Meeting</strong> &mdash; Stand-ups, safety meetings, training sessions</li>
+                <li><strong>Cleanup</strong> &mdash; Workstation cleanup, end-of-shift housekeeping</li>
             </ul>
-            <p>Undo reverts both the pipeline stage and the audit trail entry. It is as if the advance never happened.</p>
-
-            <div class="help-tip">
-                <strong>Tip</strong>
-                The undo panel is designed for quick corrections on the shop floor. If you need to undo a stage change after the panel has disappeared, you can still use the <strong>Menu &gt; Undo</strong> option on the entry card, or open the Entry Detail Window and use the pipeline history to revert.
-            </div>
+            <p>Indirect activities are logged to the worker's timesheet with timestamps, providing a complete picture of how shop floor time is spent.</p>
 
             <!-- ====== Display Board ====== -->
             <h2 id="display-board">Display Board</h2>

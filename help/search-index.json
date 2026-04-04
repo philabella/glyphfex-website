@@ -99,13 +99,33 @@
     "page": "shop-floor.html",
     "title": "Shop Floor & Display Board",
     "sections": [
-      { "id": "shop-floor", "title": "Shop Floor Kiosk", "keywords": "shop floor kiosk touch large button worker production" },
-      { "id": "entry-cards", "title": "Entry Cards", "keywords": "card ref customer advance menu button note" },
-      { "id": "time-tracking", "title": "Time Tracking", "keywords": "clock in out time tracking labor timesheet" },
-      { "id": "multi-pipeline", "title": "Multi-Pipeline Grouping", "keywords": "multi pipeline group all pipelines filter" },
-      { "id": "undo-panel", "title": "Floating Undo Panel", "keywords": "undo revert advance stage panel" },
+      { "id": "workstation-terminal", "title": "Workstation Terminal", "keywords": "workstation terminal shop floor single job focused worker production MES dispatch" },
+      { "id": "pin-login", "title": "PIN Login", "keywords": "PIN login numeric keypad worker shared terminal authentication 4 digit" },
+      { "id": "active-job", "title": "Active Job View", "keywords": "active job elapsed timer SLA gauge pipeline progress bar stage badge" },
+      { "id": "tab-system", "title": "Tab System", "keywords": "details notes documents quality history tab" },
+      { "id": "actions", "title": "Actions", "keywords": "pause resume flag quality break done advance action button" },
+      { "id": "job-queue", "title": "Job Queue", "keywords": "pick job queue priority due date assigned stages" },
+      { "id": "lock-screen", "title": "Lock Screen", "keywords": "lock screen switch user restricted navigation blocked shortcuts" },
+      { "id": "indirect-activities", "title": "Indirect Activities", "keywords": "indirect activity break meeting cleanup time logging" },
       { "id": "display-board", "title": "Display Board", "keywords": "display board TV andon kanban KPI alerts wall mounted" },
       { "id": "display-board-refresh", "title": "Display Board Refresh", "keywords": "refresh auto 15 seconds display board" }
+    ]
+  },
+  {
+    "page": "work-bins.html",
+    "title": "Work Bins",
+    "sections": [
+      { "id": "what-is-work-bins", "title": "What is Work Bins?", "keywords": "work bins stage routing dispatch KDS kitchen display MES pull system" },
+      { "id": "my-work-bin", "title": "My Work Bin", "keywords": "my work bin personal queue now up next on hold rework later elapsed timer" },
+      { "id": "team-board", "title": "Team Board", "keywords": "team board supervisor manager workload overview" },
+      { "id": "by-stage", "title": "By Stage", "keywords": "by stage lanes entry count cards pipeline" },
+      { "id": "by-worker", "title": "By Worker", "keywords": "by worker department queue depth idle active load bar" },
+      { "id": "bottleneck-analysis", "title": "Workload (Bottleneck Analysis)", "keywords": "bottleneck analysis workload capacity entries workers per worker SLA status" },
+      { "id": "pipeline-filter", "title": "Pipeline Filter Tabs", "keywords": "pipeline filter tabs all fabrication service" },
+      { "id": "side-panel", "title": "Side Panel", "keywords": "side panel detail stage workers timeline advance hold" },
+      { "id": "stage-routing", "title": "Stage-Based Routing", "keywords": "stage routing pull system automatic assignment pipeline workers queue" },
+      { "id": "bulk-assignment", "title": "Bulk Assignment", "keywords": "bulk assignment select multiple assign worker override" },
+      { "id": "performance", "title": "Performance", "keywords": "performance SQL-first counts lazy loading 100K entries" }
     ]
   },
   {
@@ -129,6 +149,7 @@
       { "id": "material-inventory", "title": "Material Inventory", "keywords": "material inventory stock reorder point tracking" },
       { "id": "dark-mode", "title": "Dark Mode", "keywords": "dark mode theme light night windows system appearance color" },
       { "id": "holiday-calendar", "title": "Holiday Calendar", "keywords": "holiday calendar regional custom copy year" },
+      { "id": "stage-assignment", "title": "Stage Assignment", "keywords": "stage assignment who works where assigned users workers pipeline routing pull system work bins queue" },
       { "id": "backup", "title": "Backup Database", "keywords": "backup database one-click bak file rotating automatic disaster recovery restore" }
     ]
   },
@@ -144,6 +165,8 @@
       { "id": "roles", "title": "Roles & Permissions", "keywords": "role admin editor viewer permission access" },
       { "id": "kiosk-mode", "title": "Kiosk Mode", "keywords": "kiosk mode locked shop floor display board terminal restricted operator touch screen" },
       { "id": "task-assignment", "title": "Task Assignment", "keywords": "assign task work my jobs my work workload distribution assigned to team member operator queue" },
+      { "id": "worker-management", "title": "Worker Management", "keywords": "worker management manage workers add edit department initials PIN phone email notes" },
+      { "id": "pin-login-security", "title": "PIN Login Security", "keywords": "PIN login security 4 digit numeric workstation terminal clear PIN lock icon" },
       { "id": "user-management", "title": "User Management", "keywords": "manage users add role activate deactivate" },
       { "id": "admin-requests", "title": "Admin Requests", "keywords": "admin request editor approve reject change configuration badge notification" },
       { "id": "concurrency", "title": "Concurrency Handling", "keywords": "concurrency conflict optimistic locking revision edit" },

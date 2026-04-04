@@ -63,6 +63,7 @@
                 <a href="analytics.html">Analytics</a>
                 <a href="calendar.html">Calendar &amp; Gantt</a>
                 <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <a href="work-bins.html">Work Bins</a>
                 <span class="sidebar-nav-label">Setup</span>
                 <a href="configuration.html">Configuration</a>
                 <a href="templates.html">Templates</a>
@@ -524,6 +525,62 @@
             <div class="help-tip">
                 <strong>Tip</strong>
                 Load a regional template first, then add your shop-specific closures on top. At the end of the year, use "Copy to next year" and adjust any dates that changed (like floating holidays).
+            </div>
+
+            <!-- ====== Stage Assignment ====== -->
+            <h2 id="stage-assignment">Stage Assignment (Who Works Where)</h2>
+            <p>Stage assignment is the primary mechanism for routing work to workers in GlyphFex. By assigning workers to pipeline stages, you define who sees which jobs in their <a href="work-bins.html#my-work-bin">Work Bin</a>.</p>
+
+            <h3>Configuring stage assignments</h3>
+            <ol class="help-steps">
+                <li>Open <strong>Tools &gt; Edit Pipeline</strong></li>
+                <li>Select a pipeline stage (e.g., "Welding", "Quality Check", "Shipping")</li>
+                <li>In the stage configuration panel, find the <strong>Assigned Users</strong> list</li>
+                <li>Add workers who should see entries at this stage in their Work Bin</li>
+                <li>Save the pipeline configuration</li>
+            </ol>
+
+            <h3>How it works</h3>
+            <p>When an entry reaches a pipeline stage, it becomes visible to all workers assigned to that stage. Workers see these entries in their <strong>My Work Bin</strong> queue, sorted by priority and due date. This is a pull system &mdash; workers pick from their queue rather than waiting for a manager to push assignments.</p>
+
+            <h3>Example</h3>
+            <p>A fabrication shop with 10 workers might configure stage assignments like this:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pipeline Stage</th>
+                        <th>Assigned Workers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cutting</td>
+                        <td>Mike, Sarah</td>
+                    </tr>
+                    <tr>
+                        <td>Welding</td>
+                        <td>Jake, Tom, Carlos, Lisa</td>
+                    </tr>
+                    <tr>
+                        <td>Quality Check</td>
+                        <td>Rachel, Dave</td>
+                    </tr>
+                    <tr>
+                        <td>Shipping</td>
+                        <td>Sam, Maria</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>When a job finishes Cutting, it automatically appears in the Welding queue for Jake, Tom, Carlos, and Lisa. Whichever welder finishes their current job first picks it up from their queue.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Stage assignment is not per-entry assignment. You do not need to assign each job to a specific worker. Instead, you assign workers to stages once, and the system routes jobs automatically. Per-entry overrides are available from the <a href="work-bins.html#side-panel">Work Bins side panel</a> for exception cases.
+            </div>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                Stale detection thresholds and SLA targets are also configurable per stage in the same Edit Pipeline dialog. These settings feed into the <a href="work-bins.html#bottleneck-analysis">Workload (Bottleneck Analysis)</a> view on the Team Board.
             </div>
         </main>
 

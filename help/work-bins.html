@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Bins &mdash; GlyphFex Help</title>
+    <meta name="description" content="Stage-based job routing for workers and supervisors. Personal work queues, team boards, bottleneck analysis, and pull-system dispatch in GlyphFex.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="workflows.html">Workflows</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="calendar.html">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <a href="work-bins.html" class="active">Work Bins</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="templates.html">Templates</a>
+                <a href="validation.html">Validation</a>
+                <a href="rules.html">Conditional Rules</a>
+                <a href="notifications.html">Notifications</a>
+                <a href="backup-recovery.html">Backup &amp; Recovery</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <a href="sql-server-setup.html">SQL Server Setup</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Work Bins</h1>
+            <p class="help-subtitle">Stage-based job routing for workers and supervisors. Navigate here with <kbd>Ctrl</kbd>+<kbd>7</kbd>.</p>
+
+            <!-- ====== What is Work Bins? ====== -->
+            <h2 id="what-is-work-bins">What is Work Bins?</h2>
+            <p>Work Bins is a stage-based job routing system that connects workers to the entries they need to work on. Instead of manually assigning individual jobs, work flows automatically through pipeline stages &mdash; and workers see only the entries at stages they are assigned to.</p>
+            <p>The concept draws from kitchen display systems (KDS) in restaurants, hospital patient tracking boards, and manufacturing MES dispatch boards. The core idea is the same: workers pull jobs from a queue rather than waiting for a manager to push assignments to them.</p>
+            <p>Work Bins has two main views:</p>
+            <ul>
+                <li><strong>My Work Bin</strong> &mdash; A personal work queue for individual workers</li>
+                <li><strong>Team Board</strong> &mdash; A supervisor/manager view showing workload across the entire team</li>
+            </ul>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Work Bins requires <a href="configuration.html#stage-assignment">stage assignment</a> to be configured. Assign workers to pipeline stages in <strong>Tools &gt; Edit Pipeline</strong> so entries appear in their bins automatically.
+            </div>
+
+            <!-- ====== My Work Bin ====== -->
+            <h2 id="my-work-bin">My Work Bin</h2>
+            <p>My Work Bin is the personal work queue for an individual worker. It shows all entries at pipeline stages that the worker is assigned to, organized into sections that help prioritize what to work on next.</p>
+
+            <div class="help-screenshot">
+                <svg class="screenshot-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                <span class="screenshot-label">My Work Bin</span>
+                <span class="screenshot-desc">Screenshot of the My Work Bin view showing the active job with elapsed timer, Up Next queue, and On Hold section</span>
+            </div>
+
+            <h3>Sections</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Section</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Now</strong></td>
+                        <td>The active job the worker is currently working on. Displays an elapsed timer showing how long the job has been in progress.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Up Next</strong></td>
+                        <td>The upcoming queue, sorted by priority and due date. The most urgent jobs appear at the top. Workers pick from this list when they finish the current job.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>On Hold</strong></td>
+                        <td>Jobs that are paused &mdash; waiting for materials, customer approval, or other external factors. These remain visible but are not expected to be actively worked on.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rework</strong></td>
+                        <td>Jobs that were returned to a previous stage due to quality issues or corrections. These are flagged for attention and typically take priority.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Later</strong></td>
+                        <td>Lower-priority jobs that are not yet due. These are available for pickup but do not require immediate action.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Actions</h3>
+            <p>Each entry card in My Work Bin provides quick action buttons:</p>
+            <ul>
+                <li><strong>Done</strong> &mdash; Advance the entry to the next pipeline stage. The entry moves out of your bin and into the next worker's queue.</li>
+                <li><strong>Return to Stage</strong> &mdash; Send the entry back to a previous stage if work cannot be completed (e.g., welding cannot proceed because the parts were not prepped correctly).</li>
+                <li><strong>On Hold</strong> &mdash; Move the entry to the On Hold section. The entry stays in your bin but is marked as paused.</li>
+                <li><strong>Log Note</strong> &mdash; Add a timestamped note to the entry without leaving the Work Bins view. Useful for recording observations, issues, or shift handoff information.</li>
+            </ul>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                The elapsed timer on the active job helps workers self-manage their pace. If a job is taking longer than expected, it is a signal to flag the issue or request help &mdash; before it becomes a bottleneck.
+            </div>
+
+            <!-- ====== Team Board ====== -->
+            <h2 id="team-board">Team Board</h2>
+            <p>The Team Board is a supervisor and manager view that provides visibility into workload distribution across the entire team. It has three sub-views accessible via tabs at the top of the page.</p>
+
+            <div class="help-screenshot">
+                <svg class="screenshot-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                <span class="screenshot-label">Team Board &mdash; By Stage</span>
+                <span class="screenshot-desc">Screenshot of the Team Board By Stage view showing stage lanes with entry counts and entry cards</span>
+            </div>
+
+            <!-- ====== By Stage ====== -->
+            <h3 id="by-stage">By Stage</h3>
+            <p>The By Stage view shows stage lanes &mdash; one column per pipeline stage. Each lane displays:</p>
+            <ul>
+                <li><strong>Entry count</strong> &mdash; The total number of entries at that stage</li>
+                <li><strong>First 10 entries</strong> &mdash; Entry cards showing ref number, customer, priority, and due date. Only the first 10 entries per lane are rendered to keep the interface responsive.</li>
+            </ul>
+            <p>Click any entry card to open the <a href="#side-panel">side panel</a> with full details and action buttons.</p>
+
+            <!-- ====== By Worker ====== -->
+            <h3 id="by-worker">By Worker</h3>
+            <p>The By Worker view organizes the team into rows grouped by department. Each worker row shows:</p>
+            <ul>
+                <li><strong>Currently working on</strong> &mdash; The active job reference number, if any</li>
+                <li><strong>Queue depth</strong> &mdash; The number of entries at the worker's assigned stages (their fair share of the work)</li>
+                <li><strong>Idle/Active status</strong> &mdash; Whether the worker currently has an active job or is between jobs</li>
+                <li><strong>Load bar</strong> &mdash; A visual indicator of how much work is queued for the worker relative to the team average</li>
+            </ul>
+            <p>Department grouping uses collapsible Expanders with summary headers showing the count of working and idle workers (e.g., "Fabrication &mdash; 3 working, 1 idle").</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                The By Worker view is ideal for morning stand-ups. At a glance, a supervisor can see who is busy, who has capacity, and whether work is evenly distributed across the team.
+            </div>
+
+            <!-- ====== Workload (Bottleneck Analysis) ====== -->
+            <h3 id="bottleneck-analysis">Workload (Bottleneck Analysis)</h3>
+            <p>The Workload view presents a table that highlights capacity imbalances across pipeline stages. Each row shows:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Column</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Stage</strong></td>
+                        <td>The pipeline stage name</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Entries</strong></td>
+                        <td>Total number of entries currently at this stage</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Workers</strong></td>
+                        <td>Number of workers assigned to this stage</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Per Worker</strong></td>
+                        <td>Entries divided by workers &mdash; the workload per person</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SLA Target</strong></td>
+                        <td>The configured SLA target for this stage (in business days)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Status</strong></td>
+                        <td>Color-coded indicator: <strong style="color: #16a34a;">green</strong> (on track), <strong style="color: #ca8a04;">yellow</strong> (approaching capacity), <strong style="color: #dc2626;">red</strong> (bottleneck &mdash; workload exceeds capacity)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>The table is sorted by worst bottleneck first, so the stages that need attention are always at the top.</p>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                Bottleneck analysis works best when SLA targets are configured for each pipeline stage. Without SLA targets, the status column uses a default threshold based on the entries-per-worker ratio.
+            </div>
+
+            <!-- ====== Pipeline Filter Tabs ====== -->
+            <h2 id="pipeline-filter">Pipeline Filter Tabs</h2>
+            <p>When your project uses multiple pipelines, filter tabs appear at the top of the Team Board. Click a tab to show only entries from a specific pipeline (e.g., "Fabrication", "Service Call", "Rush"). The "All" tab shows entries from every pipeline combined.</p>
+            <p>The pipeline filter applies to all three Team Board sub-views (By Stage, By Worker, and Workload).</p>
+
+            <!-- ====== Side Panel ====== -->
+            <h2 id="side-panel">Side Panel</h2>
+            <p>Click any entry on the Team Board to open a detail side panel on the right side of the screen. The side panel provides a focused view of the selected entry without leaving the Team Board context.</p>
+
+            <h3>Side panel contents</h3>
+            <ul>
+                <li><strong>Stage workers</strong> &mdash; Lists all workers assigned to the entry's current pipeline stage (from the pipeline configuration)</li>
+                <li><strong>Stage timeline</strong> &mdash; Shows the entry's progression through pipeline stages with timestamps</li>
+                <li><strong>Status, priority, and due date badges</strong> &mdash; Visual indicators for the entry's current state</li>
+                <li><strong>Action buttons</strong>:
+                    <ul>
+                        <li><strong>Advance</strong> &mdash; Move the entry to the next pipeline stage</li>
+                        <li><strong>Put On Hold</strong> &mdash; Pause the entry</li>
+                        <li><strong>Open Full Detail</strong> &mdash; Open the full Entry Detail Window for comprehensive editing</li>
+                    </ul>
+                </li>
+                <li><strong>Per-entry assignment override</strong> &mdash; Optionally assign the entry to a specific worker, overriding the default stage-based routing</li>
+            </ul>
+
+            <!-- ====== Stage-Based Routing ====== -->
+            <h2 id="stage-routing">Stage-Based Routing</h2>
+            <p>Work Bins uses a <strong>pull system</strong> for job routing. Instead of a manager manually assigning each job to a specific worker, work flows through pipeline stages automatically and workers pull from their queue.</p>
+
+            <h3>How it works</h3>
+            <ol class="help-steps">
+                <li><strong>Configure stage assignments</strong> &mdash; In <strong>Tools &gt; Edit Pipeline</strong>, assign workers to each pipeline stage. For example, assign 4 welders to the "Welding" stage and 2 inspectors to "Quality Check".</li>
+                <li><strong>Entries enter the pipeline</strong> &mdash; When a new entry is created or an entry advances to a stage, it becomes visible to all workers assigned to that stage.</li>
+                <li><strong>Workers pull from their queue</strong> &mdash; Each worker sees entries at their assigned stages in My Work Bin. They pick the next job from their Up Next list based on priority and due date.</li>
+                <li><strong>Entries advance automatically</strong> &mdash; When a worker marks a job as Done, it moves to the next pipeline stage and appears in the next group of workers' bins.</li>
+            </ol>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                The pull system means managers only need to intervene for exceptions &mdash; reassigning a specific rush job or rebalancing after a worker calls in sick. Day-to-day routing happens automatically through the pipeline configuration.
+            </div>
+
+            <h3>Why pull systems work</h3>
+            <p>Pull-based routing reduces management overhead and keeps work flowing smoothly. Workers always have a clear view of what to do next, and the system naturally balances work across the team based on who finishes their current job first.</p>
+
+            <!-- ====== Bulk Assignment ====== -->
+            <h2 id="bulk-assignment">Bulk Assignment</h2>
+            <p>For exception cases where a manager needs to override the default stage-based routing, Work Bins supports bulk assignment:</p>
+            <ol class="help-steps">
+                <li>Select multiple entries on the Team Board using checkboxes</li>
+                <li>Click the <strong>Assign</strong> button in the toolbar</li>
+                <li>Choose a specific worker from the dropdown</li>
+                <li>The selected entries are assigned to that worker, overriding the default stage-based routing</li>
+            </ol>
+            <p>Bulk assignment is useful for scenarios like assigning a batch of related jobs to the same worker, or redirecting work when a team member is unavailable.</p>
+
+            <div class="help-note">
+                <strong>Note</strong>
+                Per-entry assignments are overrides, not permanent changes to the routing configuration. The next time an entry advances to a new stage, it returns to the default stage-based routing unless another manual assignment is made.
+            </div>
+
+            <!-- ====== Performance ====== -->
+            <h2 id="performance">Performance</h2>
+            <p>Work Bins uses a SQL-first architecture designed to handle large datasets efficiently. Key performance characteristics:</p>
+            <ul>
+                <li><strong>Counts-first rendering</strong> &mdash; Stage lanes and worker rows load entry counts first, then lazy-load the actual entry cards. This means the page structure appears immediately even with 100,000+ entries in the database.</li>
+                <li><strong>Lazy loading</strong> &mdash; Entry cards are loaded on demand as you scroll or expand sections, rather than loading everything at once.</li>
+                <li><strong>SQL-level filtering</strong> &mdash; All filtering and sorting happens in the database query, not in application memory. Only the entries you see are transferred from the database.</li>
+            </ul>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                If your project has thousands of entries and the Work Bins page feels slow, check that your pipeline stages are well-defined. Stages with hundreds of entries may indicate a bottleneck in your workflow rather than a performance issue with the software.
+            </div>
+        </main>
+
+        <!-- Table of Contents -->
+        <aside class="help-toc" id="helpToc">
+            <h3>On this page</h3>
+            <ul><!-- populated by help.js --></ul>
+        </aside>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="nav-logo">
+                        <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                            <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                            <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="logo-text">GlyphFex</span>
+                    </a>
+                    <p class="footer-tagline">One source of truth from quote to completion.</p>
+                </div>
+                <div class="footer-links"><h4>Product</h4><a href="../features.html">Features</a><a href="../index.html#pricing">Pricing</a><a href="../download.html">Download</a></div>
+                <div class="footer-links"><h4>Resources</h4><a href="index.html">Help Center</a><a href="getting-started.html">Getting Started</a><a href="reference.html">Reference</a></div>
+                <div class="footer-links"><h4>Legal</h4><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Terms of Service</a><a href="../eula.html">EULA</a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 GlyphFex. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="help.js"></script>
+</body>
+</html>
