@@ -8,6 +8,7 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,7 +64,7 @@
                 <a href="analytics.html">Analytics</a>
                 <a href="calendar.html">Calendar &amp; Gantt</a>
                 <a href="shop-floor.html">Shop Floor &amp; Display</a>
-                <a href="work-bins.html">Work Bins</a>
+                <a href="work-bins.html">My Jobs</a>
                 <span class="sidebar-nav-label">Setup</span>
                 <a href="configuration.html">Configuration</a>
                 <a href="templates.html">Templates</a>
@@ -529,14 +530,14 @@
 
             <!-- ====== Stage Assignment ====== -->
             <h2 id="stage-assignment">Stage Assignment (Who Works Where)</h2>
-            <p>Stage assignment is the primary mechanism for routing work to workers in GlyphFex. By assigning workers to pipeline stages, you define who sees which jobs in their <a href="work-bins.html#my-work-bin">Work Bin</a>.</p>
+            <p>Stage assignment is the primary mechanism for routing work to workers in GlyphFex. By assigning workers to pipeline stages, you define who sees which jobs in their <a href="work-bins.html#my-work-bin">My Jobs queue</a>.</p>
 
             <h3>Configuring stage assignments</h3>
             <ol class="help-steps">
                 <li>Open <strong>Tools &gt; Edit Pipeline</strong></li>
                 <li>Select a pipeline stage (e.g., "Welding", "Quality Check", "Shipping")</li>
                 <li>In the stage configuration panel, find the <strong>Assigned Users</strong> list</li>
-                <li>Add workers who should see entries at this stage in their Work Bin</li>
+                <li>Add workers who should see entries at this stage in their My Jobs queue</li>
                 <li>Save the pipeline configuration</li>
             </ol>
 
@@ -575,7 +576,7 @@
 
             <div class="help-tip">
                 <strong>Tip</strong>
-                Stage assignment is not per-entry assignment. You do not need to assign each job to a specific worker. Instead, you assign workers to stages once, and the system routes jobs automatically. Per-entry overrides are available from the <a href="work-bins.html#side-panel">Work Bins side panel</a> for exception cases.
+                Stage assignment is not per-entry assignment. You do not need to assign each job to a specific worker. Instead, you assign workers to stages once, and the system routes jobs automatically. Per-entry overrides are available from the <a href="work-bins.html#side-panel">My Jobs side panel</a> for exception cases.
             </div>
 
             <div class="help-note">

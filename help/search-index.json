@@ -113,9 +113,9 @@
   },
   {
     "page": "work-bins.html",
-    "title": "Work Bins",
+    "title": "My Jobs",
     "sections": [
-      { "id": "what-is-work-bins", "title": "What is Work Bins?", "keywords": "work bins stage routing dispatch KDS kitchen display MES pull system" },
+      { "id": "what-is-work-bins", "title": "What is My Jobs?", "keywords": "my jobs work bins stage routing dispatch KDS kitchen display MES pull system" },
       { "id": "my-work-bin", "title": "My Work Bin", "keywords": "my work bin personal queue now up next on hold rework later elapsed timer" },
       { "id": "team-board", "title": "Team Board", "keywords": "team board supervisor manager workload overview" },
       { "id": "by-stage", "title": "By Stage", "keywords": "by stage lanes entry count cards pipeline" },
@@ -149,7 +149,7 @@
       { "id": "material-inventory", "title": "Material Inventory", "keywords": "material inventory stock reorder point tracking" },
       { "id": "dark-mode", "title": "Dark Mode", "keywords": "dark mode theme light night windows system appearance color" },
       { "id": "holiday-calendar", "title": "Holiday Calendar", "keywords": "holiday calendar regional custom copy year" },
-      { "id": "stage-assignment", "title": "Stage Assignment", "keywords": "stage assignment who works where assigned users workers pipeline routing pull system work bins queue" },
+      { "id": "stage-assignment", "title": "Stage Assignment", "keywords": "stage assignment who works where assigned users workers pipeline routing pull system my jobs queue" },
       { "id": "backup", "title": "Backup Database", "keywords": "backup database one-click bak file rotating automatic disaster recovery restore" }
     ]
   },

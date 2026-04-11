@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Work Bins &mdash; GlyphFex Help</title>
+    <title>My Jobs &mdash; GlyphFex Help</title>
     <meta name="description" content="Stage-based job routing for workers and supervisors. Personal work queues, team boards, bottleneck analysis, and pull-system dispatch in GlyphFex.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,7 +64,7 @@
                 <a href="analytics.html">Analytics</a>
                 <a href="calendar.html">Calendar &amp; Gantt</a>
                 <a href="shop-floor.html">Shop Floor &amp; Display</a>
-                <a href="work-bins.html" class="active">Work Bins</a>
+                <a href="work-bins.html" class="active">My Jobs</a>
                 <span class="sidebar-nav-label">Setup</span>
                 <a href="configuration.html">Configuration</a>
                 <a href="templates.html">Templates</a>
@@ -85,14 +86,14 @@
 
         <!-- Content -->
         <main class="help-content">
-            <h1>Work Bins</h1>
+            <h1>My Jobs</h1>
             <p class="help-subtitle">Stage-based job routing for workers and supervisors. Navigate here with <kbd>Ctrl</kbd>+<kbd>7</kbd>.</p>
 
-            <!-- ====== What is Work Bins? ====== -->
-            <h2 id="what-is-work-bins">What is Work Bins?</h2>
-            <p>Work Bins is a stage-based job routing system that connects workers to the entries they need to work on. Instead of manually assigning individual jobs, work flows automatically through pipeline stages &mdash; and workers see only the entries at stages they are assigned to.</p>
+            <!-- ====== What is My Jobs? ====== -->
+            <h2 id="what-is-work-bins">What is My Jobs?</h2>
+            <p>My Jobs is a stage-based job routing system that connects workers to the entries they need to work on. Instead of manually assigning individual jobs, work flows automatically through pipeline stages &mdash; and workers see only the entries at stages they are assigned to.</p>
             <p>The concept draws from kitchen display systems (KDS) in restaurants, hospital patient tracking boards, and manufacturing MES dispatch boards. The core idea is the same: workers pull jobs from a queue rather than waiting for a manager to push assignments to them.</p>
-            <p>Work Bins has two main views:</p>
+            <p>My Jobs has two main views:</p>
             <ul>
                 <li><strong>My Work Bin</strong> &mdash; A personal work queue for individual workers</li>
                 <li><strong>Team Board</strong> &mdash; A supervisor/manager view showing workload across the entire team</li>
@@ -100,7 +101,7 @@
 
             <div class="help-tip">
                 <strong>Tip</strong>
-                Work Bins requires <a href="configuration.html#stage-assignment">stage assignment</a> to be configured. Assign workers to pipeline stages in <strong>Tools &gt; Edit Pipeline</strong> so entries appear in their bins automatically.
+                My Jobs requires <a href="configuration.html#stage-assignment">stage assignment</a> to be configured. Assign workers to pipeline stages in <strong>Tools &gt; Edit Pipeline</strong> so entries appear in their bins automatically.
             </div>
 
             <!-- ====== My Work Bin ====== -->
@@ -151,7 +152,7 @@
                 <li><strong>Done</strong> &mdash; Advance the entry to the next pipeline stage. The entry moves out of your bin and into the next worker's queue.</li>
                 <li><strong>Return to Stage</strong> &mdash; Send the entry back to a previous stage if work cannot be completed (e.g., welding cannot proceed because the parts were not prepped correctly).</li>
                 <li><strong>On Hold</strong> &mdash; Move the entry to the On Hold section. The entry stays in your bin but is marked as paused.</li>
-                <li><strong>Log Note</strong> &mdash; Add a timestamped note to the entry without leaving the Work Bins view. Useful for recording observations, issues, or shift handoff information.</li>
+                <li><strong>Log Note</strong> &mdash; Add a timestamped note to the entry without leaving the My Jobs view. Useful for recording observations, issues, or shift handoff information.</li>
             </ul>
 
             <div class="help-tip">
@@ -264,7 +265,7 @@
 
             <!-- ====== Stage-Based Routing ====== -->
             <h2 id="stage-routing">Stage-Based Routing</h2>
-            <p>Work Bins uses a <strong>pull system</strong> for job routing. Instead of a manager manually assigning each job to a specific worker, work flows through pipeline stages automatically and workers pull from their queue.</p>
+            <p>My Jobs uses a <strong>pull system</strong> for job routing. Instead of a manager manually assigning each job to a specific worker, work flows through pipeline stages automatically and workers pull from their queue.</p>
 
             <h3>How it works</h3>
             <ol class="help-steps">
@@ -284,7 +285,7 @@
 
             <!-- ====== Bulk Assignment ====== -->
             <h2 id="bulk-assignment">Bulk Assignment</h2>
-            <p>For exception cases where a manager needs to override the default stage-based routing, Work Bins supports bulk assignment:</p>
+            <p>For exception cases where a manager needs to override the default stage-based routing, My Jobs supports bulk assignment:</p>
             <ol class="help-steps">
                 <li>Select multiple entries on the Team Board using checkboxes</li>
                 <li>Click the <strong>Assign</strong> button in the toolbar</li>
@@ -300,7 +301,7 @@
 
             <!-- ====== Performance ====== -->
             <h2 id="performance">Performance</h2>
-            <p>Work Bins uses a SQL-first architecture designed to handle large datasets efficiently. Key performance characteristics:</p>
+            <p>My Jobs uses a SQL-first architecture designed to handle large datasets efficiently. Key performance characteristics:</p>
             <ul>
                 <li><strong>Counts-first rendering</strong> &mdash; Stage lanes and worker rows load entry counts first, then lazy-load the actual entry cards. This means the page structure appears immediately even with 100,000+ entries in the database.</li>
                 <li><strong>Lazy loading</strong> &mdash; Entry cards are loaded on demand as you scroll or expand sections, rather than loading everything at once.</li>
@@ -309,7 +310,7 @@
 
             <div class="help-tip">
                 <strong>Tip</strong>
-                If your project has thousands of entries and the Work Bins page feels slow, check that your pipeline stages are well-defined. Stages with hundreds of entries may indicate a bottleneck in your workflow rather than a performance issue with the software.
+                If your project has thousands of entries and the My Jobs page feels slow, check that your pipeline stages are well-defined. Stages with hundreds of entries may indicate a bottleneck in your workflow rather than a performance issue with the software.
             </div>
         </main>
 

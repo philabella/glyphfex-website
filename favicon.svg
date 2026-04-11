@@ -1,5 +1,34 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="32" height="32" rx="8" fill="#2563EB"/>
-    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
-    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!-- GlyphFex Logo — works on ANY background -->
+  <!-- Hexagonal G: ring with top-right gap + inward crossbar -->
+  <!-- Single path, clean geometry, reads at 16px -->
+  <!-- Primary: #E8893C (warm amber/copper) -->
+
+  <!-- Hex vertices (center 256,256, outer R=204, inner R=128):
+       Outer: top(256,52) TR(433,153) BR(433,359) bot(256,460) BL(79,359) TL(79,153)
+       Inner: top(256,128) TR(367,192) BR(367,320) bot(256,384) BL(145,320) TL(145,192)
+
+       G = outer ring, gap at top-right edge, crossbar at mid-right
+       Gap: skip outer edge from top to TR, and inner edge from TR-inner to top-inner
+  -->
+
+  <path fill="#E8893C" d="
+    M 433 153
+    L 433 359
+    L 256 460
+    L 79 359
+    L 79 153
+    L 256 52
+    L 256 128
+    L 145 192
+    L 145 320
+    L 256 384
+    L 367 320
+    L 367 272
+    L 264 272
+    L 264 216
+    L 367 216
+    L 367 192
+    Z
+  "/>
 </svg>
