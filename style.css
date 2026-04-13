@@ -2031,3 +2031,101 @@ code { background: var(--gray-100); padding: 2px 6px; border-radius: 4px; font-s
     background-size: 32px 32px;
     pointer-events: none;
 }
+
+/* ---------- Local-First Section ---------- */
+.local-first-section {
+    padding: 80px 0;
+    background: var(--blue-50);
+    border-top: 1px solid var(--blue-100);
+    border-bottom: 1px solid var(--blue-100);
+}
+
+.local-first-grid {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+/* ---------- Competitor Comparison Table ---------- */
+.comparison-table-section {
+    padding: 100px 0;
+    background: var(--gray-50);
+}
+
+.comparison-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -24px;
+    padding: 0 24px;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+    min-width: 640px;
+}
+
+.comparison-table thead {
+    border-bottom: 2px solid var(--gray-200);
+}
+
+.comparison-table th {
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: 700;
+    color: var(--gray-700);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+}
+
+.comparison-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--gray-200);
+    color: var(--gray-600);
+    white-space: nowrap;
+}
+
+.comparison-table .feature-label {
+    font-weight: 600;
+    color: var(--gray-800);
+}
+
+.comparison-table .highlight-col {
+    background: var(--blue-50);
+}
+
+.comparison-table thead .highlight-col {
+    color: var(--blue-700);
+    background: var(--blue-100);
+    border-radius: 0;
+}
+
+.check-yes {
+    color: var(--green-500);
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.check-no {
+    color: var(--gray-300);
+    font-weight: 700;
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .comparison-table {
+        font-size: 13px;
+    }
+    .comparison-table th,
+    .comparison-table td {
+        padding: 10px 12px;
+    }
+    .local-first-section {
+        padding: 60px 0;
+    }
+    .local-first-grid {
+        grid-template-columns: 1fr;
+    }
+}
