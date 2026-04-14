@@ -56,7 +56,7 @@
     "page": "dashboard.html",
     "title": "Dashboard",
     "sections": [
-      { "id": "view-modes", "title": "View Modes", "keywords": "card table timeline view switch mode" },
+      { "id": "view-modes", "title": "View Modes", "keywords": "card table timeline board kanban view switch mode drag drop" },
       { "id": "search", "title": "Search", "keywords": "search find filter text Ctrl+F" },
       { "id": "filters", "title": "Filters", "keywords": "filter status due date tags saved quick filter chips" },
       { "id": "sorting", "title": "Sorting & Pagination", "keywords": "sort order page size newest oldest ref modified pagination" },
@@ -219,7 +219,7 @@
     "sections": [
       { "id": "quote-to-order", "title": "Quote-to-Order Lifecycle", "keywords": "quote order convert lifecycle pipeline advance stages production" },
       { "id": "shop-floor-kiosk", "title": "Shop Floor Kiosk Usage", "keywords": "shop floor kiosk clock in out advance note touch operator" },
-      { "id": "using-dashboard", "title": "Using the Dashboard", "keywords": "dashboard card table timeline pipeline bar filter search view" },
+      { "id": "using-dashboard", "title": "Using the Dashboard", "keywords": "dashboard card table timeline board kanban pipeline bar filter search view drag drop" },
       { "id": "exporting-data", "title": "Exporting Data", "keywords": "export CSV Excel PDF QuickBooks job traveler ZIP" },
       { "id": "multi-user-setup", "title": "Multi-User Setup", "keywords": "multi-user SQL Server shared team migrate roles" },
       { "id": "daily-routine", "title": "Suggested Daily Routine", "keywords": "daily routine morning check process update review" }
