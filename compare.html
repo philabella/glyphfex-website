@@ -312,6 +312,16 @@
                         <td class="cell"><span class="cmp-partial">Partial</span></td>
                         <td class="cell"><span class="cmp-no">✗</span></td>
                     </tr>
+                    <tr>
+                        <td class="row-label">Per-stage rework breakdown
+                            <small>Which pipeline stage (Paint / Weld / Assembly) eats the most rework</small>
+                        </td>
+                        <td class="glyphfex-col cell"><span class="cmp-yes">✓ Built-in</span><br>Second row of orange bars below the root-cause block. Cause tells you WHY, stage tells you WHERE.</td>
+                        <td class="cell"><span class="cmp-no">✗</span></td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> Reports can be built.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span></td>
+                        <td class="cell"><span class="cmp-no">✗</span></td>
+                    </tr>
                     <tr class="quote-row">
                         <td colspan="6">
                             "Unpaid, off the clock rework" &mdash; 7-page thread where owners
@@ -320,6 +330,78 @@
                             it. The hours never enter job cost.
                             <small>— Practical Machinist, full thread linked above</small>
                         </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALLBACKS (service-trade profit leak) -->
+    <section style="padding: 40px 0; background: var(--gray-50, #f9fafb);">
+        <div class="container">
+            <h2 style="text-align: center;">Callbacks &amp; warranty returns</h2>
+            <p class="section-explainer">
+                ServiceTitan dedicated
+                <a href="https://www.servicetitan.com/guides/contractor-playbook/recalls-callbacks-warranty">an entire chapter of their contractor playbook</a>
+                to recalls, callbacks, and warranty &mdash; because HVAC / plumbing /
+                electrical lose more margin here than anywhere else. Most tools under
+                $500/mo don't even have a callback concept; the tech either creates a
+                fake new job or skips logging entirely.
+            </p>
+
+            <div style="overflow-x: auto;">
+            <table class="cmp-table">
+                <thead>
+                    <tr>
+                        <th style="width: 28%;">Complaint</th>
+                        <th class="glyphfex-col">GlyphFex</th>
+                        <th>JobBOSS² / E2</th>
+                        <th>ServiceTitan</th>
+                        <th>Jobber</th>
+                        <th>Housecall Pro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="row-label">Log time on a CLOSED job without reopening it
+                            <small>Warranty return for the condenser installed 3 months ago</small>
+                        </td>
+                        <td class="glyphfex-col cell"><span class="cmp-yes">✓ Built-in</span><br>"Callback..." button on Shop Floor searches 180 days of jobs, closed items show a gray CLOSED pill. Timer logs against the original, status stays closed.</td>
+                        <td class="cell"><span class="cmp-no">✗</span> Not a service-trade tool.</td>
+                        <td class="cell"><span class="cmp-yes">✓</span> Recall workflow exists but needs Enterprise tier for small teams.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> Must create a new job linked to the original.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> Same pattern — creates a new job record.</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Callback rate on the main analytics
+                            <small>% of labor that went to warranty returns, color-coded</small>
+                        </td>
+                        <td class="glyphfex-col cell"><span class="cmp-yes">✓ KPI card</span><br>"Callback Rate 6% · 4.2 hrs on 3 jobs" color-coded against COPQ benchmarks.</td>
+                        <td class="cell"><span class="cmp-no">✗</span></td>
+                        <td class="cell"><span class="cmp-yes">✓</span> Dashboard tier-dependent.</td>
+                        <td class="cell"><span class="cmp-no">✗</span></td>
+                        <td class="cell"><span class="cmp-no">✗</span></td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Distinct from rework (different category)
+                            <small>Rework is mid-job; callback is post-close. Shops want them separate</small>
+                        </td>
+                        <td class="glyphfex-col cell"><span class="cmp-yes">✓</span><br>Separate EntryType, distinct orange vs red pills on timesheet, separate KPIs.</td>
+                        <td class="cell"><span class="cmp-no">✗</span> Manufacturing-focused.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> Callback is the primary category; rework is less distinct.</td>
+                        <td class="cell"><span class="cmp-no">✗</span> Generic job status.</td>
+                        <td class="cell"><span class="cmp-no">✗</span></td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Timer on a closed job respects the "closed" state
+                            <small>Job stays Completed, doesn't pollute dashboard metrics</small>
+                        </td>
+                        <td class="glyphfex-col cell"><span class="cmp-yes">✓</span><br>Labor lands on the ledger; status unchanged.</td>
+                        <td class="cell">n/a</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> Reopens to a callback state.</td>
+                        <td class="cell"><span class="cmp-no">✗</span> New job required.</td>
+                        <td class="cell"><span class="cmp-no">✗</span> New job required.</td>
                     </tr>
                 </tbody>
             </table>
