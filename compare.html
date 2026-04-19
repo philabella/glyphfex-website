@@ -236,6 +236,97 @@
         </div>
     </section>
 
+    <!-- REWORK -->
+    <section style="padding: 40px 0;">
+        <div class="container">
+            <h2 style="text-align: center;">Rework &amp; cost of poor quality</h2>
+            <p class="section-explainer">
+                ASQ pegs rework (scrap + redo) at <strong>10&ndash;20% of shop revenue</strong>.
+                On a $2M shop that's $300k/year you can't see. Every tool below <em>could</em>
+                track rework &mdash; but the forms are so heavy workers hide it in regular time.
+                Research review on this theme:
+                <a href="https://www.practicalmachinist.com/forum/threads/unpaid-off-the-clock-rework.349517/">7-page Practical Machinist thread on off-the-clock rework</a>
+                and <a href="https://www.epiusers.help/t/rework-labor-tracking/114002">Epicor users literally asking their own forum how to track rework labor</a>.
+            </p>
+
+            <div style="overflow-x: auto;">
+            <table class="cmp-table">
+                <thead>
+                    <tr>
+                        <th style="width: 28%;">Complaint</th>
+                        <th class="glyphfex-col">GlyphFex</th>
+                        <th>JobBOSS² / E2</th>
+                        <th>ProShop</th>
+                        <th>Epicor Kinetic</th>
+                        <th>QuickBooks Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="row-label">Worker self-logs rework in under 10 seconds
+                            <small>No forms, no NCR workflow, no supervisor approval</small>
+                        </td>
+                        <td class="glyphfex-col cell"><span class="cmp-yes">✓ 3 taps</span><br>Tap Rework → pick root cause → done. Timer tags automatically.</td>
+                        <td class="cell"><span class="cmp-no">✗</span> Capterra: "ridiculous amount of paper required for job travelers" &mdash; NCR is buried.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> ISO-grade NCR workflow but built for AS9100-committed shops.</td>
+                        <td class="cell"><span class="cmp-no">✗</span> Users asking their own forum "how do we track rework labor at all?"</td>
+                        <td class="cell"><span class="cmp-no">✗</span> Not a concept &mdash; it's generic time tracking.</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Root cause categorized at logging time
+                            <small>6 standard tokens: operator / drawing / material / spec change / equipment / process</small>
+                        </td>
+                        <td class="glyphfex-col cell"><span class="cmp-yes">✓ Built-in</span><br>Big tap targets in the picker dialog. Covers ~80% of real rework per ISO research.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> Free-text code field, no dropdown.</td>
+                        <td class="cell"><span class="cmp-yes">✓</span> Configurable NCR categories.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> Quality module exists, requires setup.</td>
+                        <td class="cell"><span class="cmp-no">✗</span></td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Billable vs absorbed split
+                            <small>Customer spec-change rework vs shop-absorbed rework surfaced separately</small>
+                        </td>
+                        <td class="glyphfex-col cell"><span class="cmp-yes">✓ Green bar</span><br>"SpecChange" root cause renders green on the rework analytics &mdash; money you can recover.</td>
+                        <td class="cell"><span class="cmp-no">✗</span> All rework looks the same.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> With custom fields.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> With custom setup.</td>
+                        <td class="cell"><span class="cmp-no">✗</span></td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Rework rate visible on the main analytics
+                            <small>KPI card on Analytics, not a separate QC dashboard nobody opens</small>
+                        </td>
+                        <td class="glyphfex-col cell"><span class="cmp-yes">✓ KPI card</span><br>"Rework Rate 8% · 5.2 of 62.4 hrs" color-coded against ASQ benchmarks.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> Separate quality report.</td>
+                        <td class="cell"><span class="cmp-yes">✓</span> ISO dashboard.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> Custom report required.</td>
+                        <td class="cell"><span class="cmp-no">✗</span></td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Root-cause breakdown chart
+                            <small>Horizontal bars: which cause is eating the most hours</small>
+                        </td>
+                        <td class="glyphfex-col cell"><span class="cmp-yes">✓ Built-in</span><br>Ordered desc, billable rework highlighted green, absorbed highlighted red.</td>
+                        <td class="cell"><span class="cmp-no">✗</span></td>
+                        <td class="cell"><span class="cmp-yes">✓</span> Pareto chart.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span></td>
+                        <td class="cell"><span class="cmp-no">✗</span></td>
+                    </tr>
+                    <tr class="quote-row">
+                        <td colspan="6">
+                            "Unpaid, off the clock rework" &mdash; 7-page thread where owners
+                            pressure machinists to redo scrapped parts without logging the
+                            hours. When rework is a punishment, no worker volunteers to log
+                            it. The hours never enter job cost.
+                            <small>— Practical Machinist, full thread linked above</small>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </section>
+
     <!-- SETUP + PRICE -->
     <section style="padding: 40px 0;">
         <div class="container">
