@@ -409,6 +409,98 @@
         </div>
     </section>
 
+    <!-- PRICING ACCURACY — the GM dashboard question -->
+    <section style="padding: 40px 0;">
+        <div class="container">
+            <h2 style="text-align: center;">Pricing accuracy — "am I charging the right prices?"</h2>
+            <p class="section-explainer">
+                The single most repeated complaint on every owner-side shop-tool review:
+                <em>"you are probably underpricing some jobs, overpricing others, and you
+                cannot tell which is which"</em> (The Fabricator). The fix requires honest
+                actuals. Most tools rely on a manual "actual hours" field that
+                <a href="https://www.practicalmachinist.com/forum/threads/how-is-everyone-keeping-track-of-time-on-jobs.420557/">
+                workers admit to padding defensively</a> — so the number going into the
+                pricing-accuracy calc is broken before it starts.
+            </p>
+
+            <div style="overflow-x: auto;">
+            <table class="cmp-table">
+                <thead>
+                    <tr>
+                        <th style="width: 28%;">Complaint</th>
+                        <th class="glyphfex-col">GlyphFex</th>
+                        <th>JobBOSS² / E2</th>
+                        <th>ProShop</th>
+                        <th>Epicor Kinetic</th>
+                        <th>QuickBooks Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="row-label">Pricing Accuracy on the main dashboard
+                            <small>% of completed jobs within ±10% of estimate — at-a-glance GM reassurance</small>
+                        </td>
+                        <td class="glyphfex-col cell"><span class="cmp-yes">✓ KPI card</span><br>"Pricing Accuracy 67% · 12 of 18 within ±10%" color-coded against realistic shop performance.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> Report tab, not the main view.</td>
+                        <td class="cell"><span class="cmp-yes">✓</span> ISO-grade job-cost variance.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> Custom report required.</td>
+                        <td class="cell"><span class="cmp-no">✗</span></td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Actuals computed from clock data, NOT a manual field
+                            <small>Eliminates the "everyone hiding time" problem</small>
+                        </td>
+                        <td class="glyphfex-col cell"><span class="cmp-yes">✓</span><br>Sums Work+Rework TimeEntries from the Shop Floor terminal. Travel and Callback excluded deliberately.</td>
+                        <td class="cell"><span class="cmp-no">✗</span> Relies on self-reported actual-hours field.</td>
+                        <td class="cell"><span class="cmp-yes">✓</span> Clock-based, but requires AS9100 setup.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> Depends on configuration.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> Clock data exists; pricing accuracy doesn't.</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Margin-leak $ front-and-center
+                            <small>"+84 hrs · ≈ $4,200 absorbed across 6 jobs" — not buried in a report</small>
+                        </td>
+                        <td class="glyphfex-col cell"><span class="cmp-yes">✓ Red KPI</span><br>Hours overrun × per-job labor rate = absorbed dollars. One glance, one number.</td>
+                        <td class="cell"><span class="cmp-no">✗</span> Requires running job-cost report.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> Variance reports exist.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span></td>
+                        <td class="cell"><span class="cmp-no">✗</span></td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">"Where margin leaked" job list
+                            <small>Top 10 completed jobs ranked by absolute overrun — GM's action list</small>
+                        </td>
+                        <td class="glyphfex-col cell"><span class="cmp-yes">✓ Built-in</span><br>Job ref, customer, est·actual, overrun $, variance %. Ranked by hours (not %) so big jobs get the attention they deserve.</td>
+                        <td class="cell"><span class="cmp-no">✗</span></td>
+                        <td class="cell"><span class="cmp-yes">✓</span> Variance drill-downs.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> Drill into each job manually.</td>
+                        <td class="cell"><span class="cmp-no">✗</span></td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Honest scope: surface the problem, GM decides the fix
+                            <small>No auto rate-adjustment suggestions, no "optimal pricing" AI — we're not an ERP</small>
+                        </td>
+                        <td class="glyphfex-col cell"><span class="cmp-yes">✓</span><br>Data + ranking + dollar impact. The decision stays human.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> Heavy ERP workflow.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> Quality-system oriented.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> Bolt-on modules.</td>
+                        <td class="cell">n/a</td>
+                    </tr>
+                    <tr class="quote-row">
+                        <td colspan="6">
+                            "Jobs that should take 15 min laser, 15 min forming, 30 min weld come back with
+                            3-4 hours on the time sheets. Infuriating when you see this, everyone hiding time."
+                            When the actuals are fiction, pricing accuracy is fiction. GlyphFex fixes the
+                            actuals first.
+                            <small>— The Fabricator, "Costing and Pricing It Right"</small>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </section>
+
     <!-- SETUP + PRICE -->
     <section style="padding: 40px 0;">
         <div class="container">
