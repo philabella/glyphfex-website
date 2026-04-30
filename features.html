@@ -89,6 +89,7 @@
                 <a href="#materials" class="features-nav-link">Materials</a>
                 <a href="#config" class="features-nav-link">Configuration</a>
                 <a href="#performance" class="features-nav-link">Performance</a>
+                <a href="#data-feed" class="features-nav-link">Data Feed</a>
             </div>
         </div>
     </div>
@@ -874,11 +875,51 @@
         </div>
     </section>
 
+    <!-- ============ SECTION 18: DATA FEED ============ -->
+    <section class="feature-section" id="data-feed">
+        <div class="container">
+            <div class="feature-section-header">
+                <h2><span class="section-number">18</span>Data Feed &mdash; Your Shop Data, Your Way</h2>
+                <p>GlyphFex is the clean structured source of truth for your shop. Drop a CSV/JSON snapshot of every job, quote, customer, and time entry into a folder on a schedule. Your Power BI, Excel, accountant's tools, or in-house ERP read from the folder. <strong>Nothing locked in.</strong></p>
+            </div>
+            <div class="feature-layout">
+                <div class="feature-text">
+                    <ul class="feature-bullets">
+                        <li><strong>Pick a folder + cadence</strong> &mdash; every 5 minutes, 15 minutes, hourly, or daily. Set it once, forget it</li>
+                        <li><strong>Five files written each run</strong> &mdash; <code>entries.csv</code>, <code>entries.json</code> (full v1 schema), <code>quotes.csv</code>, <code>customers.csv</code>, <code>time_entries.csv</code></li>
+                        <li><strong>Atomic writes</strong> &mdash; your Power BI refresh never sees a half-written file. Two-phase write with a pre-flight lock check on every destination</li>
+                        <li><strong>Stable v1 JSON schema</strong> &mdash; documented contract for one entry. Tags as structured objects, all 17 built-in key fields always present, custom fields, line items, materials, NCR records, stage history, attachments. <a href="docs/data-export-schema-v1.html">See the full schema reference &rarr;</a></li>
+                        <li><strong>The never-break promise</strong> &mdash; we will never remove a v1 field, change a type, or change a meaning. New fields ship as additive. Breaking changes wait for v2</li>
+                        <li><strong>Excel-friendly UTF-8 BOM</strong> on CSVs (so accented customer names show up right). RFC-compliant no-BOM JSON for Python / Node / Power BI</li>
+                        <li><strong>Multi-user team mode safe</strong> &mdash; one elected writer per folder via a hidden lock-file with heartbeat. No two GlyphFex installs racing on the same files</li>
+                        <li><strong>Run-now button for testing</strong> &mdash; verify your folder permissions and consumer wiring without waiting for the cadence interval</li>
+                        <li><strong>Honest error reporting</strong> &mdash; "close Excel and try again" when a file is locked; "network unavailable" when the share is down. No guessing</li>
+                        <li><strong>Stable join keys</strong> &mdash; <code>time_entries.csv</code> has both <code>EntryId</code> (integer) and <code>EntryRefNumber</code> (the human-visible "Q-1234"). Pick whichever your tool prefers</li>
+                    </ul>
+                    <p style="margin-top: 16px; font-size: 14px; color: var(--gray-500, #6b7280);">
+                        Marketing one-liner: <em>"Your shop data, your way. Nothing locked in."</em>
+                    </p>
+                </div>
+                <div class="feature-media">
+                    <div class="screenshot-placeholder" data-capture="data-feed-settings">
+                        <div class="placeholder-inner">
+                            <div class="placeholder-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            </div>
+                            <p class="placeholder-label">Screenshot: Data Feed settings panel</p>
+                            <p class="placeholder-note">Capture: Settings &gt; Shop Configuration &gt; Data Feed showing folder picker, cadence, run-now, last-run timestamp</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ============ BOTTOM CTA ============ -->
     <section class="features-cta">
         <div class="container">
             <h2>Ready to try it?</h2>
-            <p>140+ features including Smart Quoting, tag-driven auto-pricing, Win Rate by Tag analytics, and the Honesty Band confidence indicator. 50-entry free trial. No credit card required. Set up in 5 minutes. Your data stays on your network.</p>
+            <p>140+ features including Smart Quoting, tag-driven auto-pricing, Win Rate by Tag analytics, the Honesty Band confidence indicator, and the Data Feed for clean Power BI / Excel / ERP integration. 50-entry free trial. No credit card required. Set up in 5 minutes. Your data stays on your network.</p>
             <a href="download.html" class="btn btn-white btn-lg">Download Free Trial</a>
         </div>
     </section>

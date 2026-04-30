@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Export Schema v1 &mdash; GlyphFex</title>
+    <meta name="description" content="Stable JSON schema for GlyphFex Data Feed exports. Documented contract for Power BI, Excel, Python, and in-house ERP integrations.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.6; color: #1f2937; }
+        .docs-container { max-width: 880px; margin: 0 auto; padding: 32px 24px 64px; }
+        .docs-container h1 { font-size: 36px; margin: 24px 0 8px; }
+        .docs-container h2 { font-size: 24px; margin: 40px 0 12px; padding-top: 16px; border-top: 1px solid #e5e7eb; }
+        .docs-container h2:first-of-type { border-top: none; padding-top: 0; }
+        .docs-container h3 { font-size: 18px; margin: 28px 0 8px; color: #111827; }
+        .docs-container h4 { font-size: 15px; margin: 20px 0 6px; color: #374151; }
+        .docs-container p { margin: 8px 0 12px; }
+        .docs-container code { font-family: 'JetBrains Mono', monospace; font-size: 13px; background: #f3f4f6; padding: 2px 6px; border-radius: 4px; }
+        .docs-container pre { font-family: 'JetBrains Mono', monospace; font-size: 13px; background: #1f2937; color: #e5e7eb; padding: 16px; border-radius: 8px; overflow-x: auto; line-height: 1.5; }
+        .docs-container pre code { background: transparent; padding: 0; color: inherit; }
+        .docs-container table { width: 100%; border-collapse: collapse; margin: 12px 0 24px; font-size: 14px; }
+        .docs-container th, .docs-container td { text-align: left; padding: 8px 12px; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+        .docs-container th { background: #f9fafb; font-weight: 600; color: #374151; }
+        .docs-container td:first-child code { white-space: nowrap; }
+        .promise { background: #ecfdf5; border-left: 4px solid #10b981; padding: 16px 20px; margin: 16px 0 24px; border-radius: 4px; }
+        .promise strong { color: #065f46; }
+        .warning { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 16px 20px; margin: 16px 0 24px; border-radius: 4px; }
+        .docs-meta { color: #6b7280; font-size: 14px; margin-bottom: 24px; }
+        .docs-meta strong { color: #374151; }
+        .toc { background: #f9fafb; border: 1px solid #e5e7eb; padding: 16px 24px; border-radius: 8px; margin: 24px 0 40px; }
+        .toc ul { margin: 4px 0 0; padding-left: 20px; }
+        .toc li { margin: 4px 0; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="../help/index.html">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="docs-container">
+        <p class="docs-meta">
+            <strong>Schema version:</strong> 1.0 &nbsp;&middot;&nbsp;
+            <strong>Status:</strong> Stable &nbsp;&middot;&nbsp;
+            <strong>First shipped:</strong> Wave 14AE
+        </p>
+
+        <h1>Data Export Schema v1</h1>
+
+        <p>
+            The Data Feed writes one JSON file (<code>entries.json</code>) and four CSVs to a folder
+            you choose. This page documents the JSON shape. It's the contract for both the scheduled
+            folder drop (Build #1) and the outbound webhooks (Build #3, in progress). If you build a
+            Power BI dashboard, an Excel Power Query model, or a Python ingest script against v1,
+            we promise to never break it.
+        </p>
+
+        <div class="promise">
+            <strong>Compatibility promise (the never-break list)</strong>
+            <ul style="margin: 8px 0 0; padding-left: 20px;">
+                <li>We will <strong>never remove</strong> a field that v1 emits.</li>
+                <li>We will <strong>never change</strong> a field's type or units in v1.</li>
+                <li>We will <strong>never change</strong> the meaning of a field once it has shipped.</li>
+                <li>We <strong>may add</strong> new fields to v1 over time. Existing parsers should
+                    ignore unknown fields. New built-in <code>key_fields</code> automatically appear
+                    with <code>null</code> on entries that don't populate them.</li>
+                <li>Breaking changes ship as <strong>v2</strong> with a new <code>schema_version</code>
+                    value, and v1 keeps emitting in parallel for at least one major release after.</li>
+            </ul>
+        </div>
+
+        <div class="toc">
+            <strong>On this page</strong>
+            <ul>
+                <li><a href="#example">Full example</a></li>
+                <li><a href="#root">Root entry fields</a></li>
+                <li><a href="#tags">Tags</a></li>
+                <li><a href="#key-fields">Key fields (built-in)</a></li>
+                <li><a href="#custom-fields">Custom fields</a></li>
+                <li><a href="#quote-line-items">Quote line items</a></li>
+                <li><a href="#material-requirements">Material requirements</a></li>
+                <li><a href="#quality-notes">Quality notes (NCR)</a></li>
+                <li><a href="#stage-transitions">Stage transitions</a></li>
+                <li><a href="#attachments">Attachments</a></li>
+                <li><a href="#audit-summary">Audit summary</a></li>
+                <li><a href="#work-state">Work state</a></li>
+                <li><a href="#conventions">Conventions (snake_case, ISO 8601, encoding)</a></li>
+                <li><a href="#consumers">Wiring it up: Power BI, Excel, Python</a></li>
+            </ul>
+        </div>
+
+        <h2 id="example">Full example</h2>
+
+        <p>One entry. The <code>entries.json</code> file is a JSON array of these objects.</p>
+
+<pre><code>{
+  "schema_version": "1.0",
+  "id": 1234,
+  "ref_number": "Q-2026-001",
+  "description": "FAB,SS304,RU,PNT",
+  "comments": "Customer approved spec on Mar 15. Ship-by Apr 30.",
+  "status": "In Production",
+  "pipeline_id": "fabrication",
+  "tags": {
+    "Material": ["Stainless Steel 304"],
+    "Process":  ["Welding", "Polishing"],
+    "Priority": ["High"]
+  },
+  "key_fields": {
+    "customer_name": "Acme Corp",
+    "due_date": "2026-04-30",
+    "priority": "High",
+    "assigned_to": "alice",
+    "quantity": "100",
+    "estimated_value": "12500",
+    "po_number": "PO-78421",
+    "part_number": "BR-1042",
+    "actual_hours": "38.5",
+    "estimated_hours": "40",
+    "estimated_material_cost": "2400",
+    "actual_material_cost": null,
+    "labor_rate": "95",
+    "quote_valid_until": null,
+    "quote_outcome": "Won",
+    "drawing_revision": "Rev B",
+    "lost_reason": null
+  },
+  "custom_fields": {
+    "Special Instructions": "Hand-finish edges",
+    "QC Inspector": "bob"
+  },
+  "quote_line_items": [
+    { "description": "CNC milling — bracket",
+      "quantity": 100,
+      "unit_price": 125.00,
+      "material_cost": 24.00,
+      "markup_percent": null,
+      "line_total": 12500.00 }
+  ],
+  "material_requirements": [
+    { "material": "Stainless Steel 304",
+      "specification": "1/4\" x 6\"",
+      "quantity_needed": 50,
+      "unit": "ft",
+      "is_allocated": true,
+      "notes": "" }
+  ],
+  "quality_notes": [],
+  "stage_transitions": [
+    { "stage": "Quote",         "timestamp": "2026-03-01T10:00:00.0000000Z" },
+    { "stage": "Approved",      "timestamp": "2026-03-05T14:30:00.0000000Z" },
+    { "stage": "In Production", "timestamp": "2026-03-08T08:00:00.0000000Z" }
+  ],
+  "attachments": [
+    { "file_name": "drawing_v3.pdf",
+      "stored_file_name": "a1b2c3d4_drawing_v3.pdf",
+      "file_size_bytes": 482910,
+      "category": "Drawing",
+      "added_at": "2026-03-02T09:14:00",
+      "added_by": "alice" }
+  ],
+  "audit_summary": {
+    "change_count": 7,
+    "last_changed_at": "2026-03-15T11:30:00.0000000Z",
+    "last_changed_by": "alice"
+  },
+  "work_state": {
+    "is_on_hold": false,
+    "hold_reason": "",
+    "hold_notes": "",
+    "is_rework": false,
+    "rework_from_stage": "",
+    "rework_reason": "",
+    "rework_notes": "",
+    "rework_returned_by": "",
+    "rework_returned_at": "",
+    "active_work_by": "alice",
+    "active_work_started_at": "2026-03-15T08:00:00"
+  },
+  "created_at": "2026-03-01T10:00:00.0000000Z",
+  "created_by": "alice",
+  "last_modified_at": "2026-03-15T11:30:00.0000000Z",
+  "last_modified_by": "alice",
+  "revision_number": 7,
+  "is_archived": false,
+  "is_deleted": false,
+  "deleted_at": null,
+  "deleted_by": ""
+}</code></pre>
+
+        <h2 id="root">Root entry fields</h2>
+
+        <table>
+            <thead>
+                <tr><th>Field</th><th>Type</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>schema_version</code></td><td>string</td><td>Always <code>"1.0"</code> for v1 output. Pin your consumer to this value and bail loudly on a mismatch.</td></tr>
+                <tr><td><code>id</code></td><td>integer</td><td>Stable internal entry ID. Use this as the join key when relating to <code>time_entries.csv</code> (<code>EntryId</code> column) or any other future per-entry table.</td></tr>
+                <tr><td><code>ref_number</code></td><td>string</td><td>Human-visible reference number, e.g. <code>"Q-2026-001"</code> or <code>"WO-2024-001"</code>. Unique among non-deleted entries; format determined by the project's job-number rules.</td></tr>
+                <tr><td><code>description</code></td><td>string</td><td>Auto-generated short descriptor from tag abbreviations (e.g. <code>"FAB,SS304,RU"</code>) or a user override. May be empty.</td></tr>
+                <tr><td><code>comments</code></td><td>string</td><td>Free-text notes. Multi-line. May contain newlines.</td></tr>
+                <tr><td><code>status</code></td><td>string</td><td>Current pipeline stage name (e.g. <code>"In Production"</code>). Empty string if the project has no pipeline configured.</td></tr>
+                <tr><td><code>pipeline_id</code></td><td>string</td><td>Empty string for the project's default/legacy pipeline; otherwise the named pipeline (e.g. <code>"fabrication"</code>, <code>"service"</code>).</td></tr>
+                <tr><td><code>created_at</code></td><td>ISO 8601 UTC</td><td>When the entry was first created. Format: <code>"yyyy-MM-ddTHH:mm:ss.fffffffZ"</code>.</td></tr>
+                <tr><td><code>created_by</code></td><td>string</td><td>Display name of the creator. AD prefix (e.g. <code>"DOMAIN\\"</code>) is stripped.</td></tr>
+                <tr><td><code>last_modified_at</code></td><td>ISO 8601 UTC</td><td>Timestamp of the most recent edit. Equals <code>created_at</code> if never edited.</td></tr>
+                <tr><td><code>last_modified_by</code></td><td>string</td><td>Display name of the last editor.</td></tr>
+                <tr><td><code>revision_number</code></td><td>integer</td><td>Edit counter. Increments by 1 on each content edit. Used internally for optimistic concurrency. <strong>0</strong> = never edited since creation.</td></tr>
+                <tr><td><code>is_archived</code></td><td>boolean</td><td><code>true</code> if the entry is archived (closed-the-books) but not deleted.</td></tr>
+                <tr><td><code>is_deleted</code></td><td>boolean</td><td><code>true</code> if soft-deleted. Soft-deleted entries are still emitted so consumers can audit the deletion history.</td></tr>
+                <tr><td><code>deleted_at</code></td><td>ISO 8601 UTC | null</td><td>When the entry was soft-deleted. <code>null</code> for non-deleted entries.</td></tr>
+                <tr><td><code>deleted_by</code></td><td>string</td><td>Who soft-deleted it. Empty for non-deleted entries.</td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="tags">Tags</h2>
+
+        <p>
+            Object keyed by category name. Each value is an array of selected tag values from that
+            category. Multi-select categories yield multiple values; single-select yields one.
+        </p>
+
+<pre><code>"tags": {
+  "Material":     ["Stainless Steel 304"],
+  "Process":      ["Welding", "Polishing"],
+  "Priority":     ["High"]
+}</code></pre>
+
+        <p>
+            Empty object <code>{}</code> when an entry has no tags. Categories that exist in the
+            project but aren't applied to this entry are omitted (they don't appear with empty arrays).
+        </p>
+
+        <h2 id="key-fields">Key fields (built-in)</h2>
+
+        <p>
+            Object containing every built-in "Key Field" defined in GlyphFex. <strong>Every key
+            always appears</strong> &mdash; values that aren't populated emit <code>null</code>. This
+            stabilizes column inference in Power BI / Excel Power Query (consumers see the same shape
+            on every entry).
+        </p>
+
+        <p>
+            Values are typically string-encoded numbers (e.g., <code>"95"</code> for a labor rate).
+            That's intentional &mdash; the project model stores key fields as a string-keyed JSON dict, and
+            individual fields can carry text, numeric, or date values depending on configuration.
+            Coerce to the type you want in your consumer query (Power Query: <code>Number.From</code>,
+            <code>Date.From</code>).
+        </p>
+
+        <table>
+            <thead>
+                <tr><th>Key</th><th>Built-in type</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>customer_name</code></td><td>Text</td><td>Customer or client name.</td></tr>
+                <tr><td><code>due_date</code></td><td>Date</td><td>External customer-imposed deadline. Format: <code>"yyyy-MM-dd"</code>.</td></tr>
+                <tr><td><code>priority</code></td><td>Dropdown</td><td>One of: Low, Medium, High, Critical.</td></tr>
+                <tr><td><code>assigned_to</code></td><td>Text</td><td>Username of the person responsible.</td></tr>
+                <tr><td><code>quantity</code></td><td>Number</td><td>Number of units.</td></tr>
+                <tr><td><code>estimated_value</code></td><td>Number</td><td>Quoted price or budget in dollars.</td></tr>
+                <tr><td><code>po_number</code></td><td>Text</td><td>Customer purchase order number.</td></tr>
+                <tr><td><code>part_number</code></td><td>Text</td><td>Part or drawing number for repeat-job grouping.</td></tr>
+                <tr><td><code>actual_hours</code></td><td>Number</td><td>Total hours actually spent on the job.</td></tr>
+                <tr><td><code>estimated_hours</code></td><td>Number</td><td>Estimated labor hours.</td></tr>
+                <tr><td><code>estimated_material_cost</code></td><td>Number</td><td>Estimated material cost in dollars.</td></tr>
+                <tr><td><code>actual_material_cost</code></td><td>Number</td><td>Actual material cost in dollars.</td></tr>
+                <tr><td><code>labor_rate</code></td><td>Number</td><td>$/hr labor rate used for cost calculations.</td></tr>
+                <tr><td><code>quote_valid_until</code></td><td>Date</td><td>Quote expiry date. Format: <code>"yyyy-MM-dd"</code>.</td></tr>
+                <tr><td><code>quote_outcome</code></td><td>Dropdown</td><td>Pending, Won, Lost, or Expired.</td></tr>
+                <tr><td><code>drawing_revision</code></td><td>Text</td><td>Drawing revision letter or number, e.g. <code>"Rev B"</code> or <code>"3"</code>.</td></tr>
+                <tr><td><code>lost_reason</code></td><td>Dropdown</td><td>One of: Too expensive, Lost to competitor, Too slow / lead time, Customer cancelled, Specs changed, No response, Other.</td></tr>
+            </tbody>
+        </table>
+
+        <p>
+            <strong>Forward compatibility:</strong> when a new built-in key field is added in a future
+            GlyphFex release, it joins this list automatically. Existing entries emit it with
+            <code>null</code>; new entries that populate it emit the value. No schema-version bump
+            required &mdash; this is an additive change v1 explicitly allows.
+        </p>
+
+        <h2 id="custom-fields">Custom fields</h2>
+
+        <p>
+            Object keyed by the field name (the user-visible label). Values are the user-entered text.
+            Empty object <code>{}</code> when an entry has no custom-field values.
+        </p>
+
+        <p>
+            Custom field <em>names</em> are project-specific (configured by the admin) and may change.
+            <em>Values</em> are stored as strings regardless of the underlying field type
+            (Text, LargeText, Dropdown, Date, Number). Consumers should coerce based on the field's
+            configured type if they care.
+        </p>
+
+        <h2 id="quote-line-items">Quote line items</h2>
+
+        <p>Array of line items in the order the user entered them.</p>
+
+        <table>
+            <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td><code>description</code></td><td>string</td><td>Item description.</td></tr>
+                <tr><td><code>quantity</code></td><td>number</td><td>Number of units.</td></tr>
+                <tr><td><code>unit_price</code></td><td>number</td><td>Price per unit in dollars.</td></tr>
+                <tr><td><code>material_cost</code></td><td>number</td><td>Material cost for the line (used for margin math).</td></tr>
+                <tr><td><code>markup_percent</code></td><td>number | null</td><td>If non-null, <code>unit_price = material_cost &times; (1 + markup_percent/100)</code>. Null = unit price entered directly.</td></tr>
+                <tr><td><code>line_total</code></td><td>number</td><td>Computed: <code>quantity &times; unit_price</code>.</td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="material-requirements">Material requirements</h2>
+
+        <table>
+            <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td><code>material</code></td><td>string</td><td>Material name (e.g., <code>"Aluminum 6061-T6"</code>).</td></tr>
+                <tr><td><code>specification</code></td><td>string</td><td>Size/spec (e.g., <code>"1/2\" x 4\" x 12\""</code>).</td></tr>
+                <tr><td><code>quantity_needed</code></td><td>number</td><td>How much is needed.</td></tr>
+                <tr><td><code>unit</code></td><td>string</td><td>One of: pcs, ft, in, m, mm, kg, lb, sheets, bars, tubes, plates, rolls, ea.</td></tr>
+                <tr><td><code>is_allocated</code></td><td>boolean</td><td><code>true</code> if the material has been allocated/consumed.</td></tr>
+                <tr><td><code>notes</code></td><td>string</td><td>Free-text.</td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="quality-notes">Quality notes (NCR records)</h2>
+
+        <p>
+            Non-conformance reports for ISO 9001 quality tracking. Array; empty for entries
+            with no quality issues.
+        </p>
+
+        <table>
+            <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td><code>created_at</code></td><td>ISO 8601 string</td><td>When the NCR was opened.</td></tr>
+                <tr><td><code>created_by</code></td><td>string</td><td>Who opened the NCR.</td></tr>
+                <tr><td><code>type</code></td><td>string</td><td>One of: Internal, Customer, Supplier.</td></tr>
+                <tr><td><code>description</code></td><td>string</td><td>What went wrong.</td></tr>
+                <tr><td><code>disposition</code></td><td>string</td><td>One of: Rework, Scrap, Accept As-Is, Return to Supplier, Pending Review.</td></tr>
+                <tr><td><code>root_cause</code></td><td>string</td><td>Free-text root-cause analysis (ISO 9001 §10.2.1).</td></tr>
+                <tr><td><code>severity</code></td><td>string</td><td>One of: Minor, Major, Critical.</td></tr>
+                <tr><td><code>affected_quantity</code></td><td>integer</td><td>Number of non-conforming parts.</td></tr>
+                <tr><td><code>cost_impact</code></td><td>number</td><td>Estimated cost impact in dollars.</td></tr>
+                <tr><td><code>corrective_action</code></td><td>string</td><td>What was/will be done.</td></tr>
+                <tr><td><code>corrective_action_due_date</code></td><td>string</td><td>Format: <code>"yyyy-MM-dd"</code>. Empty when no deadline.</td></tr>
+                <tr><td><code>is_resolved</code></td><td>boolean</td><td><code>true</code> when the NCR is closed.</td></tr>
+                <tr><td><code>resolved_at</code></td><td>ISO 8601 string</td><td>When closed. Empty if open.</td></tr>
+                <tr><td><code>effectiveness_verified</code></td><td>boolean</td><td>ISO 9001 §10.2.1e: did the corrective action actually prevent recurrence?</td></tr>
+                <tr><td><code>effectiveness_verified_at</code></td><td>ISO 8601 string</td><td>When verified.</td></tr>
+                <tr><td><code>effectiveness_verified_by</code></td><td>string</td><td>Who verified.</td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="stage-transitions">Stage transitions</h2>
+
+        <p>
+            Chronological pipeline history. Each transition records the stage entered and the
+            timestamp. For non-linear workflows (where a job revisits a stage), every visit
+            is preserved as a separate entry.
+        </p>
+
+<pre><code>"stage_transitions": [
+  { "stage": "Quote",         "timestamp": "2026-03-01T10:00:00" },
+  { "stage": "Approved",      "timestamp": "2026-03-05T14:30:00" },
+  { "stage": "In Production", "timestamp": "2026-03-08T08:00:00" }
+]</code></pre>
+
+        <p>
+            <strong>Note on timestamps:</strong> <code>stage_transitions[].timestamp</code> values
+            are emitted as written by the GlyphFex client at the time of the transition. They may
+            include or omit the <code>Z</code> suffix depending on which version of GlyphFex
+            recorded them. Newer transitions write ISO 8601 round-trip format. Treat them as
+            ISO 8601 strings; <code>Date.From</code> in Power Query handles both forms.
+        </p>
+
+        <h2 id="attachments">Attachments</h2>
+
+        <p>
+            Metadata only &mdash; <strong>no file bytes</strong> and <strong>no absolute paths</strong>.
+            Customers with access to the project's <code>&lt;projectname&gt;_Attachments/</code>
+            folder can locate the file at <code>&lt;projectname&gt;_Attachments/&lt;stored_file_name&gt;</code>.
+        </p>
+
+        <table>
+            <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td><code>file_name</code></td><td>string</td><td>Original filename as the user uploaded it (e.g., <code>"drawing_v3.pdf"</code>).</td></tr>
+                <tr><td><code>stored_file_name</code></td><td>string</td><td>GUID-prefixed name in the attachments folder (e.g., <code>"a1b2c3d4_drawing_v3.pdf"</code>).</td></tr>
+                <tr><td><code>file_size_bytes</code></td><td>integer</td><td>File size in bytes.</td></tr>
+                <tr><td><code>category</code></td><td>string</td><td>One of: Drawing, Setup Sheet, CNC Program, Photo, Quote, Purchase Order, Inspection Report, Spec Sheet, Other (or empty for uncategorized).</td></tr>
+                <tr><td><code>added_at</code></td><td>ISO 8601 string</td><td>When the file was attached.</td></tr>
+                <tr><td><code>added_by</code></td><td>string</td><td>Who attached it.</td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="audit-summary">Audit summary</h2>
+
+        <p>
+            Per-entry summary of the audit trail. Always present (even on never-edited entries,
+            with <code>change_count: 0</code>). The full audit trail is not embedded per entry &mdash;
+            it would inflate file size on busy projects. A separate <code>audit_trail.csv</code> with
+            full per-change history is planned for a future build.
+        </p>
+
+        <table>
+            <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td><code>change_count</code></td><td>integer</td><td>Number of audit records for this entry.</td></tr>
+                <tr><td><code>last_changed_at</code></td><td>ISO 8601 UTC | null</td><td>When the most recent change occurred. Null if never changed.</td></tr>
+                <tr><td><code>last_changed_by</code></td><td>string</td><td>Who made the most recent change. Empty if never changed.</td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="work-state">Work state</h2>
+
+        <p>Live state for shop-floor coordination &mdash; hold, rework, and active-work indicators.</p>
+
+        <table>
+            <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td><code>is_on_hold</code></td><td>boolean</td><td>The entry is paused waiting on something (material, approval, etc.).</td></tr>
+                <tr><td><code>hold_reason</code></td><td>string</td><td>Reason code from the project's configurable list.</td></tr>
+                <tr><td><code>hold_notes</code></td><td>string</td><td>Free-text reason notes.</td></tr>
+                <tr><td><code>is_rework</code></td><td>boolean</td><td>The entry was sent back from a later stage for rework.</td></tr>
+                <tr><td><code>rework_from_stage</code></td><td>string</td><td>Which stage sent it back.</td></tr>
+                <tr><td><code>rework_reason</code></td><td>string</td><td>Reason code.</td></tr>
+                <tr><td><code>rework_notes</code></td><td>string</td><td>Free-text reason notes.</td></tr>
+                <tr><td><code>rework_returned_by</code></td><td>string</td><td>Username of who sent it back.</td></tr>
+                <tr><td><code>rework_returned_at</code></td><td>ISO 8601 string</td><td>When it was sent back.</td></tr>
+                <tr><td><code>active_work_by</code></td><td>string</td><td>Username of the worker currently on the job. Empty when idle.</td></tr>
+                <tr><td><code>active_work_started_at</code></td><td>ISO 8601 string</td><td>When the active worker started.</td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="conventions">Conventions</h2>
+
+        <h3>Casing</h3>
+        <p>
+            All field names are <code>snake_case</code>. Power BI Power Query, pandas,
+            and most in-house ERPs handle snake_case idiomatically.
+        </p>
+
+        <h3>Timestamps</h3>
+        <p>
+            Top-level <code>created_at</code> / <code>last_modified_at</code> /
+            <code>last_changed_at</code> / <code>deleted_at</code> are ISO 8601 UTC with the
+            <code>Z</code> suffix and 7 fractional-second digits, e.g.
+            <code>"2026-04-30T14:22:00.0000000Z"</code>.
+        </p>
+        <p>
+            Embedded timestamps inside arrays (<code>stage_transitions</code>, <code>quality_notes</code>,
+            <code>attachments</code>) and inside <code>work_state</code> are passed through as the
+            client wrote them; they are ISO 8601 strings but may not always carry the <code>Z</code>
+            suffix. Coerce via <code>Date.From</code> / <code>datetime.fromisoformat</code>.
+        </p>
+
+        <h3>Date-only fields</h3>
+        <p>
+            <code>due_date</code>, <code>quote_valid_until</code>, and
+            <code>corrective_action_due_date</code> use <code>"yyyy-MM-dd"</code> with no time component.
+        </p>
+
+        <h3>Encoding</h3>
+        <p>
+            <code>entries.json</code> is written as <strong>UTF-8 without BOM</strong>
+            (RFC 8259 forbids the BOM in JSON). The companion CSV files (<code>entries.csv</code>,
+            <code>quotes.csv</code>, <code>customers.csv</code>, <code>time_entries.csv</code>)
+            are <strong>UTF-8 with BOM</strong> &mdash; Excel needs the BOM to detect UTF-8.
+        </p>
+
+        <h3>Atomic write</h3>
+        <p>
+            GlyphFex writes each file to <code>&lt;name&gt;.tmp</code> first, then renames it
+            over the destination. A consumer scanning the folder will never see a half-written
+            file. If you scan the folder yourself, filter <code>*.tmp</code> out.
+        </p>
+
+        <h3>Lock file</h3>
+        <p>
+            In multi-user team mode, GlyphFex elects one writer per folder via a hidden
+            <code>.feed.lock</code> sentinel. The file is set <code>FileAttributes.Hidden</code>
+            so Power BI's "Get Data &rarr; Folder" connector doesn't enumerate it by default.
+            If your tool ignores the Hidden attribute, filter <code>.feed.lock</code> out
+            of your folder query.
+        </p>
+
+        <div class="warning">
+            <strong>What we don't do</strong>
+            <p style="margin: 8px 0 0;">
+                We don't sync, we don't push to your tools, and we don't accept inbound writes.
+                You point your tool at the folder; we keep it fresh. If the folder is on a network
+                share, multiple GlyphFex installs coordinate via the lock file so the writes don't
+                race. If you want event-driven delivery instead of folder-scan polling,
+                see <strong>Build #3 outbound webhooks</strong> (in progress).
+            </p>
+        </div>
+
+        <h2 id="consumers">Wiring it up</h2>
+
+        <h3>Power BI</h3>
+        <ol style="padding-left: 20px;">
+            <li>Get Data &rarr; <strong>Folder</strong> &rarr; select your Data Feed folder.</li>
+            <li>Filter rows: <code>Extension</code> equals <code>".csv"</code> for the CSVs, or
+                <code>".json"</code> for <code>entries.json</code>.</li>
+            <li>For <code>entries.json</code>: click "Combine &amp; Transform Data," expand the
+                JSON list, then expand the columns you want. Power BI handles snake_case fields
+                natively.</li>
+            <li>Schedule a refresh in Power BI Service or use Power BI Desktop's manual refresh.</li>
+        </ol>
+
+        <h3>Excel Power Query</h3>
+        <p>
+            Same flow as Power BI &mdash; Data &rarr; Get Data &rarr; From File &rarr; From Folder.
+            Excel reads CSVs with the BOM correctly; for <code>entries.json</code> use
+            "From File &rarr; From JSON" and expand the list.
+        </p>
+
+        <h3>Python</h3>
+
+<pre><code>import json, pandas as pd
+
+with open("entries.json", encoding="utf-8") as f:
+    entries = json.load(f)
+
+assert all(e["schema_version"] == "1.0" for e in entries), "schema mismatch"
+
+# Flatten the key_fields object into top-level columns
+df = pd.json_normalize(entries, sep="_")
+print(df[["ref_number", "key_fields_customer_name",
+         "key_fields_estimated_value", "status"]].head())</code></pre>
+
+        <h3>Joining time entries to entries</h3>
+        <p>
+            <code>time_entries.csv</code> has both an <code>EntryId</code> column (integer FK,
+            matches <code>entries.json</code> &rarr; <code>id</code>) and an
+            <code>EntryRefNumber</code> column (the human-visible ref number). Use whichever is
+            more convenient &mdash; both are stable and join cleanly.
+        </p>
+
+        <hr style="margin: 48px 0 24px; border: none; border-top: 1px solid #e5e7eb;">
+
+        <p style="text-align: center; color: #6b7280; font-size: 14px;">
+            Questions? Email <a href="mailto:support@glyphfex.com">support@glyphfex.com</a>.
+            Found a documentation issue?
+            <a href="https://github.com/philabella/glyphfex-website/issues">Open an issue.</a>
+        </p>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="nav-logo">
+                        <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                            <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                            <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="logo-text">GlyphFex</span>
+                    </a>
+                    <p class="footer-tagline">One source of truth from quote to completion.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <a href="../features.html">Features</a>
+                    <a href="../index.html#pricing">Pricing</a>
+                    <a href="../download.html">Download</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <a href="../help/index.html">Help Center</a>
+                    <a href="data-export-schema-v1.html">Data Export Schema v1</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                    <a href="../eula.html">EULA</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GlyphFex. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
