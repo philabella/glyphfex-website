@@ -520,6 +520,101 @@
                 Every save creates an audit trail record. If ISO compliance mode is enabled in your project settings, GlyphFex prompts for a change reason on each save.
             </div>
 
+            <!-- ====== Smart Quoting ====== -->
+            <h2 id="smart-quoting">Smart Quoting (k-NN Estimation)</h2>
+
+            <p>The moment you've picked enough tags on a new entry, GlyphFex finds the 7 most-similar past jobs and surfaces a median estimate &mdash; right where the field would normally be empty.</p>
+
+            <h3>What you'll see</h3>
+            <ul>
+                <li><strong>Ambient chip below Key Fields</strong> &mdash; "Similar jobs: ~38-42 hrs &middot; ~$3,200 &middot; based on 7 matches"</li>
+                <li><strong>Ghost text in the Est. Hours field</strong> &mdash; the median sits as placeholder. Type to override; click <strong>Accept</strong> on the chip to take it</li>
+                <li><strong>Comparables popover</strong> &mdash; tap the chip to see the matched past jobs with match %, actual hours, and tag chips. Verify the suggestion before you trust it</li>
+                <li><strong>Deviation warning</strong> &mdash; if you type a number 30%+ below history, an InfoBar surfaces the comparables</li>
+            </ul>
+
+            <h3>How matches are scored</h3>
+            <ul>
+                <li><strong>Tag similarity</strong> &mdash; Jaccard index over tag sets (overlap / union)</li>
+                <li><strong>Quantity closeness</strong> &mdash; smaller delta = higher score</li>
+                <li><strong>Recency weight</strong> &mdash; 180-day half-life so recent jobs count more</li>
+                <li><strong>Customer boost</strong> &mdash; same-customer history counts 2&times;</li>
+            </ul>
+
+            <h3 id="honesty-band">Honesty Band &mdash; data thinness made visible</h3>
+            <p>The chip's wording adapts to how much history backs the suggestion. With 10+ matches and a tight 25th-75th percentile range it reads neutral:</p>
+            <p><em>"Similar jobs: ~38-42 hrs"</em></p>
+            <p>With fewer matches or a wide spread, it reads as an acknowledged best guess:</p>
+            <p><em>"Best guess (low data): ~38-42 hrs &middot; only 6 matches &mdash; adjust as you learn"</em></p>
+            <p>This is the Zillow pattern. We never hide thinness, and we never prescribe ("drop your price by 8%"). The data is shown; the decision stays with you.</p>
+
+            <div class="help-tip">
+                <strong>Works after your 5th completed job</strong>
+                The engine needs a small amount of history to seed. Brand-new shops see useful suggestions in week one; mature shops get tight ranges from day one. Smart Quoting can be turned off per project from the Time Multipliers tab in <a href="pipeline.html">Workflow Stages</a>.
+            </div>
+
+            <!-- ====== Tag-Driven Auto-Pricing ====== -->
+            <h2 id="tag-pricing">Tag-Driven Auto-Pricing</h2>
+
+            <p>Closes the "Excel-on-the-side" gap. Mark a tag category as a pricing category, set per-tag $/hr labor rates and per-tag material costs, and your tag selections auto-fill labor rate and material suggestions on the entry form.</p>
+
+            <h3>One-time setup (Edit Categories)</h3>
+            <ol class="help-steps">
+                <li><strong>Open Edit Categories</strong> &mdash; Toolbar &gt; Categories &gt; Edit Categories</li>
+                <li><strong>Mark a category as a pricing category</strong> &mdash; Toggle "Is Pricing Category" on a category like "Material" or "Process"</li>
+                <li><strong>Set the category default labor rate</strong> &mdash; e.g., "Welding" defaults to $95/hr</li>
+                <li><strong>Switch to the Tag Multipliers tab</strong> &mdash; Per-tag labor rate column. Set "Stainless Steel TIG" = $115/hr, "Mild Steel MIG" = $85/hr</li>
+                <li><strong>Add material costs</strong> &mdash; Per-tag cost-per-unit, unit name (sqft, lbs, ea), and optional markup %. e.g., "20 GA Stainless Steel" = $14.50/sqft &middot; markup 35%</li>
+                <li><strong>Set a shop labor rate fallback</strong> &mdash; Settings &gt; Shop &gt; Shop Labor Rate. Used when no tag-specific or category-default rate matches</li>
+            </ol>
+
+            <h3>How rates are resolved (MAX rule)</h3>
+            <p>When you select multiple tags on an entry, GlyphFex applies the MAX rule for labor rate &mdash; the highest applicable tag rate wins. The fallback chain is:</p>
+            <ol>
+                <li><strong>Tag-specific rate</strong> &mdash; e.g., "Stainless Steel TIG" = $115/hr</li>
+                <li><strong>Category default</strong> &mdash; if no per-tag rate is set, e.g., "Welding" category default = $95/hr</li>
+                <li><strong>Shop labor rate</strong> &mdash; the universal fallback from Settings</li>
+            </ol>
+
+            <h3>Auto-Fill formula</h3>
+            <p>The Estimated Value field auto-fills as:</p>
+            <p><code>hours &times; rate + &Sigma;(material &times; (1 + markup))</code></p>
+            <p>Type a custom labor rate or estimated value and the suggestions update live. The field stops being a guess and starts being a calculator. Suggestions appear as ghost text on the <code>labor_rate</code> and <code>estimated_value</code> built-in fields.</p>
+
+            <div class="help-note">
+                <strong>Pricing categories vs regular categories</strong>
+                Only pricing categories drive auto-pricing. Tag categories used for organization only (e.g., "Customer Type", "Region") should leave the toggle off so they don't accidentally interfere with rate calculations.
+            </div>
+
+            <!-- ====== Win/Loss Tracking ====== -->
+            <h2 id="win-loss">Win/Loss Tracking &amp; Lost Reason</h2>
+
+            <p>The <code>quote_outcome</code> built-in field tracks whether a quote ended Won, Lost, Expired, or is still Pending. Combined with the <code>lost_reason</code> field, this powers the <a href="analytics.html#win-rate-by-tag">Win Rate by Tag</a> analytics.</p>
+
+            <h3>Marking a quote Won</h3>
+            <p>Set <code>quote_outcome</code> to <strong>Won</strong>. GlyphFex prompts you to convert it to an order &mdash; one click takes you through <a href="#quote-to-order">Convert Quote to Order</a>.</p>
+
+            <h3>Marking a quote Lost</h3>
+            <p>From the Entry Detail window, click the <strong>Quick Close</strong> button on a Lost or Withdrawn quote. GlyphFex prompts for a reason from a 7-option B2B taxonomy:</p>
+            <ul>
+                <li><strong>Too expensive</strong></li>
+                <li><strong>Lost to competitor</strong></li>
+                <li><strong>Too slow / lead time</strong></li>
+                <li><strong>Customer cancelled</strong></li>
+                <li><strong>Specs changed</strong></li>
+                <li><strong>No response</strong></li>
+                <li><strong>Other</strong></li>
+            </ul>
+            <p>Research finding (Corporate Visions): 30-50% of quotes attributed to "lost on price" are actually lost to slow turnaround, capability mismatch, or relationship. If you blindly drop your price you sell margin away without winning more work. Lost Reason capture lets you tell the difference and see it on the <a href="analytics.html#win-rate-by-tag">Win Rate by Tag</a> chart.</p>
+
+            <h3>Re-quote shortcut</h3>
+            <p>For completed quote entries, the Entry Detail window shows a <strong>Re-quote</strong> button. One click pre-fills a new entry with revision increment and a link back to the source quote &mdash; useful when a customer comes back six months later and asks for the same thing with different specs.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                Lost Reason is an optional built-in field. Enable it in <strong>Settings &gt; Fields &gt; Built-in Key Fields</strong> if you want the prompt to appear when marking quotes Lost. Without it, you can still mark a quote Lost &mdash; you just won't get the per-reason analytics.
+            </div>
+
             <!-- ====== Convert Quote to Order ====== -->
             <h2 id="quote-to-order">Convert Quote to Order</h2>
 

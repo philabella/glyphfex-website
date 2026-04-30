@@ -89,7 +89,61 @@
         <!-- Content -->
         <main class="help-content">
             <h1>Analytics</h1>
-            <p class="help-subtitle">Track KPIs, analyze trends, and monitor SLA compliance across your projects. Navigate here with <kbd>Ctrl</kbd>+<kbd>3</kbd>.</p>
+            <p class="help-subtitle">Track KPIs, analyze trends, and monitor SLA compliance across your projects. Five sections, plain-English insights, and a Win-Rate-by-Tag chart no shop tool under $500/mo offers. Navigate here with <kbd>Ctrl</kbd>+<kbd>5</kbd>.</p>
+
+            <!-- ====== Five Sections ====== -->
+            <h2 id="sections">Five Sections, One Story</h2>
+            <p>The Analytics page is split into five sticky pill-nav sections. Each opens with a question-based subtitle and a hero KPI &mdash; the single number to focus on for that section &mdash; followed by detailed cards and charts.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Section</th>
+                        <th>Hero KPI</th>
+                        <th>Question it answers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Production</strong></td>
+                        <td>At-Risk Jobs</td>
+                        <td>"Are we shipping on time?"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quality</strong></td>
+                        <td>NCR Rate</td>
+                        <td>"How much does our work cost in rework?"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Financial</strong></td>
+                        <td>Average Margin %</td>
+                        <td>"Where's the money going?"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sales &amp; Quoting</strong></td>
+                        <td>Win Rate</td>
+                        <td>"Are we winning the right work?"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Workload</strong></td>
+                        <td>Active Jobs per Worker</td>
+                        <td>"Who's overloaded? Who's idle?"</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>The pill nav stays sticky as you scroll, so you can always jump between sections. Click any chart bar (Status, Stage, or Customer) to drill down to the Dashboard with that filter pre-applied.</p>
+
+            <!-- ====== Executive Summary ====== -->
+            <h2 id="executive-summary">Executive Summary &amp; Headline Insight</h2>
+            <p>At the top of the Analytics page, the <strong>Executive Summary banner</strong> shows 4-6 plain-English fact lines plus an auto-generated headline insight. The headline is picked by an insight ranker that scans your data for the top story, in this priority order:</p>
+            <ol>
+                <li><strong>Bottleneck</strong> &mdash; a stage where work is piling up</li>
+                <li><strong>Margin leak</strong> &mdash; a customer or tag systematically losing money</li>
+                <li><strong>Pricing accuracy</strong> &mdash; a tag where estimates miss by a wide margin</li>
+                <li><strong>Quality spike</strong> &mdash; an NCR rate jump worth investigating</li>
+                <li><strong>Customer concentration</strong> &mdash; over-reliance on a single account</li>
+            </ol>
+            <p>Each section also has a small <span class="help-tip-inline">&#128161; Insight</span> strip below its header pulling out the most actionable note for that section.</p>
+            <p>Hover any KPI card for a tooltip explaining <em>what it measures, why it matters, and the healthy benchmark</em> sourced from ASQ (Cost of Quality), AME (On-Time Delivery), and Sandler/Gartner (Win Rates).</p>
 
             <!-- ====== Time Range Selection ====== -->
             <h2 id="time-range">Time Range Selection</h2>
@@ -311,6 +365,67 @@
                 <strong>Tip</strong>
                 Share the Bottleneck Analysis chart in your weekly production meetings. It gives everyone a clear, data-driven view of where the shop is struggling and where it is performing well. Pair it with the SLA Compliance chart for a complete performance picture.
             </div>
+
+            <!-- ====== Quote Accuracy ====== -->
+            <h2 id="quote-accuracy">Quote Accuracy (Sales &amp; Quoting)</h2>
+            <p>Top shops hit 70% quote-to-book accuracy. Average shops hit 51% (Modern Machine Shop, 2024). The Quote Accuracy section in the Sales &amp; Quoting tab tells you which side you're on, and which tags or customers are dragging you down.</p>
+            <h3>Per-Tag Overrun Slice</h3>
+            <p>For every tag with at least 3 completed quotes, GlyphFex computes the average actual vs estimated hours. Tags where actuals systematically exceed estimates by more than 15% are flagged. Common culprit: a "Stainless Steel" tag whose welding time is consistently underestimated by 40%.</p>
+            <h3>Per-Customer Overrun Slice</h3>
+            <p>Same logic, broken down by customer. Useful for finding the customer who always says "this should be quick" and always isn't.</p>
+            <h3>Monthly Accuracy Trend</h3>
+            <p>A line chart showing quote-to-actual accuracy month over month. Use it to confirm whether your quoting is improving (the goal) or drifting.</p>
+            <h3>Auto-Generated Insight</h3>
+            <p>The section surfaces a one-line insight pointing at the worst-overrun tag or customer this period &mdash; the place to focus your next pricing review.</p>
+            <div class="help-tip">
+                <strong>Closes the loop on Smart Quoting</strong>
+                Smart Quoting <em>suggests</em> hours from history. Quote Accuracy <em>measures</em> whether those suggestions panned out. If a tag is consistently overrunning, you'll see it here before it eats more margin.
+            </div>
+
+            <!-- ====== Win Rate by Tag ====== -->
+            <h2 id="win-rate-by-tag">Win Rate by Tag (Sales &amp; Quoting)</h2>
+            <p>The killer differentiator. <strong>No shop tool under $500/mo offers a per-tag win/loss view.</strong> Most shops have a gut feeling about which work they win and which they don't. This chart turns that gut feeling into data.</p>
+            <h3>What you see</h3>
+            <ul>
+                <li>One row per tag (filtered to tags with at least 3 won OR 3 lost samples; top 12 by volume)</li>
+                <li>A dot bar showing the won/lost ratio at a glance</li>
+                <li>Median quoted price for won jobs and median quoted price for lost jobs &mdash; price gaps are visible</li>
+                <li>The most common <a href="#lost-reason">Lost Reason</a> for that tag</li>
+            </ul>
+            <h3>What we don't do</h3>
+            <p>We don't tell you to "drop your price on Stainless Steel by 8%." That's the Salesforce coaching trap that 45% of reps now rate as below-average advice. The eBay and Zillow pattern: <strong>show the data, let the operator decide</strong>. You know your shop; we know your numbers.</p>
+            <h3 id="lost-reason">Lost Reason</h3>
+            <p>When you mark a quote as Lost (from the Entry Detail window or Dashboard quick-close), GlyphFex prompts for the reason. Choices follow the standard B2B win/loss taxonomy:</p>
+            <ul>
+                <li><strong>Too expensive</strong></li>
+                <li><strong>Lost to competitor</strong></li>
+                <li><strong>Too slow / lead time</strong></li>
+                <li><strong>Customer cancelled</strong></li>
+                <li><strong>Specs changed</strong></li>
+                <li><strong>No response</strong></li>
+                <li><strong>Other</strong></li>
+            </ul>
+            <p>Research finding (Corporate Visions): 30-50% of quotes attributed to "lost on price" are actually lost to slow turnaround, capability mismatch, or relationship. If you blindly drop your price you sell margin away without winning more work. Lost Reason capture lets you tell the difference.</p>
+            <p>Lost Reason is an optional built-in field. Enable it in <strong>Settings &gt; Fields &gt; Built-in Key Fields</strong> if you want the prompt to appear when marking quotes Lost.</p>
+
+            <!-- ====== Engagement Layer ====== -->
+            <h2 id="engagement">Engagement Layer (Streaks, Heatmap, Loyalty)</h2>
+            <p>Borrowed from outside the ERP world. The pattern: surface wins so they feel like wins, surface effort so it doesn't go unseen.</p>
+            <h3>Streak Counters</h3>
+            <p>Three pills at the top of the Analytics page:</p>
+            <ul>
+                <li><strong>On-time-weeks streak</strong> &mdash; how many consecutive weeks you've hit your on-time delivery target. Duolingo pattern</li>
+                <li><strong>Days since last overdue</strong> &mdash; counts up from your most recent missed deadline. Factory safety-board pattern</li>
+                <li><strong>Days since last NCR</strong> &mdash; the same idea for quality issues</li>
+            </ul>
+            <h3>Capacity Rhythm Heatmap</h3>
+            <p>A 90-day grid in the GitHub-contributions style showing daily completed jobs. Darker squares = busier days. The heatmap auto-detects your busy/quiet weekday pattern (e.g., "Mondays are slow, Thursdays are crushed") and writes it as a one-line insight below the grid.</p>
+            <h3>Customer Loyalty Highlights</h3>
+            <p>Two side-by-side cards: your <strong>longest-tenured customer</strong> (the one you've been working with the longest) and your <strong>most-active-this-year customer</strong>. Spotify Wrapped, but for shop work. Useful for the year-end thank-you call.</p>
+
+            <!-- ====== PDF Export ====== -->
+            <h2 id="pdf-export">PDF Export</h2>
+            <p>Click the <strong>Export PDF</strong> button in the toolbar to generate a multi-section, board-ready report. The PDF includes the Executive Summary, hero KPIs from each section, and the most important chart per section. Useful for monthly management reviews or year-end summaries.</p>
 
             <!-- ====== Refresh & Auto-Refresh ====== -->
             <h2 id="refresh">Refresh &amp; Auto-Refresh</h2>
