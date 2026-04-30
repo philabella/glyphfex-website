@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webhooks v1 &mdash; GlyphFex</title>
+    <meta name="description" content="GlyphFex outbound webhooks reference: events, payload shape, HMAC-SHA256 signature verification, retry policy, and consumer code samples for Zapier, n8n, Power Automate, Node.js, and Python.">
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.6; color: #1f2937; }
+        .docs-container { max-width: 880px; margin: 0 auto; padding: 32px 24px 64px; }
+        .docs-container h1 { font-size: 36px; margin: 24px 0 8px; }
+        .docs-container h2 { font-size: 24px; margin: 40px 0 12px; padding-top: 16px; border-top: 1px solid #e5e7eb; }
+        .docs-container h2:first-of-type { border-top: none; padding-top: 0; }
+        .docs-container h3 { font-size: 18px; margin: 28px 0 8px; color: #111827; }
+        .docs-container h4 { font-size: 15px; margin: 20px 0 6px; color: #374151; }
+        .docs-container p { margin: 8px 0 12px; }
+        .docs-container code { font-family: 'JetBrains Mono', monospace; font-size: 13px; background: #f3f4f6; padding: 2px 6px; border-radius: 4px; }
+        .docs-container pre { font-family: 'JetBrains Mono', monospace; font-size: 13px; background: #1f2937; color: #e5e7eb; padding: 16px; border-radius: 8px; overflow-x: auto; line-height: 1.5; }
+        .docs-container pre code { background: transparent; padding: 0; color: inherit; }
+        .docs-container table { width: 100%; border-collapse: collapse; margin: 12px 0 24px; font-size: 14px; }
+        .docs-container th, .docs-container td { text-align: left; padding: 8px 12px; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+        .docs-container th { background: #f9fafb; font-weight: 600; color: #374151; }
+        .docs-container td:first-child code { white-space: nowrap; }
+        .promise { background: #ecfdf5; border-left: 4px solid #10b981; padding: 16px 20px; margin: 16px 0 24px; border-radius: 4px; }
+        .promise strong { color: #065f46; }
+        .warning { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 16px 20px; margin: 16px 0 24px; border-radius: 4px; }
+        .docs-meta { color: #6b7280; font-size: 14px; margin-bottom: 24px; }
+        .docs-meta strong { color: #374151; }
+        .toc { background: #f9fafb; border: 1px solid #e5e7eb; padding: 16px 24px; border-radius: 8px; margin: 24px 0 40px; }
+        .toc ul { margin: 4px 0 0; padding-left: 20px; }
+        .toc li { margin: 4px 0; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="../help/index.html">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="docs-container">
+        <p class="docs-meta">
+            <strong>Schema:</strong> Webhooks v1 (envelope) · <strong>data.entry</strong> follows
+            <a href="data-export-schema-v1.html">v1 entry schema</a> &nbsp;&middot;&nbsp;
+            <strong>First shipped:</strong> Wave 14AF / 14AG
+        </p>
+
+        <h1>Webhooks v1</h1>
+
+        <p>
+            GlyphFex POSTs an HMAC-signed JSON event to your URL when something interesting
+            happens. You point Zapier, n8n, Power Automate, AWS Lambda, or your own endpoint
+            at it &mdash; we never integrate per-vendor connectors, so anything that accepts an
+            HTTP POST works out of the box. The payload <code>data.entry</code> is the same
+            shape as your <code>entries.json</code> file, so the consumer code is identical
+            for both paths.
+        </p>
+
+        <div class="promise">
+            <strong>Operational guarantees</strong>
+            <ul style="margin: 8px 0 0; padding-left: 20px;">
+                <li>HTTPS only. Non-https URLs are rejected at save and at delivery.</li>
+                <li>HMAC-SHA256 signature on every request &mdash; verify before you trust the body.</li>
+                <li>Retry on failure: 1s, 5s, 30s. Three attempts then Failed terminal state.</li>
+                <li>Circuit breaker: 50 consecutive failures auto-disable the subscription.</li>
+                <li>Replay-safe: every payload has a UUID <code>event_id</code>. Dedupe on it.</li>
+                <li>Event age cutoff: deliveries older than 24h auto-fail rather than re-firing stale.</li>
+                <li>Payload size cap 1 MB. Oversized events still fire as a slim envelope (<code>payload_truncated: true</code>).</li>
+            </ul>
+        </div>
+
+        <div class="toc">
+            <strong>On this page</strong>
+            <ul>
+                <li><a href="#events">Event types</a></li>
+                <li><a href="#envelope">Payload envelope</a></li>
+                <li><a href="#headers">HTTP headers</a></li>
+                <li><a href="#signature">Signature verification</a></li>
+                <li><a href="#retry">Retry behavior</a></li>
+                <li><a href="#oversize">Oversized payloads</a></li>
+                <li><a href="#replay">Replay protection</a></li>
+                <li><a href="#consumers">Consumer examples (Node, Python, Zapier, n8n, Power Automate)</a></li>
+                <li><a href="#troubleshooting">Troubleshooting</a></li>
+            </ul>
+        </div>
+
+        <h2 id="events">Event types</h2>
+
+        <p>Subscribe to any combination of these per URL. The event key (e.g. <code>entry_created</code>) is what you select in the Settings panel and what arrives in the <code>event_type</code> field of the payload.</p>
+
+        <table>
+            <thead>
+                <tr><th>Event</th><th>Trigger</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>entry_created</code></td><td>A new job/quote was saved. Fires after attachments are persisted, so the payload's <code>attachments[]</code> array is complete.</td></tr>
+                <tr><td><code>stage_changed</code></td><td>Pipeline stage moved. Fires from Dashboard quick-status, Dashboard Board drag-and-drop, Entry Detail Edit/Advance, Workstation Terminal Done / Pause-Advance / Undo.</td></tr>
+                <tr><td><code>quote_won</code></td><td>Quote outcome set to Won via the Entry Detail "Mark as Won" flow. Fires alongside <code>stage_changed</code> if the win moves the entry to a quoting-completed stage.</td></tr>
+                <tr><td><code>quote_lost</code></td><td>Quote outcome set to Lost via Entry Detail "Quick Close." Fires alongside <code>stage_changed</code>. The payload's <code>data.entry.key_fields.lost_reason</code> field carries the reason code if the user picked one.</td></tr>
+                <tr><td><code>ncr_opened</code></td><td>A new non-conformance record (quality issue) was added to an entry's <code>quality_notes</code> array.</td></tr>
+                <tr><td><code>time_entry_submitted</code></td><td>A worker's time clock stopped (Done, Pause, Switch job, Break, Split, Travel toggle, etc.). Payload's <code>data.entry</code> reflects the entry's state at the moment the timer stopped.</td></tr>
+            </tbody>
+        </table>
+
+        <p>
+            Multiple events can fire from a single user action &mdash; e.g., a Done click on the
+            Workstation Terminal fires both <code>time_entry_submitted</code> (the timer stopped)
+            and <code>stage_changed</code> (the entry advanced). Each has its own <code>event_id</code>.
+        </p>
+
+        <h2 id="envelope">Payload envelope</h2>
+
+<pre><code>{
+  "event_id": "9c8d8b80-13ad-4f48-9c5e-2b8a3e83a6e1",
+  "event_type": "entry_created",
+  "event_timestamp": "2026-04-30T15:42:18.5821000Z",
+  "schema_version": "1.0",
+  "data": {
+    "entry": { ...full v1 entry shape... }
+  }
+}</code></pre>
+
+        <p>
+            <code>data.entry</code> is the same shape documented at
+            <a href="data-export-schema-v1.html">data-export-schema-v1.html</a>: snake_case
+            keys, the full <code>key_fields</code> object with all 17 built-in fields,
+            <code>tags</code> as a category-keyed object, <code>attachments[]</code> with file
+            metadata, <code>audit_summary</code>, <code>work_state</code>, etc.
+        </p>
+
+        <p>
+            Two extra fields appear ONLY in the oversize/slim case (see
+            <a href="#oversize">Oversized payloads</a>): <code>payload_truncated: true</code> and
+            <code>drop_reason</code>. Neither is present on normal-size deliveries.
+        </p>
+
+        <h2 id="headers">HTTP headers</h2>
+
+        <p>Every POST sets these:</p>
+
+        <table>
+            <thead>
+                <tr><th>Header</th><th>Example value</th><th>Purpose</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>Content-Type</code></td><td><code>application/json; charset=utf-8</code></td><td>Body is JSON.</td></tr>
+                <tr><td><code>User-Agent</code></td><td><code>GlyphFex-Webhook/1.0</code></td><td>Useful for filtering in your reverse proxy / WAF.</td></tr>
+                <tr><td><code>X-GlyphFex-Event</code></td><td><code>entry_created</code></td><td>Same as <code>event_type</code> in the body. Lets your endpoint route without parsing JSON first.</td></tr>
+                <tr><td><code>X-GlyphFex-Event-Id</code></td><td><code>9c8d8b80-...</code></td><td>UUID. Use as the dedupe key.</td></tr>
+                <tr><td><code>X-GlyphFex-Timestamp</code></td><td><code>2026-04-30T15:42:18.5821000Z</code></td><td>When the source event happened (NOT when the POST was sent — that may be later on a retry).</td></tr>
+                <tr><td><code>X-GlyphFex-Delivery-Attempt</code></td><td><code>1</code></td><td>1, 2, or 3.</td></tr>
+                <tr><td><code>X-GlyphFex-Schema-Version</code></td><td><code>1.0</code></td><td>Same as <code>schema_version</code> in the body.</td></tr>
+                <tr><td><code>X-GlyphFex-Signature</code></td><td><code>sha256=4e1b2c3d...</code></td><td>HMAC-SHA256 of the raw body bytes, hex-encoded. <a href="#signature">Verify before trusting the body.</a></td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="signature">Signature verification</h2>
+
+        <p>
+            Compute <code>HMAC-SHA256(signing_secret_utf8_bytes, raw_body_bytes)</code> as
+            lowercase hex and compare to the value after <code>sha256=</code> in the
+            <code>X-GlyphFex-Signature</code> header. <strong>Always use a constant-time
+            compare</strong> (e.g., <code>crypto.timingSafeEqual</code> in Node, <code>hmac.compare_digest</code>
+            in Python) so a malicious caller can't probe for the secret one byte at a time.
+        </p>
+
+        <p>
+            The signing secret is per-subscription. Find it in Settings &rarr; Webhooks &rarr;
+            Edit &rarr; Signing secret. The "Regenerate secret" button rolls a new 32-byte
+            random key; the old one is invalid the moment you save. Store the secret in
+            your endpoint's environment variables &mdash; never check it into source.
+        </p>
+
+        <div class="warning">
+            <strong>Always verify before trusting</strong>
+            <p style="margin: 8px 0 0;">
+                If the signature doesn't match, return 401. Don't process the body. The same
+                signature header is what proves the request came from GlyphFex and that the body
+                wasn't tampered with in transit.
+            </p>
+        </div>
+
+        <h2 id="retry">Retry behavior</h2>
+
+        <p>
+            Your endpoint should respond with HTTP <strong>2xx</strong> for any case where you
+            consider the event successfully received &mdash; even if you decide internally to ignore it.
+            Non-2xx (or no response within 30 seconds) triggers a retry.
+        </p>
+
+        <ul>
+            <li>Attempt 1 fails &rarr; retry in <strong>1 second</strong></li>
+            <li>Attempt 2 fails &rarr; retry in <strong>5 seconds</strong></li>
+            <li>Attempt 3 fails &rarr; <strong>delivery marked Failed</strong>, no further retries</li>
+        </ul>
+
+        <p>
+            After 50 consecutive failed deliveries on the same subscription, GlyphFex
+            auto-disables the subscription (circuit breaker). The customer sees a yellow
+            warning in the Settings panel; they re-enable when ready. This protects a
+            permanently-broken endpoint from accumulating millions of zombie retries.
+        </p>
+
+        <p>
+            <strong>Idempotency requirement</strong>: because of retries, your endpoint
+            <strong>must</strong> handle the same <code>event_id</code> arriving twice.
+            Dedupe on <code>X-GlyphFex-Event-Id</code> &mdash; the cheapest path is a small
+            cache (Redis, your DB, even a hash set) of recently-seen event_ids.
+        </p>
+
+        <h2 id="oversize">Oversized payloads</h2>
+
+        <p>
+            Hard limit: 1 MB per payload (UTF-8 bytes). Most cloud-function platforms
+            (AWS Lambda, Azure Functions, Cloud Run) and API gateways have similar or
+            tighter caps; we set ours conservatively so deliveries don't fail at your end.
+        </p>
+
+        <p>
+            When an event would exceed 1 MB &mdash; typically a job with hundreds of attachments
+            or a long audit history &mdash; we still fire, but as a <strong>slim envelope</strong>:
+        </p>
+
+<pre><code>{
+  "event_id": "9c8d8b80-...",
+  "event_type": "entry_created",
+  "event_timestamp": "2026-04-30T15:42:18.5821000Z",
+  "schema_version": "1.0",
+  "payload_truncated": true,
+  "drop_reason": "Payload exceeded 1024 KB limit; full entry data omitted.",
+  "data": {
+    "entry": {
+      "id": 1234,
+      "ref_number": "Q-2026-001"
+    }
+  }
+}</code></pre>
+
+        <p>
+            Your consumer should branch on <code>payload_truncated</code>. If true, you got
+            the event but not the data &mdash; fetch the full entry through your
+            <code>entries.json</code> Data Feed file (cheaper) or a database read.
+        </p>
+
+        <h2 id="replay">Replay protection</h2>
+
+        <p>
+            Two layers:
+        </p>
+
+        <ul>
+            <li><strong>UUID per event</strong> &mdash; <code>event_id</code> in the body and the
+                <code>X-GlyphFex-Event-Id</code> header. Dedupe on it.</li>
+            <li><strong>Event age cutoff</strong> &mdash; if a pending delivery has been queued for
+                more than 24 hours (e.g., the project was closed mid-retry days ago), GlyphFex
+                marks it Failed instead of firing it now. Your consumer doesn't have to defend
+                against week-old events arriving fresh.</li>
+        </ul>
+
+        <h2 id="consumers">Consumer examples</h2>
+
+        <h3>Node.js / Express</h3>
+
+<pre><code>import express from "express";
+import crypto from "crypto";
+
+const app = express();
+const SECRET = process.env.GLYPHFEX_SECRET;
+const seen = new Set(); // replace with Redis / DB in production
+
+app.post("/glyphfex-webhook",
+  express.raw({ type: "application/json" }), // raw body for signature
+  (req, res) =&gt; {
+    const sig = (req.header("x-glyphfex-signature") || "").replace(/^sha256=/, "");
+    const expected = crypto.createHmac("sha256", SECRET)
+                           .update(req.body)
+                           .digest("hex");
+    if (sig.length !== expected.length ||
+        !crypto.timingSafeEqual(Buffer.from(sig), Buffer.from(expected))) {
+      return res.sendStatus(401);
+    }
+
+    const body = JSON.parse(req.body.toString("utf8"));
+    if (seen.has(body.event_id)) return res.sendStatus(200); // replay
+    seen.add(body.event_id);
+
+    console.log(`${body.event_type}: ${body.data.entry.ref_number}`);
+    if (body.payload_truncated) {
+      // fetch full entry from your Data Feed if needed
+    }
+    res.sendStatus(200);
+});
+
+app.listen(3000);</code></pre>
+
+        <h3>Python / Flask</h3>
+
+<pre><code>from flask import Flask, request, abort
+import hmac, hashlib, os
+
+app = Flask(__name__)
+SECRET = os.environ["GLYPHFEX_SECRET"].encode("utf-8")
+seen = set()  # replace with Redis / DB in production
+
+@app.post("/glyphfex-webhook")
+def hook():
+    raw = request.get_data()
+    sig = request.headers.get("X-GlyphFex-Signature", "").removeprefix("sha256=")
+    expected = hmac.new(SECRET, raw, hashlib.sha256).hexdigest()
+    if not hmac.compare_digest(sig, expected):
+        abort(401)
+
+    body = request.get_json()
+    if body["event_id"] in seen:
+        return ("", 200)
+    seen.add(body["event_id"])
+
+    print(body["event_type"], body["data"]["entry"]["ref_number"])
+    return ("", 200)</code></pre>
+
+        <h3>Zapier</h3>
+
+        <p>
+            Use the <strong>Webhooks by Zapier</strong> trigger &rarr; <em>Catch Hook</em>.
+            Paste the URL Zapier gives you into a new GlyphFex subscription. Zapier doesn't
+            verify HMAC for you, so for sensitive integrations add a <strong>Code by Zapier</strong>
+            step that recomputes the signature and aborts the Zap on mismatch. Dedupe on
+            <code>event_id</code> using a Storage by Zapier lookup.
+        </p>
+
+        <h3>n8n</h3>
+
+        <p>
+            Use the <strong>Webhook</strong> node configured for POST. Verify the signature
+            with a <strong>Function</strong> node:
+        </p>
+
+<pre><code>const crypto = require('crypto');
+const sig = $input.first().headers['x-glyphfex-signature'].replace('sha256=', '');
+const expected = crypto.createHmac('sha256', $env.GLYPHFEX_SECRET)
+                       .update(JSON.stringify($input.first().body))
+                       .digest('hex');
+if (sig !== expected) throw new Error('Invalid signature');
+return $input.all();</code></pre>
+
+        <p>
+            Note: n8n re-serializes the JSON, which can break HMAC if your secret was computed
+            against the original byte sequence. For strict signature checks, expose the
+            webhook node with "Binary Data" enabled and verify against the raw bytes.
+        </p>
+
+        <h3>Power Automate</h3>
+
+        <p>
+            Use the <strong>When a HTTP request is received</strong> trigger. Power Automate
+            doesn't expose the raw request body in a HMAC-friendly way out of the box, so
+            for production use either run an Azure Function as a verifier-proxy or accept the
+            tradeoff that anyone who knows your URL can post to it. For low-stakes flows
+            (Slack notifications, internal logs) this is usually fine; for anything that
+            mutates external state, put a Function in front.
+        </p>
+
+        <h2 id="troubleshooting">Troubleshooting</h2>
+
+        <h3>"My endpoint isn't getting any deliveries."</h3>
+        <p>
+            In GlyphFex: Settings &rarr; Webhooks &rarr; click <strong>View recent deliveries</strong>
+            on the subscription. You'll see one of:
+        </p>
+        <ul>
+            <li><strong>No deliveries listed</strong> &mdash; the events you registered for haven't
+                fired yet, or the subscription is disabled. Try the action manually
+                (e.g., create a new entry to fire <code>entry_created</code>).</li>
+            <li><strong>Failed</strong> with HTTP 0 &mdash; network/DNS error. Check your URL is
+                reachable from the GlyphFex machine. Note: GlyphFex is a desktop app, so the
+                deliveries originate from the user's machine, not a cloud IP &mdash; firewall
+                allowlists keyed on a GlyphFex public IP won't work.</li>
+            <li><strong>Failed</strong> with HTTP 401 &mdash; your endpoint rejected the signature.
+                Double-check the signing secret matches between Settings and your environment.</li>
+            <li><strong>Failed</strong> with HTTP 5xx &mdash; your endpoint threw. Check its logs.
+                GlyphFex retries 3 times then gives up; circuit-breaker triggers after 50
+                consecutive failures.</li>
+        </ul>
+
+        <h3>"I'm getting duplicate events."</h3>
+        <p>
+            Either: (a) your endpoint returned non-2xx for a delivery that succeeded internally
+            (the retry then re-delivered), or (b) two distinct user actions both fire the same
+            event type. Dedupe on <code>event_id</code>; that handles both cases.
+        </p>
+
+        <h3>"My signature verification fails sometimes but not always."</h3>
+        <p>
+            Almost always a body-byte mismatch &mdash; your framework re-serialized the JSON
+            before you computed the HMAC. Verify against <strong>raw request bytes</strong>,
+            not against a parsed-and-restringified version. The HMAC is computed by GlyphFex
+            against the exact UTF-8 byte sequence we send.
+        </p>
+
+        <h3>"I subscribed to <code>quote_won</code> but I'm getting <code>stage_changed</code> too."</h3>
+        <p>
+            They're separate subscriptions per event type, but the <em>same</em> user action
+            (marking a quote Won) can fire both events: <code>quote_won</code> for the outcome
+            change, and <code>stage_changed</code> if the win moved the entry to a quoting-
+            completed stage. If you only want one, uncheck the other in the Settings panel.
+        </p>
+
+        <hr style="margin: 48px 0 24px; border: none; border-top: 1px solid #e5e7eb;">
+
+        <p style="text-align: center; color: #6b7280; font-size: 14px;">
+            Questions? Email <a href="mailto:support@glyphfex.com">support@glyphfex.com</a>.
+            See also: <a href="data-export-schema-v1.html">v1 entry schema</a>.
+        </p>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="nav-logo">
+                        <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                            <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                            <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="logo-text">GlyphFex</span>
+                    </a>
+                    <p class="footer-tagline">One source of truth from quote to completion.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <a href="../features.html">Features</a>
+                    <a href="../index.html#pricing">Pricing</a>
+                    <a href="../download.html">Download</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <a href="../help/index.html">Help Center</a>
+                    <a href="data-export-schema-v1.html">v1 Entry Schema</a>
+                    <a href="webhooks-v1.html">Webhooks v1</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                    <a href="../eula.html">EULA</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GlyphFex. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

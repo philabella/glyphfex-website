@@ -80,7 +80,7 @@
         <p>
             The Data Feed writes one JSON file (<code>entries.json</code>) and four CSVs to a folder
             you choose. This page documents the JSON shape. It's the contract for both the scheduled
-            folder drop (Build #1) and the outbound webhooks (Build #3, in progress). If you build a
+            folder drop (Build #1) and the outbound webhooks (<a href="webhooks-v1.html">Build #3</a>). If you build a
             Power BI dashboard, an Excel Power Query model, or a Python ingest script against v1,
             we promise to never break it.
         </p>
@@ -524,7 +524,7 @@
                 You point your tool at the folder; we keep it fresh. If the folder is on a network
                 share, multiple GlyphFex installs coordinate via the lock file so the writes don't
                 race. If you want event-driven delivery instead of folder-scan polling,
-                see <strong>Build #3 outbound webhooks</strong> (in progress).
+                see <a href="webhooks-v1.html"><strong>Build #3 outbound webhooks</strong></a>.
             </p>
         </div>
 
@@ -603,7 +603,8 @@ print(df[["ref_number", "key_fields_customer_name",
                 <div class="footer-links">
                     <h4>Resources</h4>
                     <a href="../help/index.html">Help Center</a>
-                    <a href="data-export-schema-v1.html">Data Export Schema v1</a>
+                    <a href="data-export-schema-v1.html">v1 Entry Schema</a>
+                    <a href="webhooks-v1.html">Webhooks v1</a>
                 </div>
                 <div class="footer-links">
                     <h4>Legal</h4>

@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Features — GlyphFex | Everything You Need, Nothing You Don't</title>
-    <meta name="description" content="Explore GlyphFex's 140+ features: pipeline stages, dashboard views, Gantt charts, shop floor kiosk, ISO audit trail, multi-user roles, analytics, PDF export, and more. Built for real shop floors.">
+    <meta name="description" content="Explore GlyphFex's 145+ features: pipeline stages, dashboard views, Gantt charts, shop floor kiosk, ISO audit trail, multi-user roles, analytics, PDF export, and more. Built for real shop floors.">
     <meta name="keywords" content="GlyphFex features, shop management features, quoting software, job tracking features, pipeline tracking, audit trail, Gantt chart, shop floor display, production tracking, ISO compliance">
 
     <!-- Open Graph -->
     <meta property="og:title" content="GlyphFex Features — Everything You Need, Nothing You Don't">
-    <meta property="og:description" content="140+ features built for real shop floors. Pipeline stages, audit trails, Gantt charts, shop floor kiosk, multi-user roles, and more.">
+    <meta property="og:description" content="145+ features built for real shop floors. Pipeline stages, audit trails, Gantt charts, shop floor kiosk, multi-user roles, and more.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://glyphfex.com/features.html">
 
@@ -62,7 +62,7 @@
     <!-- ============ PAGE HERO ============ -->
     <section class="page-hero">
         <div class="container">
-            <div class="hero-badge">140+ features built for real shops</div>
+            <div class="hero-badge">145+ features built for real shops</div>
             <h1>Everything you need.<br>Nothing you don't.</h1>
             <p>GlyphFex was built by a mechanical engineer who spent years managing jobs with spreadsheets at a manufacturing company. He built the tool he wished existed &mdash; simple enough to set up in 2 minutes, powerful enough to track hundreds of jobs, and designed by someone who actually understands the quote-to-shipment workflow. No sales team, no venture capital, no compromises. Just software that works the way a shop actually runs.</p>
         </div>
@@ -90,6 +90,7 @@
                 <a href="#config" class="features-nav-link">Configuration</a>
                 <a href="#performance" class="features-nav-link">Performance</a>
                 <a href="#data-feed" class="features-nav-link">Data Feed</a>
+                <a href="#webhooks" class="features-nav-link">Webhooks</a>
             </div>
         </div>
     </div>
@@ -915,11 +916,53 @@
         </div>
     </section>
 
+    <!-- ============ SECTION 19: WEBHOOKS ============ -->
+    <section class="feature-section" id="webhooks">
+        <div class="container">
+            <div class="feature-section-header">
+                <h2><span class="section-number">19</span>Webhooks &mdash; Event-Driven Integration</h2>
+                <p>Don't poll the folder &mdash; have GlyphFex POST a JSON event to your endpoint the moment something interesting happens. Plays nicely with Zapier, n8n, Power Automate, AWS Lambda, your own Express endpoint &mdash; anything that listens for HTTP POST. <strong>Each delivery is HMAC-SHA256 signed</strong>, retried with exponential backoff, and protected against replay.</p>
+            </div>
+            <div class="feature-layout reversed">
+                <div class="feature-text">
+                    <ul class="feature-bullets">
+                        <li><strong>Six event types</strong> &mdash; <code>entry_created</code>, <code>stage_changed</code>, <code>quote_won</code>, <code>quote_lost</code>, <code>ncr_opened</code>, <code>time_entry_submitted</code>. Subscribe to any combination per URL</li>
+                        <li><strong>HMAC-SHA256 signature</strong> in every <code>X-GlyphFex-Signature: sha256=&lt;hex&gt;</code> header. Your endpoint verifies with the per-subscription signing secret. Stripe-style verification works out of the box</li>
+                        <li><strong>Per-subscription signing secret</strong> &mdash; rotation is per-URL, so a compromise of one endpoint doesn't expose the others. One-click Regenerate Secret in the Settings UI</li>
+                        <li><strong>Schema-v1 payload</strong> &mdash; the event envelope wraps the same <code>data.entry</code> shape your <code>entries.json</code> file uses, so consumer code is identical for both ingestion paths. <a href="docs/webhooks-v1.html">Webhooks reference &rarr;</a> &middot; <a href="docs/data-export-schema-v1.html">v1 entry schema &rarr;</a></li>
+                        <li><strong>HTTPS only</strong> &mdash; non-https URLs are rejected at save time and at delivery time. Signing secrets never travel over plaintext</li>
+                        <li><strong>Replay protection</strong> &mdash; every payload carries a UUID <code>event_id</code> in both the JSON body and the <code>X-GlyphFex-Event-Id</code> header. Customer's consumer dedupes on it</li>
+                        <li><strong>Exponential-backoff retry</strong> &mdash; 3 attempts at 1s / 5s / 30s after the first 2xx-or-5xx response. After the 3rd failed attempt, marked Failed and the failure is visible in the per-subscription delivery log</li>
+                        <li><strong>Circuit breaker</strong> &mdash; 50 consecutive failures auto-disable the subscription so we stop hammering a dead endpoint. Customer sees the disabled state + last-failure reason in the panel and re-enables when ready</li>
+                        <li><strong>1 MB payload limit with slim-envelope fallback</strong> &mdash; oversized events (huge audit history, many attachments) still fire, but with a stripped <code>data.entry: { id, ref_number }</code> + <code>payload_truncated: true</code> flag. Your automation knows the event happened and can fetch the full record on its own</li>
+                        <li><strong>Event-age cutoff</strong> &mdash; deliveries older than 24h are auto-marked Failed instead of re-firing if a project is reopened a week later. Your downstream system never sees a stale event arrive looking fresh</li>
+                        <li><strong>Per-subscription delivery log</strong> &mdash; recent deliveries with status / event_id / HTTP code / error message, viewable from the Settings panel without leaving GlyphFex</li>
+                        <li><strong>Auto-cleanup</strong> &mdash; Delivered rows older than 30 days are pruned daily; Failed rows kept longer for debugging</li>
+                    </ul>
+                    <p style="margin-top: 16px; font-size: 14px; color: var(--gray-500, #6b7280);">
+                        Marketing one-liner: <em>"Subscribe to events on your terms."</em>
+                    </p>
+                </div>
+                <div class="feature-media">
+                    <div class="screenshot-placeholder" data-capture="webhooks-panel">
+                        <div class="placeholder-inner">
+                            <div class="placeholder-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            </div>
+                            <p class="placeholder-label">Screenshot: Webhooks settings panel</p>
+                            <p class="placeholder-note">Capture: Settings &gt; Shop Configuration &gt; Webhooks showing one or two subscriptions with event checkboxes and delivery log</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ============ BOTTOM CTA ============ -->
     <section class="features-cta">
         <div class="container">
             <h2>Ready to try it?</h2>
-            <p>140+ features including Smart Quoting, tag-driven auto-pricing, Win Rate by Tag analytics, the Honesty Band confidence indicator, and the Data Feed for clean Power BI / Excel / ERP integration. 50-entry free trial. No credit card required. Set up in 5 minutes. Your data stays on your network.</p>
+            <p>145+ features including Smart Quoting, tag-driven auto-pricing, Win Rate by Tag analytics, the Honesty Band confidence indicator, the Data Feed for Power BI / Excel / ERP integration, and outbound Webhooks for event-driven Zapier / n8n / Power Automate flows. 50-entry free trial. No credit card required. Set up in 5 minutes. Your data stays on your network.</p>
             <a href="download.html" class="btn btn-white btn-lg">Download Free Trial</a>
         </div>
     </section>
