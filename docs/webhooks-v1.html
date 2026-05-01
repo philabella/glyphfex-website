@@ -85,13 +85,15 @@
         <div class="promise">
             <strong>Operational guarantees</strong>
             <ul style="margin: 8px 0 0; padding-left: 20px;">
-                <li>HTTPS only. Non-https URLs are rejected at save and at delivery.</li>
+                <li>HTTPS only. Non-https URLs are rejected at save and at delivery. Embedded credentials (<code>https://user:pass@host</code>) are also rejected.</li>
                 <li>HMAC-SHA256 signature on every request &mdash; verify before you trust the body.</li>
                 <li>Retry on failure: 1s, 5s, 30s. Three attempts then Failed terminal state.</li>
                 <li>Circuit breaker: 50 consecutive failures auto-disable the subscription.</li>
                 <li>Replay-safe: every payload has a UUID <code>event_id</code>. Dedupe on it.</li>
-                <li>Event age cutoff: deliveries older than 24h auto-fail rather than re-firing stale.</li>
+                <li>Event age cutoff: deliveries older than 24h auto-fail rather than re-firing stale. The cutoff uses the database server&rsquo;s clock, not the worker&rsquo;s &mdash; one drifting workstation can&rsquo;t kill the feature for the rest of the shop.</li>
                 <li>Payload size cap 1 MB. Oversized events still fire as a slim envelope (<code>payload_truncated: true</code>).</li>
+                <li><strong>Exactly-once delivery</strong> across multiple GlyphFex installs sharing the same SQL Server project. Per-row claim mechanism (atomic <code>UPDATE&hellip;OUTPUT</code> with <code>READPAST/UPDLOCK</code> hints) means events fire once even when 4 workstations are running.</li>
+                <li><strong>Audit trail.</strong> Every config change to a subscription (URL, events, signing secret, enable/disable) stamps <code>LastModifiedAt</code> and <code>LastModifiedBy</code>. Secret rotation gets its own <code>SecretRotatedAt</code>/<code>SecretRotatedBy</code>. Visible in-app on the subscription card so an auditor can answer &ldquo;who configured this and when?&rdquo; without leaving Settings.</li>
             </ul>
         </div>
 
@@ -102,9 +104,11 @@
                 <li><a href="#envelope">Payload envelope</a></li>
                 <li><a href="#headers">HTTP headers</a></li>
                 <li><a href="#signature">Signature verification</a></li>
+                <li><a href="#test-events">Testing your endpoint</a></li>
                 <li><a href="#retry">Retry behavior</a></li>
                 <li><a href="#oversize">Oversized payloads</a></li>
                 <li><a href="#replay">Replay protection</a></li>
+                <li><a href="#operator">Operator tools (Test, Retry, Reset)</a></li>
                 <li><a href="#consumers">Consumer examples (Node, Python, Zapier, n8n, Power Automate)</a></li>
                 <li><a href="#troubleshooting">Troubleshooting</a></li>
             </ul>
@@ -206,6 +210,37 @@
             </p>
         </div>
 
+        <h2 id="test-events">Testing your endpoint</h2>
+
+        <p>
+            Every subscription card in <strong>Settings &rarr; Webhooks</strong> has a
+            <strong>Test</strong> button. Click it to fire a synthetic event right now &mdash;
+            real signature, real headers, real envelope shape. Use this to verify your
+            endpoint receives the POST and your HMAC verifier accepts it before you go live.
+        </p>
+
+        <p>
+            Test events have <code>"event_type": "test"</code> and <code>"is_test": true</code>
+            at the top of the envelope so your downstream automation can ignore them in
+            production logic. They <strong>bypass the persistent delivery queue</strong> &mdash;
+            no retry, no circuit-breaker impact, no row in Recent Deliveries. The result
+            (HTTP status, latency, or error) shows inline on the subscription card.
+        </p>
+
+        <p>
+            Below the Test result, three <strong>Copy</strong> links appear:
+        </p>
+        <ul>
+            <li><strong>Copy curl</strong> &mdash; one-liner that replays the exact POST in Bash, WSL, or PowerShell. Same URL, same headers, same body, same signature. Paste into a terminal and re-run on demand.</li>
+            <li><strong>Copy body</strong> &mdash; the JSON bytes the signature was computed over. Paste into your verifier code to reproduce the HMAC and compare against the header value byte-by-byte.</li>
+            <li><strong>Copy signature</strong> &mdash; the <code>X-GlyphFex-Signature</code> value (<code>sha256=&lt;hex&gt;</code>).</li>
+        </ul>
+
+        <p>
+            Together these mean a customer debugging a 401 has <em>everything</em> needed to
+            replay locally and find the mismatch. No screen-scraping, no log mining.
+        </p>
+
         <h2 id="retry">Retry behavior</h2>
 
         <p>
@@ -280,8 +315,77 @@
             <li><strong>Event age cutoff</strong> &mdash; if a pending delivery has been queued for
                 more than 24 hours (e.g., the project was closed mid-retry days ago), GlyphFex
                 marks it Failed instead of firing it now. Your consumer doesn't have to defend
-                against week-old events arriving fresh.</li>
+                against week-old events arriving fresh. The cutoff uses the database server&rsquo;s
+                clock, so a single drifting workstation can&rsquo;t age out the rest of the shop&rsquo;s
+                events.</li>
+            <li><strong>Per-row claim</strong> &mdash; in multi-install team mode (multiple GlyphFex
+                workstations sharing one SQL Server project), each delivery is claimed by exactly
+                one worker via an atomic <code>UPDATE&hellip;OUTPUT</code>. You receive each event
+                once even when 4 workstations are running. No producer-side fanout to worry
+                about; the consumer-side dedup on <code>event_id</code> is your safety net for
+                the rare retry-after-network-blip case.</li>
         </ul>
+
+        <h2 id="operator">Operator tools</h2>
+
+        <p>
+            The <strong>Settings &rarr; Webhooks</strong> panel surfaces health and recovery
+            controls for each subscription. These are the buttons your admin reaches for when
+            something&rsquo;s off.
+        </p>
+
+        <h3>At-a-glance health</h3>
+        <p>
+            Each subscription card shows a one-line summary of the last 50 deliveries:
+            <em>&ldquo;Last 47: 45 delivered, 2 failed (95.7% delivered).&rdquo;</em> Tinted green
+            when everything&rsquo;s green; red when there are any failures. No need to open the
+            Recent Deliveries dialog to know if the integration is working.
+        </p>
+
+        <h3>Recent Deliveries</h3>
+        <p>
+            Click <strong>View recent deliveries</strong> on a subscription to see the last 50
+            POST attempts. Filter dropdown narrows by status (All, Failed only, Pending only,
+            Delivered only). Each row shows status, event type, attempt count, HTTP code,
+            error message, and the <code>event_id</code> for cross-referencing with your own
+            logs.
+        </p>
+
+        <h3>Retry &amp; bulk Retry</h3>
+        <p>
+            Each Failed delivery has a per-row <strong>Retry</strong> button that re-queues
+            the delivery for another attempt with a fresh 3-retry budget. The dialog header
+            also has a <strong>Retry all N failed</strong> button for the dominant
+            recovery flow: customer&rsquo;s endpoint was down for an hour, 12 deliveries failed,
+            customer fixes endpoint, clicks <em>one</em> button instead of clicking Retry 12 times.
+        </p>
+        <p>
+            Retried deliveries get a fresh <code>event_timestamp</code> (so they don&rsquo;t age
+            out before the worker tick fires) but keep the original <code>event_id</code>
+            &mdash; your consumer-side dedup catches the case where you already received the
+            payload before the network blip.
+        </p>
+
+        <h3>Reset failures</h3>
+        <p>
+            When a subscription hits 50 consecutive failures the circuit breaker auto-disables
+            it. A <strong>Reset failures</strong> button appears on the card &mdash; clears the
+            failure counter, clears the last-failure reason, re-enables the subscription. Use
+            this after fixing your endpoint to take the subscription back out of
+            circuit-broken state.
+        </p>
+
+        <h3>Audit footer</h3>
+        <p>
+            Each subscription card shows a compliance footer:
+            <em>&ldquo;Created 2026-04-12 14:23 by Philippe &middot; Last modified 2026-05-01
+            09:14 by Tyler &middot; &#10227; Signing secret last rotated 2026-04-30 17:02 by
+            Philippe.&rdquo;</em> ISO 9001 / SOC 2 / regulated-shop audits answer
+            &ldquo;who configured this data-exfil endpoint and when?&rdquo; without leaving the
+            dialog. Secret rotation gets its own timestamp because rotation breaks every
+            downstream consumer&rsquo;s verifier &mdash; that event is worth surfacing
+            separately from generic edits.
+        </p>
 
         <h2 id="consumers">Consumer examples</h2>
 
