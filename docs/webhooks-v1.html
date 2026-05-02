@@ -389,6 +389,18 @@
 
         <h2 id="consumers">Consumer examples</h2>
 
+        <div class="note">
+            <strong>Slack and Microsoft Teams are not direct endpoints.</strong>
+            Both services accept their own message envelope (<code>{ "text": "..." }</code> for
+            Slack incoming webhooks, an Adaptive Card JSON for Teams) &mdash; not raw HTTP
+            POSTs from arbitrary services. To get GlyphFex events into Slack or Teams, point
+            your subscription at a <strong>Zapier / n8n / Power Automate</strong> trigger
+            and let the workflow translate the payload into the format Slack or Teams expects.
+            The Zapier and n8n examples below cover this pattern. A future GlyphFex update
+            may add a built-in &ldquo;Slack mode&rdquo; payload adapter; for now, route
+            through your no-code platform.
+        </div>
+
         <h3>Node.js / Express</h3>
 
 <pre><code>import express from "express";
