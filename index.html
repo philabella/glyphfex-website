@@ -324,12 +324,26 @@
                     <h3>Multi-User Ready</h3>
                     <p>Solo mode (single file) or team mode (SQL Server Express). Admin, Editor, and Viewer roles with Kiosk Mode. Windows Authentication &mdash; no passwords.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
+                <div class="feature-card" style="border-color: var(--primary, #2563EB); border-width: 2px;">
+                    <div class="feature-icon" style="background: var(--primary, #2563EB); color: white;">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><path d="M12 18v-6M9 15l3-3 3 3"/></svg>
                     </div>
-                    <h3>Export Everything</h3>
-                    <p>PDF reports, Excel spreadsheets, CSV for QuickBooks, and printable job travelers. Your data is never locked in.</p>
+                    <h3>Power BI / Excel Data Feed</h3>
+                    <p>Drop a fresh snapshot of every job, quote, customer and time entry into a folder on the schedule you pick &mdash; every 5 minutes, hourly, daily. <strong>Power BI, Excel, your accountant's tools, your in-house ERP</strong> read straight from the folder. Stable v1 JSON schema so your dashboards don't break when GlyphFex updates. Atomic writes so a refresh in progress never sees half a file. <a href="docs/data-export-schema-v1.html">Schema reference &rarr;</a></p>
+                </div>
+                <div class="feature-card" style="border-color: var(--primary, #2563EB); border-width: 2px;">
+                    <div class="feature-icon" style="background: var(--primary, #2563EB); color: white;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    </div>
+                    <h3>Live Events to Zapier / Slack</h3>
+                    <p>Set up a webhook URL once. Get an HTTPS POST the moment a job is created, a stage changes, a quote wins or loses, an NCR opens, or time is submitted. <strong>Zapier, n8n, Power Automate, Slack, your own endpoint</strong> &mdash; anything that listens for HTTP gets your shop's events in real time. HMAC-SHA256 signed, retried with backoff, exactly-once delivery across multi-install teams. <a href="docs/webhooks-v1.html">Webhooks reference &rarr;</a></p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+                    </div>
+                    <h3>One-Shot Exports</h3>
+                    <p>PDF reports, Excel spreadsheets, CSV for QuickBooks, and printable job travelers when you need a one-off. Your data is never locked in.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
