@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Quoting &mdash; GlyphFex Help</title>
+    <meta name="description" content="Smart Quoting in GlyphFex: k-NN time estimation from past jobs, Honesty Band confidence indicator, tag-driven auto-pricing, and how to read the suggestion chip.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="workflows.html">Workflows</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <a href="smart-quoting.html" class="active">Smart Quoting</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="calendar.html">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <a href="work-bins.html">My Jobs</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="templates.html">Templates</a>
+                <a href="validation.html">Validation</a>
+                <a href="rules.html">Show/Hide Rules</a>
+                <a href="notifications.html">Notifications</a>
+                <a href="backup-recovery.html">Backup &amp; Recovery</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <a href="sql-server-setup.html">SQL Server Setup</a>
+                <span class="sidebar-nav-label">Integrations</span>
+                <a href="data-feed.html">Data Feed (Power BI / Excel)</a>
+                <a href="webhooks.html">Webhooks (Zapier, n8n)</a>
+                <a href="live-excel.html">Live Excel Sync</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Smart Quoting</h1>
+            <p class="help-subtitle">GlyphFex suggests an estimated time, labor rate, and quote price for new jobs based on the tags you pick &mdash; using your own past jobs as the data source.</p>
+
+            <!-- ====== What It Does ====== -->
+            <h2 id="overview">What Smart Quoting Does</h2>
+            <p>When you create a new entry and pick tags (Material, Process, Priority, etc.), Smart Quoting looks at every past entry in your project with similar tags, weights them by how recent they are and how close in quantity, and shows you a suggestion <strong>chip</strong> just below the Key Fields section on the Entry page.</p>
+            <p>A typical chip looks like this:</p>
+            <div class="help-screenshot">
+                <svg class="screenshot-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                <span class="screenshot-label">Smart Quoting chip on Entry page</span>
+                <span class="screenshot-desc">The chip below Key Fields reads, for example, &ldquo;Similar jobs: ~38&ndash;42 hrs &middot; ~$3,200 &middot; based on 7 matches. <button>View comparables</button> <button>Use 40</button>&rdquo;</span>
+            </div>
+            <p>The numbers are derived from your own job history &mdash; <strong>not</strong> an industry benchmark, not a cloud model, not anyone else's data. If you have zero similar jobs in your project yet, the chip is empty; once you complete a handful with `actual_hours` filled in, it starts learning.</p>
+
+            <!-- ====== How It Works ====== -->
+            <h2 id="how-it-works">How It Works</h2>
+            <p>The estimator runs locally in the app every time your tag selection changes (debounced 300&nbsp;ms so it isn&rsquo;t fighting your typing):</p>
+            <ol class="help-steps">
+                <li><strong>Find candidates.</strong> Every past entry in the same project (across all pipelines) is scored by <strong>Jaccard similarity</strong> on the tag set. Two jobs sharing 4 of 5 tags score 0.8; jobs with no overlap score 0.</li>
+                <li><strong>Weight by recency.</strong> A 180-day half-life means jobs older than 6 months count for half as much, jobs from 12 months ago count for a quarter, and so on.</li>
+                <li><strong>Weight by quantity closeness.</strong> If the new job is for 50 pieces, a past job of 48 pieces scores higher than one of 5 pieces.</li>
+                <li><strong>Customer boost.</strong> If the new job has the same customer name as a past one, that past one gets a 2&times; multiplier &mdash; you tend to repeat work for the same customers in similar ways.</li>
+                <li><strong>Weighted median.</strong> From the top matches (typically 5&ndash;15), the estimator takes the weighted median of <code>actual_hours</code> and the weighted P25/P75 to bracket the range.</li>
+            </ol>
+            <p>Hours, suggested labor rate, and suggested price all come out of the same matching run. Hours always come from <code>actual_hours</code> on past completed jobs &mdash; never <code>estimated_hours</code> &mdash; so the estimator only learns from reality, not from your own past guesses.</p>
+
+            <!-- ====== Honesty Band ====== -->
+            <h2 id="honesty-band">The Honesty Band: when Smart Quoting tells you it&rsquo;s unsure</h2>
+            <p>If Smart Quoting has &ge;10 close matches and the spread between P25 and P75 is narrow, the chip uses neutral wording:</p>
+            <blockquote class="help-callout">
+                Similar jobs: ~38&ndash;42 hrs &middot; ~$3,200 &middot; based on 12 matches
+            </blockquote>
+            <p>If it has fewer than 10 matches, or if the spread is wide, it switches to <em>acknowledged-uncertainty</em> wording:</p>
+            <blockquote class="help-callout">
+                Best guess (low data): ~38&ndash;42 hrs &middot; only 6 matches &mdash; adjust as you learn
+            </blockquote>
+            <p>This is the <strong>Honesty Band</strong>. It exists because pretending to be confident about a 5-job sample is worse than admitting you&rsquo;re still learning. We follow the Zillow pattern: <em>show the data, never hide thinness, never prescribe</em>. The chip won&rsquo;t tell you to &ldquo;drop your price&rdquo; or &ldquo;raise your hours&rdquo; &mdash; that&rsquo;s your call.</p>
+
+            <!-- ====== The Comparables Popover ====== -->
+            <h2 id="comparables">The Comparables Popover</h2>
+            <p>Click <strong>View comparables</strong> on the chip to open the Comparables dialog, which lists the top 7 matched past jobs:</p>
+            <ul>
+                <li>Match percentage (the Jaccard score, displayed as a percentage)</li>
+                <li>Actual hours on the past job</li>
+                <li>Tag chips for the past job &mdash; matching tags highlighted, non-matching tags dimmed</li>
+                <li>Customer name, due date, and Job Number</li>
+            </ul>
+            <p>This is the &ldquo;show your work&rdquo; layer. If the suggestion looks wrong, the comparables let you see <em>which past jobs the estimator is leaning on</em> and decide whether they&rsquo;re actually similar. Click any row to open that past entry in a detail window.</p>
+
+            <!-- ====== One-click Accept ====== -->
+            <h2 id="one-click-accept">One-click Accept &amp; Deviation Warning</h2>
+            <p>The chip includes an <strong>Accept</strong> button (the &ldquo;Use&nbsp;40&rdquo; button in the screenshot above) that writes the median straight into the <code>estimated_hours</code> field. The labor rate and price suggestions write into <code>labor_rate</code> and <code>estimated_value</code> the same way.</p>
+            <p>If you manually type an Est. Hours value that&rsquo;s more than 30% below the suggested median, GlyphFex shows an inline <strong>InfoBar warning</strong> &mdash; not blocking, just flagging. The reasoning: a big undershoot might be deliberate (you negotiated a different scope), but it might also be a typo or a missed step.</p>
+
+            <!-- ====== Tag-Driven Auto-Pricing ====== -->
+            <h2 id="auto-pricing">Tag-Driven Auto-Pricing</h2>
+            <p>Smart Quoting can also drive <strong>price</strong> directly from the tags, separately from the hours-from-history estimator above. This is the &ldquo;Excel on the side&rdquo; replacement &mdash; you put your labor rates and material costs into GlyphFex once, and every new entry auto-suggests a price.</p>
+
+            <h3>Three-level labor-rate fallback</h3>
+            <p>When you mark a category as a <strong>Pricing Category</strong> (in <a href="configuration.html#categories">Categories &amp; Tags</a> &rarr; the category editor), each tag in that category can carry a labor rate. For a new entry with multiple tags:</p>
+            <ol class="help-steps">
+                <li><strong>Tag rate</strong> &mdash; If the selected tag has a labor rate, use it</li>
+                <li><strong>Category default rate</strong> &mdash; Otherwise, use the category&rsquo;s default labor rate</li>
+                <li><strong>Shop labor rate</strong> &mdash; Otherwise, fall back to <strong>Settings Hub &rarr; Quoting &rarr; Shop Labor Rate</strong></li>
+            </ol>
+            <p>When multiple tags from different pricing categories are selected, the <strong>MAX rule</strong> applies: the highest tag-specific rate wins. This matches how most shops actually charge &mdash; if a job touches your high-skill TIG welder, the whole job bills at the TIG rate, not an average.</p>
+
+            <h3>Material costs per tag</h3>
+            <p>Tags in a Pricing Category can also carry <strong>material costs</strong> (cost per unit, unit name like &ldquo;sq ft&rdquo; or &ldquo;lb&rdquo;, and an optional markup percentage). When you pick those tags, GlyphFex sums the material costs and writes the result into <code>estimated_material_cost</code>.</p>
+            <p>The Auto-Fill formula on the Entry page is:</p>
+            <blockquote class="help-callout">
+                <code>estimated_value</code> = hours &times; labor rate &nbsp;+&nbsp; &Sigma; (material cost &times; (1 + markup))
+            </blockquote>
+            <p>As you type into <code>estimated_hours</code> or <code>labor_rate</code>, the suggested <code>estimated_value</code> updates live as ghost text. Click the ghost-text value to accept it; type your own to override it.</p>
+
+            <!-- ====== Turning It On/Off ====== -->
+            <h2 id="settings">Settings &amp; Configuration</h2>
+            <ul>
+                <li><strong>Master toggle:</strong> <strong>Settings Hub &rarr; Categories &amp; Tags &rarr; Time Multipliers tab &rarr; Enable Smart Quoting</strong>. Defaults to on.</li>
+                <li><strong>Shop Labor Rate:</strong> <strong>Settings Hub &rarr; Quoting &rarr; Shop Labor Rate</strong>. Used as the universal fallback when no tag rate or category rate is configured. Set to 0 to disable price suggestions entirely.</li>
+                <li><strong>Per-tag labor rates and material costs:</strong> Edited in the <a href="configuration.html#categories">Categories &amp; Tags</a> editor under the <strong>Time Multipliers</strong> tab for each tag in a Pricing Category.</li>
+                <li><strong>Cross-pipeline matching:</strong> Smart Quoting searches across <em>all</em> pipelines in your project. If you keep separate Quote and Production pipelines, jobs from both can suggest hours for a new quote.</li>
+            </ul>
+
+            <!-- ====== Risk Flags ====== -->
+            <h2 id="risk-flags">Risk Flag Chips</h2>
+            <p>Below the main suggestion chip, GlyphFex may show one or more <strong>risk flag chips</strong> for known patterns that have historically led to overrun:</p>
+            <ul>
+                <li><strong>New customer + Rush priority</strong> &mdash; a customer with no completed jobs at this shop combined with a tight deadline</li>
+                <li><strong>Large quantity + tight deadline</strong> &mdash; a job size and SLA that exceeds your stage&rsquo;s typical throughput</li>
+                <li><strong>Wide P25/P75 spread</strong> &mdash; even after weighting, your past jobs disagree by a lot</li>
+            </ul>
+            <p>Each chip is <strong>informational only</strong>. No auto-corrections are applied to the estimate &mdash; the chip just makes the pattern visible so you can adjust manually if you think it applies.</p>
+
+            <!-- ====== Quote Accuracy Loop ====== -->
+            <h2 id="quote-accuracy">Closing the loop: Quote Accuracy</h2>
+            <p>The <a href="analytics.html">Analytics page</a> has a <strong>Quote Accuracy</strong> section that measures how well your estimates have been holding up over time &mdash; per tag, per customer, and as a monthly trend.</p>
+            <p>This is the audit on Smart Quoting: it suggests, Quote Accuracy measures. If a particular tag is consistently underestimated by 20%, the per-tag overrun slice will surface it, and you can adjust your <code>base_hours</code> in the Time Multipliers tab. The estimator picks up the change on the next entry.</p>
+
+            <!-- ====== FAQ ====== -->
+            <h2 id="faq">Common questions</h2>
+
+            <h3>Does Smart Quoting send any data anywhere?</h3>
+            <p>No. The k-NN matcher runs entirely on your machine, against your own project file. No cloud, no API, no telemetry. Your past jobs never leave your shop&rsquo;s network.</p>
+
+            <h3>I have zero completed jobs &mdash; what happens?</h3>
+            <p>The chip stays empty for hours estimation, but the tag-driven auto-pricing still works (it doesn&rsquo;t need historical data &mdash; just configured rates and material costs). As you complete jobs with <code>actual_hours</code> filled in, the hours estimator starts producing suggestions.</p>
+
+            <h3>How many similar jobs before I should trust the suggestion?</h3>
+            <p>The Honesty Band uses 10 matches as the threshold for &ldquo;reasonable confidence&rdquo;. Below that, treat the suggestion as a starting point, not an answer. Above that, the suggestion is usually within &plusmn;10% of what the job actually ends up taking &mdash; but always sanity-check against the comparables.</p>
+
+            <h3>Can I see the math?</h3>
+            <p>Click the <strong>View comparables</strong> button on the chip. The dialog shows you exactly which past jobs the estimator weighted heaviest, and you can open each one to inspect its tags, hours, and outcome.</p>
+
+            <h3>Why is my suggested rate higher than my hourly?</h3>
+            <p>Because of the <strong>MAX rule</strong> &mdash; if any tag in the selection has a higher labor rate (e.g., the TIG welding tag bills at $95/hr), the entire job bills at that rate. To change this, edit the tag&rsquo;s rate in <a href="configuration.html#categories">Categories &amp; Tags</a> &rarr; Time Multipliers, or lower the category&rsquo;s default rate.</p>
+
+            <h3>Can I disable it?</h3>
+            <p>Yes. <strong>Settings Hub &rarr; Categories &amp; Tags &rarr; Time Multipliers tab &rarr; uncheck Enable Smart Quoting</strong>. The chip disappears; the entry form behaves like it did before. Auto-pricing has a separate kill switch &mdash; set Shop Labor Rate to 0 in Settings Hub &rarr; Quoting.</p>
+        </main>
+
+        <!-- Table of contents -->
+        <aside class="help-toc" id="helpToc">
+            <h3>On this page</h3>
+            <ul>
+                <li><a href="#overview">What Smart Quoting Does</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#honesty-band">The Honesty Band</a></li>
+                <li><a href="#comparables">Comparables Popover</a></li>
+                <li><a href="#one-click-accept">One-click Accept</a></li>
+                <li><a href="#auto-pricing">Tag-Driven Auto-Pricing</a></li>
+                <li><a href="#settings">Settings</a></li>
+                <li><a href="#risk-flags">Risk Flag Chips</a></li>
+                <li><a href="#quote-accuracy">Quote Accuracy Loop</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 GlyphFex. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="help.js"></script>
+</body>
+</html>

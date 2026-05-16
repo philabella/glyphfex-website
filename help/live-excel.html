@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Excel Sync &mdash; GlyphFex Help</title>
+    <meta name="description" content="Live Excel Sync in GlyphFex: keep an Excel workbook in step with your project data so your pivots, charts, and formulas keep working as the underlying data refreshes.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="workflows.html">Workflows</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <a href="smart-quoting.html">Smart Quoting</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="calendar.html">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <a href="work-bins.html">My Jobs</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="templates.html">Templates</a>
+                <a href="validation.html">Validation</a>
+                <a href="rules.html">Show/Hide Rules</a>
+                <a href="notifications.html">Notifications</a>
+                <a href="backup-recovery.html">Backup &amp; Recovery</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <a href="sql-server-setup.html">SQL Server Setup</a>
+                <span class="sidebar-nav-label">Integrations</span>
+                <a href="data-feed.html">Data Feed (Power BI / Excel)</a>
+                <a href="webhooks.html">Webhooks (Zapier, n8n)</a>
+                <a href="live-excel.html" class="active">Live Excel Sync</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Live Excel Sync</h1>
+            <p class="help-subtitle">Keep an Excel workbook in step with your GlyphFex project so your existing pivots, charts, and formulas keep working as the underlying data refreshes.</p>
+
+            <!-- ====== Overview ====== -->
+            <h2 id="overview">What Live Excel Sync does</h2>
+            <p>Most shops have at least one Excel workbook that the office uses for invoicing, customer reports, or year-end summaries. The problem with regular CSV export is that <strong>every refresh wipes your pivots and charts</strong> &mdash; you have to rebuild them.</p>
+            <p>Live Excel Sync solves this by using a <strong>clear-and-rewrite</strong> strategy on a multi-sheet <code>.xlsx</code> file. GlyphFex writes data to dedicated sheets; your pivots, charts, and formulas live on <em>different</em> sheets that reference the data sheets. When the data refreshes, the references update and your dashboards keep working.</p>
+
+            <div class="help-screenshot">
+                <svg class="screenshot-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                <span class="screenshot-label">Live Excel multi-sheet workbook</span>
+                <span class="screenshot-desc">An Excel workbook with auto-generated &ldquo;Entries&rdquo;, &ldquo;Quotes&rdquo;, &ldquo;Customers&rdquo;, and &ldquo;TimeEntries&rdquo; data sheets and a user-built &ldquo;Dashboard&rdquo; sheet with pivots and charts referencing them.</span>
+            </div>
+
+            <!-- ====== How To Use It ====== -->
+            <h2 id="how-to-use">How to enable Live Excel</h2>
+            <ol class="help-steps">
+                <li><strong>Open Live Excel</strong> &mdash; <strong>Tools menu &rarr; Live Excel Export</strong>, or from the <a href="exports.html">Exports &amp; Reports</a> page.</li>
+                <li><strong>Pick a target file.</strong> Either pick an existing <code>.xlsx</code> file or create a new one. If new, GlyphFex writes 4 starter sheets: <strong>Entries</strong>, <strong>Quotes</strong>, <strong>Customers</strong>, and <strong>TimeEntries</strong>.</li>
+                <li><strong>Click Refresh.</strong> GlyphFex clears each data sheet and rewrites it with current project data. The first refresh is fast; subsequent refreshes are also fast because we&rsquo;re only writing data, not regenerating formats.</li>
+                <li><strong>Build your dashboards in Excel.</strong> Create a new sheet (e.g., <strong>Dashboard</strong>) and use pivots, charts, or formulas that reference cells on the data sheets. Save the workbook.</li>
+                <li><strong>Refresh whenever the data changes.</strong> Re-open Live Excel and click Refresh. Your data sheets update; your dashboard sheet recalculates automatically.</li>
+            </ol>
+
+            <!-- ====== What's Preserved ====== -->
+            <h2 id="preserved">What survives a refresh</h2>
+            <p>The clear-and-rewrite strategy only touches the four data sheets. Anything you add elsewhere in the workbook is preserved:</p>
+            <ul>
+                <li><strong>Custom sheets</strong> &mdash; Dashboards, pivots, charts, and any other sheets you create</li>
+                <li><strong>Formulas referencing data sheets</strong> &mdash; <code>=SUMIFS(Entries!E:E, Entries!B:B, "Welding")</code> keeps working</li>
+                <li><strong>Pivot tables built on data sheets</strong> &mdash; Refresh the pivot inside Excel (or set it to refresh on open) and it picks up the new rows</li>
+                <li><strong>Charts</strong> &mdash; Chart series ranges update automatically as data sheets grow or shrink</li>
+                <li><strong>Cell formatting on data sheets</strong> &mdash; column widths, header colors, and frozen panes are restored on refresh; cell-level formatting on data rows is <em>not</em> preserved (data rows are rewritten)</li>
+            </ul>
+            <div class="help-note">
+                <strong>What is NOT preserved on the data sheets</strong>
+                Anything you type into rows on the data sheets gets wiped on refresh &mdash; that&rsquo;s the price of keeping them in step with the source. Put your additions on a different sheet that references the data sheet via formula.
+            </div>
+
+            <!-- ====== Sheets ====== -->
+            <h2 id="sheets">The four data sheets</h2>
+            <table>
+                <thead>
+                    <tr><th>Sheet</th><th>One row per</th><th>Typical use</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Entries</strong></td><td>Job in the project</td><td>Master list of jobs with all built-in and custom fields</td></tr>
+                    <tr><td><strong>Quotes</strong></td><td>Quote-stage entry with quote line items</td><td>Customer-quote rollup, win rate by tag, follow-up tracking</td></tr>
+                    <tr><td><strong>Customers</strong></td><td>Unique customer name across all entries</td><td>Customer summary &mdash; total jobs, total value, last activity</td></tr>
+                    <tr><td><strong>TimeEntries</strong></td><td>Clock in/out record from the Workstation Terminal</td><td>Labor cost rollup, by-worker / by-stage hours, billable totals</td></tr>
+                </tbody>
+            </table>
+            <p>Columns on each sheet exactly mirror the corresponding GlyphFex tables. Column headers use snake_case (<code>customer_name</code>, <code>due_date</code>, <code>actual_hours</code>) so they match the field names used in the rest of the product.</p>
+
+            <!-- ====== Workflow Pattern ====== -->
+            <h2 id="workflow-pattern">The recommended workflow</h2>
+            <ol class="help-steps">
+                <li>Set up your data sheets once by clicking Refresh on a fresh workbook.</li>
+                <li>Spend an hour building the office&rsquo;s dashboards on a new <strong>Dashboard</strong> sheet using pivots, slicers, and charts.</li>
+                <li>Save the workbook to a shared network folder (e.g., <code>\\fileserver\Reports\GlyphFex.xlsx</code>).</li>
+                <li>Whoever runs end-of-day reports opens the workbook and clicks Refresh in GlyphFex when they want fresh numbers.</li>
+                <li>If you need a fully scheduled, hands-off version of this, use the <a href="data-feed.html">Data Feed</a> instead &mdash; it drops CSV/JSON files on a folder every N minutes and Power Query / Power BI can pull from there with no manual click required.</li>
+            </ol>
+
+            <!-- ====== Trade-offs ====== -->
+            <h2 id="trade-offs">When to use Live Excel vs. the alternatives</h2>
+            <table>
+                <thead>
+                    <tr><th>Tool</th><th>Best for</th><th>Trade-off</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Live Excel Sync</strong></td>
+                        <td>You want Excel as your single source for office reporting and you&rsquo;re willing to click Refresh manually</td>
+                        <td>Manual refresh; one workbook at a time</td>
+                    </tr>
+                    <tr>
+                        <td><a href="data-feed.html"><strong>Data Feed</strong></a></td>
+                        <td>You want unattended, scheduled drops into Power BI, an ERP, or an accountant&rsquo;s folder</td>
+                        <td>Stable file paths only &mdash; not a one-click pivot setup</td>
+                    </tr>
+                    <tr>
+                        <td><a href="exports.html#csv-export"><strong>One-shot CSV / Excel export</strong></a></td>
+                        <td>You need to email a snapshot for a single meeting or to a tax accountant</td>
+                        <td>Snapshot only &mdash; no live refresh</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- ====== Gotchas ====== -->
+            <h2 id="gotchas">Gotchas</h2>
+            <h3>The file is locked</h3>
+            <p>If you have the workbook open in Excel while GlyphFex tries to refresh, the write fails and GlyphFex shows a toast telling you the file is in use. Close Excel (or just close the workbook) and click Refresh again.</p>
+
+            <h3>I lost data on a data sheet</h3>
+            <p>If you typed into a row on Entries, Quotes, Customers, or TimeEntries and then clicked Refresh, the typed data is gone. The data sheets are <em>derived</em> from GlyphFex &mdash; do your hand-edits on a separate sheet, or do them inside GlyphFex itself so they survive the refresh.</p>
+
+            <h3>My pivot table didn&rsquo;t update</h3>
+            <p>Excel pivot tables don&rsquo;t auto-refresh by default. Right-click the pivot and pick <strong>Refresh</strong>, or set <strong>Pivot Options &rarr; Data &rarr; Refresh data when opening the file</strong>. Charts based on the same source will then update automatically.</p>
+
+            <h3>I want a different set of columns</h3>
+            <p>The column set is fixed by GlyphFex to keep the schema stable for your formulas. If you need a custom column, derive it on your Dashboard sheet using a formula that references the data sheet. The same stability promise applies to columns as to the <a href="data-feed.html#v1-promise">Data Feed v1 schema</a> &mdash; we won&rsquo;t remove or rename existing columns; new columns appear at the right.</p>
+        </main>
+
+        <!-- Table of contents -->
+        <aside class="help-toc" id="helpToc">
+            <h3>On this page</h3>
+            <ul>
+                <li><a href="#overview">What it does</a></li>
+                <li><a href="#how-to-use">How to enable</a></li>
+                <li><a href="#preserved">What survives a refresh</a></li>
+                <li><a href="#sheets">The four data sheets</a></li>
+                <li><a href="#workflow-pattern">Recommended workflow</a></li>
+                <li><a href="#trade-offs">When to use which export</a></li>
+                <li><a href="#gotchas">Gotchas</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 GlyphFex. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="help.js"></script>
+</body>
+</html>

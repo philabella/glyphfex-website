@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Feed &mdash; GlyphFex Help</title>
+    <meta name="description" content="Data Feed in GlyphFex: scheduled CSV/JSON drop into a folder that Power BI, Excel, your ERP, or your accountant can read. v1 schema is stable forever.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="workflows.html">Workflows</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <a href="smart-quoting.html">Smart Quoting</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="calendar.html">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <a href="work-bins.html">My Jobs</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="templates.html">Templates</a>
+                <a href="validation.html">Validation</a>
+                <a href="rules.html">Show/Hide Rules</a>
+                <a href="notifications.html">Notifications</a>
+                <a href="backup-recovery.html">Backup &amp; Recovery</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <a href="sql-server-setup.html">SQL Server Setup</a>
+                <span class="sidebar-nav-label">Integrations</span>
+                <a href="data-feed.html" class="active">Data Feed (Power BI / Excel)</a>
+                <a href="webhooks.html">Webhooks (Zapier, n8n)</a>
+                <a href="live-excel.html">Live Excel Sync</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Data Feed (Power BI / Excel)</h1>
+            <p class="help-subtitle">Scheduled folder drop of CSV + JSON files. Point Power BI, Excel Power Query, your ERP, or your accountant at the folder and your dashboards refresh on their own.</p>
+
+            <!-- ====== Overview ====== -->
+            <h2 id="overview">What the Data Feed does</h2>
+            <p>The Data Feed turns GlyphFex into a <strong>source of truth that flows into other tools</strong> without anyone having to click Export. On a schedule you control (every 5, 15, 30, or 60 minutes), GlyphFex writes 5 files into a folder of your choosing:</p>
+            <ul>
+                <li><code>entries.csv</code> &mdash; one row per job</li>
+                <li><code>entries.json</code> &mdash; the same data as a structured JSON array with stable v1 schema (see below)</li>
+                <li><code>quotes.csv</code> &mdash; one row per quote-stage entry with quote line items</li>
+                <li><code>customers.csv</code> &mdash; one row per unique customer (rolled-up summary)</li>
+                <li><code>time_entries.csv</code> &mdash; one row per clock in/out record from the Workstation Terminal</li>
+            </ul>
+            <p>Any tool that can read a folder can consume this. Power BI&rsquo;s folder connector, Excel Power Query, accounting systems with directory-watcher imports, custom in-house ERP integrations &mdash; they all just point at the folder and read.</p>
+
+            <!-- ====== How To Enable ====== -->
+            <h2 id="enable">How to enable the Data Feed</h2>
+            <ol class="help-steps">
+                <li>Open <strong>Settings Hub &rarr; Data Feed (Power BI / Excel)</strong>.</li>
+                <li>Pick a <strong>destination folder</strong>. Local disk works, but for team setups put it on a network share so everyone&rsquo;s tools can read from one canonical location.</li>
+                <li>Pick a <strong>refresh interval</strong> &mdash; 5, 15, 30, or 60 minutes. Lower is fresher; higher is gentler on disk and CPU.</li>
+                <li>Click <strong>Enable Data Feed</strong>. GlyphFex writes the 5 files immediately, then continues writing on the chosen interval as long as the app is running.</li>
+            </ol>
+            <p>That&rsquo;s it. As soon as the folder has its first set of files, point Power BI / Excel / your ERP at the folder.</p>
+
+            <!-- ====== Atomic Writes ====== -->
+            <h2 id="atomic-writes">Atomic writes &mdash; readers never see half-written files</h2>
+            <p>The Data Feed uses a <strong>two-phase atomic write</strong> on every refresh:</p>
+            <ol class="help-steps">
+                <li><strong>Write all 5 files with a <code>.tmp</code> suffix.</strong> If any write fails, the temp files are deleted and the existing &ldquo;good&rdquo; files are left untouched. Power BI keeps reading the previous snapshot.</li>
+                <li><strong>Pre-flight check</strong> &mdash; before swapping in the new files, GlyphFex tries to open each target file with <code>FileShare.None</code>. If any file is locked (e.g., Excel has it open), the write is skipped and the next refresh tries again.</li>
+                <li><strong>Atomic rename.</strong> If the pre-flight passes, all 5 files are renamed from <code>.tmp</code> to their final names. Readers will never see a half-written CSV.</li>
+            </ol>
+            <p>This means you can have Power BI refresh on a 15-minute schedule and GlyphFex refresh on a 5-minute schedule, and the two never collide.</p>
+
+            <!-- ====== v1 Promise ====== -->
+            <h2 id="v1-promise">The v1 schema &mdash; stable forever</h2>
+            <p>The <code>entries.json</code> file follows a <strong>v1 schema</strong> defined in <a href="../docs/data-export-schema-v1.html">the schema reference page</a>. The contract is simple:</p>
+            <ul>
+                <li><strong>Never remove a field.</strong> If <code>customer_name</code> exists in v1, it will exist in every future v1 release.</li>
+                <li><strong>Never change a type.</strong> If <code>actual_hours</code> is a number in v1, it stays a number.</li>
+                <li><strong>Never change a meaning.</strong> If <code>quote_outcome</code> means &ldquo;the result of a Won / Lost decision&rdquo; in v1, it will not silently start meaning something else.</li>
+                <li><strong>New fields are additive.</strong> When GlyphFex adds a new built-in field, it appears as a new key in v1; existing readers ignore unknown keys.</li>
+                <li><strong>Breaking changes ship as v2.</strong> If we ever need to redefine a field, that&rsquo;s a new schema version &mdash; v1 keeps working alongside it for at least 12 months.</li>
+            </ul>
+            <p>This is why the JSON file is the recommended source for any automation more durable than a one-off dashboard. CSVs are convenient for Excel and Power BI but lose nuance (e.g., tags become a comma-joined string instead of structured); JSON preserves the full structure.</p>
+
+            <!-- ====== Schema Quick Reference ====== -->
+            <h2 id="schema-quick-ref">Schema quick reference</h2>
+            <p>Every <code>entries.json</code> object includes these top-level keys:</p>
+            <table>
+                <thead>
+                    <tr><th>Key</th><th>Type</th><th>Notes</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>id</code></td><td>integer</td><td>Stable, project-scoped entry ID</td></tr>
+                    <tr><td><code>ref_number</code></td><td>string</td><td>The Job Number you assigned</td></tr>
+                    <tr><td><code>comments</code></td><td>string</td><td>Free-text description / notes</td></tr>
+                    <tr><td><code>status</code></td><td>string</td><td>Current pipeline stage</td></tr>
+                    <tr><td><code>pipeline_id</code></td><td>integer or null</td><td>Which pipeline this entry follows (null in single-pipeline projects)</td></tr>
+                    <tr><td><code>tags</code></td><td>object</td><td>Structured map: <code>{ "Material": ["Stainless Steel"], "Process": ["TIG Welding"] }</code></td></tr>
+                    <tr><td><code>key_fields</code></td><td>object</td><td>All 17 built-in fields always present, null for absent &mdash; stable column inference for Power BI</td></tr>
+                    <tr><td><code>custom_fields</code></td><td>object</td><td>Per-project custom field values keyed by field name</td></tr>
+                    <tr><td><code>attachments</code></td><td>array</td><td>Path-only metadata for files attached to this entry (paths to the original files on disk; the binary content is NOT included)</td></tr>
+                    <tr><td><code>audit_summary</code></td><td>object</td><td>Summary of audit trail: created_at, last_modified_at, total_edits, last_edit_by</td></tr>
+                    <tr><td><code>work_state</code></td><td>object</td><td>Roll-up of clock in/out: total_minutes, active_workers, in_progress, last_clock_event</td></tr>
+                </tbody>
+            </table>
+            <p>See the full <a href="../docs/data-export-schema-v1.html">v1 schema reference</a> for every field name, type, and example payload.</p>
+
+            <!-- ====== Multi-user ====== -->
+            <h2 id="multi-user">Multi-user safety</h2>
+            <p>If you run GlyphFex in team mode with multiple machines, you don&rsquo;t want both PCs writing into the same folder at the same time. The Data Feed handles this with a <strong>writer election</strong>:</p>
+            <ul>
+                <li>The first PC to enable the feed writes a hidden <code>.feed.lock</code> sentinel file in the destination folder, with its hostname and a heartbeat timestamp.</li>
+                <li>Other PCs see the lock file and skip writing &mdash; they read the existing files like any other consumer would.</li>
+                <li>The lock heartbeats every refresh interval. If the elected writer dies (PC powered off, app crash, etc.) and the heartbeat goes stale for 3&times; the refresh interval, the next PC to wake up takes over.</li>
+            </ul>
+            <p>The lock file uses <code>FileAttributes.Hidden</code> so Power BI&rsquo;s folder connector doesn&rsquo;t try to ingest it as a data file.</p>
+
+            <!-- ====== Power BI Setup ====== -->
+            <h2 id="power-bi">Setting up Power BI</h2>
+            <ol class="help-steps">
+                <li>In Power BI Desktop, <strong>Get Data &rarr; Folder</strong>.</li>
+                <li>Browse to your Data Feed folder.</li>
+                <li>Power BI shows the 5 files. Click <strong>Combine &amp; Transform</strong> on <code>entries.json</code> for the richest dataset, or use the CSVs for quicker setup.</li>
+                <li>Power BI infers the columns from the JSON. Because the v1 schema always emits all 17 <code>key_fields</code> (null for absent), the column inference is stable across refreshes &mdash; new entries with sparser data never cause column drift.</li>
+                <li>Build your reports. Set scheduled refresh in Power BI Service to a cadence equal to or slower than the GlyphFex Data Feed cadence.</li>
+            </ol>
+            <p>For Excel Power Query the same pattern applies: <strong>Data &rarr; Get Data &rarr; From File &rarr; From Folder</strong>.</p>
+
+            <!-- ====== Trade-offs ====== -->
+            <h2 id="trade-offs">When to use Data Feed vs. the alternatives</h2>
+            <table>
+                <thead>
+                    <tr><th>Tool</th><th>Best for</th><th>Trade-off</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Data Feed</strong></td>
+                        <td>Power BI, Power Query, ERP imports, accountant&rsquo;s folder &mdash; anything unattended</td>
+                        <td>Read-only export &mdash; not push notifications</td>
+                    </tr>
+                    <tr>
+                        <td><a href="webhooks.html"><strong>Webhooks</strong></a></td>
+                        <td>Real-time event push (Zapier, n8n, in-house automation that should react to a save within seconds)</td>
+                        <td>Event-by-event &mdash; not a full data snapshot</td>
+                    </tr>
+                    <tr>
+                        <td><a href="live-excel.html"><strong>Live Excel Sync</strong></a></td>
+                        <td>You want Excel as the single source for office reporting and you&rsquo;ll click Refresh manually</td>
+                        <td>One workbook, one machine, manual refresh</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- ====== FAQ ====== -->
+            <h2 id="faq">Common questions</h2>
+
+            <h3>Does the Data Feed include attachments?</h3>
+            <p>It includes attachment <strong>metadata</strong> (filename, path on disk, MIME type, size) but not the binary content. The path lets a downstream tool open the original file if it has access to your file server.</p>
+
+            <h3>How big can the entries.json file get?</h3>
+            <p>For a 5,000-entry project the JSON is typically 5&ndash;15 MB. Power BI handles this in milliseconds; Excel Power Query handles it in 1&ndash;3 seconds on a typical office machine. For larger projects (50K+ entries) we recommend reading the CSVs directly or filtering on import.</p>
+
+            <h3>Can I customize which fields are exported?</h3>
+            <p>Not in v1 &mdash; the schema is fixed by design so downstream readers don&rsquo;t break. If you need a custom column, derive it in Power Query / Power BI / Excel as a calculated column based on the existing fields.</p>
+
+            <h3>What happens to deleted entries?</h3>
+            <p>Hard-deleted entries disappear from the next snapshot. Soft-archived entries appear with <code>archived: true</code>. If your downstream tool needs to keep a history of deleted entries, persist snapshots yourself (e.g., copy the folder daily into a dated archive).</p>
+
+            <h3>The feed isn&rsquo;t writing &mdash; what now?</h3>
+            <p>Check <strong>Settings Hub &rarr; Data Feed</strong> for the <strong>Last Run At</strong> timestamp and the most recent run status (Success / Skipped / Warning / Failed). The Settings Hub explains each result &mdash; Skipped usually means another PC holds the writer-election lock, Warning means one of the 5 files is locked by another reader, Failed includes the error message.</p>
+        </main>
+
+        <!-- Table of contents -->
+        <aside class="help-toc" id="helpToc">
+            <h3>On this page</h3>
+            <ul>
+                <li><a href="#overview">What it does</a></li>
+                <li><a href="#enable">How to enable</a></li>
+                <li><a href="#atomic-writes">Atomic writes</a></li>
+                <li><a href="#v1-promise">v1 schema promise</a></li>
+                <li><a href="#schema-quick-ref">Schema quick reference</a></li>
+                <li><a href="#multi-user">Multi-user safety</a></li>
+                <li><a href="#power-bi">Setting up Power BI</a></li>
+                <li><a href="#trade-offs">When to use</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 GlyphFex. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="help.js"></script>
+</body>
+</html>

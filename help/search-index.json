@@ -311,5 +311,63 @@
       { "id": "faq", "title": "FAQ", "keywords": "FAQ question answer frequently asked" },
       { "id": "glossary", "title": "Glossary", "keywords": "glossary term definition pipeline stage entry tag SLA NCR" }
     ]
+  },
+  {
+    "page": "smart-quoting.html",
+    "title": "Smart Quoting",
+    "sections": [
+      { "id": "overview", "title": "What Smart Quoting Does", "keywords": "smart quoting k-NN estimation past jobs suggestion chip ambient" },
+      { "id": "how-it-works", "title": "How It Works", "keywords": "jaccard similarity recency weight quantity closeness customer boost weighted median P25 P75" },
+      { "id": "honesty-band", "title": "The Honesty Band", "keywords": "honesty band confidence low data acknowledged uncertainty zillow pattern never prescribe" },
+      { "id": "comparables", "title": "Comparables Popover", "keywords": "comparables dialog top 7 past jobs match percent tag chips show your work" },
+      { "id": "one-click-accept", "title": "One-click Accept & Deviation Warning", "keywords": "accept use button median estimated hours infobar deviation 30 percent warning" },
+      { "id": "auto-pricing", "title": "Tag-Driven Auto-Pricing", "keywords": "tag pricing labor rate material cost MAX rule 3-level fallback shop labor rate per tag" },
+      { "id": "settings", "title": "Settings & Configuration", "keywords": "enable smart quoting toggle time multipliers tab shop labor rate quoting category" },
+      { "id": "risk-flags", "title": "Risk Flag Chips", "keywords": "risk flag new customer rush priority large quantity tight deadline wide spread P25 P75" },
+      { "id": "quote-accuracy", "title": "Closing the loop: Quote Accuracy", "keywords": "quote accuracy analytics overrun per tag per customer monthly trend audit on smart quoting" },
+      { "id": "faq", "title": "FAQ", "keywords": "smart quoting question disable trust matches how many jobs threshold" }
+    ]
+  },
+  {
+    "page": "data-feed.html",
+    "title": "Data Feed (Power BI / Excel)",
+    "sections": [
+      { "id": "overview", "title": "What the Data Feed does", "keywords": "data feed power bi excel folder drop scheduled csv json ERP accountant integration" },
+      { "id": "enable", "title": "How to enable", "keywords": "destination folder refresh interval 5 15 30 60 minutes enable data feed settings hub" },
+      { "id": "atomic-writes", "title": "Atomic writes", "keywords": "atomic write two phase tmp file fileshare none preflight check rename readers never half written" },
+      { "id": "v1-promise", "title": "The v1 schema promise", "keywords": "v1 schema never remove field never change type never change meaning additive breaking changes v2" },
+      { "id": "schema-quick-ref", "title": "Schema quick reference", "keywords": "schema id ref number tags key fields custom fields attachments audit summary work state" },
+      { "id": "multi-user", "title": "Multi-user safety", "keywords": "multi-user writer election lock file feed lock heartbeat stale takeover hidden file" },
+      { "id": "power-bi", "title": "Setting up Power BI", "keywords": "power bi folder connector get data combine transform scheduled refresh service excel power query" },
+      { "id": "trade-offs", "title": "When to use Data Feed vs alternatives", "keywords": "data feed vs webhooks vs live excel vs csv export trade off comparison" },
+      { "id": "faq", "title": "FAQ", "keywords": "data feed faq attachments size deleted entries archived custom fields columns last run at" }
+    ]
+  },
+  {
+    "page": "webhooks.html",
+    "title": "Webhooks (Zapier, n8n, Power Automate)",
+    "sections": [
+      { "id": "overview", "title": "What webhooks do", "keywords": "webhook zapier n8n power automate event push real time entry created stage changed quote won lost ncr opened time entry submitted" },
+      { "id": "setup", "title": "Setting up a webhook", "keywords": "add webhook event type destination url signing secret test event https only" },
+      { "id": "security", "title": "Security: HMAC signing, replay protection, HTTPS-only", "keywords": "hmac sha256 signature replay protection https only event id timestamp 24 hour" },
+      { "id": "retry", "title": "Retry, backoff, and circuit breaker", "keywords": "retry exponential backoff 1s 5s 30s 3 attempts circuit breaker 50 consecutive failures auto disable" },
+      { "id": "payload", "title": "The payload", "keywords": "webhook payload envelope event_id event_type event_timestamp subscription_id schema_version data entry 1 mb slim envelope payload_truncated" },
+      { "id": "patterns", "title": "Common integration patterns", "keywords": "slack teams discord mattermost zapier accounting invoice quote won n8n in-house erp custom receiver" },
+      { "id": "settings", "title": "Settings & Monitoring", "keywords": "webhook settings monitoring last delivery consecutive failure rotate signing secret deliveries log" },
+      { "id": "faq", "title": "FAQ", "keywords": "webhooks faq trial real time daily snapshot down hours backfill attachments hmac library verification" }
+    ]
+  },
+  {
+    "page": "live-excel.html",
+    "title": "Live Excel Sync",
+    "sections": [
+      { "id": "overview", "title": "What Live Excel Sync does", "keywords": "live excel sync clear and rewrite multi sheet workbook pivots charts formulas preserved refresh" },
+      { "id": "how-to-use", "title": "How to enable Live Excel", "keywords": "tools menu live excel export target file pick refresh xlsx entries quotes customers time entries" },
+      { "id": "preserved", "title": "What survives a refresh", "keywords": "preserved custom sheets dashboards pivots charts formulas cell formatting" },
+      { "id": "sheets", "title": "The four data sheets", "keywords": "entries quotes customers time entries data sheets snake_case columns" },
+      { "id": "workflow-pattern", "title": "Recommended workflow", "keywords": "workflow pattern office dashboards network share refresh shared workbook" },
+      { "id": "trade-offs", "title": "When to use Live Excel vs alternatives", "keywords": "live excel vs data feed vs one shot export trade off comparison" },
+      { "id": "gotchas", "title": "Gotchas", "keywords": "file locked lost data pivot not updated different columns custom fields" }
+    ]
   }
 ]

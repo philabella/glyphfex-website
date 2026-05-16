@@ -199,6 +199,32 @@
         <priority>0.7</priority>
     </url>
 
+    <!-- Help: Smart Quoting + Integrations (Wave 14OP) -->
+    <url>
+        <loc>https://glyphfex.com/help/smart-quoting.html</loc>
+        <lastmod>2026-05-16</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://glyphfex.com/help/data-feed.html</loc>
+        <lastmod>2026-05-16</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://glyphfex.com/help/webhooks.html</loc>
+        <lastmod>2026-05-16</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://glyphfex.com/help/live-excel.html</loc>
+        <lastmod>2026-05-16</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
     <!-- Docs -->
     <url>
         <loc>https://glyphfex.com/docs/data-export-schema-v1.html</loc>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webhooks &mdash; GlyphFex Help</title>
+    <meta name="description" content="Webhooks in GlyphFex: real-time event push to Zapier, n8n, Power Automate, or any HTTPS endpoint. HMAC-signed, replay-protected, with retry and circuit breaker.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body class="help-page">
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#2563EB"/>
+                    <path d="M8 10h4v12H8V10zm6 0h4v12h-4V10zm6 0h4v12h-4V10z" fill="white" opacity="0.9"/>
+                    <path d="M7 16h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">GlyphFex</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../features.html">Features</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../download.html">Download</a>
+                <a href="index.html" class="active">Help</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-layout">
+        <!-- Sidebar -->
+        <aside class="help-sidebar" id="helpSidebar">
+            <div class="sidebar-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="helpSearch" placeholder="Search help..." autocomplete="off">
+                <div class="search-results"></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html">Help Home</a>
+                <span class="sidebar-nav-label">Learn</span>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="entries.html">Entries &amp; Forms</a>
+                <a href="workflows.html">Workflows</a>
+                <a href="pipeline.html">Pipeline &amp; Workflow</a>
+                <a href="smart-quoting.html">Smart Quoting</a>
+                <span class="sidebar-nav-label">Views</span>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="calendar.html">Calendar &amp; Gantt</a>
+                <a href="shop-floor.html">Shop Floor &amp; Display</a>
+                <a href="work-bins.html">My Jobs</a>
+                <span class="sidebar-nav-label">Setup</span>
+                <a href="configuration.html">Configuration</a>
+                <a href="templates.html">Templates</a>
+                <a href="validation.html">Validation</a>
+                <a href="rules.html">Show/Hide Rules</a>
+                <a href="notifications.html">Notifications</a>
+                <a href="backup-recovery.html">Backup &amp; Recovery</a>
+                <a href="team.html">Multi-User &amp; Team</a>
+                <a href="sql-server-setup.html">SQL Server Setup</a>
+                <span class="sidebar-nav-label">Integrations</span>
+                <a href="data-feed.html">Data Feed (Power BI / Excel)</a>
+                <a href="webhooks.html" class="active">Webhooks (Zapier, n8n)</a>
+                <a href="live-excel.html">Live Excel Sync</a>
+                <span class="sidebar-nav-label">More</span>
+                <a href="exports.html">Exports &amp; Reports</a>
+                <a href="reference.html">Reference</a>
+            </nav>
+        </aside>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776; Menu</button>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Content -->
+        <main class="help-content">
+            <h1>Webhooks (Zapier, n8n, Power Automate)</h1>
+            <p class="help-subtitle">Real-time event push to any HTTPS endpoint. HMAC-signed, replay-protected, with retry and circuit breaker. Build event-driven workflows in Zapier, n8n, Power Automate, or your own backend.</p>
+
+            <!-- ====== Overview ====== -->
+            <h2 id="overview">What webhooks do</h2>
+            <p>The <a href="data-feed.html">Data Feed</a> is great for &ldquo;every 15 minutes, pull the latest snapshot.&rdquo; Webhooks are for the opposite: <strong>the moment something specific happens, push it.</strong></p>
+            <p>Configure a webhook URL and event type, and GlyphFex POSTs a small JSON payload to that URL every time the event fires. Six event types are supported:</p>
+            <table>
+                <thead>
+                    <tr><th>Event type</th><th>Fires when</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>entry_created</code></td><td>A new entry is saved for the first time</td></tr>
+                    <tr><td><code>stage_changed</code></td><td>An entry&rsquo;s pipeline stage is updated</td></tr>
+                    <tr><td><code>quote_won</code></td><td><code>quote_outcome</code> is set to <code>Won</code> on a quote-stage entry</td></tr>
+                    <tr><td><code>quote_lost</code></td><td><code>quote_outcome</code> is set to <code>Lost</code> on a quote-stage entry</td></tr>
+                    <tr><td><code>ncr_opened</code></td><td>An entry is moved into an NCR / nonconformance stage</td></tr>
+                    <tr><td><code>time_entry_submitted</code></td><td>A worker submits a clock-in/out time entry from the Workstation Terminal</td></tr>
+                </tbody>
+            </table>
+            <p>The full payload schema is documented at <a href="../docs/webhooks-v1.html">the v1 webhooks reference</a>.</p>
+
+            <!-- ====== How To Set Up ====== -->
+            <h2 id="setup">Setting up a webhook</h2>
+            <ol class="help-steps">
+                <li>Open <strong>Settings Hub &rarr; Webhooks (Zapier, n8n)</strong>.</li>
+                <li>Click <strong>Add Webhook</strong>.</li>
+                <li>Pick an <strong>event type</strong> from the dropdown.</li>
+                <li>Paste the <strong>destination URL</strong>. Must start with <code>https://</code> &mdash; <code>http://</code> is rejected at save time (and again at delivery time, as a defense-in-depth check).</li>
+                <li>GlyphFex generates a <strong>signing secret</strong> (32 random bytes, hex-encoded) and shows it once. Copy this into your receiver&rsquo;s webhook configuration so it can verify the HMAC signature.</li>
+                <li>Click <strong>Send Test Event</strong>. GlyphFex posts a minimal test payload to the URL so you can confirm the round trip works before any real event fires.</li>
+            </ol>
+            <p>You can configure multiple webhooks &mdash; one URL per (event type, destination) pair. For example, you might have <code>quote_won</code> firing to both Zapier (for Slack notifications) and an in-house URL (for ERP integration).</p>
+
+            <!-- ====== Security ====== -->
+            <h2 id="security">Security: HMAC signing, replay protection, HTTPS-only</h2>
+            <p>Every webhook POST includes these headers:</p>
+            <ul>
+                <li><code>X-GlyphFex-Signature: sha256=&lt;hex&gt;</code> &mdash; HMAC-SHA256 of the raw request body, keyed with the per-subscription signing secret. Reject any request where this header doesn&rsquo;t verify.</li>
+                <li><code>X-GlyphFex-Event-Id: &lt;UUID&gt;</code> &mdash; Unique per delivery attempt. Store the last N IDs your receiver has seen and reject duplicates &mdash; that&rsquo;s your replay protection.</li>
+                <li><code>X-GlyphFex-Event-Type: entry_created | stage_changed | &hellip;</code> &mdash; Lets you route on type before parsing the body.</li>
+                <li><code>X-GlyphFex-Event-Timestamp: &lt;ISO 8601 UTC&gt;</code> &mdash; When the event happened. GlyphFex drops deliveries older than 24 hours so a queue restart doesn&rsquo;t flood your receiver with stale events.</li>
+            </ul>
+            <p>HTTPS-only is enforced at two points: (1) when you save the subscription, the URL is rejected if it doesn&rsquo;t start with <code>https://</code>; (2) when the delivery worker is about to POST, the URL is checked again so a sneaky in-place edit of the database can&rsquo;t bypass it. Localhost <code>http://</code> is also rejected &mdash; if you&rsquo;re testing against a local receiver, use a tool like <code>ngrok</code> or <code>cloudflared</code> to get an HTTPS tunnel.</p>
+
+            <!-- ====== Retry / Circuit Breaker ====== -->
+            <h2 id="retry">Retry, backoff, and circuit breaker</h2>
+            <p>Webhooks are unreliable by nature &mdash; receiver downtime is a fact of life. GlyphFex retries each delivery up to 3 times with exponential backoff:</p>
+            <table>
+                <thead>
+                    <tr><th>Attempt</th><th>Wait before this attempt</th><th>Total elapsed</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>0 s (immediate)</td><td>0 s</td></tr>
+                    <tr><td>2</td><td>1 s</td><td>1 s</td></tr>
+                    <tr><td>3</td><td>5 s</td><td>6 s</td></tr>
+                    <tr><td>4</td><td>30 s</td><td>36 s</td></tr>
+                </tbody>
+            </table>
+            <p>Any 2xx response (200&ndash;299) counts as a successful delivery. Any other response (or a connection failure / timeout) counts as a retryable failure. After 3 retries (4 total attempts) the delivery is marked <strong>Failed</strong> terminal and the worker moves on.</p>
+            <p>A <strong>circuit breaker</strong> tracks consecutive failures per subscription. If 50 consecutive deliveries fail (typically because the receiver has been permanently moved or decommissioned), the subscription auto-disables and stops queueing new deliveries until you re-enable it. You see a warning badge on the subscription in Settings Hub.</p>
+
+            <!-- ====== Payload ====== -->
+            <h2 id="payload">The payload</h2>
+            <p>Every webhook body has the same envelope:</p>
+            <pre><code>{
+  "event_id": "01HXY5G6T2QZK0FZ3M9V7B5RZX",
+  "event_type": "stage_changed",
+  "event_timestamp": "2026-05-16T14:23:09Z",
+  "subscription_id": 42,
+  "schema_version": 1,
+  "data": {
+    "entry": { /* full v1 entry object */ },
+    "previous_status": "Production",
+    "new_status": "QC",
+    "actor": "alice@example.com"
+  }
+}</code></pre>
+            <p>The <code>data.entry</code> object follows the same <a href="../docs/data-export-schema-v1.html">v1 schema</a> as the Data Feed&rsquo;s <code>entries.json</code>, so once you&rsquo;ve coded against one, the other is free. The event-specific fields (like <code>previous_status</code> for <code>stage_changed</code>) are documented per event in the <a href="../docs/webhooks-v1.html">webhooks v1 reference</a>.</p>
+
+            <h3>The 1 MB cap and slim-envelope fallback</h3>
+            <p>Webhook POSTs are capped at 1 MB. Most events fit easily; a few (entries with many attachments and a huge audit history) might exceed the limit. When they do, GlyphFex falls back to a <strong>slim envelope</strong>:</p>
+            <pre><code>{
+  "event_id": "...",
+  "event_type": "stage_changed",
+  "event_timestamp": "...",
+  "payload_truncated": true,
+  "data": {
+    "entry": { "id": 12345, "ref_number": "WO-2026-0042" },
+    "previous_status": "Production",
+    "new_status": "QC"
+  }
+}</code></pre>
+            <p>The event still fires, the receiver still gets notified, but the full entry payload is replaced with just <code>id</code> and <code>ref_number</code>. Use those to query GlyphFex (via the Data Feed JSON or a future API) for the rest.</p>
+
+            <!-- ====== Common Patterns ====== -->
+            <h2 id="patterns">Common integration patterns</h2>
+
+            <h3>Slack / Teams: &ldquo;Job moved into QC&rdquo;</h3>
+            <p>Slack and Teams don&rsquo;t accept raw HMAC-signed webhooks directly &mdash; they expect their own payload shapes. Use Zapier or Power Automate as a translator:</p>
+            <ol class="help-steps">
+                <li>In Zapier, create a Zap with a <strong>Webhooks by Zapier &rarr; Catch Hook</strong> trigger. Zapier gives you an HTTPS URL.</li>
+                <li>In GlyphFex, add a webhook subscription with event <code>stage_changed</code> and that URL. (Zapier verifies the HMAC for you if you configure the signing secret.)</li>
+                <li>In the Zap, add a <strong>Filter</strong> step: only continue if <code>new_status</code> is <code>QC</code>.</li>
+                <li>Add a <strong>Slack: Send Channel Message</strong> action. Use the templated body: <code>{{data__entry__ref_number}} moved into QC.</code></li>
+            </ol>
+            <p>The same shape works for Teams (Microsoft Teams Incoming Webhook), Discord, Mattermost, and most chat tools.</p>
+
+            <h3>Accounting: &ldquo;Auto-create an invoice when a quote is won&rdquo;</h3>
+            <p>Use n8n or Power Automate to route a <code>quote_won</code> event into your accounting system&rsquo;s API. The <code>data.entry</code> object contains everything needed for an invoice draft &mdash; customer name, line items, quote total &mdash; so the receiver can construct the invoice without round-tripping back to GlyphFex.</p>
+
+            <h3>Custom in-house: ERP sync</h3>
+            <p>For an in-house receiver, you have direct control over HMAC verification. Verify the <code>X-GlyphFex-Signature</code> header against the raw body using your subscription&rsquo;s signing secret. Track the last 1,000 <code>X-GlyphFex-Event-Id</code> values to dedupe replays. Return 200 quickly &mdash; if processing is slow, enqueue the event internally and process asynchronously.</p>
+
+            <!-- ====== Settings ====== -->
+            <h2 id="settings">Settings &amp; Monitoring</h2>
+            <p>In <strong>Settings Hub &rarr; Webhooks</strong> you can see per-subscription:</p>
+            <ul>
+                <li><strong>Event type</strong> and <strong>URL</strong></li>
+                <li><strong>Last delivery</strong> &mdash; timestamp, response code, latency</li>
+                <li><strong>Consecutive failure count</strong> &mdash; resets to 0 on the next success; triggers circuit breaker at 50</li>
+                <li><strong>Enabled / Disabled</strong> &mdash; toggle to pause without losing the subscription</li>
+                <li><strong>Rotate signing secret</strong> &mdash; generate a new secret and revoke the old one. Use this if you suspect the secret has been compromised or shared with someone who should no longer have access.</li>
+                <li><strong>Send test event</strong> &mdash; fires a minimal test payload so you can re-verify the round trip after a config change.</li>
+                <li><strong>Recent deliveries log</strong> &mdash; the last 50 deliveries with their status (Success / Failed / Pending) and response details.</li>
+            </ul>
+
+            <!-- ====== FAQ ====== -->
+            <h2 id="faq">Common questions</h2>
+
+            <h3>Can I get webhooks for every event in real-time AND a daily folder snapshot?</h3>
+            <p>Yes &mdash; webhooks and the <a href="data-feed.html">Data Feed</a> are independent. Many shops do exactly this: webhooks for time-critical events (quote_won &rarr; Slack), Data Feed for the warehouse-scale reporting that Power BI does on a 15-minute cadence.</p>
+
+            <h3>What happens if the receiver is down for a few hours?</h3>
+            <p>The retry policy keeps trying for the first 36 seconds (4 attempts), then marks the delivery Failed and moves on. The event is <strong>not</strong> automatically retried days later &mdash; that&rsquo;s by design, because GlyphFex doesn&rsquo;t want to flood a previously-down receiver with hours of old events when it comes back. If you need to backfill, query the Data Feed&rsquo;s <code>entries.json</code> for the window you missed.</p>
+
+            <h3>Are webhooks available in the trial?</h3>
+            <p>Yes. The 50-entry trial includes the full webhooks feature so you can validate the integration before purchasing. You can configure multiple subscriptions in trial mode.</p>
+
+            <h3>Can webhooks include attachments?</h3>
+            <p>Attachment <strong>metadata</strong> (filename, MIME type, path, size) is included in the payload. The binary file content is not &mdash; webhooks are designed for small, fast messages. If your receiver needs the actual file, use the path metadata to read it from your file server.</p>
+
+            <h3>What HMAC verification library should I use?</h3>
+            <p>Anything standard. In Node.js: <code>crypto.createHmac('sha256', secret).update(rawBody).digest('hex')</code>. In Python: <code>hmac.new(secret_bytes, raw_body, hashlib.sha256).hexdigest()</code>. In C#: <code>new HMACSHA256(Encoding.UTF8.GetBytes(secret)).ComputeHash(rawBody)</code>. Always compare with a constant-time function (e.g., <code>crypto.timingSafeEqual</code> in Node) to defend against timing attacks.</p>
+        </main>
+
+        <!-- Table of contents -->
+        <aside class="help-toc" id="helpToc">
+            <h3>On this page</h3>
+            <ul>
+                <li><a href="#overview">What webhooks do</a></li>
+                <li><a href="#setup">Setting up a webhook</a></li>
+                <li><a href="#security">Security</a></li>
+                <li><a href="#retry">Retry &amp; circuit breaker</a></li>
+                <li><a href="#payload">The payload</a></li>
+                <li><a href="#patterns">Common patterns</a></li>
+                <li><a href="#settings">Settings &amp; Monitoring</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 GlyphFex. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="help.js"></script>
+</body>
+</html>
