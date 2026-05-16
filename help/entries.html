@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -69,7 +69,7 @@
                 <a href="configuration.html">Configuration</a>
                 <a href="templates.html">Templates</a>
                 <a href="validation.html">Validation</a>
-                <a href="rules.html">Conditional Rules</a>
+                <a href="rules.html">Show/Hide Rules</a>
                 <a href="notifications.html">Notifications</a>
                 <a href="backup-recovery.html">Backup &amp; Recovery</a>
                 <a href="team.html">Multi-User &amp; Team</a>
@@ -335,8 +335,8 @@
             <h3>Search &amp; Filter</h3>
             <p>Type in the tag search box to filter tags by name. Press <kbd>Escape</kbd> to clear the search and show all tags again.</p>
 
-            <h3>Conditional Rules</h3>
-            <p>Conditional rules automatically show, hide, enable, disable, or require categories based on the current tag selection. For example, you can create a rule that says: <em>"When Material = Stainless Steel, require the Finish category."</em></p>
+            <h3>Show/Hide Rules</h3>
+            <p>Show/Hide Rules (formerly called "Conditional Rules") automatically show, hide, enable, disable, or require categories based on the current tag selection. For example, you can create a rule that says: <em>"When Material = Stainless Steel, require the Finish category."</em> See the <a href="rules.html">Show/Hide Rules</a> help page for the full editor walkthrough.</p>
 
             <h3>Undo &amp; Redo</h3>
             <p>Tag selections support full undo/redo. Press <kbd>Ctrl</kbd>+<kbd>Z</kbd> to undo a tag change, or <kbd>Ctrl</kbd>+<kbd>Y</kbd> to redo. GlyphFex takes snapshots of the entire tag collection so multi-tag changes can be rolled back in one step.</p>
@@ -354,7 +354,7 @@
             <ul>
                 <li><strong>Name and description</strong> &mdash; Identifies the template in the quick-apply list.</li>
                 <li><strong>Color</strong> &mdash; Visual distinction in the template button list.</li>
-                <li><strong>Ref # prefix</strong> &mdash; Auto-generates a reference ID prefix. Supports the <code>{YEAR}</code> placeholder for the current year (e.g., <code>WO-{YEAR}-</code> becomes <code>WO-2026-</code>).</li>
+                <li><strong>Job # prefix</strong> &mdash; Auto-generates a Job Number prefix. Supports the <code>{YEAR}</code> placeholder for the current year (e.g., <code>WO-{YEAR}-</code> becomes <code>WO-2026-</code>).</li>
                 <li><strong>Default status</strong> &mdash; Sets the initial pipeline stage for entries created from this template.</li>
                 <li><strong>Comment text</strong> &mdash; Pre-fills the Comments field with boilerplate instructions or notes.</li>
                 <li><strong>Custom field defaults</strong> &mdash; Pre-populates custom field values.</li>
@@ -707,7 +707,7 @@
                 <li><strong>Job Number not empty</strong> &mdash; Every entry must have a Job Number.</li>
                 <li><strong>Job Number pattern</strong> &mdash; If a regex validation pattern is configured for your project, the Job Number must match it.</li>
                 <li><strong>No duplicate Job Number</strong> &mdash; GlyphFex checks that no other entry has the same Job Number (case-insensitive).</li>
-                <li><strong>Required tag categories</strong> &mdash; All categories marked as required (or required via conditional rules) must have at least one tag selected.</li>
+                <li><strong>Required tag categories</strong> &mdash; All categories marked as required (or required via <a href="rules.html">Show/Hide Rules</a>) must have at least one tag selected.</li>
                 <li><strong>Required custom fields</strong> &mdash; All custom fields marked as required must have a value.</li>
                 <li><strong>Change reason</strong> &mdash; If ISO compliance mode is enabled, you must provide a reason for the change before saving.</li>
             </ol>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -69,7 +69,7 @@
                 <a href="configuration.html">Configuration</a>
                 <a href="templates.html">Templates</a>
                 <a href="validation.html">Validation</a>
-                <a href="rules.html">Conditional Rules</a>
+                <a href="rules.html">Show/Hide Rules</a>
                 <a href="notifications.html">Notifications</a>
                 <a href="backup-recovery.html">Backup &amp; Recovery</a>
                 <a href="team.html">Multi-User &amp; Team</a>
@@ -99,10 +99,10 @@
                 <span class="screenshot-desc">Screenshot of a printed PDF entry showing all fields, stage timeline, and QR code</span>
             </div>
 
-            <p>The PDF uses a professional compact layout with your <strong>company name in the header</strong>, a prominent reference number, the entry's <a href="../help/configuration.html#smart-description">Smart Description</a> (if configured), and a clean 3-row job details section with tight 20mm margins for maximum content per page.</p>
+            <p>The PDF uses a professional compact layout with your <strong>company name in the header</strong>, a prominent Job Number, the entry's <a href="../help/configuration.html#smart-description">Auto Description</a> (if configured), and a clean 3-row job details section with tight 20mm margins for maximum content per page.</p>
 
             <ul>
-                <li><strong>Header</strong> &mdash; Company name, reference ID (large 18pt), Smart Description (11pt), project name, and generation date</li>
+                <li><strong>Header</strong> &mdash; Company name, Job Number (large 18pt), Auto Description (11pt), project name, and generation date</li>
                 <li><strong>All fields</strong> &mdash; Built-in fields, custom fields, tags, and comments</li>
                 <li><strong>Stage timeline</strong> &mdash; Visual history of every pipeline stage transition with timestamps and durations</li>
                 <li><strong>Job costing</strong> &mdash; Unit price, quantity, and total value (when applicable)</li>
@@ -136,7 +136,7 @@
             </div>
 
             <ul>
-                <li>Reference ID and job description</li>
+                <li>Job Number and job description</li>
                 <li>Customer name, PO number, due date, and other key fields</li>
                 <li>Pipeline stages as a visual checklist</li>
                 <li>A large <strong>QR code</strong> that links to <code>glyphfex://entry/{id}</code></li>
@@ -164,7 +164,7 @@
 
             <!-- ====== QuickBooks Format ====== -->
             <h2 id="quickbooks">QuickBooks Format</h2>
-            <p>Export entries in a CSV format compatible with QuickBooks invoice import. This is useful for accounting integration when you need to transfer job data (reference IDs, customer names, quantities, prices) into your accounting system.</p>
+            <p>Export entries in a CSV format compatible with QuickBooks invoice import. This is useful for accounting integration when you need to transfer job data (Job Numbers, customer names, quantities, prices) into your accounting system.</p>
             <p>Access: <strong>File &gt; Export &gt; QuickBooks CSV</strong></p>
             <div class="help-tip">
                 <strong>Tip</strong>
@@ -204,7 +204,7 @@
             </ol>
 
             <h3>Duplicate handling</h3>
-            <p>When an imported entry has the same Reference ID as an existing entry, you can choose:</p>
+            <p>When an imported entry has the same Job Number as an existing entry, you can choose:</p>
             <ul>
                 <li><strong>Skip</strong> &mdash; Do not import the duplicate (keep existing)</li>
                 <li><strong>Overwrite</strong> &mdash; Replace the existing entry with the imported data</li>

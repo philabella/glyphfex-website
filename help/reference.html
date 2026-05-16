@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -69,7 +69,7 @@
                 <a href="configuration.html">Configuration</a>
                 <a href="templates.html">Templates</a>
                 <a href="validation.html">Validation</a>
-                <a href="rules.html">Conditional Rules</a>
+                <a href="rules.html">Show/Hide Rules</a>
                 <a href="notifications.html">Notifications</a>
                 <a href="backup-recovery.html">Backup &amp; Recovery</a>
                 <a href="team.html">Multi-User &amp; Team</a>
@@ -219,7 +219,7 @@
             <ul>
                 <li><strong>Navigation</strong> &mdash; Go to any page (Dashboard, Analytics, Calendar, etc.)</li>
                 <li><strong>Action</strong> &mdash; Common actions (New Entry, Refresh, Export, Print)</li>
-                <li><strong>Entry</strong> &mdash; Recent entries section showing the 5 most recently modified entries, searchable by Reference ID or description</li>
+                <li><strong>Entry</strong> &mdash; Recent entries section showing the 5 most recently modified entries, searchable by Job Number or description</li>
                 <li><strong>Configuration</strong> &mdash; Open any settings dialog (Categories, Pipeline, Fields, Validation, etc.)</li>
                 <li><strong>Help</strong> &mdash; Open guides, Product Tour, Feature Overview</li>
             </ul>
@@ -284,9 +284,9 @@
             <h3>"Save failed"</h3>
             <ul>
                 <li>Check that all <strong>required fields</strong> are filled in (look for red asterisks on the form)</li>
-                <li>Verify the <strong>Reference ID</strong> matches the configured validation pattern (check for a red border)</li>
-                <li>Ensure the Reference ID is not a <strong>duplicate</strong> of an existing entry</li>
-                <li>Check that all <strong>required categories</strong> (from conditional rules) have a tag selected</li>
+                <li>Verify the <strong>Job Number</strong> matches the configured validation pattern (check for a red border)</li>
+                <li>Ensure the Job Number is not a <strong>duplicate</strong> of an existing entry</li>
+                <li>Check that all <strong>required categories</strong> (from <a href="rules.html">Show/Hide Rules</a>) have a tag selected</li>
             </ul>
 
             <h3>"Concurrent edit conflict"</h3>
@@ -352,7 +352,7 @@
                 <tbody>
                     <tr>
                         <td><strong>Entry</strong></td>
-                        <td>A single job, order, quote, or work item tracked in GlyphFex. Each entry has a unique Reference ID, tags, fields, attachments, and a full audit history.</td>
+                        <td>A single job, order, quote, or work item tracked in GlyphFex. Each entry has a unique Job Number, tags, fields, attachments, and a full audit history.</td>
                     </tr>
                     <tr>
                         <td><strong>Pipeline</strong></td>

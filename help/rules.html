@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conditional Rules &mdash; GlyphFex Help</title>
-    <meta name="description" content="Configure conditional rules in GlyphFex to dynamically show, hide, enable, disable, or require fields and categories based on tag selections.">
+    <title>Show/Hide Rules &mdash; GlyphFex Help</title>
+    <meta name="description" content="Configure Show/Hide Rules (formerly Conditional Rules) in GlyphFex to dynamically show, hide, enable, disable, or require fields and categories based on tag selections.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
@@ -69,7 +69,7 @@
                 <a href="configuration.html">Configuration</a>
                 <a href="templates.html">Templates</a>
                 <a href="validation.html">Validation</a>
-                <a href="rules.html">Conditional Rules</a>
+                <a href="rules.html">Show/Hide Rules</a>
                 <a href="notifications.html">Notifications</a>
                 <a href="backup-recovery.html">Backup &amp; Recovery</a>
                 <a href="team.html">Multi-User &amp; Team</a>
@@ -86,14 +86,14 @@
 
         <!-- Content -->
         <main class="help-content">
-            <h1>Conditional Rules</h1>
-            <p class="help-subtitle">Dynamically show, hide, enable, disable, or require fields and categories based on tag selections on the Entry form.</p>
+            <h1>Show/Hide Rules</h1>
+            <p class="help-subtitle">Dynamically show, hide, enable, disable, or require fields and categories based on tag selections on the Entry form. Formerly called "Conditional Rules" &mdash; the dialog tab and Command Palette entry now read <strong>Show/Hide Rules</strong>.</p>
 
-            <!-- ====== What Are Conditional Rules ====== -->
-            <h2 id="what-are-rules">What Are Conditional Rules?</h2>
-            <p>Conditional rules let you customize the Entry form based on what a user selects. For example, you can require a "Finish" category only when the Material is "Stainless Steel," or hide a "Welding Type" category when the Process is "CNC Machining."</p>
+            <!-- ====== What Are Show/Hide Rules ====== -->
+            <h2 id="what-are-rules">What Are Show/Hide Rules?</h2>
+            <p>Show/Hide Rules let you customize the Entry form based on what a user selects. For example, you can require a "Finish" category only when the Material is "Stainless Steel," or hide a "Welding Type" category when the Process is "CNC Machining."</p>
             <p>Rules are evaluated in real time as users select and deselect tags. The form adapts instantly without needing to save or reload.</p>
-            <p>Open the rules editor from <strong>Settings Hub &gt; Conditional Rules</strong>, the Entry page toolbar <strong>Rules</strong> button, or via the Command Palette (<kbd>Ctrl</kbd>+<kbd>K</kbd>).</p>
+            <p>Open the rules editor from <strong>Settings Hub &gt; Rules</strong>, the Categories &amp; Tags dialog <strong>Show/Hide Rules</strong> tab, or via the Command Palette (<kbd>Ctrl</kbd>+<kbd>K</kbd>) by searching for "Show/Hide Rules" or "conditional rules" (the older search term still resolves).</p>
 
             <!-- ====== Rule Structure ====== -->
             <h2 id="rule-structure">Rule Structure</h2>
@@ -194,13 +194,13 @@
 
             <div class="help-note">
                 <strong>Note</strong>
-                The "ALWAYS: REQUIRED" rule type is separate from the "Required" checkbox on custom fields. Custom field requirements apply to the field itself, while conditional rules can make entire <em>categories</em> required.
+                The "ALWAYS: REQUIRED" rule type is separate from the "Required" checkbox on custom fields. Custom field requirements apply to the field itself, while Show/Hide Rules can make entire <em>categories</em> required.
             </div>
 
             <!-- ====== Setting Up Rules ====== -->
             <h2 id="setup">Setting Up Rules</h2>
             <ol class="help-steps">
-                <li><strong>Open the rules editor</strong> &mdash; From Settings Hub &gt; Conditional Rules, the Entry page toolbar Rules button, or <kbd>Ctrl</kbd>+<kbd>K</kbd> &rarr; "Conditional Rules".</li>
+                <li><strong>Open the rules editor</strong> &mdash; From Settings Hub &gt; Rules, the Categories &amp; Tags dialog &rarr; <strong>Show/Hide Rules</strong> tab, or <kbd>Ctrl</kbd>+<kbd>K</kbd> &rarr; "Show/Hide Rules".</li>
                 <li><strong>Select the trigger category and tag</strong> &mdash; Choose the "When" and "Is" parts of the rule from the dropdowns.</li>
                 <li><strong>Choose the action</strong> &mdash; Select Hide, Show, Disable, Enable, or Require.</li>
                 <li><strong>Select the target</strong> &mdash; Choose which category or field the action applies to.</li>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -69,7 +69,7 @@
                 <a href="configuration.html">Configuration</a>
                 <a href="templates.html">Templates</a>
                 <a href="validation.html">Validation</a>
-                <a href="rules.html">Conditional Rules</a>
+                <a href="rules.html">Show/Hide Rules</a>
                 <a href="notifications.html">Notifications</a>
                 <a href="backup-recovery.html">Backup &amp; Recovery</a>
                 <a href="team.html">Multi-User &amp; Team</a>
@@ -87,12 +87,12 @@
         <!-- Content -->
         <main class="help-content">
             <h1>Input Validation</h1>
-            <p class="help-subtitle">Enforce consistent formatting for Reference IDs and other fields with built-in and custom validation patterns.</p>
+            <p class="help-subtitle">Enforce consistent formatting for Job Numbers and other fields with built-in and custom validation patterns.</p>
 
             <!-- ====== Why Validation Matters ====== -->
             <h2 id="why-validation">Why Validation Matters</h2>
             <p>Without validation, reference numbers drift into inconsistent formats over time: <code>WO2026001</code>, <code>WO-2026-1</code>, <code>wo-2026-001</code>. This makes searching, sorting, and reporting unreliable.</p>
-            <p>GlyphFex validation ensures every Reference ID matches your shop's format before it can be saved. Users get real-time feedback as they type, preventing bad data before it enters the system.</p>
+            <p>GlyphFex validation ensures every Job Number matches your shop's format before it can be saved. Users get real-time feedback as they type, preventing bad data before it enters the system.</p>
 
             <!-- ====== Built-In Patterns ====== -->
             <h2 id="built-in-patterns">Built-In Patterns</h2>
@@ -205,26 +205,26 @@
 
             <!-- ====== Real-Time Feedback ====== -->
             <h2 id="real-time-feedback">How Validation Works in Practice</h2>
-            <p>When a user types a Reference ID on the Entry page, GlyphFex validates the input in real time:</p>
+            <p>When a user types a Job Number on the Entry page, GlyphFex validates the input in real time:</p>
             <ul>
                 <li><strong>Green border + checkmark icon</strong> &mdash; The ID matches an active validation pattern</li>
                 <li><strong>Red border</strong> &mdash; The ID does not match any active pattern</li>
                 <li><strong>No border change</strong> &mdash; No validation patterns are active (any format is accepted)</li>
             </ul>
-            <p>If the user attempts to save an entry with an invalid Reference ID, the save is blocked and the field is highlighted with an error message showing the expected format.</p>
+            <p>If the user attempts to save an entry with an invalid Job Number, the save is blocked and the field is highlighted with an error message showing the expected format.</p>
 
             <div class="help-note">
                 <strong>Note</strong>
-                Validation is optional. If you do not configure any patterns, GlyphFex accepts any Reference ID format. You can enable validation at any time without affecting existing entries.
+                Validation is optional. If you do not configure any patterns, GlyphFex accepts any Job Number format. You can enable validation at any time without affecting existing entries.
             </div>
 
             <!-- ====== Preventing Bad Data ====== -->
             <h2 id="preventing-bad-data">How Validation Prevents Bad Data</h2>
             <p>Validation works together with other GlyphFex features to maintain data quality:</p>
             <ul>
-                <li><strong>Duplicate detection</strong> &mdash; GlyphFex checks for duplicate Reference IDs on save, regardless of validation patterns</li>
+                <li><strong>Duplicate detection</strong> &mdash; GlyphFex checks for duplicate Job Numbers on save, regardless of validation patterns</li>
                 <li><strong>Required fields</strong> &mdash; Custom fields marked as "required" must have a value before saving</li>
-                <li><strong>Required categories</strong> &mdash; Categories made required via <a href="rules.html">conditional rules</a> must have a tag selected</li>
+                <li><strong>Required categories</strong> &mdash; Categories made required via <a href="rules.html">Show/Hide Rules</a> must have a tag selected</li>
                 <li><strong>Auto-numbering</strong> &mdash; Templates with auto-numbering bypass manual entry entirely, eliminating format errors</li>
             </ul>
 

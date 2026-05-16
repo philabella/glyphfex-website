@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configuration &mdash; GlyphFex Help</title>
-    <meta name="description" content="Configure GlyphFex to match your shop's workflow: Settings Hub, categories, tags, custom fields, validation, conditional rules, templates, and more.">
+    <meta name="description" content="Configure GlyphFex to match your shop's workflow: Settings Hub, categories, tags, custom fields, validation, show/hide rules, templates, and more.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
@@ -69,7 +69,7 @@
                 <a href="configuration.html">Configuration</a>
                 <a href="templates.html">Templates</a>
                 <a href="validation.html">Validation</a>
-                <a href="rules.html">Conditional Rules</a>
+                <a href="rules.html">Show/Hide Rules</a>
                 <a href="notifications.html">Notifications</a>
                 <a href="backup-recovery.html">Backup &amp; Recovery</a>
                 <a href="team.html">Multi-User &amp; Team</a>
@@ -97,17 +97,20 @@
             <div class="help-screenshot">
                 <svg class="screenshot-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
                 <span class="screenshot-label">Settings Hub</span>
-                <span class="screenshot-desc">Screenshot of the Settings Hub dialog showing the left sidebar navigation with Profile, Notifications, Language, Audit, Calendar, Archive, and License panels</span>
+                <span class="screenshot-desc">Screenshot of the Settings Hub dialog showing the left sidebar navigation grouped into PERSONAL, SHOP CONFIGURATION, DATA &amp; INTEGRATIONS, and ADVANCED sections</span>
             </div>
 
-            <p>The Settings Hub contains two types of panels:</p>
+            <p>The Settings Hub groups panels into four sections in the left sidebar:</p>
             <ul>
-                <li><strong>Inline panels (7)</strong> &mdash; Settings that are edited directly within the hub dialog: Profile, Notifications, Language, Audit &amp; Compliance, Calendar, Archive, and License.</li>
-                <li><strong>Launcher panels (9)</strong> &mdash; Buttons that open dedicated configuration dialogs for more complex setup: Categories, Pipeline, Custom Fields, Validation, Conditional Rules, Templates, Description Format, Material Inventory, and User Management.</li>
+                <li><strong>PERSONAL</strong> &mdash; <strong>My Profile</strong> (name, signature, company name, logo, language). Personal settings are stored per-user and do not affect other users on the project.</li>
+                <li><strong>SHOP CONFIGURATION</strong> (Admin / Solo only) &mdash; <strong>Workflow Stages</strong>, <strong>Categories &amp; Tags</strong>, <strong>Custom Fields</strong>, <strong>Templates</strong>, <strong>Industry Terminology</strong>, <strong>Quoting</strong>, <strong>Auto Descriptions</strong>, <strong>My Jobs</strong>.</li>
+                <li><strong>DATA &amp; INTEGRATIONS</strong> (Admin / Solo only) &mdash; <strong>Data Feed (Power BI / Excel)</strong>, <strong>Webhooks (Zapier, n8n)</strong>, and <strong>Users &amp; Roles</strong> (multi-user projects only).</li>
+                <li><strong>ADVANCED</strong> (Admin / Solo only, toggle "Show Advanced" to reveal) &mdash; <strong>Notifications</strong>, <strong>Validation</strong>, <strong>Rules</strong> (formerly "Conditional Rules"), <strong>Business Calendar</strong>, <strong>License</strong>.</li>
             </ul>
+            <p>Every panel is edited inline within the Settings Hub &mdash; the older "launcher button opens a separate dialog" model was removed. The hub also offers a <strong>search box</strong> at the top of the sidebar that highlights matching panels as you type.</p>
             <div class="help-note">
                 <strong>Note</strong>
-                The Settings Hub is <strong>role-gated</strong>. Admin and Solo users see all panels. Editor and Viewer users only see personal settings (Profile, Notifications, Language) and the License panel. Configuration panels that affect the entire project are hidden for non-admin roles.
+                The Settings Hub is <strong>role-gated</strong>. Admin and Solo users see all sections. Editor and Viewer users see only <strong>My Profile</strong> and <strong>License</strong> (read-only) &mdash; configuration panels that affect the entire project are hidden for non-admin roles.
             </div>
 
             <!-- ====== Profile ====== -->
@@ -198,13 +201,13 @@
                 You can enter a license key at any time, even after your trial limit is reached. All existing data and configuration are preserved &mdash; activating a license simply removes the entry cap.
             </div>
 
-            <!-- ====== Smart Description ====== -->
-            <h2 id="smart-description">Smart Description</h2>
-            <p>Smart Description automatically generates a compact, human-readable description for each entry based on its tag selections. Instead of writing descriptions by hand, GlyphFex assembles a coded string from short abbreviation codes you assign to each tag.</p>
+            <!-- ====== Auto Descriptions (formerly Smart Description) ====== -->
+            <h2 id="smart-description">Auto Descriptions</h2>
+            <p>Auto Descriptions (formerly called "Smart Description") automatically generates a compact, human-readable description for each entry based on its tag selections. Instead of writing descriptions by hand, GlyphFex assembles a coded string from short abbreviation codes you assign to each tag.</p>
 
             <h3>How it works</h3>
             <ol class="help-steps">
-                <li><strong>Assign abbreviation codes</strong> &mdash; In <strong>Settings Hub &gt; Description Format</strong>, each tag in every category gets a short code (e.g., "SS" for Stainless Steel, "MIG" for MIG Welding, "H" for High priority).</li>
+                <li><strong>Assign abbreviation codes</strong> &mdash; In <strong>Settings Hub &gt; Auto Descriptions</strong>, each tag in every category gets a short code (e.g., "SS" for Stainless Steel, "MIG" for MIG Welding, "H" for High priority).</li>
                 <li><strong>Set the category order</strong> &mdash; Categories are processed in the order you define. The first category's code appears first in the description.</li>
                 <li><strong>Choose a separator</strong> &mdash; Codes are joined by a separator character of your choice (e.g., dash, slash, or space).</li>
                 <li><strong>Descriptions auto-generate</strong> &mdash; When an entry is saved, GlyphFex assembles the description from the selected tags' abbreviation codes and stores it in the entry's Description field.</li>
@@ -243,16 +246,16 @@
             <h3>Where it appears</h3>
             <ul>
                 <li><strong>Dashboard cards</strong> &mdash; The description is displayed on each entry card for quick identification</li>
-                <li><strong>Entry Detail Window</strong> &mdash; Shown in the header area below the Ref ID</li>
+                <li><strong>Entry Detail Window</strong> &mdash; Shown in the header area below the Job Number</li>
                 <li><strong>PDF exports</strong> &mdash; Included prominently in entry PDFs and job travelers</li>
             </ul>
 
             <h3>Regenerate All</h3>
-            <p>If you change abbreviation codes or category order after entries already exist, click the <strong>Regenerate All</strong> button in the Description Format settings. This retroactively updates the description for every existing entry in the project.</p>
+            <p>If you change abbreviation codes or category order after entries already exist, click the <strong>Regenerate All</strong> button in the Auto Descriptions settings panel. This retroactively updates the description for every existing entry in the project.</p>
 
             <div class="help-tip">
                 <strong>Tip</strong>
-                Smart Description is especially useful on the shop floor where operators need to identify jobs at a glance. A code like <code>SS-TIG-H</code> immediately tells them: stainless steel, TIG welding, high priority &mdash; without opening the entry.
+                Auto Descriptions are especially useful on the shop floor where operators need to identify jobs at a glance. A code like <code>SS-TIG-H</code> immediately tells them: stainless steel, TIG welding, high priority &mdash; without opening the entry.
             </div>
 
             <!-- ====== Categories & Tags ====== -->
@@ -356,7 +359,7 @@
 
             <!-- ====== Input Validation ====== -->
             <h2 id="validation">Input Validation</h2>
-            <p>Validation patterns enforce consistent formatting for Reference IDs and other fields. Open from <strong>Settings Hub &gt; Validation</strong>.</p>
+            <p>Validation patterns enforce consistent formatting for Job Numbers and other fields. Open from <strong>Settings Hub &gt; Validation</strong>.</p>
 
             <h3>Pre-built patterns</h3>
             <p>GlyphFex includes several common patterns you can apply with one click:</p>
@@ -394,24 +397,24 @@
 
             <h3>Custom patterns</h3>
             <p>You can define your own regex pattern for any format your shop uses. For example, a pattern like <code>WO-\d{4}-\d{3}</code> would enforce a format like <code>WO-2026-001</code>.</p>
-            <p>When a user types a Reference ID, GlyphFex validates the input in real time:</p>
+            <p>When a user types a Job Number, GlyphFex validates the input in real time:</p>
             <ul>
                 <li><strong>Green border</strong> &mdash; Input matches the pattern and is valid</li>
                 <li><strong>Red border</strong> &mdash; Input does not match the required format</li>
             </ul>
             <div class="help-note">
                 <strong>Note</strong>
-                Validation only applies to new entries. Existing entries with non-matching Reference IDs are not retroactively blocked from being edited.
+                Validation only applies to new entries. Existing entries with non-matching Job Numbers are not retroactively blocked from being edited.
             </div>
 
-            <!-- ====== Conditional Rules ====== -->
-            <h2 id="conditional-rules">Conditional Rules</h2>
-            <p>Conditional rules let you dynamically show, hide, enable, disable, or require fields and categories based on tag selections. Open from <strong>Settings Hub &gt; Conditional Rules</strong>.</p>
+            <!-- ====== Show/Hide Rules (formerly Conditional Rules) ====== -->
+            <h2 id="conditional-rules">Show/Hide Rules</h2>
+            <p>Show/Hide Rules (formerly called "Conditional Rules") let you dynamically show, hide, enable, disable, or require fields and categories based on tag selections. Open from <strong>Settings Hub &gt; Rules</strong> &mdash; the dialog tab itself is labeled <strong>Show/Hide Rules</strong>.</p>
 
             <div class="help-screenshot">
                 <svg class="screenshot-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                <span class="screenshot-label">Conditional Rules Dialog</span>
-                <span class="screenshot-desc">Screenshot of the Conditional Rules dialog showing When/Is/Then/On rule builder with the example: Material = Stainless Steel &rarr; Require Finish</span>
+                <span class="screenshot-label">Show/Hide Rules</span>
+                <span class="screenshot-desc">Screenshot of the Show/Hide Rules editor showing When/Is/Then/On rule builder with the example: Material = Stainless Steel &rarr; Require Finish</span>
             </div>
 
             <h3>Rule structure</h3>
@@ -464,7 +467,7 @@
 
             <h3>What templates can pre-fill</h3>
             <ul>
-                <li><strong>Reference ID prefix</strong> &mdash; With <code>{YEAR}</code> substitution (e.g., <code>Q-{YEAR}-</code> becomes <code>Q-2026-</code>)</li>
+                <li><strong>Job Number prefix</strong> &mdash; With <code>{YEAR}</code> substitution (e.g., <code>Q-{YEAR}-</code> becomes <code>Q-2026-</code>)</li>
                 <li><strong>Default tags</strong> &mdash; Pre-select tags across any category</li>
                 <li><strong>Default field values</strong> &mdash; Pre-fill built-in and custom field values</li>
                 <li><strong>Default status</strong> &mdash; Set which pipeline stage the entry starts in</li>
