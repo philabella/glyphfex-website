@@ -107,7 +107,7 @@
                 <li><strong>Stage timeline</strong> &mdash; Visual history of every pipeline stage transition with timestamps and durations</li>
                 <li><strong>Job costing</strong> &mdash; Unit price, quantity, and total value (when applicable)</li>
                 <li><strong>Part history</strong> &mdash; If the entry has a part number, a table of other entries sharing the same part number (capped at 25)</li>
-                <li><strong>QR code</strong> &mdash; A scannable <code>glyphfex://entry/{id}</code> link that opens the entry directly when scanned with a barcode reader</li>
+                <li><strong>QR code</strong> &mdash; A scannable <code>glyphfex://entry/{id}</code> URI that opens the entry directly when scanned with a keyboard-wedge barcode reader connected to a GlyphFex PC. Phone cameras read the same QR as plain text.</li>
             </ul>
             <p>Access: Right-click any entry on the Dashboard and select <strong>Print</strong>, or open the Entry Detail Window and click <strong>Print</strong>.</p>
             <div class="help-tip">
@@ -139,7 +139,7 @@
                 <li>Job Number and job description</li>
                 <li>Customer name, PO number, due date, and other key fields</li>
                 <li>Pipeline stages as a visual checklist</li>
-                <li>A large <strong>QR code</strong> that links to <code>glyphfex://entry/{id}</code></li>
+                <li>A large <strong>QR code</strong> that encodes <code>glyphfex://entry/{id}</code> for keyboard-wedge barcode readers</li>
             </ul>
             <p>Scan the QR code with any standard barcode scanner connected to a PC running GlyphFex. The entry opens instantly &mdash; no searching, no typing. This is especially powerful on the <a href="shop-floor.html">Shop Floor</a> kiosk where operators can scan a QR code to clock in/out of a specific job.</p>
             <div class="help-tip">

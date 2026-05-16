@@ -5,10 +5,10 @@
     "sections": [
       { "id": "system-requirements", "title": "System Requirements", "keywords": "install windows .net runtime requirements disk space" },
       { "id": "installation", "title": "Installing GlyphFex", "keywords": "MSI installer setup download editions" },
-      { "id": "first-launch", "title": "First Launch", "keywords": "welcome tour guided setup wizard skip first run" },
+      { "id": "first-launch", "title": "First Launch", "keywords": "welcome dialog get started skip import csv first run" },
       { "id": "create-project", "title": "Creating a Project", "keywords": "new project personal shared solo team sqlite sql server file" },
       { "id": "templates", "title": "Industry Templates", "keywords": "sheet metal CNC welding manufacturing template preset" },
-      { "id": "setup-wizard", "title": "Setup Wizard", "keywords": "wizard configuration steps guided walkthrough" },
+      { "id": "industry-templates", "title": "Industry Templates", "keywords": "industry template job shop sheet metal cnc auto body sign cabinet service" },
       { "id": "first-entry", "title": "Creating Your First Entry", "keywords": "new entry ref ID save create first" },
       { "id": "getting-started-checklist", "title": "Getting Started Checklist", "keywords": "checklist categories pipeline fields entries dashboard" },
       { "id": "trial", "title": "Trial Mode", "keywords": "trial free 50 entries limit license no credit card" },
