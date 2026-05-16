@@ -75,7 +75,7 @@
                 <a href="backup-recovery.html">Backup &amp; Recovery</a>
                 <a href="team.html">Multi-User &amp; Team</a>
                 <a href="sql-server-setup.html">SQL Server Setup</a>
-                <span class="sidebar-nav-label">Integrations</span>
+                <span class="sidebar-nav-label">Excel, Power BI &amp; More</span>
                 <a href="data-feed.html">Data Feed (Power BI / Excel)</a>
                 <a href="webhooks.html">Webhooks (Zapier, n8n)</a>
                 <a href="live-excel.html">Live Excel Sync</a>
@@ -225,7 +225,7 @@
                     </tr>
                     <tr>
                         <td><strong>estimated_hours</strong></td>
-                        <td>Decimal field. Used by Smart Quoting suggestions (k-NN on similar past jobs) and the labor-budget gauge on the Workstation Terminal.</td>
+                        <td>Decimal field. Used by Smart Quoting suggestions (matches against similar past jobs) and the labor-budget gauge on the Workstation Terminal.</td>
                     </tr>
                     <tr>
                         <td><strong>estimated_material_cost</strong></td>
@@ -547,23 +547,23 @@
             </div>
 
             <!-- ====== Smart Quoting ====== -->
-            <h2 id="smart-quoting">Smart Quoting (k-NN Estimation)</h2>
+            <h2 id="smart-quoting">Smart Quoting</h2>
 
-            <p>The moment you've picked enough tags on a new entry, GlyphFex finds the 7 most-similar past jobs and surfaces a median estimate &mdash; right where the field would normally be empty.</p>
+            <p>The moment you've picked enough tags on a new entry, GlyphFex finds the most-similar past jobs from <strong>your own project</strong> and surfaces a typical estimate &mdash; right where the field would normally be empty. See the dedicated <a href="smart-quoting.html">Smart Quoting page</a> for the full walkthrough; the quick version is below.</p>
 
             <h3>What you'll see</h3>
             <ul>
                 <li><strong>Ambient chip below Key Fields</strong> &mdash; "Similar jobs: ~38-42 hrs &middot; ~$3,200 &middot; based on 7 matches"</li>
-                <li><strong>Ghost text in the Est. Hours field</strong> &mdash; the median sits as placeholder. Type to override; click <strong>Accept</strong> on the chip to take it</li>
+                <li><strong>Ghost text in the Est. Hours field</strong> &mdash; the typical value sits as placeholder. Type to override; click <strong>Accept</strong> on the chip to take it</li>
                 <li><strong>Comparables popover</strong> &mdash; tap the chip to see the matched past jobs with match %, actual hours, and tag chips. Verify the suggestion before you trust it</li>
                 <li><strong>Deviation warning</strong> &mdash; if you type a number 30%+ below history, an InfoBar surfaces the comparables</li>
             </ul>
 
             <h3>How matches are scored</h3>
             <ul>
-                <li><strong>Tag similarity</strong> &mdash; Jaccard index over tag sets (overlap / union)</li>
+                <li><strong>Tag overlap</strong> &mdash; two jobs sharing 4 of 5 tags score 0.8 (technically: Jaccard index)</li>
                 <li><strong>Quantity closeness</strong> &mdash; smaller delta = higher score</li>
-                <li><strong>Recency weight</strong> &mdash; 180-day half-life so recent jobs count more</li>
+                <li><strong>Recency weight</strong> &mdash; recent jobs count more; a job from 6 months ago counts at about 37%, a year ago at about 14% (exponential decay, &tau;=180&nbsp;days)</li>
                 <li><strong>Customer boost</strong> &mdash; same-customer history counts 2&times;</li>
             </ul>
 

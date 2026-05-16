@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -75,7 +75,7 @@
                 <a href="backup-recovery.html">Backup &amp; Recovery</a>
                 <a href="team.html">Multi-User &amp; Team</a>
                 <a href="sql-server-setup.html">SQL Server Setup</a>
-                <span class="sidebar-nav-label">Integrations</span>
+                <span class="sidebar-nav-label">Excel, Power BI &amp; More</span>
                 <a href="data-feed.html">Data Feed (Power BI / Excel)</a>
                 <a href="webhooks.html" class="active">Webhooks (Zapier, n8n)</a>
                 <a href="live-excel.html">Live Excel Sync</a>
@@ -92,11 +92,14 @@
         <!-- Content -->
         <main class="help-content">
             <h1>Webhooks (Zapier, n8n, Power Automate)</h1>
-            <p class="help-subtitle">Real-time event push to any HTTPS endpoint. HMAC-signed, replay-protected, with retry and circuit breaker. Build event-driven workflows in Zapier, n8n, Power Automate, or your own backend.</p>
+            <p class="help-subtitle">A webhook is a URL you give us. When something specific happens in your shop &mdash; a quote wins, a job moves to QC, an NCR opens &mdash; GlyphFex sends a small message to that URL. Pair this with Zapier or Power Automate to do things like post to Slack, draft an invoice, or sync with your CRM.</p>
 
             <!-- ====== Overview ====== -->
             <h2 id="overview">What webhooks do</h2>
             <p>The <a href="data-feed.html">Data Feed</a> is great for &ldquo;every 15 minutes, pull the latest snapshot.&rdquo; Webhooks are for the opposite: <strong>the moment something specific happens, push it.</strong></p>
+            <div class="help-note">
+                <strong>For IT teams:</strong> Webhooks are HTTPS-only HMAC-SHA256-signed POSTs with retry, replay protection, and a circuit breaker. The full security and reliability story is in the sections below.
+            </div>
             <p>Configure a webhook URL and event type, and GlyphFex POSTs a small JSON payload to that URL every time the event fires. Six event types are supported:</p>
             <table>
                 <thead>
@@ -131,8 +134,10 @@
             <ul>
                 <li><code>X-GlyphFex-Signature: sha256=&lt;hex&gt;</code> &mdash; HMAC-SHA256 of the raw request body, keyed with the per-subscription signing secret. Reject any request where this header doesn&rsquo;t verify.</li>
                 <li><code>X-GlyphFex-Event-Id: &lt;UUID&gt;</code> &mdash; Unique per delivery attempt. Store the last N IDs your receiver has seen and reject duplicates &mdash; that&rsquo;s your replay protection.</li>
-                <li><code>X-GlyphFex-Event-Type: entry_created | stage_changed | &hellip;</code> &mdash; Lets you route on type before parsing the body.</li>
-                <li><code>X-GlyphFex-Event-Timestamp: &lt;ISO 8601 UTC&gt;</code> &mdash; When the event happened. GlyphFex drops deliveries older than 24 hours so a queue restart doesn&rsquo;t flood your receiver with stale events.</li>
+                <li><code>X-GlyphFex-Event: entry_created | stage_changed | &hellip;</code> &mdash; Lets you route on type before parsing the body.</li>
+                <li><code>X-GlyphFex-Timestamp: &lt;ISO 8601 UTC&gt;</code> &mdash; When the event happened. GlyphFex drops deliveries older than 24 hours so a queue restart doesn&rsquo;t flood your receiver with stale events.</li>
+                <li><code>X-GlyphFex-Delivery-Attempt: &lt;int&gt;</code> &mdash; 1 on the first attempt, 2 on the first retry, etc. Useful for idempotent-write logic on the receiver side.</li>
+                <li><code>X-GlyphFex-Schema-Version: 1.0</code> &mdash; The payload schema version. v1.x is stable forever; v2 (if it ever ships) will run alongside v1 for at least 12 months.</li>
             </ul>
             <p>HTTPS-only is enforced at two points: (1) when you save the subscription, the URL is rejected if it doesn&rsquo;t start with <code>https://</code>; (2) when the delivery worker is about to POST, the URL is checked again so a sneaky in-place edit of the database can&rsquo;t bypass it. Localhost <code>http://</code> is also rejected &mdash; if you&rsquo;re testing against a local receiver, use a tool like <code>ngrok</code> or <code>cloudflared</code> to get an HTTPS tunnel.</p>
 
@@ -160,16 +165,12 @@
   "event_id": "01HXY5G6T2QZK0FZ3M9V7B5RZX",
   "event_type": "stage_changed",
   "event_timestamp": "2026-05-16T14:23:09Z",
-  "subscription_id": 42,
-  "schema_version": 1,
+  "schema_version": "1.0",
   "data": {
-    "entry": { /* full v1 entry object */ },
-    "previous_status": "Production",
-    "new_status": "QC",
-    "actor": "alice@example.com"
+    "entry": { /* full v1 entry object */ }
   }
 }</code></pre>
-            <p>The <code>data.entry</code> object follows the same <a href="../docs/data-export-schema-v1.html">v1 schema</a> as the Data Feed&rsquo;s <code>entries.json</code>, so once you&rsquo;ve coded against one, the other is free. The event-specific fields (like <code>previous_status</code> for <code>stage_changed</code>) are documented per event in the <a href="../docs/webhooks-v1.html">webhooks v1 reference</a>.</p>
+            <p>The <code>data.entry</code> object follows the same <a href="../docs/data-export-schema-v1.html">v1 schema</a> as the Data Feed&rsquo;s <code>entries.json</code>, so once you&rsquo;ve coded against one, the other is free. Subscription ID is conveyed by which signing secret verifies the HMAC, not by a payload field. For event-specific context like a stage change&rsquo;s &ldquo;previous status,&rdquo; read the entry&rsquo;s <code>stage_transitions</code> array &mdash; the last entry is the new stage, the one before it is the previous.</p>
 
             <h3>The 1 MB cap and slim-envelope fallback</h3>
             <p>Webhook POSTs are capped at 1 MB. Most events fit easily; a few (entries with many attachments and a huge audit history) might exceed the limit. When they do, GlyphFex falls back to a <strong>slim envelope</strong>:</p>
@@ -177,11 +178,11 @@
   "event_id": "...",
   "event_type": "stage_changed",
   "event_timestamp": "...",
+  "schema_version": "1.0",
   "payload_truncated": true,
+  "drop_reason": "Payload exceeded 1024 KB limit; full entry data omitted.",
   "data": {
-    "entry": { "id": 12345, "ref_number": "WO-2026-0042" },
-    "previous_status": "Production",
-    "new_status": "QC"
+    "entry": { "id": 12345, "ref_number": "WO-2026-0042" }
   }
 }</code></pre>
             <p>The event still fires, the receiver still gets notified, but the full entry payload is replaced with just <code>id</code> and <code>ref_number</code>. Use those to query GlyphFex (via the Data Feed JSON or a future API) for the rest.</p>
@@ -194,7 +195,7 @@
             <ol class="help-steps">
                 <li>In Zapier, create a Zap with a <strong>Webhooks by Zapier &rarr; Catch Hook</strong> trigger. Zapier gives you an HTTPS URL.</li>
                 <li>In GlyphFex, add a webhook subscription with event <code>stage_changed</code> and that URL. (Zapier verifies the HMAC for you if you configure the signing secret.)</li>
-                <li>In the Zap, add a <strong>Filter</strong> step: only continue if <code>new_status</code> is <code>QC</code>.</li>
+                <li>In the Zap, add a <strong>Filter</strong> step: only continue if <code>data.entry.status</code> is <code>QC</code>. (The entry&rsquo;s <em>current</em> stage is on <code>data.entry.status</code>; if you need the <em>previous</em> stage, it&rsquo;s the second-to-last item in <code>data.entry.stage_transitions</code>.)</li>
                 <li>Add a <strong>Slack: Send Channel Message</strong> action. Use the templated body: <code>{{data__entry__ref_number}} moved into QC.</code></li>
             </ol>
             <p>The same shape works for Teams (Microsoft Teams Incoming Webhook), Discord, Mattermost, and most chat tools.</p>

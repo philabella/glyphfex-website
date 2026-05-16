@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -75,7 +75,7 @@
                 <a href="backup-recovery.html">Backup &amp; Recovery</a>
                 <a href="team.html">Multi-User &amp; Team</a>
                 <a href="sql-server-setup.html">SQL Server Setup</a>
-                <span class="sidebar-nav-label">Integrations</span>
+                <span class="sidebar-nav-label">Excel, Power BI &amp; More</span>
                 <a href="data-feed.html">Data Feed (Power BI / Excel)</a>
                 <a href="webhooks.html">Webhooks (Zapier, n8n)</a>
                 <a href="live-excel.html" class="active">Live Excel Sync</a>
@@ -96,54 +96,54 @@
 
             <!-- ====== Overview ====== -->
             <h2 id="overview">What Live Excel Sync does</h2>
-            <p>Most shops have at least one Excel workbook that the office uses for invoicing, customer reports, or year-end summaries. The problem with regular CSV export is that <strong>every refresh wipes your pivots and charts</strong> &mdash; you have to rebuild them.</p>
-            <p>Live Excel Sync solves this by using a <strong>clear-and-rewrite</strong> strategy on a multi-sheet <code>.xlsx</code> file. GlyphFex writes data to dedicated sheets; your pivots, charts, and formulas live on <em>different</em> sheets that reference the data sheets. When the data refreshes, the references update and your dashboards keep working.</p>
+            <p><strong>If someone in your office lives in Excel and isn&rsquo;t giving it up, Live Excel Sync is the bridge.</strong> GlyphFex stays the source of truth; your bookkeeper&rsquo;s workbook stays the way she does reports. You don&rsquo;t make her switch tools.</p>
+            <p>The problem with regular CSV export is that <strong>every refresh wipes your pivots and charts</strong> &mdash; the office has to rebuild them. Live Excel Sync solves this with a <strong>clear-and-rewrite</strong> strategy on a multi-sheet <code>.xlsx</code> file. GlyphFex writes data to its own sheets; pivots, charts, and formulas live on <em>different</em> sheets that reference the data sheets. When the data refreshes, the references update and the dashboards keep working.</p>
 
             <div class="help-screenshot">
                 <svg class="screenshot-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
                 <span class="screenshot-label">Live Excel multi-sheet workbook</span>
-                <span class="screenshot-desc">An Excel workbook with auto-generated &ldquo;Entries&rdquo;, &ldquo;Quotes&rdquo;, &ldquo;Customers&rdquo;, and &ldquo;TimeEntries&rdquo; data sheets and a user-built &ldquo;Dashboard&rdquo; sheet with pivots and charts referencing them.</span>
+                <span class="screenshot-desc">An Excel workbook with auto-generated &ldquo;Summary&rdquo;, &ldquo;Active Jobs&rdquo;, &ldquo;All Entries&rdquo;, &ldquo;Time Entries&rdquo;, and &ldquo;Customer Summary&rdquo; data sheets and a user-built &ldquo;Dashboard&rdquo; sheet with pivots and charts referencing them.</span>
             </div>
 
             <!-- ====== How To Use It ====== -->
             <h2 id="how-to-use">How to enable Live Excel</h2>
             <ol class="help-steps">
-                <li><strong>Open Live Excel</strong> &mdash; <strong>Tools menu &rarr; Live Excel Export</strong>, or from the <a href="exports.html">Exports &amp; Reports</a> page.</li>
-                <li><strong>Pick a target file.</strong> Either pick an existing <code>.xlsx</code> file or create a new one. If new, GlyphFex writes 4 starter sheets: <strong>Entries</strong>, <strong>Quotes</strong>, <strong>Customers</strong>, and <strong>TimeEntries</strong>.</li>
-                <li><strong>Click Refresh.</strong> GlyphFex clears each data sheet and rewrites it with current project data. The first refresh is fast; subsequent refreshes are also fast because we&rsquo;re only writing data, not regenerating formats.</li>
-                <li><strong>Build your dashboards in Excel.</strong> Create a new sheet (e.g., <strong>Dashboard</strong>) and use pivots, charts, or formulas that reference cells on the data sheets. Save the workbook.</li>
-                <li><strong>Refresh whenever the data changes.</strong> Re-open Live Excel and click Refresh. Your data sheets update; your dashboard sheet recalculates automatically.</li>
+                <li><strong>Connect to Excel.</strong> From the <strong>File menu &rarr; Connect to Excel (Live)&hellip;</strong> Pick a destination file path. Either point to an existing <code>.xlsx</code> file or create a new one. GlyphFex writes 5 starter sheets the first time: <strong>Summary</strong>, <strong>Active Jobs</strong>, <strong>All Entries</strong>, <strong>Time Entries</strong>, and <strong>Customer Summary</strong>.</li>
+                <li><strong>Refresh.</strong> Use <strong>File menu &rarr; Refresh Live Excel</strong> any time the data changes. GlyphFex clears each of its own sheets and rewrites them; everything else in the workbook is preserved. The first refresh is fast; subsequent refreshes are also fast because GlyphFex only writes its own sheets, not the whole file.</li>
+                <li><strong>Build your dashboards in Excel.</strong> Create a new sheet (e.g., <strong>Dashboard</strong>) and use pivots, charts, or formulas that reference cells on the GlyphFex sheets. Save the workbook.</li>
+                <li><strong>Refresh whenever you need fresh numbers.</strong> File &rarr; Refresh Live Excel. The data sheets update; the dashboard sheet recalculates automatically.</li>
             </ol>
 
             <!-- ====== What's Preserved ====== -->
             <h2 id="preserved">What survives a refresh</h2>
-            <p>The clear-and-rewrite strategy only touches the four data sheets. Anything you add elsewhere in the workbook is preserved:</p>
+            <p>The clear-and-rewrite strategy only touches the 5 GlyphFex-owned data sheets. Anything you add elsewhere in the workbook is preserved:</p>
             <ul>
                 <li><strong>Custom sheets</strong> &mdash; Dashboards, pivots, charts, and any other sheets you create</li>
-                <li><strong>Formulas referencing data sheets</strong> &mdash; <code>=SUMIFS(Entries!E:E, Entries!B:B, "Welding")</code> keeps working</li>
+                <li><strong>Formulas referencing data sheets</strong> &mdash; <code>=SUMIFS('All Entries'!I:I, 'All Entries'!B:B, "Welding")</code> keeps working (single-quote a sheet name with a space in it)</li>
                 <li><strong>Pivot tables built on data sheets</strong> &mdash; Refresh the pivot inside Excel (or set it to refresh on open) and it picks up the new rows</li>
                 <li><strong>Charts</strong> &mdash; Chart series ranges update automatically as data sheets grow or shrink</li>
                 <li><strong>Cell formatting on data sheets</strong> &mdash; column widths, header colors, and frozen panes are restored on refresh; cell-level formatting on data rows is <em>not</em> preserved (data rows are rewritten)</li>
             </ul>
             <div class="help-note">
-                <strong>What is NOT preserved on the data sheets</strong>
-                Anything you type into rows on the data sheets gets wiped on refresh &mdash; that&rsquo;s the price of keeping them in step with the source. Put your additions on a different sheet that references the data sheet via formula.
+                <strong>What is NOT preserved on the GlyphFex sheets</strong>
+                Anything you type into rows on Summary, Active Jobs, All Entries, Time Entries, or Customer Summary gets wiped on refresh &mdash; that&rsquo;s the price of keeping them in step with the source. Put your additions on a different sheet that references the data sheet via formula.
             </div>
 
             <!-- ====== Sheets ====== -->
-            <h2 id="sheets">The four data sheets</h2>
+            <h2 id="sheets">The five data sheets</h2>
             <table>
                 <thead>
                     <tr><th>Sheet</th><th>One row per</th><th>Typical use</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td><strong>Entries</strong></td><td>Job in the project</td><td>Master list of jobs with all built-in and custom fields</td></tr>
-                    <tr><td><strong>Quotes</strong></td><td>Quote-stage entry with quote line items</td><td>Customer-quote rollup, win rate by tag, follow-up tracking</td></tr>
-                    <tr><td><strong>Customers</strong></td><td>Unique customer name across all entries</td><td>Customer summary &mdash; total jobs, total value, last activity</td></tr>
-                    <tr><td><strong>TimeEntries</strong></td><td>Clock in/out record from the Workstation Terminal</td><td>Labor cost rollup, by-worker / by-stage hours, billable totals</td></tr>
+                    <tr><td><strong>Summary</strong></td><td>One snapshot row (current period)</td><td>Top-of-workbook KPIs: total active jobs, total billable hours, total value in flight</td></tr>
+                    <tr><td><strong>Active Jobs</strong></td><td>Job currently in a non-completed stage</td><td>The working list &mdash; what the office hands the shop floor every morning</td></tr>
+                    <tr><td><strong>All Entries</strong></td><td>Job in the project (capped at the most recent 5,000 to keep workbook size sane)</td><td>Customer history, win-rate analysis, year-over-year trends</td></tr>
+                    <tr><td><strong>Time Entries</strong></td><td>Clock in/out record from the Workstation Terminal</td><td>Labor cost rollup, by-worker / by-stage hours, billable totals</td></tr>
+                    <tr><td><strong>Customer Summary</strong></td><td>Unique customer across all entries</td><td>Customer rollup &mdash; total jobs, total value, last activity per customer</td></tr>
                 </tbody>
             </table>
-            <p>Columns on each sheet exactly mirror the corresponding GlyphFex tables. Column headers use snake_case (<code>customer_name</code>, <code>due_date</code>, <code>actual_hours</code>) so they match the field names used in the rest of the product.</p>
+            <p>Column headers on the data sheets are <strong>human-readable title case with spaces and shop abbreviations</strong> so the office can read them at a glance &mdash; for example, the <strong>All Entries</strong> sheet has columns <code>Ref #</code>, <code>Status</code>, <code>Customer</code>, <code>Description</code>, <code>Created</code>, <code>Updated</code>, <code>Due Date</code>, <code>Quantity</code>, <code>Est Hours</code>, <code>Actual Hours</code>, <code>Priority</code>, <code>PO #</code>, <code>Ref Value</code>, <code>Notes</code>. Reference these names literally in your formulas. Note: this is intentionally different from the <a href="data-feed.html">Data Feed</a>, which uses snake_case keys (<code>customer_name</code>, <code>due_date</code>) because Power BI and other programmatic readers prefer that.</p>
 
             <!-- ====== Workflow Pattern ====== -->
             <h2 id="workflow-pattern">The recommended workflow</h2>
@@ -186,7 +186,7 @@
             <p>If you have the workbook open in Excel while GlyphFex tries to refresh, the write fails and GlyphFex shows a toast telling you the file is in use. Close Excel (or just close the workbook) and click Refresh again.</p>
 
             <h3>I lost data on a data sheet</h3>
-            <p>If you typed into a row on Entries, Quotes, Customers, or TimeEntries and then clicked Refresh, the typed data is gone. The data sheets are <em>derived</em> from GlyphFex &mdash; do your hand-edits on a separate sheet, or do them inside GlyphFex itself so they survive the refresh.</p>
+            <p>If you typed into a row on Summary, Active Jobs, All Entries, Time Entries, or Customer Summary and then clicked Refresh, the typed data is gone. The data sheets are <em>derived</em> from GlyphFex &mdash; do your hand-edits on a separate sheet, or do them inside GlyphFex itself so they survive the refresh.</p>
 
             <h3>My pivot table didn&rsquo;t update</h3>
             <p>Excel pivot tables don&rsquo;t auto-refresh by default. Right-click the pivot and pick <strong>Refresh</strong>, or set <strong>Pivot Options &rarr; Data &rarr; Refresh data when opening the file</strong>. Charts based on the same source will then update automatically.</p>
@@ -202,7 +202,7 @@
                 <li><a href="#overview">What it does</a></li>
                 <li><a href="#how-to-use">How to enable</a></li>
                 <li><a href="#preserved">What survives a refresh</a></li>
-                <li><a href="#sheets">The four data sheets</a></li>
+                <li><a href="#sheets">The five data sheets</a></li>
                 <li><a href="#workflow-pattern">Recommended workflow</a></li>
                 <li><a href="#trade-offs">When to use which export</a></li>
                 <li><a href="#gotchas">Gotchas</a></li>

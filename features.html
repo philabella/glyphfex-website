@@ -828,7 +828,7 @@
             <div class="feature-layout">
                 <div class="feature-text">
                     <ul class="feature-bullets">
-                        <li><strong>k-NN comparables engine</strong> &mdash; Jaccard similarity on tag sets, quantity closeness, 180-day recency half-life, 2&times; same-customer boost. Weighted median + 25th/75th percentile for the realistic range</li>
+                        <li><strong>Past-job comparables engine</strong> &mdash; finds the most-similar past jobs by tag overlap, quantity closeness, recency (recent jobs count more &mdash; 6 months ago &asymp; 37% weight, 1 year ago &asymp; 14%), and a 2&times; boost for the same customer. Gives you the typical hours plus a realistic low/high range. <em>(For IT teams: k-NN with Jaccard similarity, exponential decay &tau;=180d, weighted median + P25/P75.)</em></li>
                         <li><strong>Ambient suggestion chip</strong> &mdash; "Similar jobs: ~38-42 hrs &middot; ~$3,200 &middot; based on 7 matches" appears below Key Fields the moment you've picked enough tags</li>
                         <li><strong>Ghost text in the Est. Hours field</strong> &mdash; the median sits in the field as placeholder. Type to override; click <strong>Accept</strong> on the chip to take it</li>
                         <li><strong>Comparables popover</strong> &mdash; tap the chip to see the top 7 matched past jobs with match %, actual hours, and tag chips. Verify the suggestion before you trust it</li>

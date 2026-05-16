@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -75,7 +75,7 @@
                 <a href="backup-recovery.html">Backup &amp; Recovery</a>
                 <a href="team.html">Multi-User &amp; Team</a>
                 <a href="sql-server-setup.html">SQL Server Setup</a>
-                <span class="sidebar-nav-label">Integrations</span>
+                <span class="sidebar-nav-label">Excel, Power BI &amp; More</span>
                 <a href="data-feed.html" class="active">Data Feed (Power BI / Excel)</a>
                 <a href="webhooks.html">Webhooks (Zapier, n8n)</a>
                 <a href="live-excel.html">Live Excel Sync</a>
@@ -96,7 +96,7 @@
 
             <!-- ====== Overview ====== -->
             <h2 id="overview">What the Data Feed does</h2>
-            <p>The Data Feed turns GlyphFex into a <strong>source of truth that flows into other tools</strong> without anyone having to click Export. On a schedule you control (every 5, 15, 30, or 60 minutes), GlyphFex writes 5 files into a folder of your choosing:</p>
+            <p>The Data Feed turns GlyphFex into a <strong>source of truth that flows into other tools</strong> without anyone having to click Export. On a schedule you control (every 5 minutes, every 15 minutes, hourly, or daily), GlyphFex writes 5 files into a folder of your choosing:</p>
             <ul>
                 <li><code>entries.csv</code> &mdash; one row per job</li>
                 <li><code>entries.json</code> &mdash; the same data as a structured JSON array with stable v1 schema (see below)</li>
@@ -111,7 +111,7 @@
             <ol class="help-steps">
                 <li>Open <strong>Settings Hub &rarr; Data Feed (Power BI / Excel)</strong>.</li>
                 <li>Pick a <strong>destination folder</strong>. Local disk works, but for team setups put it on a network share so everyone&rsquo;s tools can read from one canonical location.</li>
-                <li>Pick a <strong>refresh interval</strong> &mdash; 5, 15, 30, or 60 minutes. Lower is fresher; higher is gentler on disk and CPU.</li>
+                <li>Pick a <strong>refresh interval</strong> &mdash; <strong>Every 5 minutes</strong>, <strong>Every 15 minutes</strong>, <strong>Hourly</strong>, or <strong>Daily</strong>. Lower is fresher; higher is gentler on disk and CPU. Daily is the right default if your downstream consumer is an end-of-day reporting workflow.</li>
                 <li>Click <strong>Enable Data Feed</strong>. GlyphFex writes the 5 files immediately, then continues writing on the chosen interval as long as the app is running.</li>
             </ol>
             <p>That&rsquo;s it. As soon as the folder has its first set of files, point Power BI / Excel / your ERP at the folder.</p>
