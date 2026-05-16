@@ -111,10 +111,10 @@
             <p>The estimator runs locally in the app every time your tag selection changes (debounced 300&nbsp;ms so it isn&rsquo;t fighting your typing):</p>
             <ol class="help-steps">
                 <li><strong>Find candidates.</strong> Every past entry in the same project (across all pipelines) is scored by <strong>tag overlap</strong> (technically: Jaccard similarity, if you care). Two jobs sharing 4 of 5 tags score 0.8; jobs with no overlap score 0.</li>
-                <li><strong>Weight by recency.</strong> Recent jobs count more. The math is an exponential decay with a 180-day time constant &mdash; in practical terms, a job from 6 months ago counts at about <strong>37%</strong> of a job from today, and a job from a year ago counts at about <strong>14%</strong>.</li>
+                <li><strong>Weight by recency.</strong> Recent jobs count more. The math is an exponential decay with a 180-day time constant &mdash; in practical terms, a job from 6 months ago counts at about <strong>37%</strong> of a job from today, and a job from a year ago counts at about <strong>13%</strong>.</li>
                 <li><strong>Weight by quantity closeness.</strong> If the new job is for 50 pieces, a past job of 48 pieces scores higher than one of 5 pieces.</li>
                 <li><strong>Customer boost.</strong> If the new job has the same customer name as a past one, that past one gets a 2&times; multiplier &mdash; you tend to repeat work for the same customers in similar ways.</li>
-                <li><strong>The typical-plus-range answer.</strong> From the top matches (typically 5&ndash;15), the estimator picks the <strong>typical hours</strong> (the weighted median of <code>actual_hours</code>) and a <strong>realistic low/high range</strong> (the weighted 25th and 75th percentiles).</li>
+                <li><strong>The typical-plus-range answer.</strong> From the top matches (capped at 10 &mdash; so usually 5 to 10, depending on how much history exists for this tag combination), the estimator picks the <strong>typical hours</strong> (the weighted median of <code>actual_hours</code>) and a <strong>realistic low/high range</strong> (the weighted 25th and 75th percentiles).</li>
             </ol>
             <p>Hours, suggested labor rate, and suggested price all come out of the same matching run. Hours always come from <code>actual_hours</code> on past completed jobs &mdash; never <code>estimated_hours</code> &mdash; so the estimator only learns from reality, not from your own past guesses.</p>
 
