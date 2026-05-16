@@ -124,18 +124,18 @@
             <div class="help-screenshot">
                 <svg class="screenshot-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
                 <span class="screenshot-label">Welcome Dialog</span>
-                <span class="screenshot-desc">Screenshot of the first-launch welcome dialog showing 'Start Tour', 'Guided Setup', and 'Skip' options</span>
+                <span class="screenshot-desc">Screenshot of the first-launch welcome dialog showing 'Get Started (Recommended)', 'Skip', and 'Import CSV' options</span>
             </div>
             <ol>
-                <li><strong>Start Product Tour</strong> &mdash; An interactive 15-step guided walkthrough that spotlights key features. The app dims the background and highlights each area one at a time, so you can see exactly where everything is.</li>
-                <li><strong>Guided Setup</strong> &mdash; A 6-step wizard that walks you through configuring your project: pipeline stages, categories, fields, and more. Best if you already know how your workflow should be structured.</li>
-                <li><strong>Skip</strong> &mdash; Go straight to the empty app and configure everything manually at your own pace.</li>
+                <li><strong>Get Started (Recommended)</strong> &mdash; The fastest path to a working project. One click seeds an 8-stage workflow (Quote &rarr; Quoted &rarr; PO Received &rarr; In Production &rarr; QC &rarr; Shipped &rarr; Invoiced &rarr; Closed), 5 key fields (Customer, PO Number, Due Date, Quantity, Estimated Value), and starter tag categories. You can customize everything afterward.</li>
+                <li><strong>Skip</strong> &mdash; Go straight to the empty app and configure stages, categories, and fields manually at your own pace.</li>
+                <li><strong>Import CSV</strong> &mdash; Bring in existing data from a spreadsheet, JobBOSS export, or any CSV. A 3-step wizard walks through column mapping and validation.</li>
             </ol>
             <div class="help-tip">
                 <strong>Tip</strong>
-                The Product Tour is great for visual learners. You can re-launch it anytime from <strong>Help &gt; Product Tour</strong> in the menu bar. If you skip it now, nothing is lost.
+                A separate 5-step quick tour (and a 40-step deep-dive tour) is available from <strong>Help &gt; Product Tour</strong> in the menu bar. The 5-step tour points out the toolbar, pipeline bar, KPI sidebar, command palette, and shortcuts &mdash; enough orientation to start working without overwhelming you.
             </div>
-            <p>Not sure which to pick? If you are brand new to GlyphFex, start with the <strong>Product Tour</strong> to get oriented, then run the <strong>Guided Setup</strong> afterward to configure your project. If you have already used similar tools, the Guided Setup alone is usually enough.</p>
+            <p>Not sure which to pick? If you are brand new to GlyphFex, click <strong>Get Started</strong> &mdash; you get a working project in 5 seconds and can change anything later. If you are migrating from another tool, <strong>Import CSV</strong> brings your data in. <strong>Skip</strong> is for advanced users who want full manual control.</p>
 
             <!-- ====== Creating a Project ====== -->
             <h2 id="create-project">Creating a Project</h2>
@@ -192,32 +192,61 @@
                 <thead>
                     <tr>
                         <th>Template</th>
-                        <th>Pipeline Stages</th>
+                        <th>Workflow Stages (abbreviated)</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
+                        <td><strong>Job Shop</strong></td>
+                        <td>RFQ &rarr; Quoted &rarr; PO Received &rarr; In Production &rarr; QC &rarr; Shipped &rarr; Invoiced</td>
+                    </tr>
+                    <tr>
                         <td><strong>Sheet Metal Fabrication</strong></td>
-                        <td>Quote &rarr; Engineering &rarr; Nesting &rarr; Cutting &rarr; Forming &rarr; Welding &rarr; Finishing &rarr; QC &rarr; Shipping</td>
+                        <td>Quote Request &rarr; Estimating &rarr; Quoted &rarr; PO Received &rarr; Programming &rarr; Cutting &rarr; Forming &rarr; Welding &rarr; Finishing &rarr; Inspection &rarr; Packing &rarr; Shipped &rarr; Invoiced</td>
                     </tr>
                     <tr>
                         <td><strong>CNC Machine Shop</strong></td>
-                        <td>Programming &rarr; Setup &rarr; Machining &rarr; Inspection &rarr; Shipping</td>
+                        <td>RFQ Received &rarr; Estimating &rarr; Quoted &rarr; PO Received &rarr; Programming &rarr; Material Ordered &rarr; In Machine &rarr; Secondary Ops &rarr; Inspection &rarr; Packing &rarr; Shipped &rarr; Invoiced</td>
                     </tr>
                     <tr>
-                        <td><strong>Welding &amp; Structural</strong></td>
-                        <td>Estimating &rarr; Detailing &rarr; Fabrication &rarr; Welding &rarr; Inspection &rarr; Shipping</td>
+                        <td><strong>Assembly &amp; Integration</strong></td>
+                        <td>Quote &rarr; PO &rarr; Kitting &rarr; Assembly &rarr; Test &rarr; QC &rarr; Ship</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quoting &amp; Estimating</strong></td>
+                        <td>Inquiry &rarr; Estimating &rarr; Quoted &rarr; Won / Lost / No Response</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sign &amp; Print Shop</strong></td>
+                        <td>Quote &rarr; Design &rarr; Proof Approval &rarr; Production &rarr; Install / Pickup &rarr; Invoiced</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Auto Body &amp; Collision</strong></td>
+                        <td>Estimate &rarr; Insurance Approval &rarr; Disassembly &rarr; Body &rarr; Paint &rarr; Reassembly &rarr; Detail &rarr; Customer Pickup</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cabinet &amp; Millwork</strong></td>
+                        <td>Design &rarr; Quote &rarr; Approval &rarr; Cutting &rarr; Assembly &rarr; Finishing &rarr; Install</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Service &amp; Repair</strong></td>
+                        <td>Service Call &rarr; Dispatch &rarr; On Site &rarr; Parts Ordered &rarr; Completed &rarr; Invoiced &rarr; Follow-up</td>
                     </tr>
                     <tr>
                         <td><strong>General Manufacturing</strong></td>
-                        <td>A versatile template for mixed-production shops</td>
+                        <td>A versatile multi-stage template for mixed-production shops</td>
                     </tr>
                     <tr>
-                        <td><strong>Custom (Blank)</strong></td>
-                        <td>Start from scratch and configure everything manually</td>
+                        <td><strong>Blank Project</strong></td>
+                        <td>Start from scratch and configure stages, categories, and fields manually</td>
                     </tr>
                 </tbody>
             </table>
+
+            <div class="help-tip">
+                <strong>Note on stage names</strong>
+                The stage lists above are abbreviated for readability. The actual templates include all standard quoting/order/billing stages (RFQ Received, Estimating, Quoted, PO Received, &hellip;, Invoiced) so the full lifecycle is tracked end-to-end. You can rename, reorder, add, or remove stages at any time after applying a template.
+            </div>
 
             <p>Each template pre-configures:</p>
             <ul>
@@ -232,44 +261,26 @@
                 Templates are a starting point, not a locked-in choice. You can modify every setting after applying a template from the <a href="configuration.html">Settings Hub</a>. Add stages, rename categories, enable additional fields &mdash; whatever your shop needs.
             </div>
 
-            <!-- ====== Setup Wizard ====== -->
-            <h2 id="setup-wizard">Setup Wizard</h2>
-            <p>The Setup Wizard provides a guided, step-by-step configuration experience. You can access it from <strong>Help &gt; Setup Wizard</strong> in the menu bar, or from the first-launch welcome dialog.</p>
-            <p>The wizard walks through six configuration steps:</p>
-            <ol>
-                <li><strong>Choose an industry template</strong> &mdash; Pick a pre-built template or start blank</li>
-                <li><strong>Configure pipeline stages</strong> &mdash; Name your stages, set SLA targets, mark completed stages</li>
-                <li><strong>Set up tag categories</strong> &mdash; Define how you will categorize entries (e.g., Material, Process, Priority)</li>
-                <li><strong>Enable built-in and custom fields</strong> &mdash; Choose which data fields appear on every entry</li>
-                <li><strong>Configure validation rules</strong> &mdash; Set up patterns for reference IDs and required fields</li>
-                <li><strong>Review and apply</strong> &mdash; See a summary of your configuration before committing</li>
-            </ol>
-            <div class="help-warning">
-                <strong>Warning</strong>
-                If you already have an existing configuration (e.g., you previously applied a template or manually configured settings), the wizard will warn you before overwriting anything. The first option in the wizard lets you review your current configuration without making changes.
-            </div>
-            <p>The wizard is smart about skipping steps that are already configured. If your pipeline is already set up, it will offer to skip that step automatically.</p>
-
-            <!-- ====== Creating Your First Entry ====== -->
-            <h2 id="first-entry">Creating Your First Entry</h2>
-            <p>An entry represents a single job, order, quote, or work item. Here is how to create one:</p>
+            <!-- ====== Creating Your First Job ====== -->
+            <h2 id="first-entry">Creating Your First Job</h2>
+            <p>A job (formerly called "Entry" pre-S86) represents a single order, quote, repair, or work item. Here is how to create one:</p>
             <div class="help-screenshot">
                 <svg class="screenshot-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                <span class="screenshot-label">Entry Page</span>
-                <span class="screenshot-desc">Screenshot of a blank Entry page showing the 3-column layout with form, gutter, and tag panel</span>
+                <span class="screenshot-label">New Job Page</span>
+                <span class="screenshot-desc">Screenshot of a blank New Job page showing the 3-column layout with form, gutter, and tag panel</span>
             </div>
             <ol class="help-steps">
-                <li><strong>Navigate to New Entry</strong> &mdash; Press <kbd>Ctrl</kbd>+<kbd>1</kbd> or click <strong>New Entry</strong> in the left sidebar.</li>
-                <li><strong>Enter a Reference ID</strong> &mdash; This is the unique identifier for your job (e.g., <code>Q-2026-001</code>, <code>WO-4521</code>, or whatever your shop uses). If you configured a validation pattern, GlyphFex will enforce the format.</li>
+                <li><strong>Navigate to New Job</strong> &mdash; Press <kbd>Ctrl</kbd>+<kbd>3</kbd> or click <strong>New Job</strong> in the left sidebar.</li>
+                <li><strong>Enter a Job Number</strong> &mdash; The unique identifier for your job (e.g., <code>Q-2026-001</code>, <code>WO-4521</code>, or whatever your shop uses). The field was renamed from "Ref ID" to "Job Number" in the S87 plain-language pass. If you configured a validation pattern in Workflow &rarr; Job Number Format, GlyphFex will enforce the format.</li>
                 <li><strong>Add comments</strong> &mdash; Describe the job, scope of work, or any notes. This is the main text body of the entry.</li>
                 <li><strong>Select a pipeline status</strong> &mdash; Choose the current stage from the pipeline dropdown. New entries default to the first stage.</li>
                 <li><strong>Choose tags</strong> &mdash; On the right panel, click category buttons or use dropdowns to tag the entry (e.g., Material: Stainless Steel, Priority: Rush).</li>
                 <li><strong>Fill in built-in fields</strong> &mdash; If enabled, enter the customer name, PO number, due date, quantity, and other key fields in the built-in fields panel below the form.</li>
-                <li><strong>Save</strong> &mdash; Press <kbd>Ctrl</kbd>+<kbd>S</kbd> or click the <strong>Save to Database</strong> button. Your entry is now stored and will appear on the Dashboard.</li>
+                <li><strong>Save</strong> &mdash; Press <kbd>Ctrl</kbd>+<kbd>S</kbd> or click the <strong>Save</strong> button on the toolbar. Your job is now stored and will appear on the Dashboard.</li>
             </ol>
             <div class="help-tip">
                 <strong>Tip</strong>
-                Check the <strong>Keep Entry</strong> checkbox at the bottom of the form to stay on the New Entry page after saving. This is useful when you need to create multiple entries in rapid succession &mdash; the form resets with a fresh reference ID each time.
+                After saving, the form clears and stays on the New Job page so you can create multiple jobs in rapid succession &mdash; the form resets with the next auto-incremented Job Number each time.
             </div>
             <div class="help-note">
                 <strong>Note</strong>
@@ -283,7 +294,7 @@
                 <li><strong>Set up categories</strong> &mdash; Create tag categories to organize your entries (e.g., Material, Process, Machine). Press <kbd>Ctrl</kbd>+<kbd>T</kbd> or use the Command Palette.</li>
                 <li><strong>Configure pipeline</strong> &mdash; Define your workflow stages with SLA targets. Press <kbd>Ctrl</kbd>+<kbd>P</kbd> to open the pipeline editor.</li>
                 <li><strong>Add custom fields</strong> &mdash; Enable built-in fields (like customer name and due date) and create any custom fields your shop needs.</li>
-                <li><strong>Create entries</strong> &mdash; Start adding your first jobs. Press <kbd>Ctrl</kbd>+<kbd>1</kbd> to go to the New Entry page.</li>
+                <li><strong>Create jobs</strong> &mdash; Start adding your first jobs. Press <kbd>Ctrl</kbd>+<kbd>3</kbd> to go to the New Job page.</li>
             </ol>
             <p>Each step shows a checkmark once completed. The checklist automatically hides once you have 5 or more entries, or when all 4 steps are done. You can also dismiss it at any time by clicking the close button.</p>
             <div class="help-tip">
@@ -357,34 +368,39 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>New Entry</strong></td>
-                        <td><kbd>Ctrl</kbd>+<kbd>1</kbd></td>
-                        <td>Create and edit entries with tags, fields, and pipeline status</td>
-                    </tr>
-                    <tr>
                         <td><strong><a href="dashboard.html">Dashboard</a></strong></td>
-                        <td><kbd>Ctrl</kbd>+<kbd>2</kbd></td>
-                        <td>View all entries in card, table, or timeline view. Filter, search, and manage jobs.</td>
+                        <td><kbd>Ctrl</kbd>+<kbd>1</kbd></td>
+                        <td>Default landing page. View all jobs in Card, Table, Timeline, or Board (Kanban) view. Filter, search, and manage jobs.</td>
                     </tr>
                     <tr>
-                        <td><strong><a href="analytics.html">Analytics</a></strong></td>
+                        <td><strong><a href="work-bins.html">My Jobs</a></strong></td>
+                        <td><kbd>Ctrl</kbd>+<kbd>2</kbd></td>
+                        <td>Personal work queue and Team Board. Stage-based routing, Queue / Rework / Hold lanes, bottleneck view.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>New Job</strong></td>
                         <td><kbd>Ctrl</kbd>+<kbd>3</kbd></td>
-                        <td>KPI cards, SLA compliance, stage bottleneck analysis, tag usage charts, and custom date ranges.</td>
+                        <td>Create and edit jobs with tags, fields, and workflow stages. Was called "New Entry" pre-S86.</td>
                     </tr>
                     <tr>
                         <td><strong><a href="calendar.html">Calendar</a></strong></td>
                         <td><kbd>Ctrl</kbd>+<kbd>4</kbd></td>
-                        <td>Gantt chart showing all entries on a timeline with stage bars, capacity load, and group-by.</td>
+                        <td>Gantt chart showing all jobs on a timeline with stage bars, capacity load, and group-by.</td>
                     </tr>
                     <tr>
-                        <td><strong><a href="shop-floor.html">Shop Floor</a></strong></td>
+                        <td><strong><a href="analytics.html">Analytics</a></strong></td>
                         <td><kbd>Ctrl</kbd>+<kbd>5</kbd></td>
-                        <td>Kiosk interface for production workers. Large buttons for clock in/out, stage advance, and notes.</td>
+                        <td>5-section dashboard with 14 KPI cards, SLA compliance, stage bottleneck analysis, Quote Accuracy + Win Rate by Tag charts, and custom date ranges.</td>
+                    </tr>
+                    <tr>
+                        <td><strong><a href="shop-floor.html">Workstation Terminal</a></strong></td>
+                        <td><kbd>Ctrl</kbd>+<kbd>6</kbd></td>
+                        <td>PIN-secured shop-floor terminal. Single-job focus with Details/Notes/Documents/Quality/History tabs, elapsed timer, Done/Pause/Hold action buttons. Was called "Shop Floor" pre-S86.</td>
                     </tr>
                     <tr>
                         <td><strong><a href="shop-floor.html#display-board">Display Board</a></strong></td>
-                        <td><kbd>Ctrl</kbd>+<kbd>6</kbd></td>
-                        <td>TV-ready andon board with 3 auto-rotating views. Mount on a shop floor monitor for real-time visibility.</td>
+                        <td><kbd>Ctrl</kbd>+<kbd>7</kbd></td>
+                        <td>TV-ready andon board with 3 auto-rotating views (Kanban / KPI / Alerts). Mount on a shop-floor monitor for real-time visibility.</td>
                     </tr>
                 </tbody>
             </table>

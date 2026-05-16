@@ -254,10 +254,10 @@
 
             <h3>What Kiosk Mode restricts</h3>
             <ul>
-                <li><strong>Navigation</strong> &mdash; Only Shop Floor (<kbd>Ctrl</kbd>+<kbd>6</kbd>) and Display Board (<kbd>Ctrl</kbd>+<kbd>5</kbd>) are accessible. All other navigation items are hidden.</li>
+                <li><strong>Navigation</strong> &mdash; Only Workstation Terminal (<kbd>Ctrl</kbd>+<kbd>6</kbd>), Display Board (<kbd>Ctrl</kbd>+<kbd>7</kbd>), and My Jobs (<kbd>Ctrl</kbd>+<kbd>2</kbd>) are accessible. All other navigation items are hidden.</li>
                 <li><strong>File menu</strong> &mdash; New Project, Open, Import, Export, Migrate, and Backup are all hidden. Only the application close option remains.</li>
-                <li><strong>Keyboard shortcuts</strong> &mdash; Shortcuts for restricted pages (like <kbd>Ctrl</kbd>+<kbd>1</kbd> for Entry page) are blocked.</li>
-                <li><strong>Command Palette</strong> &mdash; Only shows Shop Floor, Display Board, About, Keyboard Shortcuts, and Getting Started Guide commands.</li>
+                <li><strong>Keyboard shortcuts</strong> &mdash; Shortcuts for restricted pages (like <kbd>Ctrl</kbd>+<kbd>3</kbd> for New Job, <kbd>Ctrl</kbd>+<kbd>4</kbd> for Calendar, <kbd>Ctrl</kbd>+<kbd>5</kbd> for Analytics) are blocked.</li>
+                <li><strong>Command Palette</strong> &mdash; Only shows Workstation Terminal, Display Board, My Jobs, About, Keyboard Shortcuts, and Help Center commands.</li>
             </ul>
 
             <h3>Escaping Kiosk Mode (Simulation)</h3>
@@ -388,11 +388,12 @@
 
             <!-- ====== Auto-Refresh ====== -->
             <h2 id="auto-refresh">Auto-Refresh</h2>
-            <p>In multi-user mode, GlyphFex automatically checks for new data on a <strong>10-second interval</strong>. The refresh is lightweight:</p>
+            <p>In multi-user mode, GlyphFex automatically checks for new data on a short polling interval. The refresh is lightweight:</p>
             <ul>
                 <li>First checks <code>MAX(LastModifiedAt)</code> on the server to see if anything changed</li>
                 <li>Only performs a full data reload if the timestamp is newer than the last refresh</li>
-                <li>Dashboard, Shop Floor, Calendar, and Display Board all benefit from auto-refresh</li>
+                <li><strong>30 seconds</strong>: Dashboard, Work Bins, Calendar, Analytics</li>
+                <li><strong>15 seconds</strong>: Workstation Terminal, Display Board (faster cadence for the shop floor)</li>
             </ul>
             <p>You can also force a manual refresh at any time by pressing <kbd>F5</kbd> or <kbd>Ctrl</kbd>+<kbd>R</kbd>.</p>
             <div class="help-tip">

@@ -102,15 +102,15 @@
             <h3>Navigation</h3>
             <div class="shortcut-row">
                 <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>1</kbd></div>
-                <div class="shortcut-desc">New Entry page</div>
-            </div>
-            <div class="shortcut-row">
-                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>2</kbd></div>
                 <div class="shortcut-desc">Dashboard</div>
             </div>
             <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>2</kbd></div>
+                <div class="shortcut-desc">My Jobs (Work Bins)</div>
+            </div>
+            <div class="shortcut-row">
                 <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>3</kbd></div>
-                <div class="shortcut-desc">Analytics</div>
+                <div class="shortcut-desc">New Job</div>
             </div>
             <div class="shortcut-row">
                 <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>4</kbd></div>
@@ -118,11 +118,15 @@
             </div>
             <div class="shortcut-row">
                 <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>5</kbd></div>
-                <div class="shortcut-desc">Display Board</div>
+                <div class="shortcut-desc">Analytics</div>
             </div>
             <div class="shortcut-row">
                 <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>6</kbd></div>
-                <div class="shortcut-desc">Shop Floor</div>
+                <div class="shortcut-desc">Workstation Terminal (formerly Shop Floor)</div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-keys"><kbd>Ctrl</kbd>+<kbd>7</kbd></div>
+                <div class="shortcut-desc">Production Display Board</div>
             </div>
 
             <h3>Project</h3>
@@ -152,7 +156,7 @@
             </div>
             <div class="shortcut-row">
                 <div class="shortcut-keys"><kbd>F1</kbd></div>
-                <div class="shortcut-desc">Getting Started Guide (PDF)</div>
+                <div class="shortcut-desc">Help Center (opens the in-app help chooser; context-aware links to glyphfex.com/help/)</div>
             </div>
 
             <h3>Entry Form</h3>
@@ -331,7 +335,7 @@
             <p>ISO Compliance Mode is a master toggle in the <a href="configuration.html#audit">Audit &amp; Compliance</a> panel that enables all regulatory compliance features at once: full audit trail, mandatory change reasons on every edit, and hard delete disabled. This provides the change tracking rigor required by ISO 9001, AS9100, IATF 16949, and similar quality management standards.</p>
 
             <h3>How do QR codes work?</h3>
-            <p>Each entry has a unique QR code that encodes a <code>glyphfex://entry/{id}</code> URI. Print Job Traveler PDFs with the QR code and attach them to physical jobs. When scanned with any barcode scanner connected to a PC running GlyphFex, the entry opens instantly. This is especially useful on the <a href="shop-floor.html">Shop Floor</a> kiosk for quickly clocking in/out of jobs.</p>
+            <p>Each entry has a unique QR code that encodes the entry's Job Number and database ID in human-readable text (e.g., <code>Q-2026-0042 / id=1234</code>). Print Job Traveler PDFs with the QR code and attach them to physical jobs. When scanned with a barcode scanner connected to a PC running GlyphFex, the entry's Job Number is typed into the lookup field and the entry opens. Plain text was chosen over a custom <code>glyphfex://</code> URI scheme because no phone or generic scanner can resolve custom URIs &mdash; the human-readable text works everywhere. This is especially useful on the <a href="shop-floor.html">Workstation Terminal</a> for quickly clocking in/out of jobs.</p>
 
             <h3>Can I customize the pipeline?</h3>
             <p>Yes &mdash; the pipeline is fully configurable. You can create any number of stages, set SLA targets (in calendar or business days), mark stages as completed, configure stale detection thresholds, designate quoting stages, and even create <a href="pipeline.html">multiple pipelines</a> within a single project. Stages can be reordered, renamed, color-coded, and deleted at any time.</p>
@@ -391,8 +395,8 @@
                         <td>A saved configuration that pre-fills new entries with default tags, field values, and pipeline settings for common job types.</td>
                     </tr>
                     <tr>
-                        <td><strong>Ref ID</strong></td>
-                        <td>Reference ID &mdash; the unique identifier for an entry (e.g., Q-2026-001, WO-4521). Can be validated against a regex pattern for consistent formatting.</td>
+                        <td><strong>Job Number (formerly Ref ID)</strong></td>
+                        <td>The unique identifier for a job (e.g., Q-2026-001, WO-4521). The field was renamed from "Ref ID" to "Job Number" in the S87 plain-language pass to match shop-floor vocabulary. Can be validated against a regex pattern for consistent formatting (see <a href="validation.html">Validation Patterns</a>).</td>
                     </tr>
                     <tr>
                         <td><strong>Revision</strong></td>

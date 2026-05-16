@@ -89,7 +89,7 @@
         <!-- Content -->
         <main class="help-content">
             <h1>Dashboard</h1>
-            <p class="help-subtitle">Your command center for viewing, filtering, and managing all entries. Navigate here with <kbd>Ctrl</kbd>+<kbd>2</kbd>.</p>
+            <p class="help-subtitle">Your command center for viewing, filtering, and managing all jobs. The default landing page &mdash; navigate here with <kbd>Ctrl</kbd>+<kbd>1</kbd>.</p>
 
             <!-- ====== View Modes ====== -->
             <h2 id="view-modes">View Modes</h2>
@@ -359,7 +359,7 @@
             <h2 id="auto-refresh">Auto-Refresh (Multi-User)</h2>
             <p>When your project is connected to a SQL Server database (team mode), the Dashboard automatically refreshes to keep everyone in sync.</p>
             <ul>
-                <li>The Dashboard checks for changes every <strong>10 seconds</strong></li>
+                <li>The Dashboard checks for changes every <strong>30 seconds</strong></li>
                 <li>Uses a lightweight approach: queries only <code>MAX(LastModifiedAt)</code> first, and performs a full data reload only if something has actually changed</li>
                 <li>This ensures all team members see the latest data &mdash; new entries, status changes, and edits appear automatically without manual refresh</li>
             </ul>
@@ -435,7 +435,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><kbd>Ctrl</kbd>+<kbd>2</kbd></td>
+                        <td><kbd>Ctrl</kbd>+<kbd>1</kbd></td>
                         <td>Navigate to the Dashboard from any page</td>
                     </tr>
                     <tr>

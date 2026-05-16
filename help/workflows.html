@@ -95,7 +95,7 @@
 
             <h3>Creating a quote</h3>
             <ol class="help-steps">
-                <li><strong>Create a new entry</strong> &mdash; Press <kbd>Ctrl</kbd>+<kbd>1</kbd> and select a quote template (e.g., "Standard Quote"). The template pre-fills tags, fields, and assigns the quoting pipeline.</li>
+                <li><strong>Create a new job</strong> &mdash; Press <kbd>Ctrl</kbd>+<kbd>3</kbd> and select a quote template (e.g., "Standard Quote"). The template pre-fills tags, fields, and assigns the quoting workflow.</li>
                 <li><strong>Fill in details</strong> &mdash; Enter the customer name, quantities, pricing, and any specifications. Tag with material, process, and other relevant categories.</li>
                 <li><strong>Set pipeline status</strong> &mdash; The entry starts in the first quoting stage (e.g., "Estimating"). Advance through stages as the quote progresses: Estimating, Quote Sent, Awaiting Approval.</li>
                 <li><strong>Quote validity</strong> &mdash; If the stage is marked as a quoting stage, GlyphFex automatically sets the <code>quote_valid_until</code> field based on your configured default validity period.</li>
@@ -130,35 +130,34 @@
                 The "Convert to Order" button is hidden for entries that are already in a completed stage, since completed jobs cannot be converted.
             </div>
 
-            <!-- ====== Shop Floor Kiosk ====== -->
-            <h2 id="shop-floor-kiosk">Shop Floor Kiosk Usage</h2>
-            <p>The Shop Floor page (<kbd>Ctrl</kbd>+<kbd>5</kbd>) is designed for operators on the production floor. It uses large buttons and touch-friendly controls so workers can update job status without a mouse and keyboard.</p>
+            <!-- ====== Workstation Terminal Usage ====== -->
+            <h2 id="shop-floor-kiosk">Workstation Terminal Usage</h2>
+            <p>The Workstation Terminal page (<kbd>Ctrl</kbd>+<kbd>6</kbd>, formerly "Shop Floor" pre-S86) is designed for production workers on shared shop-floor PCs. Workers log in with their PIN, pick a single job, and see only what they need &mdash; large touch targets, elapsed timer, and a clear set of Done / Pause / Hold action buttons.</p>
 
-            <h3>Clock in / Clock out</h3>
+            <h3>Single-job focus + Time tracking</h3>
             <ol class="help-steps">
-                <li><strong>Clock In</strong> &mdash; Tap the clock icon on an entry card to start tracking time on that job. The card shows a running timer with the current worker's name.</li>
-                <li><strong>Work on the job</strong> &mdash; Time is tracked automatically while you are clocked in.</li>
-                <li><strong>Clock Out</strong> &mdash; Tap the clock icon again to stop tracking. The time record is saved to the entry's labor history.</li>
+                <li><strong>PIN login</strong> &mdash; Worker enters their numeric PIN at the kiosk; no Windows account needed. The terminal locks back to the PIN entry between sessions.</li>
+                <li><strong>Pick a job</strong> &mdash; The worker selects a job from the recent-jobs row or the searchable job picker. Only one job is active at a time &mdash; there's no multi-job kanban to scroll through.</li>
+                <li><strong>Active job display</strong> &mdash; Large header shows the Job Number, customer, current stage, and elapsed timer. The timer auto-starts on stage entry and tracks labor time without manual clock-in.</li>
+                <li><strong>Action buttons</strong> &mdash; Done (advance), Pause (stop clock), Hold (move to Hold lane with a reason code), and Note (quick shop note with timestamp + worker attribution).</li>
+                <li><strong>Tabs</strong> &mdash; Details / Notes / Documents / Quality / History give the worker everything they need for the active job without leaving the terminal.</li>
             </ol>
-            <p>A live clock in the header shows the current time. Time records can be viewed and exported from the <strong>Timesheet</strong> dialog (accessible from the Tools menu).</p>
+            <p>Time records appear in the entry's labor history and in the <strong>Timesheet</strong> dialog (Tools menu) for payroll export.</p>
 
-            <h3>Advancing stages</h3>
-            <p>Each entry card on the Shop Floor has an <strong>Advance</strong> button. Tapping it moves the entry to the next pipeline stage. A floating undo panel appears briefly in case you need to revert.</p>
+            <h3>Breaks &amp; indirect time</h3>
+            <p>Workers can clock break time and indirect time (setup, cleaning, training) separately from job time. The Pause button stops the active job's clock; a worker can then explicitly clock a break or stay paused for indirect work.</p>
 
-            <h3>Adding notes</h3>
-            <p>Tap the note icon on an entry card to add a quick shop note (up to 2,000 characters). Notes are recorded in the audit trail with a timestamp and the current user's name.</p>
-
-            <h3>Multi-pipeline grouping</h3>
-            <p>If your project has multiple pipelines, the Shop Floor groups entries by pipeline with collapsible headers. Use the pipeline filter at the top to show all pipelines or focus on one at a time.</p>
+            <h3>Navigation lock</h3>
+            <p>The terminal blocks navigation to other pages until the worker logs out. Keyboard shortcuts Ctrl+1 through Ctrl+7 are intercepted in Workstation Terminal mode to prevent accidental nav-away.</p>
 
             <div class="help-tip">
-                <strong>Tip</strong>
-                For dedicated shop floor terminals, enable <strong>Kiosk Mode</strong> on the user's account. This restricts navigation to only the Shop Floor and Display Board pages, preventing accidental configuration changes.
+                <strong>Tip &mdash; Kiosk Mode for dedicated terminals</strong>
+                For shop-floor PCs that should ONLY be used as workstation terminals (no admin access), enable <strong>Kiosk Mode</strong> on the user's account. This restricts navigation to Workstation Terminal + Display Board + My Jobs only, hiding the rest of the app.
             </div>
 
             <!-- ====== Using the Dashboard ====== -->
             <h2 id="using-dashboard">Using the Dashboard</h2>
-            <p>The Dashboard (<kbd>Ctrl</kbd>+<kbd>2</kbd>) is the main view for managing all entries. It offers four view modes:</p>
+            <p>The Dashboard (<kbd>Ctrl</kbd>+<kbd>1</kbd>, the default landing page) is the main view for managing all jobs. It offers four view modes:</p>
 
             <h3>Card view</h3>
             <p>The default view. Each entry appears as a card showing the reference number, customer, status badge, due date, priority, and smart description. Cards are arranged in a responsive grid.</p>

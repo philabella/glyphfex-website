@@ -103,7 +103,7 @@
                 <li><strong>Navigate to the Entry page</strong> using <kbd>Ctrl</kbd>+<kbd>1</kbd> in the sidebar, or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd> from anywhere to jump straight to a blank entry form.</li>
                 <li><strong>Fill in the entry form.</strong> The page uses a 3-column layout:
                     <ul>
-                        <li><strong>Left column</strong> &mdash; The main entry form with Ref ID, Comments, Status, Pipeline selector, built-in fields, and custom fields. Template quick-apply buttons also appear here.</li>
+                        <li><strong>Left column</strong> &mdash; The main entry form with Job Number, Comments, Status, Pipeline selector, built-in fields, and custom fields. Template quick-apply buttons also appear here.</li>
                         <li><strong>Middle gutter</strong> &mdash; Separates the form from the tag panel.</li>
                         <li><strong>Right column</strong> &mdash; The tag selection panel where you pick tags from each configured category.</li>
                     </ul>
@@ -132,9 +132,9 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Ref ID</strong></td>
+                        <td><strong>Job Number</strong> <span style="color:#888;">(formerly Ref ID)</span></td>
                         <td>Text</td>
-                        <td>Max 100 characters. Checked for duplicates on save. Supports regex validation patterns configured per project.</td>
+                        <td>The unique identifier for a job. Max 100 characters. Checked for duplicates on save. Supports regex validation patterns configured per project. The field was renamed from "Ref ID" to "Job Number" in the S87 plain-language pass to match shop-floor vocabulary.</td>
                     </tr>
                     <tr>
                         <td><strong>Comments</strong></td>
@@ -159,7 +159,7 @@
                     <tr>
                         <td><strong>Built-in fields</strong></td>
                         <td>Various</td>
-                        <td>13 predefined fields (customer name, PO number, due date, etc.). Toggled on/off per project. See <a href="#built-in-fields">Built-In Key Fields</a>.</td>
+                        <td>17 predefined fields (customer name, due date, priority, assigned-to, etc.). Toggled on/off per project. See <a href="#built-in-fields">Built-In Key Fields</a>.</td>
                     </tr>
                     <tr>
                         <td><strong>Custom fields</strong></td>
@@ -172,7 +172,7 @@
             <!-- ====== Built-In Key Fields ====== -->
             <h2 id="built-in-fields">Built-In Key Fields</h2>
 
-            <p>GlyphFex provides 13 built-in fields that cover common manufacturing and job-tracking data points. These fields are code-defined, meaning their structure is consistent across all projects, but you can toggle each one on or off to match your workflow.</p>
+            <p>GlyphFex provides <strong>17 built-in fields</strong> covering common manufacturing and job-tracking data points. These fields are code-defined (their structure is consistent across all projects) but you can toggle each one on or off to match your workflow. The list below is the canonical inventory as of mid-May 2026; the in-app names match exactly.</p>
 
             <table>
                 <thead>
@@ -184,62 +184,83 @@
                 <tbody>
                     <tr>
                         <td><strong>customer_name</strong></td>
-                        <td>Text field with autocomplete from your customer directory. When you save an entry with a new customer name, it is automatically added to the directory.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>po_number</strong></td>
-                        <td>Text field for purchase order numbers. Useful for linking entries to external procurement systems.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>job_date</strong></td>
-                        <td>Date picker for the job creation or order date.</td>
+                        <td>Text field with autocomplete from your customer directory. When you save a job with a new customer name, it is automatically added to the directory.</td>
                     </tr>
                     <tr>
                         <td><strong>due_date</strong></td>
-                        <td>Date picker that drives notifications, dashboard alerts, and calendar positioning. Entries approaching or past their due date are highlighted automatically.</td>
+                        <td>Date picker that drives notifications, dashboard alerts, and calendar positioning. Jobs approaching or past their due date are highlighted automatically.</td>
                     </tr>
                     <tr>
-                        <td><strong>qty_ordered</strong></td>
-                        <td>Number field for the quantity ordered.</td>
+                        <td><strong>priority</strong></td>
+                        <td>Dropdown (Low / Normal / High / Urgent). Affects SLA target multipliers when configured and surfaces in Dashboard filters and the Risk Radar.</td>
                     </tr>
                     <tr>
-                        <td><strong>materials</strong></td>
-                        <td>Large text field for material specifications (e.g., "1/4 in. A36 plate, 4x8 sheet").</td>
+                        <td><strong>assigned_to</strong></td>
+                        <td>Combo box auto-populated with team-mode users. Drives the "My Work" filter, Workload Distribution chart, and per-user notifications.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>quantity</strong></td>
+                        <td>Number field for quantity ordered or produced.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>estimated_value</strong></td>
+                        <td>Decimal field for the quoted/expected dollar value of the job. Feeds Active Value KPI, customer-profitability rankings, and Win Rate by Tag analytics.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>po_number</strong></td>
+                        <td>Text field for purchase order numbers. Useful for linking jobs to external procurement systems.</td>
                     </tr>
                     <tr>
                         <td><strong>part_number</strong></td>
-                        <td>Text field with autocomplete. Shared across entries to enable <a href="#entry-detail">Part History</a> tracking.</td>
+                        <td>Text field with autocomplete. Shared across jobs to enable <a href="#entry-detail">Part History</a> tracking.</td>
                     </tr>
                     <tr>
-                        <td><strong>revision_number</strong></td>
-                        <td>Text field for revision tracking (e.g., "Rev A", "Rev 3").</td>
+                        <td><strong>actual_hours</strong></td>
+                        <td>Decimal field. Auto-populated from clock-in/clock-out time entries on the Workstation Terminal, or entered manually.</td>
                     </tr>
                     <tr>
-                        <td><strong>notes_internal</strong></td>
-                        <td>Large text field for internal notes not meant for the customer.</td>
+                        <td><strong>estimated_hours</strong></td>
+                        <td>Decimal field. Used by Smart Quoting suggestions (k-NN on similar past jobs) and the labor-budget gauge on the Workstation Terminal.</td>
                     </tr>
                     <tr>
-                        <td><strong>quote_line_items</strong></td>
-                        <td>Structured table for quoting: item description, quantity, unit price, and line total. Calculated totals are shown automatically.</td>
+                        <td><strong>estimated_material_cost</strong></td>
+                        <td>Decimal field for budgeted material cost. Auto-fillable from tag-driven pricing (per-tag material costs aggregate across selected tags).</td>
                     </tr>
                     <tr>
-                        <td><strong>quality_notes</strong></td>
-                        <td>Structured NCR/quality records with fields for disposition, corrective action, affected quantity, cost impact, and resolution status.</td>
+                        <td><strong>actual_material_cost</strong></td>
+                        <td>Decimal field for actual material spend. Used in margin-leak analytics and the Pricing Accuracy KPI.</td>
                     </tr>
                     <tr>
-                        <td><strong>material_requirements</strong></td>
-                        <td>Structured material needs per entry: material name, specification, quantity needed, unit, allocation status, and notes.</td>
+                        <td><strong>labor_rate</strong></td>
+                        <td>Decimal field ($/hr). Auto-fillable from tag-driven rates (MAX across selected tags, 3-level fallback: per-tag &rarr; category default &rarr; shop labor rate).</td>
                     </tr>
                     <tr>
-                        <td><strong>ncr_notes</strong></td>
-                        <td>Large text field for non-conformance report notes and observations.</td>
+                        <td><strong>quote_valid_until</strong></td>
+                        <td>Date picker. Auto-set when entering a quoting stage (configurable validity days). Drives quote-expiry warnings and the quote outcome lifecycle.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>quote_outcome</strong></td>
+                        <td>Dropdown (Won / Lost / No Response / Withdrawn). Drives Win Rate by Tag charts and the auto-prompt to convert Won quotes to Orders.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>drawing_revision</strong></td>
+                        <td>Text field (e.g., "Rev A", "Rev 3"). Added S87 from Practical Machinist competitor research as the most-requested missing field.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>lost_reason</strong></td>
+                        <td>Dropdown captured when quote_outcome = Lost: Too expensive / Lost to competitor / Too slow / Customer cancelled / Specs changed / No response / Other. Drives the "top lost reasons" column in Win Rate by Tag.</td>
                     </tr>
                 </tbody>
             </table>
 
             <div class="help-note">
-                <strong>Note</strong>
-                Built-in fields are toggled on or off per project. Go to <strong>Settings &gt; Custom Fields</strong> (the "Key Fields" section) to enable or disable individual built-in fields. Only enabled fields appear on the entry form.
+                <strong>Note &mdash; JSON sub-structures are NOT in this list</strong>
+                Quote Line Items, Quality Notes (NCR / ISO 9001 fields), and Material Requirements are stored as JSON sub-structures on the job, not as built-in key fields. They appear as collapsible sections in the <a href="#entry-detail">Entry Detail Window</a> rather than form fields on the New Job page.
+            </div>
+
+            <div class="help-note">
+                <strong>Configuring which fields appear</strong>
+                Built-in fields are toggled on or off per project. From the Entry page toolbar, click <strong>Fields &#9660;</strong> &rarr; <strong>Built-in Key Fields</strong> to enable or disable individual fields. Only enabled fields appear on the New Job form.
             </div>
 
             <!-- ====== Custom Fields ====== -->
@@ -397,7 +418,7 @@
             <p>The detail window organizes its content into <strong>collapsible FastTab Expander sections</strong> (inspired by Dynamics 365). Each section can be expanded or collapsed independently, with <strong>promoted field summaries</strong> visible in the collapsed header &mdash; so you can see key data at a glance without expanding every section.</p>
             <p>The detail window contains up to 15 sections:</p>
             <ol>
-                <li><strong>Header</strong> &mdash; Ref ID, status badge, pipeline name.</li>
+                <li><strong>Header</strong> &mdash; Job Number, status badge, pipeline name.</li>
                 <li><strong>Metadata</strong> &mdash; Created/modified dates, revision number, created by/modified by.</li>
                 <li><strong>Comments</strong> &mdash; Full comment text with read-only/edit toggle.</li>
                 <li><strong>Tags</strong> &mdash; All assigned tags grouped by category.</li>
@@ -467,7 +488,7 @@
             <h3>Creating Links</h3>
             <ol>
                 <li>Open the <a href="#entry-detail">Entry Detail Window</a> for the source entry.</li>
-                <li>Click <strong>Link Entry</strong> and search by Ref ID to find the target entry.</li>
+                <li>Click <strong>Link Entry</strong> and search by Job Number to find the target entry.</li>
                 <li>Select the relationship type and confirm.</li>
             </ol>
 
@@ -502,7 +523,7 @@
                     </tr>
                     <tr>
                         <td><strong>Duplicate</strong></td>
-                        <td>Pre-fills a new entry from the source entry's data, including tags, fields, and comments. You assign a new Ref ID.</td>
+                        <td>Pre-fills a new entry from the source entry's data, including tags, fields, and comments. You assign a new Job Number.</td>
                     </tr>
                     <tr>
                         <td><strong>Repeat Job</strong></td>
@@ -683,9 +704,9 @@
             <ol>
                 <li><strong>Role permission</strong> &mdash; Only Admin and Editor roles can save entries. Viewer role is read-only.</li>
                 <li><strong>Trial limit</strong> &mdash; In trial mode, new entries are capped at 50. Editing existing entries is always allowed.</li>
-                <li><strong>Ref ID not empty</strong> &mdash; Every entry must have a reference ID.</li>
-                <li><strong>Ref ID pattern</strong> &mdash; If a regex validation pattern is configured for your project, the Ref ID must match it.</li>
-                <li><strong>No duplicate Ref ID</strong> &mdash; GlyphFex checks that no other entry has the same Ref ID (case-insensitive).</li>
+                <li><strong>Job Number not empty</strong> &mdash; Every entry must have a Job Number.</li>
+                <li><strong>Job Number pattern</strong> &mdash; If a regex validation pattern is configured for your project, the Job Number must match it.</li>
+                <li><strong>No duplicate Job Number</strong> &mdash; GlyphFex checks that no other entry has the same Job Number (case-insensitive).</li>
                 <li><strong>Required tag categories</strong> &mdash; All categories marked as required (or required via conditional rules) must have at least one tag selected.</li>
                 <li><strong>Required custom fields</strong> &mdash; All custom fields marked as required must have a value.</li>
                 <li><strong>Change reason</strong> &mdash; If ISO compliance mode is enabled, you must provide a reason for the change before saving.</li>
