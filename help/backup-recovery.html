@@ -244,6 +244,34 @@
                 Print the Disaster Recovery Guide and keep a copy near your server. In an emergency, having paper instructions available ensures you can restore operations even if you cannot access digital documentation.
             </div>
 
+            <!-- ====== Crash recovery for in-progress entries ====== -->
+            <h2 id="crash-recovery">Crash Recovery for Unsaved Work</h2>
+            <p>GlyphFex auto-saves a draft of your in-progress entry every few seconds while you type. If the app crashes, your computer loses power, or Windows forces a restart for an update before you click Save, your typing is not lost.</p>
+
+            <h3>How it works</h3>
+            <ul>
+                <li><strong>Mid-edit auto-save</strong> &mdash; While you're editing an existing entry, GlyphFex writes a draft snapshot to a private folder on your PC every few keystrokes. If you reopen the same entry after a crash, you'll be prompted to restore your draft or discard it.</li>
+                <li><strong>New-entry auto-save</strong> &mdash; The same protection covers entries you haven't saved yet. If you're typing a new quote and the app closes unexpectedly, the next time you open the project a banner appears at the top of the window: <em>"You have an unfinished new entry"</em> with Continue and Throw it away buttons.</li>
+                <li><strong>Recovery banner appears on every page</strong> &mdash; The "You have an unfinished new entry" banner sits at the top of the application shell, so you'll see it regardless of which page tier-tailored landing puts you on (Dashboard, My Jobs, Shop Floor, or Workstation Terminal). Editor accounts that auto-land on My Jobs never miss the recovery prompt.</li>
+                <li><strong>7-day garbage collection</strong> &mdash; Drafts older than 7 days are automatically cleaned up so the recovery folder doesn't grow unbounded across years of use.</li>
+            </ul>
+
+            <h3>Where drafts are stored</h3>
+            <p>Drafts live in <code>%LOCALAPPDATA%\GlyphFex\drafts\</code> on each user's PC, organized by project. Each draft is a small JSON file containing the field values, attachments references, and a timestamp. They are <strong>local to each user</strong> &mdash; even in multi-user SQL Server mode, your drafts are not shared with your teammates (each operator sees only their own in-progress work).</p>
+
+            <h3>Rename-resilient: drafts follow your project file</h3>
+            <p>If you rename your <code>.glyphfex</code> file (for example, archiving last year's project as <em>Workshop2024.glyphfex</em> and creating a new <em>Workshop2025.glyphfex</em>), any drafts you had in progress on that project follow the file. GlyphFex identifies projects by an internal Project ID stored inside the file itself, not by the file name or path. Renaming, moving, or copying the file to a different folder does not orphan your unsaved work.</p>
+
+            <p><strong>Exception</strong> &mdash; The <strong>Save Project As</strong> command creates a fresh copy with a new Project ID, so drafts from the source project do <em>not</em> follow into the destination (the destination starts with a clean slate, as expected).</p>
+
+            <h3>Multi-draft scenarios</h3>
+            <p>If you accumulate several unsaved entries (for example, the app crashed during a busy day with three quotes open in succession), the recovery banner shows the total count: <em>"You have 3 unfinished new entries."</em> Clicking <strong>Continue most recent</strong> restores the newest draft into the entry form. The remaining drafts stay on disk and re-surface the next time you open the project. To clear all of them at once, click <strong>Throw away all 3</strong> and confirm.</p>
+
+            <div class="help-tip">
+                <strong>Tip</strong>
+                The crash recovery is independent of database backups. It protects against typing-window loss (a few minutes of work in the active form), not project-level loss. For database-level protection, use the One-Click Backup or Automatic Safety Backups described at the top of this page.
+            </div>
+
             <!-- ====== Best Practices ====== -->
             <h2 id="best-practices">Backup Best Practices</h2>
             <ul>
