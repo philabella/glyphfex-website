@@ -558,7 +558,7 @@
                         <li><strong>PDF dashboard report</strong> &mdash; KPIs, charts, and summaries for management</li>
                         <li><strong>Job traveler PDF</strong> &mdash; printable shop floor document with QR code for barcode scanner lookup</li>
                         <li><strong>Excel export</strong> &mdash; .xlsx with blue headers, auto-fit columns, frozen rows, auto-filter</li>
-                        <li><strong>Live Excel workbook</strong> &mdash; multi-sheet workbook (Summary, Active Jobs, All Entries, Time Entries, Customer Summary) regenerated on demand. Your pivots, charts, and formulas keep working &mdash; ideal for shops transitioning off Excel without giving it up</li>
+                        <li><strong>Live Excel workbook</strong> &mdash; multi-sheet workbook (Summary, Active Jobs, All Entries, Time Entries, Customer Summary) regenerated on demand. Your pivots, charts, and formulas keep working &mdash; ideal for shops transitioning off Excel without giving it up. <a href="help/live-excel.html">Read the full Live Excel guide &rarr;</a></li>
                         <li><strong>CSV export</strong> &mdash; respects active filters, includes formula injection defense</li>
                         <li><strong>QuickBooks CSV</strong> &mdash; invoice import format for accounting</li>
                         <li><strong>Project ZIP export</strong> &mdash; entries + audit trail + categories in one archive</li>
@@ -848,6 +848,7 @@
                         <li><strong>Works after your 5th completed job</strong> &mdash; the engine needs a small amount of history to seed. New shops see useful suggestions in week 1; mature shops get tight ranges from day one</li>
                         <li><strong>Settings toggle</strong> &mdash; Smart Quoting can be turned off per project from the Time Multipliers tab in Workflow Stages</li>
                     </ul>
+                    <p style="margin-top: 16px;"><a href="help/smart-quoting.html" style="font-weight: 600;">Read the full Smart Quoting guide &rarr;</a></p>
                 </div>
                 <div class="feature-media">
                     <!-- Smart Quoting screenshot -->
@@ -898,6 +899,7 @@
                         <li><strong>Stable join keys</strong> &mdash; <code>time_entries.csv</code> has both <code>EntryId</code> (integer) and <code>EntryRefNumber</code> (the human-visible "Q-1234"). Pick whichever your tool prefers</li>
                         <li><strong>Schema reference link</strong> right in the panel pointing at <a href="docs/data-export-schema-v1.html">data-export-schema-v1.html</a> &mdash; your downstream consumer's developer doesn't have to dig through your Slack to find the JSON contract</li>
                     </ul>
+                    <p style="margin-top: 16px;"><a href="help/data-feed.html" style="font-weight: 600;">Read the full Data Feed guide &rarr;</a></p>
                     <p style="margin-top: 16px; font-size: 14px; color: var(--gray-500, #6b7280);">
                         Marketing one-liner: <em>"Your shop data, your way. Nothing locked in."</em>
                     </p>
@@ -950,6 +952,7 @@
                         <li><strong>Confirm secret rotation</strong> &mdash; click-twice-to-confirm pattern on Regenerate Secret because rotation instantly invalidates every downstream consumer's verifier with HTTP 401. First click re-labels to "Confirm regenerate (breaks downstream consumers)"; second click within 3s actually rotates</li>
                         <li><strong>Auto-cleanup</strong> &mdash; Delivered rows older than 30 days are pruned daily; Failed rows kept longer for debugging</li>
                     </ul>
+                    <p style="margin-top: 16px;"><a href="help/webhooks.html" style="font-weight: 600;">Read the full Webhooks guide &rarr;</a></p>
                     <p style="margin-top: 16px; font-size: 14px; color: var(--gray-500, #6b7280);">
                         Marketing one-liner: <em>"Subscribe to events on your terms. Verify it works. Debug it when it doesn't. Audit it for compliance."</em>
                     </p>

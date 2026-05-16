@@ -501,6 +501,80 @@
         </div>
     </section>
 
+    <!-- INTEGRATIONS — Power BI, Excel, Zapier, Webhooks -->
+    <section style="padding: 40px 0;">
+        <div class="container">
+            <h2 style="text-align: center;">Power BI / Excel / Zapier integrations</h2>
+            <p class="section-explainer">
+                Most shop-management tools end at &ldquo;export to CSV&rdquo; or hide the API behind an enterprise tier.
+                GlyphFex ships a stable v1 schema for Power BI, a clear-and-rewrite Excel sync that preserves your pivots,
+                and HMAC-signed outbound webhooks for Zapier / n8n / Power Automate &mdash; all on the Solo plan, no upcharge.
+            </p>
+
+            <div style="overflow-x: auto;">
+            <table class="cmp-table">
+                <thead>
+                    <tr>
+                        <th style="width: 28%;">Capability</th>
+                        <th class="glyphfex-col">GlyphFex</th>
+                        <th>JobBOSS&sup2; / E2</th>
+                        <th>ProShop</th>
+                        <th>Paperless Parts</th>
+                        <th>MRPeasy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="row-label"><a href="help/data-feed.html">Power BI / Excel folder feed</a>
+                            <small>Scheduled CSV + JSON drop with stable v1 schema</small>
+                        </td>
+                        <td class="glyphfex-col cell"><span class="cmp-yes">&check; Built in</span><br>Every 5 min / 15 min / Hourly / Daily. v1 schema is never-break.</td>
+                        <td class="cell"><span class="cmp-no">&cross;</span> CSV export only (manual).</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> API on higher tiers.</td>
+                        <td class="cell"><span class="cmp-no">&cross;</span> Quoting-only data.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> CSV export.</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label"><a href="help/live-excel.html">Live Excel multi-sheet sync</a>
+                            <small>Preserves your pivots, charts, and formulas across refresh</small>
+                        </td>
+                        <td class="glyphfex-col cell"><span class="cmp-yes">&check; Built in</span><br>5 GlyphFex-owned sheets; your dashboards survive every refresh.</td>
+                        <td class="cell"><span class="cmp-no">&cross;</span></td>
+                        <td class="cell"><span class="cmp-no">&cross;</span></td>
+                        <td class="cell"><span class="cmp-no">&cross;</span></td>
+                        <td class="cell"><span class="cmp-no">&cross;</span></td>
+                    </tr>
+                    <tr>
+                        <td class="row-label"><a href="help/webhooks.html">Outbound webhooks (Zapier, n8n)</a>
+                            <small>HMAC-signed event push: quote_won, stage_changed, ncr_opened, &hellip;</small>
+                        </td>
+                        <td class="glyphfex-col cell"><span class="cmp-yes">&check; Built in</span><br>HMAC-SHA256, retry + circuit breaker, 6 event types.</td>
+                        <td class="cell"><span class="cmp-no">&cross;</span></td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> Polling API only.</td>
+                        <td class="cell"><span class="cmp-no">&cross;</span></td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> Zapier app (paid).</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Stable schema your dashboards can trust
+                            <small>&ldquo;Never remove a field, never change a type&rdquo; promise</small>
+                        </td>
+                        <td class="glyphfex-col cell"><span class="cmp-yes">&check;</span> Documented v1 schema, additive-only, breaking changes ship as v2.</td>
+                        <td class="cell"><span class="cmp-no">&cross;</span> CSV columns change between versions.</td>
+                        <td class="cell"><span class="cmp-partial">Partial</span> API but no stability commitment.</td>
+                        <td class="cell"><span class="cmp-no">&cross;</span></td>
+                        <td class="cell"><span class="cmp-no">&cross;</span></td>
+                    </tr>
+                    <tr class="quote-row">
+                        <td colspan="6">
+                            All four are on the Solo plan ($49/mo). No &ldquo;Integration tier&rdquo; upsell, no per-integration fees.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </section>
+
     <!-- SETUP + PRICE -->
     <section style="padding: 40px 0;">
         <div class="container">

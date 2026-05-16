@@ -119,7 +119,7 @@
             <p>The clear-and-rewrite strategy only touches the 5 GlyphFex-owned data sheets. Anything you add elsewhere in the workbook is preserved:</p>
             <ul>
                 <li><strong>Custom sheets</strong> &mdash; Dashboards, pivots, charts, and any other sheets you create</li>
-                <li><strong>Formulas referencing data sheets</strong> &mdash; <code>=SUMIFS('All Entries'!I:I, 'All Entries'!B:B, "Welding")</code> keeps working (single-quote a sheet name with a space in it)</li>
+                <li><strong>Formulas referencing data sheets</strong> &mdash; <code>=SUMIFS('All Entries'!I:I, 'All Entries'!B:B, "In Production")</code> keeps working &mdash; that one sums <em>Est Hours</em> (column I) across every job whose <em>Status</em> (column B) is currently "In Production." Single-quote any sheet name with a space in it.</li>
                 <li><strong>Pivot tables built on data sheets</strong> &mdash; Refresh the pivot inside Excel (or set it to refresh on open) and it picks up the new rows</li>
                 <li><strong>Charts</strong> &mdash; Chart series ranges update automatically as data sheets grow or shrink</li>
                 <li><strong>Cell formatting on data sheets</strong> &mdash; column widths, header colors, and frozen panes are restored on refresh; cell-level formatting on data rows is <em>not</em> preserved (data rows are rewritten)</li>

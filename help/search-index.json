@@ -333,7 +333,7 @@
     "title": "Data Feed (Power BI / Excel)",
     "sections": [
       { "id": "overview", "title": "What the Data Feed does", "keywords": "data feed power bi excel folder drop scheduled csv json ERP accountant integration" },
-      { "id": "enable", "title": "How to enable", "keywords": "destination folder refresh interval 5 15 30 60 minutes enable data feed settings hub" },
+      { "id": "enable", "title": "How to enable", "keywords": "destination folder refresh interval every 5 minutes every 15 minutes hourly daily enable data feed settings hub" },
       { "id": "atomic-writes", "title": "Atomic writes", "keywords": "atomic write two phase tmp file fileshare none preflight check rename readers never half written" },
       { "id": "v1-promise", "title": "The v1 schema promise", "keywords": "v1 schema never remove field never change type never change meaning additive breaking changes v2" },
       { "id": "schema-quick-ref", "title": "Schema quick reference", "keywords": "schema id ref number tags key fields custom fields attachments audit summary work state" },
@@ -351,7 +351,7 @@
       { "id": "setup", "title": "Setting up a webhook", "keywords": "add webhook event type destination url signing secret test event https only" },
       { "id": "security", "title": "Security: HMAC signing, replay protection, HTTPS-only", "keywords": "hmac sha256 signature replay protection https only event id timestamp 24 hour" },
       { "id": "retry", "title": "Retry, backoff, and circuit breaker", "keywords": "retry exponential backoff 1s 5s 30s 3 attempts circuit breaker 50 consecutive failures auto disable" },
-      { "id": "payload", "title": "The payload", "keywords": "webhook payload envelope event_id event_type event_timestamp subscription_id schema_version data entry 1 mb slim envelope payload_truncated" },
+      { "id": "payload", "title": "The payload", "keywords": "webhook payload envelope event_id event_type event_timestamp schema_version data entry stage_transitions 1 mb slim envelope payload_truncated drop_reason" },
       { "id": "patterns", "title": "Common integration patterns", "keywords": "slack teams discord mattermost zapier accounting invoice quote won n8n in-house erp custom receiver" },
       { "id": "settings", "title": "Settings & Monitoring", "keywords": "webhook settings monitoring last delivery consecutive failure rotate signing secret deliveries log" },
       { "id": "faq", "title": "FAQ", "keywords": "webhooks faq trial real time daily snapshot down hours backfill attachments hmac library verification" }
@@ -362,9 +362,9 @@
     "title": "Live Excel Sync",
     "sections": [
       { "id": "overview", "title": "What Live Excel Sync does", "keywords": "live excel sync clear and rewrite multi sheet workbook pivots charts formulas preserved refresh" },
-      { "id": "how-to-use", "title": "How to enable Live Excel", "keywords": "tools menu live excel export target file pick refresh xlsx entries quotes customers time entries" },
-      { "id": "preserved", "title": "What survives a refresh", "keywords": "preserved custom sheets dashboards pivots charts formulas cell formatting" },
-      { "id": "sheets", "title": "The four data sheets", "keywords": "entries quotes customers time entries data sheets snake_case columns" },
+      { "id": "how-to-use", "title": "How to enable Live Excel", "keywords": "file menu connect to excel live refresh live excel xlsx summary active jobs all entries time entries customer summary" },
+      { "id": "preserved", "title": "What survives a refresh", "keywords": "preserved custom sheets dashboards pivots charts formulas cell formatting SUMIFS single quote sheet name with space" },
+      { "id": "sheets", "title": "The five data sheets", "keywords": "summary active jobs all entries time entries customer summary title case headers ref number status customer description created updated due date quantity est hours actual hours priority po number ref value notes" },
       { "id": "workflow-pattern", "title": "Recommended workflow", "keywords": "workflow pattern office dashboards network share refresh shared workbook" },
       { "id": "trade-offs", "title": "When to use Live Excel vs alternatives", "keywords": "live excel vs data feed vs one shot export trade off comparison" },
       { "id": "gotchas", "title": "Gotchas", "keywords": "file locked lost data pivot not updated different columns custom fields" }
