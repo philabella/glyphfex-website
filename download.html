@@ -305,11 +305,22 @@
                 </div>
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false">
-                        Why does Windows show a security warning?
+                        Why does Windows show a security warning &mdash; or block the app entirely?
                         <svg class="faq-chevron" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5"/></svg>
                     </button>
                     <div class="faq-answer">
-                        <p>GlyphFex is a new application without a code signing certificate yet (coming soon). Windows SmartScreen may show an "Unknown Publisher" warning. Click "More info" then "Run anyway" to proceed. The installer is safe.</p>
+                        <p>During early access, GlyphFex is not yet code-signed. (We're setting up Azure Trusted Signing now; expected within a few weeks.) That has three different consequences depending on the kind of Windows machine you install on:</p>
+
+                        <p><strong>Personal Windows 10 or 11 PC (Home / Pro):</strong>
+                        At first launch you may see a blue dialog titled <em>"Windows protected your PC"</em>. Click <strong>More info</strong>, then <strong>Run anyway</strong>. The installer is safe and GlyphFex launches normally from that point on. You only see this prompt on the first run.</p>
+
+                        <p><strong>Work or corporate laptop:</strong>
+                        If your IT department uses Microsoft Defender for Endpoint, AppLocker, or a Group Policy that blocks unsigned binaries, the app may <em>silently fail to launch</em> &mdash; no error message, no SmartScreen dialog, just nothing. There is no end-user workaround for this; your IT team would need to whitelist the GlyphFex binary, or you can try the trial on a personal machine in the meantime. Once we ship code-signed binaries, most corporate policies will accept the signature automatically.</p>
+
+                        <p><strong>Windows S Mode or ARM-based Windows:</strong>
+                        S Mode only runs Microsoft Store apps and cannot run GlyphFex even after we sign. ARM Windows (Surface Pro X, newer Snapdragon laptops) is not yet supported &mdash; our x64 build runs under emulation but has known issues with one of our cryptography dependencies. Both are tracked for a future release.</p>
+
+                        <p>If you hit any of these and want to verify the installer integrity in the meantime, we can email you the SHA-256 hash of <code>GlyphFex.msi</code> for comparison. Email <a href="mailto:support@glyphfex.com">support@glyphfex.com</a>.</p>
                     </div>
                 </div>
                 <div class="faq-item">
