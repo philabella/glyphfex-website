@@ -236,6 +236,8 @@
 
             <h3>What HMAC verification library should I use?</h3>
             <p>Anything standard. In Node.js: <code>crypto.createHmac('sha256', secret).update(rawBody).digest('hex')</code>. In Python: <code>hmac.new(secret_bytes, raw_body, hashlib.sha256).hexdigest()</code>. In C#: <code>new HMACSHA256(Encoding.UTF8.GetBytes(secret)).ComputeHash(rawBody)</code>. Always compare with a constant-time function (e.g., <code>crypto.timingSafeEqual</code> in Node) to defend against timing attacks.</p>
+
+            <p style="margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--gray-200);"><a href="../compare.html#integrations">Compare GlyphFex Webhooks vs JobBOSS / ProShop / Paperless Parts &rarr;</a></p>
         </main>
 
         <!-- Table of contents -->

@@ -114,21 +114,42 @@
                 <li><strong>Weight by recency.</strong> Recent jobs count more. The math is an exponential decay with a 180-day time constant &mdash; in practical terms, a job from 6 months ago counts at about <strong>37%</strong> of a job from today, and a job from a year ago counts at about <strong>13%</strong>.</li>
                 <li><strong>Weight by quantity closeness.</strong> If the new job is for 50 pieces, a past job of 48 pieces scores higher than one of 5 pieces.</li>
                 <li><strong>Customer boost.</strong> If the new job has the same customer name as a past one, that past one gets a 2&times; multiplier &mdash; you tend to repeat work for the same customers in similar ways.</li>
-                <li><strong>The typical-plus-range answer.</strong> From the top matches (capped at 10 &mdash; so usually 5 to 10, depending on how much history exists for this tag combination), the estimator picks the <strong>typical hours</strong> (the weighted median of <code>actual_hours</code>) and a <strong>realistic low/high range</strong> (the weighted 25th and 75th percentiles).</li>
+                <li><strong>The typical-plus-range answer.</strong> The estimator gathers every past job that clears the similarity threshold (the chip reports the total count &mdash; that&rsquo;s the &ldquo;based on N matches&rdquo; number), then takes the <strong>top 10 by weight</strong> as its working set and computes the <strong>typical hours</strong> (the weighted median of <code>actual_hours</code>) and a <strong>realistic low/high range</strong> (the weighted 25th and 75th percentiles).</li>
             </ol>
             <p>Hours, suggested labor rate, and suggested price all come out of the same matching run. Hours always come from <code>actual_hours</code> on past completed jobs &mdash; never <code>estimated_hours</code> &mdash; so the estimator only learns from reality, not from your own past guesses.</p>
 
             <!-- ====== Honesty Band ====== -->
             <h2 id="honesty-band">The Honesty Band: when Smart Quoting tells you it&rsquo;s unsure</h2>
-            <p>If Smart Quoting has &ge;10 close matches and the spread between P25 and P75 is narrow, the chip uses neutral wording:</p>
-            <blockquote class="help-callout">
-                Similar jobs: ~38&ndash;42 hrs &middot; ~$3,200 &middot; based on 12 matches
-            </blockquote>
-            <p>If it has fewer than 10 matches, or if the spread is wide, it switches to <em>acknowledged-uncertainty</em> wording:</p>
-            <blockquote class="help-callout">
-                Best guess (low data): ~38&ndash;42 hrs &middot; only 6 matches &mdash; adjust as you learn
-            </blockquote>
+            <p>The chip&rsquo;s wording changes with how much past-job evidence backs the estimate. There are four bands, keyed off the total match count:</p>
+            <table>
+                <thead>
+                    <tr><th>Match count</th><th>Band</th><th>What the chip shows</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>fewer than 5</td>
+                        <td><strong>Learning</strong></td>
+                        <td>The chip is hidden until you accumulate at least 5 similar past jobs &mdash; nothing useful to suggest yet.</td>
+                    </tr>
+                    <tr>
+                        <td>5&ndash;9</td>
+                        <td><strong>Low</strong></td>
+                        <td>Explicit &ldquo;Best guess&rdquo; framing with an adjust-as-you-learn nudge:<br><code>Best guess (low data): ~38&ndash;42 hrs &middot; only 6 matches &mdash; adjust as you learn</code></td>
+                    </tr>
+                    <tr>
+                        <td>10&ndash;19</td>
+                        <td><strong>Medium</strong></td>
+                        <td>Neutral wording, no special framing:<br><code>Similar jobs: ~38&ndash;42 hrs &middot; ~$3,200 &middot; 12 matches</code></td>
+                    </tr>
+                    <tr>
+                        <td>20 or more</td>
+                        <td><strong>High</strong></td>
+                        <td>Neutral wording with an explicit confidence flag:<br><code>Similar jobs: ~38&ndash;42 hrs &middot; ~$3,200 &middot; 24 matches (high confidence)</code></td>
+                    </tr>
+                </tbody>
+            </table>
             <p>This is the <strong>Honesty Band</strong>. It exists because pretending to be confident about a 5-job sample is worse than admitting you&rsquo;re still learning. We follow the Zillow pattern: <em>show the data, never hide thinness, never prescribe</em>. The chip won&rsquo;t tell you to &ldquo;drop your price&rdquo; or &ldquo;raise your hours&rdquo; &mdash; that&rsquo;s your call.</p>
+            <p><strong>How &ldquo;match count&rdquo; relates to the &ldquo;top 10&rdquo; cap above.</strong> The match count on the chip is the <em>total</em> pool of past jobs that cleared the similarity threshold &mdash; it is never capped. The cap of 10 only applies to which jobs are used for the median calculation. So a chip can legitimately read &ldquo;24 matches&rdquo; (the pool size) even though only the top 10 of those drive the median.</p>
 
             <!-- ====== The Comparables Popover ====== -->
             <h2 id="comparables">The Comparables Popover</h2>
@@ -211,6 +232,8 @@
 
             <h3>Can I disable it?</h3>
             <p>Yes. <strong>Settings Hub &rarr; Categories &amp; Tags &rarr; Time Multipliers tab &rarr; uncheck Enable Smart Quoting</strong>. The chip disappears; the entry form behaves like it did before. Auto-pricing has a separate kill switch &mdash; set Shop Labor Rate to 0 in Settings Hub &rarr; Quoting.</p>
+
+            <p style="margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--gray-200);"><a href="../compare.html#integrations">Compare GlyphFex Smart Quoting vs JobBOSS / ProShop / Paperless Parts &rarr;</a></p>
         </main>
 
         <!-- Table of contents -->
