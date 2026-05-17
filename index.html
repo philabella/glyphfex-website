@@ -29,8 +29,10 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
+    <link rel="canonical" href="https://glyphfex.com/">
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <!-- ============ NAVIGATION ============ -->
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
@@ -58,6 +60,7 @@
             </div>
         </div>
     </nav>
+    <a id="main-content" tabindex="-1" class="sr-only">Main content</a>
 
     <!-- ============ HERO ============ -->
     <section class="hero">
@@ -410,8 +413,8 @@
                 </div>
                 <div class="proof-divider"></div>
                 <div class="proof-stat">
-                    <span class="proof-number">1M+</span>
-                    <span class="proof-label">Projected capacity</span>
+                    <span class="proof-number">100K+</span>
+                    <span class="proof-label">Verified entry capacity</span>
                 </div>
                 <div class="proof-divider"></div>
                 <div class="proof-stat">
@@ -717,7 +720,7 @@
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false">
                         What is a .glyphfex file?
-                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5"/></svg>
+                        <svg class="faq-chevron" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5"/></svg>
                     </button>
                     <div class="faq-answer">
                         <p>A <code>.glyphfex</code> file is a single SQLite database that contains all your entries, tags, pipeline configurations, attachments, and audit history. SQLite is the same database engine trusted by billions of devices worldwide &mdash; it powers apps on every smartphone, browser, and operating system. You can copy it, back it up to a USB drive, email it to a colleague, or store it on a network share. No server required. Local-first architecture means your data stays fast, no matter how many entries you have.</p>
@@ -726,7 +729,7 @@
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false">
                         Do I need an internet connection?
-                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5"/></svg>
+                        <svg class="faq-chevron" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5"/></svg>
                     </button>
                     <div class="faq-answer">
                         <p>No. GlyphFex works 100% offline. The only time you need internet is to download the installer and activate your license. After that, everything runs locally on your machine.</p>
@@ -735,7 +738,7 @@
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false">
                         What Windows versions are supported?
-                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5"/></svg>
+                        <svg class="faq-chevron" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5"/></svg>
                     </button>
                     <div class="faq-answer">
                         <p>GlyphFex runs on Windows 10 (version 1903 or later) and Windows 11. Both x64 and ARM64 are supported. Mac and Linux versions are not currently available.</p>
@@ -744,7 +747,7 @@
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false">
                         How does multi-user work?
-                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5"/></svg>
+                        <svg class="faq-chevron" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5"/></svg>
                     </button>
                     <div class="faq-answer">
                         <p>Team mode uses SQL Server Express (free from Microsoft) running on your local network. No cloud, no subscription to Microsoft. GlyphFex connects via Windows Authentication &mdash; no extra passwords. Your IT person (or you) runs a one-time SQL Server setup, then everyone on the LAN connects automatically.</p>
@@ -753,7 +756,7 @@
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false">
                         Can I import my existing spreadsheet data?
-                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5"/></svg>
+                        <svg class="faq-chevron" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5"/></svg>
                     </button>
                     <div class="faq-answer">
                         <p>Yes. GlyphFex imports CSV files with automatic field mapping. Export your Excel tracker as CSV, import into GlyphFex, and your entries are created with tags, custom fields, and pipeline stages mapped automatically.</p>
@@ -762,7 +765,7 @@
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false">
                         Is GlyphFex suitable for ISO 9001 / AS9100 compliance?
-                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5"/></svg>
+                        <svg class="faq-chevron" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5"/></svg>
                     </button>
                     <div class="faq-answer">
                         <p>GlyphFex records a full audit trail for every change &mdash; who changed what, when, and what the previous value was. This provides the traceability that ISO 9001 and AS9100 auditors look for. You can export the audit history as PDF or CSV for compliance documentation.</p>
@@ -771,7 +774,7 @@
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false">
                         Why free viewers?
-                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5"/></svg>
+                        <svg class="faq-chevron" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5"/></svg>
                     </button>
                     <div class="faq-answer">
                         <p>Because visibility shouldn't have a price tag. Put GlyphFex on every shop floor PC, every TV display, every manager's desk. The more people who can SEE what's going on, the faster your shop runs. You only pay for people who need to CREATE or EDIT entries.</p>
@@ -780,7 +783,7 @@
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false">
                         How do I back up my data?
-                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5"/></svg>
+                        <svg class="faq-chevron" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5"/></svg>
                     </button>
                     <div class="faq-answer">
                         <p>GlyphFex keeps automatic rotating backups (.bak, .bak.1, .bak.2) every time you save. You can also use File &rarr; Backup Database for a one-click manual backup (works for both SQLite and SQL Server). For full disaster recovery, use Export Full Project to create a ZIP including all attachments. A built-in Disaster Recovery Guide (Help menu) gives your IT team step-by-step restore instructions.</p>
@@ -789,7 +792,7 @@
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false">
                         What happens if I stop paying?
-                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5"/></svg>
+                        <svg class="faq-chevron" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 5 5-5"/></svg>
                     </button>
                     <div class="faq-answer">
                         <p>Your data is always yours. The <code>.glyphfex</code> file is a standard SQLite database. If you stop renewing, you keep read-only access to all your data and can export everything to CSV or PDF. We never hold your data hostage.</p>
@@ -864,7 +867,7 @@
         "name": "GlyphFex",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Windows 10, Windows 11",
-        "description": "Shop management tool for manufacturing and trade businesses. Quoting, job tracking, and analytics — one source of truth from quote to completion. Pipeline stages, audit trails, Gantt charts, shop floor kiosk, and 200 features.",
+        "description": "Shop management tool for manufacturing and trade businesses. Quoting, job tracking, and analytics — one source of truth from quote to completion. Smart Quoting (k-NN on your own past jobs), pipeline stages, audit trails, Gantt charts, Workstation Terminal, Power BI / Excel / Zapier integrations, and 200 features.",
         "url": "https://glyphfex.com",
         "offers": [
             {
@@ -884,7 +887,7 @@
                 "availability": "https://schema.org/PreOrder"
             }
         ],
-        "featureList": "Pipeline stages, Audit trail, Shop floor display, QR code travelers, Analytics dashboard, Gantt calendar, Multi-user, Export to PDF/Excel/CSV, Due date alerts, Data protection, Convert quote to order, Command palette, Kiosk mode, Dark mode"
+        "featureList": "Smart Quoting (k-NN on past jobs), Honesty Band confidence indicator, Tag-driven auto-pricing, Win Rate by Tag analytics, Pipeline stages with SLA tracking, Audit trail (ISO 9001 / AS9100 ready), Workstation Terminal, Display Board, QR code job travelers, Analytics dashboard with Quote Accuracy section, Gantt calendar with capacity heat strip, Multi-user (Admin / Editor / Viewer roles), SQL Server team mode with Windows Authentication SSO, Convert Quote to Order, Re-quote shortcut, Lost Reason capture, PDF / Excel / CSV / QuickBooks export, Live Excel multi-sheet sync, Data Feed (CSV+JSON folder drop with stable v1 schema for Power BI / Excel Power Query / ERP), Outbound Webhooks (HMAC-SHA256, Zapier / n8n / Power Automate), Due date alerts, Stale entry detection, Daily digest, Show/Hide Rules, Auto Descriptions, Industry templates (11), Command palette, Dark mode, 100K+ entry capacity"
     }
     </script>
 </body>
