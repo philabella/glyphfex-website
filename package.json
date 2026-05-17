@@ -1,0 +1,14 @@
+{
+  "name": "glyphfex-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static marketing site for glyphfex.com — no build step. Dev deps are for automated QA scripts only.",
+  "type": "module",
+  "scripts": {
+    "check:overflow": "node scripts/check-overflow.mjs",
+    "audit": "npm run check:overflow"
+  },
+  "devDependencies": {
+    "playwright": "^1.48.0"
+  }
+}

@@ -1,0 +1,4 @@
+node_modules/
+.commit-message-*.txt
+*.log
+.DS_Store

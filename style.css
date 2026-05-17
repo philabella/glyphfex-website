@@ -177,7 +177,18 @@ code { background: var(--gray-100); padding: 2px 6px; border-radius: 4px; font-s
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 72px;
+    /* Wave 14OY: defensive layout. `min-height` (was `height`) + `flex-wrap: wrap` +
+       small row-gap means: if the desktop nav ever overflows the container width
+       (someone adds a 7th nav item, viewport sits in an awkward zone the breakpoint
+       didn't cover, font metrics differ slightly cross-OS), the 3 flex children
+       wrap to a second row instead of being crushed together by `justify-content:
+       space-between`. The wrap looks slightly ugly for ~1 second before the user
+       resizes — much better than the "GlyphFexFeatures" smoosh that shipped in
+       Wave 14OW. The 1100px hamburger breakpoint (Wave 14OX) is still the primary
+       responsive strategy; this is the safety net for that breakpoint being wrong. */
+    flex-wrap: wrap;
+    row-gap: 8px;
+    min-height: 72px;
 }
 
 .nav-logo {
@@ -187,6 +198,9 @@ code { background: var(--gray-100); padding: 2px 6px; border-radius: 4px; font-s
     font-size: 20px;
     font-weight: 700;
     color: var(--gray-900);
+    /* Defensive: keep the logo block from shrinking below its natural width if
+       .nav-links somehow tries to claim more space than the container has. */
+    flex-shrink: 0;
 }
 
 .logo-icon { flex-shrink: 0; }
@@ -195,6 +209,13 @@ code { background: var(--gray-100); padding: 2px 6px; border-radius: 4px; font-s
     display: flex;
     align-items: center;
     gap: 24px;
+    /* Wave 14OY defensive: `min-width: 0` lets this flex child shrink below
+       its content width when the container compresses, which gives `justify-
+       content: space-between` on .nav-container room to allocate actual gap
+       between the logo and the links. Without it, the children's natural
+       widths sum to more than the container and space-between collapses
+       to zero gap (the "GlyphFexFeatures" symptom). */
+    min-width: 0;
 }
 
 .nav-links a {
