@@ -785,10 +785,24 @@ kbd {
 
     .help-content table {
         font-size: 13px;
+        /* Wave 14PE mobile: let wide tables scroll horizontally inside
+           their container rather than overflow the page body. */
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
     }
 
     .help-content th,
     .help-content td {
         padding: 8px 10px;
+    }
+
+    /* Wave 14PE mobile: long unbroken strings in inline code (URLs,
+       hashes, type names like `glyphfex://entry/12345`) push the
+       container width over the viewport. word-break allows them to
+       wrap mid-string on narrow screens. */
+    .help-content code {
+        word-break: break-word;
     }
 }

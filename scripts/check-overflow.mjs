@@ -22,7 +22,11 @@ import { readdirSync, statSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const VIEWPORTS = [1024, 1280, 1440, 1920];
+// Mobile viewports added in Wave 14PE so the overflow check covers the
+// surfaces shop owners actually use from a Google search-result tap.
+// 375 = iPhone SE / iPhone 13 mini portrait; 480 = small-phone landscape;
+// 768 = iPad portrait; the four >= 1024 sizes cover laptop-to-desktop range.
+const VIEWPORTS = [375, 480, 768, 1024, 1280, 1440, 1920];
 const HEIGHT = 900;
 
 // Sub-pixel font rendering can produce 1px overflow that isn't user-visible.

@@ -34,6 +34,18 @@
         .docs-container th, .docs-container td { text-align: left; padding: 8px 12px; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
         .docs-container th { background: #f9fafb; font-weight: 600; color: #374151; }
         .docs-container td:first-child code { white-space: nowrap; }
+        /* Wave 14PE mobile: at narrow viewports the table's first-column
+           nowrap code can exceed the viewport. Wrap the whole table in
+           a scrollable container and let it scroll horizontally instead of
+           overflowing the body. */
+        @media (max-width: 768px) {
+            .docs-container { padding: 24px 16px 48px; }
+            .docs-container h1 { font-size: 28px; }
+            .docs-container h2 { font-size: 20px; }
+            .docs-container table { display: block; overflow-x: auto; width: 100%; -webkit-overflow-scrolling: touch; }
+            .docs-container pre { font-size: 12px; }
+            .docs-container code { font-size: 12px; word-break: break-word; }
+        }
         .promise { background: #ecfdf5; border-left: 4px solid #10b981; padding: 16px 20px; margin: 16px 0 24px; border-radius: 4px; }
         .promise strong { color: #065f46; }
         .warning { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 16px 20px; margin: 16px 0 24px; border-radius: 4px; }
@@ -75,6 +87,9 @@
             </div>
             <div class="nav-actions">
                 <a href="../download.html" class="btn btn-primary btn-sm">Download Trial</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </div>
     </nav>
