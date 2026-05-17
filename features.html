@@ -72,15 +72,14 @@
     </section>
 
     <!-- ============ FEATURES QUICK NAV ============ -->
-    <!-- Wave 14PC: order matches the actual section flow below. Previously
-         "Smart Quoting" was link #1 but jumped to section #17, sending readers
-         to the bottom of the page on the first click. A separate decision
-         (deferred) is whether the section ORDER itself should be reorganized
-         to put Smart Quoting earlier — for now, the quick-nav at least
-         honestly mirrors the document. -->
+    <!-- Wave 14PF: Smart Quoting was promoted from section #17 to section #1
+         (it's the strongest competitive wedge — burying it at #17 hurt the
+         buyer journey). Quick-nav order matches the new document order so
+         link N takes the reader to section N. -->
     <div class="features-nav">
         <div class="container">
             <div class="features-nav-inner">
+                <a href="#smart-quoting" class="features-nav-link">Smart Quoting</a>
                 <a href="#pipeline" class="features-nav-link">Pipeline</a>
                 <a href="#dashboard" class="features-nav-link">Dashboard</a>
                 <a href="#analytics" class="features-nav-link">Analytics</a>
@@ -97,18 +96,75 @@
                 <a href="#workstation" class="features-nav-link">Workstation</a>
                 <a href="#workers" class="features-nav-link">Workers</a>
                 <a href="#performance" class="features-nav-link">Performance</a>
-                <a href="#smart-quoting" class="features-nav-link">Smart Quoting</a>
                 <a href="#data-feed" class="features-nav-link">Data Feed</a>
                 <a href="#webhooks" class="features-nav-link">Webhooks</a>
             </div>
         </div>
     </div>
 
-    <!-- ============ SECTION 1: PIPELINE & WORKFLOW ============ -->
+    <!-- ============ SECTION 1: SMART QUOTING & AUTO-PRICING ============ -->
+    <section class="feature-section" id="smart-quoting">
+        <div class="container">
+            <div class="feature-section-header">
+                <h2><span class="section-number">1</span>Smart Quoting &amp; Auto-Pricing</h2>
+                <p>Quoting backed by your own data, not your gut. Tag a job; in 300ms GlyphFex finds your most-similar past jobs by tag, quantity, recency, and same-customer boost &mdash; and surfaces median hours, suggested labor rate, and material costs. (The chip reports the total match count; the comparables popover lets you inspect the top 7 in detail.) Then closes the loop with Win Rate by Tag and Lost Reason capture so you learn from every quote. <strong>No competitor under $500/mo has this stack.</strong></p>
+            </div>
+            <div class="feature-layout">
+                <div class="feature-text">
+                    <ul class="feature-bullets">
+                        <li><strong>Past-job comparables engine</strong> &mdash; finds the most-similar past jobs by tag overlap, quantity closeness, recency (recent jobs count more &mdash; 6 months ago &asymp; 37% weight, 1 year ago &asymp; 13%), and a 2&times; boost for the same customer. Gives you the typical hours plus a realistic low/high range. <em>(For IT teams: k-NN with Jaccard similarity, exponential decay &tau;=180d, weighted median + P25/P75.)</em></li>
+                        <li><strong>Ambient suggestion chip</strong> &mdash; "Similar jobs: ~38-42 hrs &middot; ~$3,200 &middot; based on 7 matches" appears below Key Fields the moment you've picked enough tags</li>
+                        <li><strong>Ghost text in the Est. Hours field</strong> &mdash; the median sits in the field as placeholder. Type to override; click <strong>Accept</strong> on the chip to take it</li>
+                        <li><strong>Comparables popover</strong> &mdash; tap the chip to see the top 7 matched past jobs with match %, actual hours, and tag chips. Verify the suggestion before you trust it</li>
+                        <li><strong>Honesty Band</strong> &mdash; chip wording adapts to data thinness. Four bands by match count: hidden under 5, "Best guess (low data)" 5&ndash;9, neutral 10&ndash;19, "(high confidence)" 20+. Example low-data wording: <em>"Best guess (low data): ~38-42 hrs &middot; only 6 matches &mdash; adjust as you learn"</em>. Zillow pattern &mdash; we never hide thinness, never prescribe</li>
+                        <li><strong>Deviation warning</strong> &mdash; if you type a number 30%+ below history, an InfoBar surfaces the comparables. Stops "I'll just put 8 hours" mistakes</li>
+                        <li><strong>Tag-driven auto-pricing</strong> &mdash; mark categories as pricing categories and assign per-tag $/hr rates and per-tag material costs. Selecting tags auto-fills labor rate and material suggestions on the form. Closes the "Excel-on-the-side" gap</li>
+                        <li><strong>MAX rule for labor rate</strong> &mdash; when multiple tags carry rates, the highest one wins. Three-level fallback: tag-specific &rarr; category default &rarr; shop labor rate</li>
+                        <li><strong>Material library per tag</strong> &mdash; each tag can carry a cost-per-unit, unit name (sqft, lbs, ea), and optional markup %. Auto-Fill formula: <code>hours &times; rate + &Sigma;(material &times; (1 + markup))</code></li>
+                        <li><strong>Reactive ghost text</strong> &mdash; type a custom labor rate or estimated value and the suggestions update live. The field stops being a guess and starts being a calculator</li>
+                        <li><strong>Win/Loss tracking</strong> &mdash; Quote Outcome built-in field (Pending / Won / Lost / Expired) with one-click "Mark as Lost" and quick-close for Lost / Withdrawn quotes</li>
+                        <li><strong>Lost Reason capture</strong> &mdash; when you mark a quote Lost, GlyphFex prompts for the reason: Too expensive, Lost to competitor, Too slow / lead time, Customer cancelled, Specs changed, No response, Other. Standard B2B win/loss taxonomy. Research finding: 30-50% of quotes attributed to "lost on price" are actually lost to slow turnaround or capability mismatch &mdash; meaning if you blindly drop your price you sell margin away without winning more work</li>
+                        <li><strong>Win Rate by Tag analytics</strong> &mdash; per-tag won/lost dot bar with median won/lost prices and the top lost reason. Filtered to tags with at least 3 won or 3 lost samples. Shows where you're competitive and where you're not. eBay/Zillow non-prescriptive UX &mdash; the data is shown; the decision stays with you</li>
+                        <li><strong>Re-quote shortcut</strong> &mdash; one-click on a completed quote pre-fills a new entry with revision increment and source-quote link</li>
+                        <li><strong>Auto-advance won quotes</strong> &mdash; mark a quote Won and GlyphFex prompts to convert it to an order, copying customer, line items, materials, and tags</li>
+                        <li><strong>Customer Quote PDF</strong> &mdash; professional quote document with line items, terms, and validity date generated from entry data. Email Quote opens your mail client with the PDF attached</li>
+                        <li><strong>Markup Calculator</strong> &mdash; cost / margin / markup tool integrated into quote line items. No more "what's a 35% markup on $1,200?" mental math</li>
+                        <li><strong>Works after your 5th completed job</strong> &mdash; the engine needs a small amount of history to seed. New shops see useful suggestions in week 1; mature shops get tight ranges from day one</li>
+                        <li><strong>Settings toggle</strong> &mdash; Smart Quoting can be turned off per project from the Time Multipliers tab in Workflow Stages</li>
+                    </ul>
+                    <p style="margin-top: 16px;"><a href="help/smart-quoting.html" style="font-weight: 600;">Read the full Smart Quoting guide &rarr;</a></p>
+                </div>
+                <div class="feature-media">
+                    <!-- Smart Quoting screenshot -->
+                    <div class="screenshot-placeholder" data-capture="smart-quoting-chip">
+                        <div class="placeholder-inner">
+                            <div class="placeholder-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            </div>
+                            <p class="placeholder-label">Screenshot: Smart Quoting chip with Honesty Band wording</p>
+                            <p class="placeholder-note">Capture: Entry form with tags selected, chip below Key Fields showing comparables count + median range</p>
+                        </div>
+                    </div>
+                    <!-- Win Rate by Tag screenshot -->
+                    <div class="screenshot-placeholder" data-capture="win-rate-by-tag">
+                        <div class="placeholder-inner">
+                            <div class="placeholder-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            </div>
+                            <p class="placeholder-label">Screenshot: Win Rate by Tag analytics card</p>
+                            <p class="placeholder-note">Capture: Analytics page &gt; Sales &amp; Quoting section &gt; Win Rate by Tag chart with won/lost dot bars per tag</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECTION 2: PIPELINE & WORKFLOW ============ -->
     <section class="feature-section" id="pipeline">
         <div class="container">
             <div class="feature-section-header">
-                <h2><span class="section-number">1</span>Pipeline &amp; Workflow Tracking</h2>
+                <h2><span class="section-number">2</span>Pipeline &amp; Workflow Tracking</h2>
                 <p>Define your workflow with custom stages that match exactly how your shop operates. From quote to completion, every job moves through a pipeline you control.</p>
             </div>
             <div class="feature-layout">
@@ -149,11 +205,11 @@
         </div>
     </section>
 
-    <!-- ============ SECTION 2: DASHBOARD ============ -->
+    <!-- ============ SECTION 3: DASHBOARD ============ -->
     <section class="feature-section" id="dashboard">
         <div class="container">
             <div class="feature-section-header">
-                <h2><span class="section-number">2</span>Dashboard &amp; Real-Time Visibility</h2>
+                <h2><span class="section-number">3</span>Dashboard &amp; Real-Time Visibility</h2>
                 <p>Four ways to see your jobs. Card view for visual scanning, table view for sorting and bulk actions, timeline view for chronological tracking, and board view for drag-and-drop Kanban. Smart filters let you find any job instantly.</p>
             </div>
             <div class="feature-layout reversed">
@@ -207,11 +263,11 @@
         </div>
     </section>
 
-    <!-- ============ SECTION 3: ANALYTICS ============ -->
+    <!-- ============ SECTION 4: ANALYTICS ============ -->
     <section class="feature-section" id="analytics">
         <div class="container">
             <div class="feature-section-header">
-                <h2><span class="section-number">3</span>Analytics &amp; KPI Tracking</h2>
+                <h2><span class="section-number">4</span>Analytics &amp; KPI Tracking</h2>
                 <p>Know exactly where your shop stands. <strong>5 sections, 14 KPI cards, 14 chart types</strong>, plain-English insights, and a Win-Rate-by-Tag chart no shop tool under $500/mo offers. All without walking the floor.</p>
             </div>
             <div class="feature-layout">
@@ -265,11 +321,11 @@
         </div>
     </section>
 
-    <!-- ============ SECTION 4: GANTT CHART ============ -->
+    <!-- ============ SECTION 5: GANTT CHART ============ -->
     <section class="feature-section" id="gantt">
         <div class="container">
             <div class="feature-section-header">
-                <h2><span class="section-number">4</span>Calendar &amp; Gantt Chart</h2>
+                <h2><span class="section-number">5</span>Calendar &amp; Gantt Chart</h2>
                 <p>See all your jobs on a visual timeline. Color-coded bars show which stage each job is in. Zoom from day to month level for capacity planning.</p>
             </div>
             <div class="feature-layout reversed">
@@ -314,11 +370,11 @@
         </div>
     </section>
 
-    <!-- ============ SECTION 5: SHOP FLOOR ============ -->
+    <!-- ============ SECTION 6: SHOP FLOOR ============ -->
     <section class="feature-section" id="shopfloor">
         <div class="container">
             <div class="feature-section-header">
-                <h2><span class="section-number">5</span>Shop Floor &amp; Kiosk Mode</h2>
+                <h2><span class="section-number">6</span>Shop Floor &amp; Kiosk Mode</h2>
                 <p>Touch-optimized for production workers. Large buttons, live clock, one-tap actions. Plus a TV Display Board for Andon-style shop-wide visibility.</p>
             </div>
             <div class="feature-layout">
@@ -363,11 +419,11 @@
         </div>
     </section>
 
-    <!-- ============ SECTION 6: ENTRY MANAGEMENT ============ -->
+    <!-- ============ SECTION 7: ENTRY MANAGEMENT ============ -->
     <section class="feature-section" id="entries">
         <div class="container">
             <div class="feature-section-header">
-                <h2><span class="section-number">6</span>Entry Management &amp; Forms</h2>
+                <h2><span class="section-number">7</span>Entry Management &amp; Forms</h2>
                 <p>15 built-in fields designed for trade shops, 5 custom field types, entry templates, and a floating detail window. Every entry is fully customizable.</p>
             </div>
             <div class="feature-layout reversed">
@@ -418,11 +474,11 @@
         </div>
     </section>
 
-    <!-- ============ SECTION 7: TAGS ============ -->
+    <!-- ============ SECTION 8: TAGS ============ -->
     <section class="feature-section" id="tags">
         <div class="container">
             <div class="feature-section-header">
-                <h2><span class="section-number">7</span>Tags &amp; Organization</h2>
+                <h2><span class="section-number">8</span>Tags &amp; Organization</h2>
                 <p>Flexible category-based tagging with Show/Hide Rules. Organize entries your way with button grids, dropdowns, or multi-select tags.</p>
             </div>
             <div class="feature-layout">
@@ -452,11 +508,11 @@
         </div>
     </section>
 
-    <!-- ============ SECTION 8: MULTI-USER ============ -->
+    <!-- ============ SECTION 9: MULTI-USER ============ -->
     <section class="feature-section" id="multiuser">
         <div class="container">
             <div class="feature-section-header">
-                <h2><span class="section-number">8</span>Multi-User &amp; Roles</h2>
+                <h2><span class="section-number">9</span>Multi-User &amp; Roles</h2>
                 <p>Start solo, scale to your whole team. SQL Server Express (free) for shared access with role-based permissions and Windows Authentication.</p>
             </div>
             <div class="feature-layout reversed">
@@ -507,11 +563,11 @@
         </div>
     </section>
 
-    <!-- ============ SECTION 9: COMPLIANCE ============ -->
+    <!-- ============ SECTION 10: COMPLIANCE ============ -->
     <section class="feature-section" id="compliance">
         <div class="container">
             <div class="feature-section-header">
-                <h2><span class="section-number">9</span>Compliance &amp; Audit Trail</h2>
+                <h2><span class="section-number">10</span>Compliance &amp; Audit Trail</h2>
                 <p>Every change logged with timestamp, user, and field-level diffs. ISO 9001 / AS9100 ready. Never wonder "who changed what?" again.</p>
             </div>
             <div class="feature-layout">
@@ -553,11 +609,11 @@
         </div>
     </section>
 
-    <!-- ============ SECTION 10: EXPORT ============ -->
+    <!-- ============ SECTION 11: EXPORT ============ -->
     <section class="feature-section" id="export">
         <div class="container">
             <div class="feature-section-header">
-                <h2><span class="section-number">10</span>Reporting &amp; Export</h2>
+                <h2><span class="section-number">11</span>Reporting &amp; Export</h2>
                 <p>Your data is never locked in. Export to PDF, Excel, CSV (QuickBooks compatible), and print job travelers with QR codes for barcode scanners.</p>
             </div>
             <div class="feature-layout reversed">
@@ -603,11 +659,11 @@
         </div>
     </section>
 
-    <!-- ============ SECTION 11: MATERIALS ============ -->
+    <!-- ============ SECTION 12: MATERIALS ============ -->
     <section class="feature-section" id="materials">
         <div class="container">
             <div class="feature-section-header">
-                <h2><span class="section-number">11</span>Customer &amp; Materials Management</h2>
+                <h2><span class="section-number">12</span>Customer &amp; Materials Management</h2>
                 <p>Auto-populated customer directory, material requirements per entry, inventory tracking with reorder points, and non-conformance (NCR) reporting.</p>
             </div>
             <div class="feature-layout">
@@ -648,11 +704,11 @@
         </div>
     </section>
 
-    <!-- ============ SECTION 12: CONFIGURATION ============ -->
+    <!-- ============ SECTION 13: CONFIGURATION ============ -->
     <section class="feature-section" id="config">
         <div class="container">
             <div class="feature-section-header">
-                <h2><span class="section-number">12</span>Configuration &amp; Customization</h2>
+                <h2><span class="section-number">13</span>Configuration &amp; Customization</h2>
                 <p>A centralized Settings Hub gives you full control. 11 industry templates get you started instantly. Every aspect of GlyphFex is configurable.</p>
             </div>
             <div class="feature-layout reversed">
@@ -698,11 +754,11 @@
         </div>
     </section>
 
-    <!-- ============ SECTION 13: MY JOBS ============ -->
+    <!-- ============ SECTION 14: MY JOBS ============ -->
     <section class="feature-section" id="workbins">
         <div class="container">
             <div class="feature-section-header">
-                <h2><span class="section-number">13</span>My Jobs</h2>
+                <h2><span class="section-number">14</span>My Jobs</h2>
                 <p>Stage-based job routing. Workers see their queue, managers see the big picture. A pull-based system where jobs flow to the right people automatically.</p>
             </div>
             <div class="feature-layout">
@@ -731,11 +787,11 @@
         </div>
     </section>
 
-    <!-- ============ SECTION 14: WORKSTATION TERMINAL ============ -->
+    <!-- ============ SECTION 15: WORKSTATION TERMINAL ============ -->
     <section class="feature-section" id="workstation">
         <div class="container">
             <div class="feature-section-header">
-                <h2><span class="section-number">14</span>Shop Floor Workstation</h2>
+                <h2><span class="section-number">15</span>Shop Floor Workstation</h2>
                 <p>PIN-secured terminals for shared shop floor PCs. One job, one focus, zero clutter. Workers log in with a PIN and see only what they need.</p>
             </div>
             <div class="feature-layout reversed">
@@ -764,11 +820,11 @@
         </div>
     </section>
 
-    <!-- ============ SECTION 15: WORKER MANAGEMENT ============ -->
+    <!-- ============ SECTION 16: WORKER MANAGEMENT ============ -->
     <section class="feature-section" id="workers">
         <div class="container">
             <div class="feature-section-header">
-                <h2><span class="section-number">15</span>Worker Management</h2>
+                <h2><span class="section-number">16</span>Worker Management</h2>
                 <p>Manage your workforce with profiles, departments, and stage assignments. Configure which workers are qualified for which pipeline stages.</p>
             </div>
             <div class="feature-layout">
@@ -795,11 +851,11 @@
         </div>
     </section>
 
-    <!-- ============ SECTION 16: PERFORMANCE ============ -->
+    <!-- ============ SECTION 17: PERFORMANCE ============ -->
     <section class="feature-section" id="performance">
         <div class="container">
             <div class="feature-section-header">
-                <h2><span class="section-number">16</span>Performance &amp; Scale</h2>
+                <h2><span class="section-number">17</span>Performance &amp; Scale</h2>
                 <p>SQL-first architecture means queries return in milliseconds, not seconds. Tested with 100,000+ entries. Scales to 1,000,000+ historical entries &mdash; over 10 years of shop history.</p>
             </div>
             <div class="feature-layout reversed">
@@ -821,64 +877,6 @@
                             </div>
                             <p class="placeholder-label">Screenshot: Dashboard with 100K+ entries showing fast load times</p>
                             <p class="placeholder-note">Capture: Dashboard page with large dataset, show pagination and KPIs</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ SECTION 17: SMART QUOTING & AUTO-PRICING ============ -->
-    <section class="feature-section" id="smart-quoting">
-        <div class="container">
-            <div class="feature-section-header">
-                <h2><span class="section-number">17</span>Smart Quoting &amp; Auto-Pricing</h2>
-                <p>Quoting backed by your own data, not your gut. Tag a job; in 300ms GlyphFex finds your most-similar past jobs by tag, quantity, recency, and same-customer boost &mdash; and surfaces median hours, suggested labor rate, and material costs. (The chip reports the total match count; the comparables popover lets you inspect the top 7 in detail.) Then closes the loop with Win Rate by Tag and Lost Reason capture so you learn from every quote. <strong>No competitor under $500/mo has this stack.</strong></p>
-            </div>
-            <div class="feature-layout">
-                <div class="feature-text">
-                    <ul class="feature-bullets">
-                        <li><strong>Past-job comparables engine</strong> &mdash; finds the most-similar past jobs by tag overlap, quantity closeness, recency (recent jobs count more &mdash; 6 months ago &asymp; 37% weight, 1 year ago &asymp; 13%), and a 2&times; boost for the same customer. Gives you the typical hours plus a realistic low/high range. <em>(For IT teams: k-NN with Jaccard similarity, exponential decay &tau;=180d, weighted median + P25/P75.)</em></li>
-                        <li><strong>Ambient suggestion chip</strong> &mdash; "Similar jobs: ~38-42 hrs &middot; ~$3,200 &middot; based on 7 matches" appears below Key Fields the moment you've picked enough tags</li>
-                        <li><strong>Ghost text in the Est. Hours field</strong> &mdash; the median sits in the field as placeholder. Type to override; click <strong>Accept</strong> on the chip to take it</li>
-                        <li><strong>Comparables popover</strong> &mdash; tap the chip to see the top 7 matched past jobs with match %, actual hours, and tag chips. Verify the suggestion before you trust it</li>
-                        <li><strong>Honesty Band</strong> &mdash; chip wording adapts to data thinness. Four bands by match count: hidden under 5, "Best guess (low data)" 5&ndash;9, neutral 10&ndash;19, "(high confidence)" 20+. Example low-data wording: <em>"Best guess (low data): ~38-42 hrs &middot; only 6 matches &mdash; adjust as you learn"</em>. Zillow pattern &mdash; we never hide thinness, never prescribe</li>
-                        <li><strong>Deviation warning</strong> &mdash; if you type a number 30%+ below history, an InfoBar surfaces the comparables. Stops "I'll just put 8 hours" mistakes</li>
-                        <li><strong>Tag-driven auto-pricing</strong> &mdash; mark categories as pricing categories and assign per-tag $/hr rates and per-tag material costs. Selecting tags auto-fills labor rate and material suggestions on the form. Closes the "Excel-on-the-side" gap</li>
-                        <li><strong>MAX rule for labor rate</strong> &mdash; when multiple tags carry rates, the highest one wins. Three-level fallback: tag-specific &rarr; category default &rarr; shop labor rate</li>
-                        <li><strong>Material library per tag</strong> &mdash; each tag can carry a cost-per-unit, unit name (sqft, lbs, ea), and optional markup %. Auto-Fill formula: <code>hours &times; rate + &Sigma;(material &times; (1 + markup))</code></li>
-                        <li><strong>Reactive ghost text</strong> &mdash; type a custom labor rate or estimated value and the suggestions update live. The field stops being a guess and starts being a calculator</li>
-                        <li><strong>Win/Loss tracking</strong> &mdash; Quote Outcome built-in field (Pending / Won / Lost / Expired) with one-click "Mark as Lost" and quick-close for Lost / Withdrawn quotes</li>
-                        <li><strong>Lost Reason capture</strong> &mdash; when you mark a quote Lost, GlyphFex prompts for the reason: Too expensive, Lost to competitor, Too slow / lead time, Customer cancelled, Specs changed, No response, Other. Standard B2B win/loss taxonomy. Research finding: 30-50% of quotes attributed to "lost on price" are actually lost to slow turnaround or capability mismatch &mdash; meaning if you blindly drop your price you sell margin away without winning more work</li>
-                        <li><strong>Win Rate by Tag analytics</strong> &mdash; per-tag won/lost dot bar with median won/lost prices and the top lost reason. Filtered to tags with at least 3 won or 3 lost samples. Shows where you're competitive and where you're not. eBay/Zillow non-prescriptive UX &mdash; the data is shown; the decision stays with you</li>
-                        <li><strong>Re-quote shortcut</strong> &mdash; one-click on a completed quote pre-fills a new entry with revision increment and source-quote link</li>
-                        <li><strong>Auto-advance won quotes</strong> &mdash; mark a quote Won and GlyphFex prompts to convert it to an order, copying customer, line items, materials, and tags</li>
-                        <li><strong>Customer Quote PDF</strong> &mdash; professional quote document with line items, terms, and validity date generated from entry data. Email Quote opens your mail client with the PDF attached</li>
-                        <li><strong>Markup Calculator</strong> &mdash; cost / margin / markup tool integrated into quote line items. No more "what's a 35% markup on $1,200?" mental math</li>
-                        <li><strong>Works after your 5th completed job</strong> &mdash; the engine needs a small amount of history to seed. New shops see useful suggestions in week 1; mature shops get tight ranges from day one</li>
-                        <li><strong>Settings toggle</strong> &mdash; Smart Quoting can be turned off per project from the Time Multipliers tab in Workflow Stages</li>
-                    </ul>
-                    <p style="margin-top: 16px;"><a href="help/smart-quoting.html" style="font-weight: 600;">Read the full Smart Quoting guide &rarr;</a></p>
-                </div>
-                <div class="feature-media">
-                    <!-- Smart Quoting screenshot -->
-                    <div class="screenshot-placeholder" data-capture="smart-quoting-chip">
-                        <div class="placeholder-inner">
-                            <div class="placeholder-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                            </div>
-                            <p class="placeholder-label">Screenshot: Smart Quoting chip with Honesty Band wording</p>
-                            <p class="placeholder-note">Capture: Entry form with tags selected, chip below Key Fields showing comparables count + median range</p>
-                        </div>
-                    </div>
-                    <!-- Win Rate by Tag screenshot -->
-                    <div class="screenshot-placeholder" data-capture="win-rate-by-tag">
-                        <div class="placeholder-inner">
-                            <div class="placeholder-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                            </div>
-                            <p class="placeholder-label">Screenshot: Win Rate by Tag analytics card</p>
-                            <p class="placeholder-note">Capture: Analytics page &gt; Sales &amp; Quoting section &gt; Win Rate by Tag chart with won/lost dot bars per tag</p>
                         </div>
                     </div>
                 </div>
