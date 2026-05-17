@@ -194,7 +194,7 @@ code { background: var(--gray-100); padding: 2px 6px; border-radius: 4px; font-s
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 24px;
 }
 
 .nav-links a {
@@ -202,6 +202,13 @@ code { background: var(--gray-100); padding: 2px 6px; border-radius: 4px; font-s
     font-weight: 500;
     color: var(--gray-600);
     transition: color 0.2s ease;
+    /* Wave 14OX: prevent multi-word nav items ("Sign shops",
+       "Cabinet & millwork", "Auto body", "HVAC / Plumbing") from
+       wrapping mid-link when the container compresses. Without this,
+       a 1200px viewport (= 1152px content area) is just shy of fitting
+       all 8 nav items + logo + Download Trial button, and the flex
+       compression triggers text-wrap inside each anchor. */
+    white-space: nowrap;
 }
 .nav-links a:hover { color: var(--blue-600); }
 
@@ -1125,7 +1132,14 @@ code { background: var(--gray-100); padding: 2px 6px; border-radius: 4px; font-s
     }
 }
 
-@media (max-width: 768px) {
+/* Wave 14OX: hamburger breakpoint moved from 768px to 1100px so the
+   desktop nav doesn't render in its compressed-overflow state. At 1200px
+   container max-width with 8 nav items + logo + button, the layout was
+   right at the overflow threshold — text was wrapping inside multi-word
+   anchors and the logo was visually crashing into the first nav link.
+   The mobile menu (.nav-links.open) still uses the same vertical-stack
+   styles below; only the breakpoint at which it activates changed. */
+@media (max-width: 1100px) {
     .nav-links { display: none; }
     .nav-toggle { display: flex; }
 
@@ -1147,6 +1161,9 @@ code { background: var(--gray-100); padding: 2px 6px; border-radius: 4px; font-s
         padding: 12px 0;
         border-bottom: 1px solid var(--gray-100);
     }
+}
+
+@media (max-width: 768px) {
 
     .hero { padding: 120px 0 60px; }
 
