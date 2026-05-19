@@ -1,5 +1,10 @@
 {
-    "version": "1.0.0",
-    "downloadUrl": "https://glyphfex.com/download",
-    "notes": "Initial release"
+    "_comment": "Wave 14PH scaffold. UpdateCheckService.cs polls https://glyphfex.com/api/version.json once per day on every installed app to detect new releases. Update this file as the final step of every release per Installer/RELEASE-PROCESS.md. The placeholders below stay in place until the first signed MSI ships; at that point bump latest_version, paste the release URL, paste the SHA-256.",
+    "latest_version": "1.0.0",
+    "release_date": "2026-05-18",
+    "download_url": "https://glyphfex.com/download.html",
+    "sha256": "",
+    "release_notes_url": "https://glyphfex.com/download.html",
+    "min_supported_version": "1.0.0",
+    "_schema_version": 1
 }
